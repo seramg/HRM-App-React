@@ -1,13 +1,11 @@
 import React from "react"
-import Header from './components/Header/Header.tsx';
+import HomePage from "./pages/HomePage/HomePage.tsx";
 
 function App() {
 
   return (
     <>
-      <Header></Header>
-      <main className='main-section global-width'>
-      </main>
+    <HomePage />
     </>
   )
 }

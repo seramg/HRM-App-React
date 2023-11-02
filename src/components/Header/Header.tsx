@@ -4,7 +4,7 @@ function Header() {
   return (
     <HeaderWrapper>
       <div className="header-content global-width">
-        <a href="javascript:void(0)" className="logo-wrap">
+        <a href="" className="logo-wrap">
           <h1 className="page-title">HRM</h1>
         </a>
       </div>

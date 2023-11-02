@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-
+import ManropeBold from "../fonts/Manrope-Bold.ttf"
+import ManropeMedium from "../fonts/Manrope-Medium.ttf"
 const GlobalStyle = createGlobalStyle`
   :root {
   --primary-color: #7e3af2;
@@ -12,14 +13,12 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 @font-face {
-  font-family: Manrope;
+  font-family: 'Manrope';
+  src: local('Manrope'),
+  url(${ManropeBold}) ,
+  url(${ManropeMedium}) ,
   font-weight: 700;
-  src: url("../fonts/Manrope-Bold.ttf");
-}
-@font-face {
-  font-family: Manrope;
   font-weight: 500;
-  src: url("../fonts/Manrope-Medium.ttf");
 }
 html {
   height: 100%;
@@ -76,13 +75,6 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.common-button-container {
-  padding: 16px 20px;
-  gap: 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  text-decoration: none;
-}
 .logo-wrap {
   text-decoration: none;
 }
@@ -98,12 +90,6 @@ body {
   color: var(--secondary-color);
   font-size: 16px;
   font-family: "Manrope";
-}
-.button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: white;
 }
 .rotate {
   transform: rotate(180deg);
@@ -128,6 +114,10 @@ body {
 .open{
   opacity: 0.6;
   pointer-events: visible;
+}
+.main-section {
+  height: 100%;
+  margin-bottom: 80px;
 }
 `;
 
