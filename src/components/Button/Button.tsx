@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import ButtonWrapper from "./button.ts";
 
-function Button({ name, icon }: { name: string; icon: string;}) {
+function Button({
+  children,
+  icon,
+  className,
+}: {
+  children: React.ReactNode;
+  icon: string;
+  className?: string | undefined;
+}) {
   return (
-    <ButtonWrapper className="common-flex add-btn">
+    <ButtonWrapper className={`common-flex ${className}`}>
       <span className="material-symbols-outlined"> {icon} </span>
-      {name}
+      {children}
     </ButtonWrapper>
   );
 }

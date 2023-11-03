@@ -8,6 +8,5 @@ const SectionWrapper = styled.section`
   .heading-section .common-button-container {
     background-color: var(--secondary-color);
     font-size: 18px;
-  }
-`;
+  }`;
 export default SectionWrapper;
