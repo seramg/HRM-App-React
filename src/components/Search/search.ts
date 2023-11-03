@@ -6,7 +6,12 @@ const SearchWrapper = styled.div`
     background-color: var(--background-color);
     border-radius: 10px;
     padding: 5px;
-    border: 2px solid var(--secondary-color); 
+    border: 2px solid var(--secondary-color);
+    
+    .material-symbols-outlined, .search-dropdown-btn-text{
+      margin: 0;
+      color: var(--secondary-color);  
+    }
   }
   .search-form {
     flex: 1;
@@ -28,12 +33,10 @@ const SearchWrapper = styled.div`
     border-radius: 0;
     background: none;
     border-left: 2px solid var(--secondary-color);
-    flex-direction: row-reverse
+    flex-direction: row-reverse;
+
   }
 
-  .material-symbols-outlined, .search-dropdown-btn-text{
-    margin: 0;
-    color: var(--secondary-color);  
-  }
+
 `;
 export default SearchWrapper;
