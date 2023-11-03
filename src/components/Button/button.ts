@@ -2,7 +2,7 @@
 
   const ButtonWrapper = styled.button`
   border: none;
-  background: none;
+  background: var(--secondary-color);
   cursor: pointer;
   color: white;
   padding: 16px 20px;

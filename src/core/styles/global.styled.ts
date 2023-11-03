@@ -122,5 +122,5 @@ body {
 `;
 
 export default {
-  GlobalStyle,
+  GlobalStyle
 };
