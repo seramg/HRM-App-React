@@ -13,7 +13,7 @@ function Button({
   return (
     <ButtonWrapper className={`common-flex ${className}`}>
       <span className="material-symbols-outlined"> {icon} </span>
-      {children}
+      {children !== "" ? children : ""}
     </ButtonWrapper>
   );
 }

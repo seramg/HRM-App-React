@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const TableWrapper = styled.table`
-    border: 1px solid var(--secondary-color);
     margin-bottom: 80px;
     border-collapse: collapse;
     border-spacing: 0;
@@ -19,15 +18,14 @@ const TableWrapper = styled.table`
     }
 }
 .table-title{
-    display: flex;
     cursor: pointer;
     color: var(--secondary-color);
   }
   .employee-data {
     font-size: 14px;
     font-weight:normal;
-    border-bottom: 1px solid  #D3D3D3;
   }
+  
   .no-data {
     text-align: center;
   }

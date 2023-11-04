@@ -119,9 +119,17 @@ body {
   height: 100%;
   margin-bottom: 80px;
 }
-th {
-  border-bottom: 1px solid var(--secondary-color);
+thead{
+  border: 1px solid var(--secondary-color);
   font-size: 16px;
+}
+tbody{
+  border: 1px solid var(--secondary-color);
+}
+tr{
+  border-bottom: 1px solid  #D3D3D3;
+&:last-child{
+  border-bottom: 1px solid  var(--secondary-color);
 }
 th{
   background-color: white;

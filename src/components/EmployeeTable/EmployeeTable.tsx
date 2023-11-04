@@ -59,24 +59,20 @@ function EmployeeTable() {
         </tr>
       </thead>
       <tbody>
-        {employees &&
-          employees.length > 0 &&
+        {employees.length > 0 ?
           employees.map((employee: Employee) => (
             <tr>
-              <td
-                className="employee-data employee-id"
-                data-id="${employee.id}"
-              >
-                {employee.id}
-              </td>
+              <td className="employee-data employee-id">{employee.id}</td>
               <td className="employee-data">{employee.emp_name}</td>
               <td className="employee-data">{employee.designation}</td>
               <td className="employee-data">{employee.department}</td>
               <td className="employee-data">
                 <div className="skill-list">
-                  {employee.skills.map((skill) =>
-                    <span className="skill-card" key={skill.name}> {skill.name} </span>
-                  )}
+                  {employee.skills.map((skill) => (
+                    <span className="skill-card" key={skill.id}>
+                      {skill.name}
+                    </span>
+                  ))}
                 </div>
               </td>
               <td className="employee-data">
@@ -87,7 +83,9 @@ function EmployeeTable() {
                 </div>
               </td>
             </tr>
-          ))}
+          )):
+          <td className="no-data" colSpan={6}>No data Available</td>
+        }
       </tbody>
     </TableWrapper>
   );
