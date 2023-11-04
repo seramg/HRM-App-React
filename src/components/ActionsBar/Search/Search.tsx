@@ -1,5 +1,6 @@
 import SearchWrapper from "./search";
-import Button from "../Button/Button.tsx";
+import Button from "../../Button/Button.tsx";
+import React from "react";
 
 function Search() {
   return (

@@ -1,5 +1,5 @@
 import ActionsWrapper from "./actionsBar";
-import Search from "./../Search/Search.tsx";
+import Search from "./Search/Search.tsx";
 import Button from "../Button/Button.tsx";
 
 function ActionsBar() {
