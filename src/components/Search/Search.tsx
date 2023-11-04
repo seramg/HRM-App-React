@@ -1,4 +1,3 @@
-import React from "react";
 import SearchWrapper from "./search";
 import Button from "../Button/Button.tsx";
 
