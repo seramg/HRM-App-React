@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-import ManropeBold from "../fonts/Manrope-Bold.ttf"
-import ManropeMedium from "../fonts/Manrope-Medium.ttf"
+import { createGlobalStyle } from "styled-components";
+import ManropeBold from "../fonts/Manrope-Bold.ttf";
+import ManropeMedium from "../fonts/Manrope-Medium.ttf";
 const GlobalStyle = createGlobalStyle`
   :root {
   --primary-color: #7e3af2;
@@ -119,8 +119,21 @@ body {
   height: 100%;
   margin-bottom: 80px;
 }
+th {
+  border-bottom: 1px solid var(--secondary-color);
+  font-size: 16px;
+}
+th{
+  background-color: white;
+  border-top: none;
+}
+th,
+td {
+  padding: 10px;
+  border-spacing: 0;
+}
 `;
 
 export default {
-  GlobalStyle
+  GlobalStyle,
 };
