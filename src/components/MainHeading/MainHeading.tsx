@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import SectionWrapper from "./mainHeading";
 import Button from "../Button/Button.tsx";
 import StyledLink from "../StyledLink.ts";
