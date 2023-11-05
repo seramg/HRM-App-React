@@ -1,12 +1,4 @@
-
-function InputError({
-  error,
-}: {
-  error:
-    | string
-    | undefined;
-}) {
-  console.log(error);
+function InputError({ error }: { error: string | undefined }) {
   return (
     <div className="input-error common-flex">
       <span className="material-symbols-outlined">warning</span>

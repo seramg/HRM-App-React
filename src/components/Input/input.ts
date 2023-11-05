@@ -10,12 +10,13 @@ const InputWrapper = styled.label`
 
   .input-error {
     border-radius: 5px;
-    gap:10px;
+    gap:5px;
     background-color: #ffcccb;
-    padding:5px
+    padding:5px;
   }
   .input-error * {
     color: red !important;
+    font-size:10px;
   }
   input[type="text"],
   input[type="email"],

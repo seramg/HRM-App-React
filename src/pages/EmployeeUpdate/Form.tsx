@@ -1,5 +1,6 @@
 import Input from "../../components/Input/Input.tsx";
 import { FormProvider, useForm } from "react-hook-form";
+import InputRow from "./form.ts";
 
 function Form() {
   const methods = useForm();
@@ -29,7 +30,38 @@ function Form() {
               },
             }}
             label="Name"
+            type="text"
           />
+          <InputRow className="details-row common-flex">
+            <Input
+              validation={{
+                required: {
+                  value: true,
+                  message: "required",
+                },
+                pattern: {
+                  value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
+                  message: "invalid value",
+                },
+              }}
+              label="Email"
+              type="email"
+            />
+            <Input
+              validation={{
+                required: {
+                  value: true,
+                  message: "required",
+                },
+                pattern: {
+                  value: RegExp("^[0-9]{10}$"), 
+                  message: "Phone number must be 10 digits with no alphabets.",
+                },
+              }}
+              label="Phone Number"
+              type="tel"
+            />
+          </InputRow>
         </fieldset>
         <button onClick={onSubmit}>Submit Form</button>
       </form>
