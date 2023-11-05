@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import TableWrapper from "./employeeTable.ts";
 import Button from "../Button/Button.tsx";
 import Employee from "../../core/interfaces/interface.ts";

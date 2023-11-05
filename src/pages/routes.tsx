@@ -6,7 +6,7 @@ import {
   Link,
 } from "react-router-dom";
 import HomePage from "./HomePage/HomePage";
-import EmployeeUpdate from "./EmployeeUpdate/FormPage";
+import Form from "./EmployeeUpdate/Form.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "employeeDetails",
-    element: <EmployeeUpdate />,
+    element: <Form />,
   },
 ]);
 

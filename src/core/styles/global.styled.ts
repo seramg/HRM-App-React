@@ -142,6 +142,5 @@ td {
 }
 `;
 
-export default {
-  GlobalStyle,
-};
+export default 
+  GlobalStyle;
