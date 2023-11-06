@@ -60,3 +60,10 @@ export interface InputProps {
   type: string;
   options?: string[];
 }
+
+export interface IsMultiStateProps {
+  isDepartmentsMulti: boolean;
+  isDesignationsMulti: boolean;
+  isEmpModesMulti: boolean;
+  isSkillsMulti: boolean;
+}

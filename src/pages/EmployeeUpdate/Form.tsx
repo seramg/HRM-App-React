@@ -114,7 +114,14 @@ function Form() {
         <Fieldset className="other-details ">
           <legend className="subheading">Other Information</legend>
           <InputRow className="details-row common-flex"></InputRow>
-          <SelectDropDown />
+          <SelectDropDown
+            isMultiState={{
+              isDepartmentsMulti: false,
+              isDesignationsMulti: false,
+              isEmpModesMulti: false,
+              isSkillsMulti: true,
+            }}
+          />
         </Fieldset>
         <Button icon="" onClick={onSubmit}>
           Submit

@@ -5,6 +5,10 @@ const ActionsWrapper = styled.div`
     padding: 16px 0;
     margin-bottom: 30px;
     border-radius: 10px;
+
+    .filter-container{
+      position:relative;
+    }
   }
 `;
 export default ActionsWrapper;

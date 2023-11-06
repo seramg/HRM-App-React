@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import { SelectProps } from "../../core/interfaces/interface.ts";
+import { IsMultiStateProps, SelectProps } from "../../core/interfaces/interface.ts";
 import { getData } from "../getData.tsx";
 import {
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
-import { InputRow } from "../../pages/EmployeeUpdate/form.ts";
 import SelectInput from "./SelectInput.tsx";
 
-function SelectDropDown() {
+function SelectDropDown({ isMultiState }: { isMultiState: IsMultiStateProps }){
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
   const [empModes, setEmpModes] = useState<SelectProps[]>([]);
@@ -34,25 +33,28 @@ function SelectDropDown() {
           label="Departments"
           options={departments}
           placeholder="Select department"
+          isMulti={isMultiState.isDepartmentsMulti}
         />
 
         <SelectInput
           label="Designations"
           options={designations}
           placeholder="Select designation"
+          isMulti={isMultiState.isDesignationsMulti}
         />
 
         <SelectInput
           label="Employment Modes"
           options={empModes}
           placeholder="Select employment mode"
+          isMulti={isMultiState.isEmpModesMulti}
         />
 
         <SelectInput
           label="Skills"
           options={skills}
-          placeholder="Select skills"
-          isMulti
+          placeholder="Select skill"
+          isMulti={isMultiState.isSkillsMulti}
         />
     </>
   );

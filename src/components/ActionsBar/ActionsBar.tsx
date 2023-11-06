@@ -11,10 +11,12 @@ function ActionsBar() {
   return (
     <ActionsWrapper className="common-flex">
       <Search />
-      <Button icon="filter_list" className="filter-btn" onClick={handleClick}>
-        Filters
-      </Button>
-      {dropdownShow && <FilterDropdown show={dropdownShow} />}
+      <div className="filter-container">
+        <Button icon="filter_list" className="filter-btn" onClick={handleClick}>
+          Filters
+        </Button>
+        {dropdownShow && <FilterDropdown />}
+      </div>
     </ActionsWrapper>
   );
 }
