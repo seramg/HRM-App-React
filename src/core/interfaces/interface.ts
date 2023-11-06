@@ -22,3 +22,41 @@ export interface Data {
   employment_modes: string[];
   skills: Skill[];
 }
+export interface SelectProps {
+  value: string;
+  label: string;
+}
+
+export interface SelectInputProps{
+  label: string;
+  options: SelectProps[];
+  placeholder: string;
+  isMulti?: boolean; 
+}
+export interface InputProps {
+  validation: {
+    required: {
+      value: boolean;
+      message: string;
+    };
+    minLength?: {
+      value: number;
+      message: string;
+    };
+    pattern?: {
+      value: RegExp;
+      message: string;
+    };
+    maxLength?: {
+      value: number;
+      message: string;
+    };
+    max?: {
+      value: string;
+      message: string;
+    };
+  };
+  label: string;
+  type: string;
+  options?: string[];
+}

@@ -19,9 +19,6 @@ const InputWrapper = styled.label`
     outline: none;
     color: var(--secondary-color);
   }
-  .radio-grp {
-    gap: 5px;
-  }
   .radio-list {
     gap: 10px;
   }

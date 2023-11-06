@@ -1,4 +1,4 @@
-import InputErrorWrapper from "./inputError";
+import InputErrorWrapper from "./inputError.ts";
 
 function InputError({ error }: { error: string | undefined }) {
   return (

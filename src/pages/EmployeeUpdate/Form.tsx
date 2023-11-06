@@ -1,8 +1,9 @@
 import Input from "../../components/Input/Input.tsx";
 import { FormProvider, useForm } from "react-hook-form";
-import {InputRow,Fieldset} from "./form.ts";
+import { InputRow, Fieldset } from "./form.ts";
 import Button from "../../components/Button/Button.tsx";
-import Select from "../../components/Input/Select.tsx"
+import Select from "../../components/Select/Select.tsx";
+import SelectDropDown from "../../components/Select/Select.tsx";
 
 function Form() {
   const currentDate = new Date().toISOString().split("T")[0];
@@ -61,7 +62,7 @@ function Form() {
                   message: "required",
                 },
                 pattern: {
-                  value: RegExp("^[0-9]{10}$"), 
+                  value: RegExp("^[0-9]{10}$"),
                   message: "Phone number must be 10 digits with no alphabets.",
                 },
               }}
@@ -113,11 +114,12 @@ function Form() {
         </Fieldset>
         <Fieldset className="other-details ">
           <legend className="subheading">Other Information</legend>
-          <InputRow className="details-row common-flex">
-            <Select />            
-          </InputRow>
+          <InputRow className="details-row common-flex"></InputRow>
+          <SelectDropDown />
         </Fieldset>
-        <Button icon="" onClick={onSubmit}>Submit</Button>
+        <Button icon="" onClick={onSubmit}>
+          Submit
+        </Button>
       </form>
     </FormProvider>
   );

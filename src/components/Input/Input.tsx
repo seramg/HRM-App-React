@@ -1,36 +1,8 @@
 import { useFormContext } from "react-hook-form";
 import InputWrapper from "./input.ts";
-import InputError from "./InputError.tsx";
-import { Key } from "react";
-import RadioGrp from "./RadioGrp.tsx";
-
-interface InputProps {
-  validation: {
-    required: {
-      value: boolean;
-      message: string;
-    };
-    minLength?: {
-      value: number;
-      message: string;
-    };
-    pattern?: {
-      value: RegExp;
-      message: string;
-    };
-    maxLength?: {
-      value: number;
-      message: string;
-    };
-    max?: {
-      value: string;
-      message: string;
-    };
-  };
-  label: string;
-  type: string;
-  options?: string[];
-}
+import { InputProps } from "../../core/interfaces/interface.ts";
+import InputError from "../InputError/InputError.tsx";
+import RadioGrp from "../Radio/RadioGrp.tsx";
 
 function Input({ validation, label, type, options }: InputProps) {
   const {
@@ -49,7 +21,12 @@ function Input({ validation, label, type, options }: InputProps) {
       {options ? (
         <div className="common-flex radio-list">
           {options.map((option: string) => (
-            <RadioGrp option={option} label={label} validation={validation} />
+            <RadioGrp
+              key={option}
+              option={option}
+              label={label}
+              validation={validation}
+            />
           ))}
         </div>
       ) : (

@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import RadioWrapper from "./radioGrp.ts";
 
 function RadioGrp({
   option,
@@ -20,7 +21,7 @@ function RadioGrp({
   } = useFormContext();
 
   return (
-    <div key={option} className="common-flex radio-grp">
+    <RadioWrapper key={option} className="common-flex">
       <input
         type="radio"
         id={`${label}-${option}`}
@@ -29,7 +30,7 @@ function RadioGrp({
         {...register(label, validation)}
       />
       <label htmlFor={`${label}-${option}`}>{option}</label>
-    </div>
+    </RadioWrapper>
   );
 }
 export default RadioGrp;
