@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
     margin-top: auto;
-    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: var(--background-color);

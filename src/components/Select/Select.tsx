@@ -30,7 +30,6 @@ function SelectDropDown() {
 
   return (
     <>
-      <InputRow>
         <SelectInput
           label="Departments"
           options={departments}
@@ -55,7 +54,6 @@ function SelectDropDown() {
           placeholder="Select skills"
           isMulti
         />
-      </InputRow>
     </>
   );
 }
