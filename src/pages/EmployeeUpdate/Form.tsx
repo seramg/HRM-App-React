@@ -2,7 +2,6 @@ import Input from "../../components/Input/Input.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import { InputRow, Fieldset } from "./form.ts";
 import Button from "../../components/Button/Button.tsx";
-import Select from "../../components/Select/Select.tsx";
 import SelectDropDown from "../../components/Select/Select.tsx";
 
 function Form() {

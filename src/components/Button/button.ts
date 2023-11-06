@@ -10,5 +10,9 @@
   border-radius: 10px;
   cursor: pointer;
   text-decoration: none;
+
+  .filter-btn{
+    position: relative;
+  }
   `;
   export default ButtonWrapper;

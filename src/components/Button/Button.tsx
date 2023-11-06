@@ -10,7 +10,7 @@ function Button({
   children: React.ReactNode;
   icon?: string;
   className?: string | undefined;
-  onClick?:()=>{}
+  onClick?:() => void;
 }) {
   return (
     <ButtonWrapper className={`common-flex ${className}`} onClick={onClick!}>
