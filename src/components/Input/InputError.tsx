@@ -1,9 +1,11 @@
+import InputErrorWrapper from "./inputError";
+
 function InputError({ error }: { error: string | undefined }) {
   return (
-    <div className="input-error common-flex">
+    <InputErrorWrapper className="input-error common-flex">
       <span className="material-symbols-outlined">warning</span>
       <span className="error-text">{error}</span>
-    </div>
+    </InputErrorWrapper>
   );
 }
 export default InputError;

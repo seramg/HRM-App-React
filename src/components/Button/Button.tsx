@@ -5,14 +5,16 @@ function Button({
   children,
   icon,
   className,
+  onClick
 }: {
   children: React.ReactNode;
-  icon: string;
+  icon?: string;
   className?: string | undefined;
+  onClick?:()=>{}
 }) {
   return (
-    <ButtonWrapper className={`common-flex ${className}`}>
-      <span className="material-symbols-outlined"> {icon} </span>
+    <ButtonWrapper className={`common-flex ${className}`} onClick={onClick!}>
+      {icon && <span className="material-symbols-outlined"> {icon} </span>}
       {children !== "" ? children : ""}
     </ButtonWrapper>
   );

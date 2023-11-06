@@ -1,8 +1,8 @@
-interface Skill{
-    id: string;
-    name: string
+export interface Skill {
+  id: string;
+  name: string;
 }
-interface Employee {
+export interface Employee {
   address: string;
   date_of_birth: string;
   date_of_joining: string;
@@ -15,4 +15,10 @@ interface Employee {
   phone: string;
   skills: Skill[];
 }
-export default Employee
+export interface Data {
+  departments: string[];
+  designations: string[];
+  employees: Employee[];
+  employment_modes: string[];
+  skills: Skill[];
+}

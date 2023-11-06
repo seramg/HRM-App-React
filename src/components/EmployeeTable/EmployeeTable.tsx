@@ -1,29 +1,23 @@
 import { useEffect, useState } from "react";
 import TableWrapper from "./employeeTable.ts";
 import Button from "../Button/Button.tsx";
-import Employee from "../../core/interfaces/interface.ts";
+import { Employee } from "../../core/interfaces/interface.ts";
+import { getData } from "../getData.tsx";
 
 function EmployeeTable() {
   const [employees, setEmployees] = useState<Employee[]>([]);
-  const getData = () => {
-    fetch("/data.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        console.log(myJson.employees);
-        setEmployees(myJson.employees);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData();
+      if (data) {
+        setEmployees(data.employees);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
   return (
     /* {data && data.length > 0 && data.map((item) => <p>{item}</p>)} */
     <TableWrapper>
@@ -58,7 +52,7 @@ function EmployeeTable() {
         </tr>
       </thead>
       <tbody>
-        {employees.length > 0 ?
+        {employees.length > 0 ? (
           employees.map((employee: Employee) => (
             <tr>
               <td className="employee-data employee-id">{employee.id}</td>
@@ -82,9 +76,12 @@ function EmployeeTable() {
                 </div>
               </td>
             </tr>
-          )):
-          <td className="no-data" colSpan={6}>No data Available</td>
-        }
+          ))
+        ) : (
+          <td className="no-data" colSpan={6}>
+            No data Available
+          </td>
+        )}
       </tbody>
     </TableWrapper>
   );
