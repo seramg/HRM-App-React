@@ -17,7 +17,7 @@ function Form() {
     methods.reset();
     resetSelects(methods.reset);
   };
-  const onSubmit = methods.handleSubmit((data) => {
+  const onSubmit = methods.handleSubmit(() => {
     onReset();
   });
 
