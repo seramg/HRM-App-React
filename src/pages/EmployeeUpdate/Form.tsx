@@ -10,6 +10,7 @@ function Form() {
 
   const onSubmit = methods.handleSubmit((data) => {
     console.log(data);
+    methods.reset();
   });
 
   return (
