@@ -24,7 +24,6 @@ function RadioGrp({
       <input
         type="radio"
         id={`${label}-${option}`}
-        name={label} // Set the same name for all radio inputs in the group
         value={option} // Specify the value for this radio input
         {...register(label, validation)}
       />
