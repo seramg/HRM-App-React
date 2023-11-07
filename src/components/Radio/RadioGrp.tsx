@@ -5,6 +5,7 @@ function RadioGrp({
   option,
   label,
   validation,
+  name
 }: {
   option: string;
   label: string;
@@ -14,6 +15,7 @@ function RadioGrp({
       message: string;
     };
   };
+  name:string
 }) {
   const {
     register,
@@ -25,7 +27,7 @@ function RadioGrp({
         type="radio"
         id={`${label}-${option}`}
         value={option} // Specify the value for this radio input
-        {...register(label, validation)}
+        {...register(name, validation)}
       />
       <label htmlFor={`${label}-${option}`}>{option}</label>
     </RadioWrapper>

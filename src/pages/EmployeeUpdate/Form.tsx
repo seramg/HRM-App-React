@@ -59,6 +59,7 @@ function Form() {
             }}
             label="Name"
             type="text"
+            name="emp_name"
           />
           <InputRow className="details-row common-flex">
             <Input
@@ -74,6 +75,7 @@ function Form() {
               }}
               label="Email"
               type="email"
+              name="email"
             />
             <Input
               validation={{
@@ -88,6 +90,7 @@ function Form() {
               }}
               label="Phone Number"
               type="tel"
+              name="phone"
             />
           </InputRow>
           <Input
@@ -103,6 +106,7 @@ function Form() {
             }}
             label="Address"
             type="textarea"
+            name="address"
           />
           <InputRow className="details-row common-flex">
             <Input
@@ -118,6 +122,7 @@ function Form() {
               }}
               label="Date"
               type="date"
+              name="date_of_birth"
             />
             <Input
               validation={{
@@ -129,6 +134,7 @@ function Form() {
               label="Gender"
               type="radio"
               options={["Male", "Female", "Other"]}
+              name="gender"
             />
           </InputRow>
         </Fieldset>

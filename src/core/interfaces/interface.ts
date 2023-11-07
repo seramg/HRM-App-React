@@ -29,13 +29,13 @@ export interface SelectProps {
   label: string;
 }
 
-export interface SelectInputProps{
+export interface SelectInputProps {
   label: string;
   options: SelectProps[];
   placeholder: string;
-  isMulti?: boolean; 
-  control?:Control<FieldValues, any>
-  fieldName:string
+  isMulti?: boolean;
+  control?: Control<FieldValues, any>;
+  fieldName: string;
 }
 export interface InputProps {
   validation: {
@@ -63,6 +63,7 @@ export interface InputProps {
   label: string;
   type: string;
   options?: string[];
+  name: string;
 }
 
 export interface IsMultiStateProps {

@@ -4,14 +4,14 @@ import { InputProps } from "../../core/interfaces/interface.ts";
 import InputError from "../InputError/InputError.tsx";
 import RadioGrp from "../Radio/RadioGrp.tsx";
 
-function Input({ validation, label, type, options }: InputProps) {
+function Input({ validation, label, type, options,name }: InputProps) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
 
-  const errorMsg = errors[label];
+  const errorMsg = errors[name];
 
   return (
     <InputWrapper>
@@ -26,6 +26,7 @@ function Input({ validation, label, type, options }: InputProps) {
               key={option}
               option={option}
               label={label}
+              name={name}
               validation={validation}
             />
           ))}
@@ -35,7 +36,7 @@ function Input({ validation, label, type, options }: InputProps) {
           type={type}
           id={label}
           className={label}
-          {...register(label, validation)}
+          {...register(name, validation)}
         />
       )}
     </InputWrapper>
