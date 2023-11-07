@@ -17,6 +17,6 @@ const router = createBrowserRouter([
     path: "employeeDetails",
     element: <Form />,
   },
-]);
+],{ basename: import.meta.env.DEV ? '/' : '/HRM-App-React/' });
 
 export default router;
