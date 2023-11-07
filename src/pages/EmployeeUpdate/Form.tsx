@@ -116,6 +116,7 @@ function Form() {
           <legend className="subheading">Other Information</legend>
           <InputRow className="details-row common-flex"></InputRow>
           <SelectDropDown
+          control={methods.control}
             isMultiState={{
               isDepartmentsMulti: false,
               isDesignationsMulti: false,

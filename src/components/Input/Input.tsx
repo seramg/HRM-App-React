@@ -10,6 +10,7 @@ function Input({ validation, label, type, options }: InputProps) {
     formState: { errors },
   } = useFormContext();
 
+
   const errorMsg = errors[label];
 
   return (

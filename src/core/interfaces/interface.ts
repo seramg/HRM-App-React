@@ -1,3 +1,5 @@
+import { Control, FieldValues } from "react-hook-form";
+
 export interface Skill {
   id: string;
   name: string;
@@ -32,6 +34,8 @@ export interface SelectInputProps{
   options: SelectProps[];
   placeholder: string;
   isMulti?: boolean; 
+  control?:Control<FieldValues, any>
+  fieldName:string
 }
 export interface InputProps {
   validation: {
