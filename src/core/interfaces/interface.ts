@@ -36,6 +36,7 @@ export interface SelectInputProps {
   isMulti?: boolean;
   control?: Control<FieldValues, any>;
   fieldName: string;
+  isFilter:boolean
 }
 export interface InputProps {
   validation: {

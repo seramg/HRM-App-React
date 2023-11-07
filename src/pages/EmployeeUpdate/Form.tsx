@@ -1,24 +1,13 @@
 import Input from "../../components/Input/Input.tsx";
 import {
-  FieldValues,
   FormProvider,
-  UseFormReset,
   useForm,
 } from "react-hook-form";
 import { InputRow, Fieldset } from "./form.ts";
 import Button from "../../components/Button/Button.tsx";
 import SelectList from "../../components/Select/SelectList.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
-
-function resetSelects(reset: UseFormReset<FieldValues>) {
-  const resetValues = {
-    departments: "",
-    designations: "",
-    skills: "",
-    employment_modes: "",
-  };
-  reset(resetValues);
-}
+import { resetSelects } from "../../utils/helper.ts";
 
 function Form() {
   const currentDate = new Date().toISOString().split("T")[0];
@@ -29,7 +18,6 @@ function Form() {
     resetSelects(methods.reset);
   };
   const onSubmit = methods.handleSubmit((data) => {
-    console.log(data);
     onReset();
   });
 
@@ -151,11 +139,11 @@ function Form() {
           />
         </Fieldset>
         <ButtonGrpWrapper>
-          <Button icon="" onClick={onSubmit}>
-            Submit
-          </Button>
           <Button icon="" onClick={onReset}>
             Clear
+          </Button>
+          <Button icon="" onClick={onSubmit}>
+            Submit
           </Button>
         </ButtonGrpWrapper>
       </form>

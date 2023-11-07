@@ -14,9 +14,11 @@ import { Control, FieldValues } from "react-hook-form";
 function SelectList({
   isMultiState,
   control,
+  isFilter
 }: {
   isMultiState: IsMultiStateProps;
   control: Control<FieldValues, any>;
+  isFilter?:boolean
 }) {
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
@@ -46,6 +48,7 @@ function SelectList({
         isMulti={isMultiState.isDepartmentsMulti}
         control =  {control}
         fieldName = "departments"
+        isFilter={isFilter!}
       />
 
       <SelectInput
@@ -55,6 +58,7 @@ function SelectList({
         isMulti={isMultiState.isDesignationsMulti}
         control={control}
         fieldName = "designations"
+        isFilter={isFilter!}
       />
 
       <SelectInput
@@ -64,6 +68,7 @@ function SelectList({
         isMulti={isMultiState.isEmpModesMulti}
         control={control}
         fieldName = "employment_modes"
+        isFilter={isFilter!}
       />
 
       <SelectInput
@@ -73,6 +78,7 @@ function SelectList({
         isMulti={isMultiState.isSkillsMulti}
         control={control}
         fieldName = "skills"
+        isFilter={isFilter!}
       />
     </>
   );

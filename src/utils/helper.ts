@@ -1,3 +1,4 @@
+import { UseFormReset, FieldValues } from "react-hook-form";
 import { Skill } from "../core/interfaces/interface.ts";
 
 export function transformArrayToOptionsList(array: string[]) {
@@ -14,4 +15,13 @@ export function transformArrayToSkillOptionsList(skills: Skill[]) {
   }));
 }
 
+export function resetSelects(reset: UseFormReset<FieldValues>) {
+  const resetValues = {
+    departments: "",
+    designations: "",
+    skills: "",
+    employment_modes: "",
+  };
+  reset(resetValues);
+}
 
