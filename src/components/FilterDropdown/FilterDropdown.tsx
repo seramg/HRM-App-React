@@ -1,4 +1,5 @@
 import Button from "../Button/Button.tsx";
+import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import SelectDropDown from "../Select/Select.tsx";
 import FilterDropdownWrapper from "./filterDropdown.ts";
 
@@ -14,10 +15,10 @@ function FilterDropdown() {
           isSkillsMulti: true,
         }}
       />
-      <div className="button-container">
+      <ButtonGrpWrapper>
         <Button icon="">Reset</Button>
         <Button icon="">Save</Button>
-      </div>
+      </ButtonGrpWrapper>
     </FilterDropdownWrapper>
   );
 }

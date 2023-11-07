@@ -1,16 +1,36 @@
 import Input from "../../components/Input/Input.tsx";
-import { FormProvider, useForm } from "react-hook-form";
+import {
+  FieldValues,
+  FormProvider,
+  UseFormReset,
+  useForm,
+} from "react-hook-form";
 import { InputRow, Fieldset } from "./form.ts";
 import Button from "../../components/Button/Button.tsx";
 import SelectDropDown from "../../components/Select/Select.tsx";
+import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
+
+function resetSelects(reset: UseFormReset<FieldValues>) {
+  const resetValues = {
+    departments: "",
+    designations: "",
+    skills: "",
+    employment_modes: "",
+  };
+  reset(resetValues);
+}
 
 function Form() {
   const currentDate = new Date().toISOString().split("T")[0];
   const methods = useForm();
 
+  const onReset = () => {
+    methods.reset();
+    resetSelects(methods.reset);
+  };
   const onSubmit = methods.handleSubmit((data) => {
     console.log(data);
-    methods.reset();
+    onReset();
   });
 
   return (
@@ -114,9 +134,8 @@ function Form() {
         </Fieldset>
         <Fieldset className="other-details ">
           <legend className="subheading">Other Information</legend>
-          <InputRow className="details-row common-flex"></InputRow>
           <SelectDropDown
-          control={methods.control}
+            control={methods.control}
             isMultiState={{
               isDepartmentsMulti: false,
               isDesignationsMulti: false,
@@ -125,9 +144,14 @@ function Form() {
             }}
           />
         </Fieldset>
-        <Button icon="" onClick={onSubmit}>
-          Submit
-        </Button>
+        <ButtonGrpWrapper>
+          <Button icon="" onClick={onSubmit}>
+            Submit
+          </Button>
+          <Button icon="" onClick={onReset}>
+            Clear
+          </Button>
+        </ButtonGrpWrapper>
       </form>
     </FormProvider>
   );

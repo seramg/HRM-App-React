@@ -1,7 +1,10 @@
 import Select from "react-select";
 import InputWrapper from "../Input/input.ts";
 import { SelectInputProps } from "../../core/interfaces/interface.ts";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  useFormContext,
+} from "react-hook-form";
 import InputError from "../InputError/InputError.tsx";
 
 function SelectInput({
@@ -10,14 +13,14 @@ function SelectInput({
   placeholder,
   isMulti,
   control,
-  fieldName
+  fieldName,
 }: SelectInputProps) {
   const {
     formState: { errors },
   } = useFormContext();
 
-  const errorMsg = errors[fieldName]; 
-    
+  const errorMsg = errors[fieldName];
+
   return (
     <InputWrapper>
       <div className="label-heading common-flex">
