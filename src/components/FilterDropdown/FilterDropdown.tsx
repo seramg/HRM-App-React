@@ -1,13 +1,13 @@
 import Button from "../Button/Button.tsx";
 import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
-import SelectDropDown from "../Select/Select.tsx";
+import SelectList from "../Select/SelectList.tsx";
 import FilterDropdownWrapper from "./filterDropdown.ts";
 
 function FilterDropdown() {
   return (
     <FilterDropdownWrapper>
       <h2 className=" head-row dropdown-row">Filter List</h2>
-      <SelectDropDown
+      <SelectList
         isMultiState={{
           isDepartmentsMulti: true,
           isDesignationsMulti: true,

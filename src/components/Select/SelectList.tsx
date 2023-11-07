@@ -11,7 +11,7 @@ import {
 import SelectInput from "./SelectInput.tsx";
 import { Control, FieldValues } from "react-hook-form";
 
-function SelectDropDown({
+function SelectList({
   isMultiState,
   control,
 }: {
@@ -77,4 +77,4 @@ function SelectDropDown({
     </>
   );
 }
-export default SelectDropDown;
+export default SelectList;

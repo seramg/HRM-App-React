@@ -7,7 +7,7 @@ import {
 } from "react-hook-form";
 import { InputRow, Fieldset } from "./form.ts";
 import Button from "../../components/Button/Button.tsx";
-import SelectDropDown from "../../components/Select/Select.tsx";
+import SelectList from "../../components/Select/SelectList.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 
 function resetSelects(reset: UseFormReset<FieldValues>) {
@@ -140,7 +140,7 @@ function Form() {
         </Fieldset>
         <Fieldset className="other-details ">
           <legend className="subheading">Other Information</legend>
-          <SelectDropDown
+          <SelectList
             control={methods.control}
             isMultiState={{
               isDepartmentsMulti: false,
