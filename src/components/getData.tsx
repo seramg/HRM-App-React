@@ -1,6 +1,6 @@
 export async function getData() {
   try {
-    const response = await fetch("https://github.com/seraGeorge/HRM-App-React/public/data.json", {
+    const response = await fetch("/data.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
