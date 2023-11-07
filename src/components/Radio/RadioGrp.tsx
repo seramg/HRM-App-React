@@ -17,7 +17,6 @@ function RadioGrp({
 }) {
   const {
     register,
-    formState: { errors },
   } = useFormContext();
 
   return (
