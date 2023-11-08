@@ -54,7 +54,7 @@ function EmployeeTable() {
       <tbody>
         {employees.length > 0 ? (
           employees.map((employee: Employee) => (
-            <tr>
+            <tr key={employee.id}>
               <td className="employee-data employee-id">{employee.id}</td>
               <td className="employee-data">{employee.emp_name}</td>
               <td className="employee-data">{employee.designation}</td>
