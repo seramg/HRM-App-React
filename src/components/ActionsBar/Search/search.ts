@@ -23,12 +23,14 @@ const SearchWrapper = styled.div`
     text-decoration: none;
     font-size: 16px;
     color: var(--secondary-color);
+    padding:0;
 
     &::placeholder{
       color:var(--placeholder-color)
     }
   }
   .search-btn {
+    padding:0;
     gap: 5px !important;
     border-radius: 0;
     background: none;

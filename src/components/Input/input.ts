@@ -6,7 +6,7 @@ const InputWrapper = styled.label`
   flex-direction: column;
   flex: 1;
   }
-  input {
+  input{
     padding: 10px;
     outline: none;
     color: var(--secondary-color);
@@ -18,6 +18,9 @@ const InputWrapper = styled.label`
       font-size: 14px;
     }
   }
+  input[type="date"]::-webkit-datetime-edit {
+    color: var(--placeholder-color);
+}
 
   .placeholder {
     color: var(--placeholder-color);
@@ -25,6 +28,11 @@ const InputWrapper = styled.label`
   }
   .radio-list {
     gap: 10px;
+  }
+  .select{
+    overflow:hidden;
+    text-overflow:emphasis;
+    width:200px;
   }
 `;
 export default InputWrapper;

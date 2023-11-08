@@ -6,6 +6,7 @@ const ActionsWrapper = styled.div`
     border-radius: 10px;
     border: 1px solid  #D3D3D3;
     background-color:var(--white-color);
+    align-items:flex-end !important;
 
     .select-list > *{
       flex:initial !important;

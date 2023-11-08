@@ -26,9 +26,9 @@ function Filters() {
             control={methods.control}
             isFilter= {true}
             isMultiState={{
-              isDepartmentsMulti: true,
-              isDesignationsMulti: true,
-              isEmpModesMulti: true,
+              isDepartmentsMulti: false,
+              isDesignationsMulti: false,
+              isEmpModesMulti: false,
               isSkillsMulti: true,
             }}
           />

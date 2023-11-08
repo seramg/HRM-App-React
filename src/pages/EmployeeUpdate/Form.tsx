@@ -93,7 +93,7 @@ function Form() {
             type="textarea"
             name="address"
           />
-          <InputRow className="m-30 common-flex">
+          <InputRow className="common-flex">
             <Input
               validation={{
                 required: {

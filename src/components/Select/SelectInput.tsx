@@ -43,7 +43,6 @@ function SelectInput({
         />
       ) : (
         <Select
-          className="select"
           name={fieldName}
           isSearchable={true}
           options={options}
