@@ -4,12 +4,11 @@ import { InputProps } from "../../core/interfaces/interface.ts";
 import InputError from "../InputError/InputError.tsx";
 import RadioGrp from "../Radio/RadioGrp.tsx";
 
-function Input({ validation, label, type, options,name }: InputProps) {
+function Input({ validation, label, type, options, name }: InputProps) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
-
 
   const errorMsg = errors[name];
 
@@ -35,7 +34,7 @@ function Input({ validation, label, type, options,name }: InputProps) {
         <input
           type={type}
           id={label}
-          className={label}
+          className={`m-30 ${label}`}
           {...register(name, validation)}
         />
       )}

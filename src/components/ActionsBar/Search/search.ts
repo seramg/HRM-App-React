@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 const SearchWrapper = styled.div`
     flex: 1;
-    background-color: var(--background-color);
+    background-color: var(--white-color);
     border-radius: 10px;
     padding: 5px;
-    border: 2px solid var(--secondary-color);
+    border: 1px solid  #D3D3D3;
     
     .material-symbols-outlined, .search-dropdown-btn-text{
       margin: 0;
-      color: var(--secondary-color);  
+      color:  #D3D3D3;  
     }
   }
   .search-form {
@@ -24,13 +24,17 @@ const SearchWrapper = styled.div`
     text-decoration: none;
     font-size: 16px;
     color: var(--secondary-color);
+
+    &::placeholder{
+      color:var(--placeholder-color)
+    }
   }
   .search-btn {
     padding: 10px 10px;
     gap: 5px !important;
     border-radius: 0;
     background: none;
-    border-left: 2px solid var(--secondary-color);
+    border-left: 1px solid  #D3D3D3;
     flex-direction: row-reverse;
 
   }

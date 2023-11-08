@@ -5,7 +5,7 @@ function RadioGrp({
   option,
   label,
   validation,
-  name
+  name,
 }: {
   option: string;
   label: string;
@@ -15,14 +15,12 @@ function RadioGrp({
       message: string;
     };
   };
-  name:string
+  name: string;
 }) {
-  const {
-    register,
-  } = useFormContext();
+  const { register } = useFormContext();
 
   return (
-    <RadioWrapper key={option} className="common-flex">
+    <RadioWrapper key={option} className=" m-30 common-flex">
       <input
         type="radio"
         id={`${label}-${option}`}

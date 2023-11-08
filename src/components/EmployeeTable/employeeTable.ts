@@ -5,7 +5,6 @@ const TableWrapper = styled.table`
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;  
-    background-color: white;
 
     .material-symbols-outlined{
       color:var(--secondary-color);
@@ -16,9 +15,10 @@ const TableWrapper = styled.table`
         padding:0;
         border-radius:0;
     }
-    .actions-list{
-      gap:5px;
-    }
+
+}
+.actions-list{
+  gap:5px;
 }
 .table-title{
     cursor: pointer;
@@ -48,6 +48,8 @@ const TableWrapper = styled.table`
     border-radius: 10px;
     color: white;
   }
-  
+  .alternate-table-row-color{
+    background-color:var(--white-color);
+  }
 `;
 export default TableWrapper;

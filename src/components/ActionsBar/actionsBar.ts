@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 const ActionsWrapper = styled.div`
-    padding: 16px 0;
+    padding: 20px;
     margin-bottom: 30px;
     border-radius: 10px;
+    border: 1px solid  #D3D3D3;
+    background-color:var(--white-color);
   }
 `;
 export default ActionsWrapper;

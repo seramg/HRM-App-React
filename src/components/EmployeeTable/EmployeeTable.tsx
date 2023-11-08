@@ -17,9 +17,8 @@ function EmployeeTable() {
 
     fetchData();
   }, []);
-  
+
   return (
-    /* {data && data.length > 0 && data.map((item) => <p>{item}</p>)} */
     <TableWrapper>
       <thead>
         <tr>
@@ -53,8 +52,11 @@ function EmployeeTable() {
       </thead>
       <tbody>
         {employees.length > 0 ? (
-          employees.map((employee: Employee) => (
-            <tr key={employee.id}>
+          employees.map((employee: Employee, index: number) => (
+            <tr
+              key={employee.id}
+              className={index % 2 !== 0 ? "alternate-table-row-color" : ""}
+            >
               <td className="employee-data employee-id">{employee.id}</td>
               <td className="employee-data">{employee.emp_name}</td>
               <td className="employee-data">{employee.designation}</td>

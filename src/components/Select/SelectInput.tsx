@@ -22,7 +22,7 @@ function SelectInput({
   return (
     <InputWrapper>
       <div className=" common-flex">
-        <label className="label-heading">{label}</label>
+        {label}
         {errorMsg && <InputError error={errorMsg.message?.toString()} />}
       </div>
       {!isFilter ? (

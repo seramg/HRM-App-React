@@ -5,8 +5,9 @@ const GlobalStyle = createGlobalStyle`
   :root {
   --primary-color: #7e3af2;
   --secondary-color: rgba(36, 38, 45);
-  --placeholder-color: rgba(112, 114, 117);
-  --background-color: #f9fafb;
+  --placeholder-color: #a9a9a9;
+  --background-color: #F3F5FA;
+  --white-color: #f9fafb;
 }
 
 * {
@@ -115,28 +116,21 @@ body {
   height: 100%;
   margin-bottom: 80px;
 }
+table,tr{
+  border: 1px solid  #D3D3D3;
+}
 thead{
-  border: 1px solid var(--secondary-color);
   font-size: 16px;
-}
-tbody{
-  border: 1px solid var(--secondary-color);
-}
-tr{
-  border-bottom: 1px solid  #D3D3D3;
-&:last-child{
-  border-bottom: 1px solid  var(--secondary-color);
-}
-th{
-  background-color: white;
-  border-top: none;
+  background-color: var(--white-color);
 }
 th,
 td {
   padding: 10px;
   border-spacing: 0;
 }
+.m-30 {
+  margin-bottom: 30px;
+}
 `;
 
-export default 
-  GlobalStyle;
+export default GlobalStyle;

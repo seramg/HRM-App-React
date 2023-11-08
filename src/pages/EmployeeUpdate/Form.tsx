@@ -1,8 +1,5 @@
 import Input from "../../components/Input/Input.tsx";
-import {
-  FormProvider,
-  useForm,
-} from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { InputRow, Fieldset } from "./form.ts";
 import Button from "../../components/Button/Button.tsx";
 import SelectList from "../../components/Select/SelectList.tsx";
@@ -49,7 +46,7 @@ function Form() {
             type="text"
             name="emp_name"
           />
-          <InputRow className="details-row common-flex">
+          <InputRow className="common-flex">
             <Input
               validation={{
                 required: {
@@ -96,7 +93,7 @@ function Form() {
             type="textarea"
             name="address"
           />
-          <InputRow className="details-row common-flex">
+          <InputRow className="m-30 common-flex">
             <Input
               validation={{
                 required: {
