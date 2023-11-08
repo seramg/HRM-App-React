@@ -74,6 +74,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap:20px;
 }
 .logo-wrap {
   text-decoration: none;
@@ -85,11 +86,6 @@ body {
   font-weight: 500;
   text-decoration: none;
   color: white;
-}
-::placeholder {
-  color: var(--secondary-color);
-  font-size: 16px;
-  font-family: "Manrope";
 }
 .rotate {
   transform: rotate(180deg);

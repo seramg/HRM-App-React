@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const SearchWrapper = styled.div`
     flex: 1;
-    gap: 10px;
     background-color: var(--background-color);
     border-radius: 10px;
     padding: 5px;
@@ -15,7 +14,6 @@ const SearchWrapper = styled.div`
   }
   .search-form {
     flex: 1;
-    gap: 10px;
   }
   .search-input {
     width: 100%;
@@ -27,9 +25,9 @@ const SearchWrapper = styled.div`
     font-size: 16px;
     color: var(--secondary-color);
   }
-  .search_btn {
+  .search-btn {
     padding: 10px 10px;
-    gap: 5px;
+    gap: 5px !important;
     border-radius: 0;
     background: none;
     border-left: 2px solid var(--secondary-color);

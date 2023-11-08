@@ -6,7 +6,6 @@
   cursor: pointer;
   color: white;
   padding: 16px 20px;
-  gap: 20px;
   border-radius: 10px;
   cursor: pointer;
   text-decoration: none;

@@ -13,7 +13,7 @@ function Search() {
           placeholder="Search"
         />
       </div>
-      <Button icon="expand_more" className="search_btn">
+      <Button icon="expand_more" className="search-btn">
         <p
           id="search-dropdown-btn-text"
           className="search-dropdown-btn-text"

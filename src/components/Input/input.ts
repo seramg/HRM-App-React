@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
-
 const InputWrapper = styled.label`
   gap: 10px;
   margin-bottom: 30px;
-  flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
+  flex:1;
 
-  input,
-  select {
+  input {
     flex: 1;
     background: transparent;
   }
@@ -18,6 +15,9 @@ const InputWrapper = styled.label`
     padding: 10px;
     outline: none;
     color: var(--secondary-color);
+  }
+  .select-placeholder {
+    font-size: 14px;
   }
   .radio-list {
     gap: 10px;

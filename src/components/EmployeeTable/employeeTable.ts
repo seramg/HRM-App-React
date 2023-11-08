@@ -16,6 +16,9 @@ const TableWrapper = styled.table`
         padding:0;
         border-radius:0;
     }
+    .actions-list{
+      gap:5px;
+    }
 }
 .table-title{
     cursor: pointer;

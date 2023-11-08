@@ -1,11 +1,8 @@
 import { useForm, FormProvider } from "react-hook-form";
-import Button from "../Button/Button.tsx";
-import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import SelectList from "../Select/SelectList.tsx";
-import FilterDropdownWrapper from "./filterDropdown.ts";
 import { resetSelects } from "../../utils/helper.ts";
 
-function FilterDropdown() {
+function Filters() {
   const methods = useForm();
 
   const onReset = () => {
@@ -17,8 +14,8 @@ function FilterDropdown() {
   });
 
   return (
-    <FilterDropdownWrapper>
-      <h2 className=" head-row dropdown-row">Filter List</h2>
+    <>
+      <h2 className="subheading" >Filter By:</h2>
       <FormProvider {...methods}>
         <form
           className="global-width"
@@ -35,18 +32,10 @@ function FilterDropdown() {
               isSkillsMulti: true,
             }}
           />
-          <ButtonGrpWrapper>
-            <Button icon="" onClick={onReset}>
-              Reset
-            </Button>
-            <Button icon="" onClick={onSubmit}>
-              Apply All
-            </Button>
-          </ButtonGrpWrapper>
         </form>
       </FormProvider>
-    </FilterDropdownWrapper>
+     </>
   );
 }
 
-export default FilterDropdown;
+export default Filters;

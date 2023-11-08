@@ -40,7 +40,7 @@ function SelectList({
   }, []);
 
   return (
-    <>
+    <div className="select-list common-flex">
       <SelectInput
         label="Departments"
         options={departments}
@@ -80,7 +80,7 @@ function SelectList({
         fieldName = "skills"
         isFilter={isFilter!}
       />
-    </>
+    </div>
   );
 }
 export default SelectList;

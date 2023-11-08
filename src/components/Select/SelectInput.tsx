@@ -21,8 +21,8 @@ function SelectInput({
 
   return (
     <InputWrapper>
-      <div className="label-heading common-flex">
-        {label}
+      <div className=" common-flex">
+        <label className="label-heading">{label}</label>
         {errorMsg && <InputError error={errorMsg.message?.toString()} />}
       </div>
       {!isFilter ? (
@@ -32,20 +32,22 @@ function SelectInput({
           rules={{ required: "This field is required" }} // Add your validation rules here
           render={({ field }) => (
             <Select
+              className="select"
               {...field}
               isSearchable={true}
               options={options}
-              placeholder={placeholder}
+              placeholder={<div className="select-placeholder">{placeholder}</div>}
               isMulti={isMulti!}
             />
           )}
         />
       ) : (
         <Select
+          className="select"
           name={fieldName}
           isSearchable={true}
           options={options}
-          placeholder={placeholder}
+          placeholder={<div className="select-placeholder">{placeholder}</div>}
           isMulti={isMulti!}
         />
       )}
