@@ -20,7 +20,6 @@ const SearchWrapper = styled.div`
     background: transparent;
     border: none;
     outline: 0;
-    color: white;
     text-decoration: none;
     font-size: 16px;
     color: var(--secondary-color);
@@ -30,13 +29,11 @@ const SearchWrapper = styled.div`
     }
   }
   .search-btn {
-    padding: 10px 10px;
     gap: 5px !important;
     border-radius: 0;
     background: none;
     border-left: 1px solid  #D3D3D3;
     flex-direction: row-reverse;
-
   }
 
 

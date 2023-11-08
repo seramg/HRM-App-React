@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Fieldset = styled.fieldset`
   margin: 30px 0;
+  background-color:var(--white-color);
   .submit-btn {
     margin: 30px;
   }

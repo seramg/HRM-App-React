@@ -6,6 +6,10 @@ const ActionsWrapper = styled.div`
     border-radius: 10px;
     border: 1px solid  #D3D3D3;
     background-color:var(--white-color);
+
+    .select-list > *{
+      flex:initial !important;
+    }
   }
 `;
 export default ActionsWrapper;

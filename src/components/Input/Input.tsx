@@ -11,7 +11,6 @@ function Input({ validation, label, type, options, name }: InputProps) {
   } = useFormContext();
 
   const errorMsg = errors[name];
-
   return (
     <InputWrapper>
       <div className="label-heading common-flex">
@@ -35,6 +34,7 @@ function Input({ validation, label, type, options, name }: InputProps) {
           type={type}
           id={label}
           className={`m-30 ${label}`}
+          placeholder={`Enter your ${label}`}
           {...register(name, validation)}
         />
       )}

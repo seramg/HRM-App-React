@@ -36,7 +36,7 @@ function SelectInput({
               {...field}
               isSearchable={true}
               options={options}
-              placeholder={<div className="select-placeholder">{placeholder}</div>}
+              placeholder={<div className="placeholder">{placeholder}</div>}
               isMulti={isMulti!}
             />
           )}
@@ -47,7 +47,7 @@ function SelectInput({
           name={fieldName}
           isSearchable={true}
           options={options}
-          placeholder={<div className="select-placeholder">{placeholder}</div>}
+          placeholder={<div className="placeholder">{placeholder}</div>}
           isMulti={isMulti!}
         />
       )}

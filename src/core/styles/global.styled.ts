@@ -40,7 +40,7 @@ body {
   list-style: none;
 }
 .global-width {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 .page-title {
