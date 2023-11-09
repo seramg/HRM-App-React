@@ -5,7 +5,7 @@ const InputWrapper = styled.label`
   display: flex;
   flex-direction: column;
   flex: 1;
-  }
+  
   input{
     padding: 10px;
     outline: none;
@@ -22,7 +22,8 @@ const InputWrapper = styled.label`
     }
     
   }
-  input[type="date"]::-webkit-datetime-edit {
+  input[type="date"]::-webkit-input-placeholder,
+  input[type="date"]::placeholder{
     color: var(--placeholder-color);
 }
 .input-border-error{

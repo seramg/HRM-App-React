@@ -11,7 +11,11 @@ const SearchWrapper = styled.div`
       margin: 0;
       color:  #D3D3D3;  
     }
+  
+  input:focus{
+    border:none;
   }
+  
   .search-form {
     flex: 1;
   }

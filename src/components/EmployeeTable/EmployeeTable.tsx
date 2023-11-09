@@ -5,20 +5,7 @@ import { Employee } from "../../core/interfaces/interface.ts";
 import { getData } from "../getData.tsx";
 import StyledLink from "../StyledLink.ts";
 
-function EmployeeTable() {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getData();
-      if (data) {
-        setEmployees(data.employees);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+function EmployeeTable({ employees }: { employees: Employee[] }) {
   return (
     <TableWrapper>
       <thead>
@@ -73,7 +60,7 @@ function EmployeeTable() {
               </td>
               <td className="employee-data">
                 <div className=" actions-list common-flex">
-                  <StyledLink to="/employeeView" state= {employee.id}>
+                  <StyledLink to="/employeeView" state={employee.id}>
                     <Button icon="visibility"></Button>
                   </StyledLink>
                   <Button icon="edit"></Button>
