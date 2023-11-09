@@ -3,7 +3,7 @@ import ManropeBold from "../fonts/Manrope-Bold.ttf";
 import ManropeMedium from "../fonts/Manrope-Medium.ttf";
 const GlobalStyle = createGlobalStyle`
   :root {
-  --primary-color: #7e3af2;
+  --primary-color: #FF0A67;
   --secondary-color: rgba(36, 38, 45);
   --placeholder-color: #a9a9a9;
   --background-color: #F3F5FA;

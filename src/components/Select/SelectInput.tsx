@@ -18,32 +18,33 @@ function SelectInput({
   } = useFormContext();
 
   const errorMsg = errors[fieldName];
+  const className = errorMsg ? `input-border-error ${label}` : "label";
 
   return (
     <InputWrapper>
-      <div className=" common-flex">
-        {label}
-        {errorMsg && <InputError error={errorMsg.message?.toString()} />}
-      </div>
+      {label}
       {!isFilter ? (
         <Controller
           name={fieldName}
           control={control}
           rules={{ required: "This field is required" }} // Add your validation rules here
           render={({ field }) => (
-            <Select
-              className="select"
-              {...field}
-              isSearchable={true}
-              options={options}
-              placeholder={<div className="placeholder">{placeholder}</div>}
-              isMulti={isMulti!}
-            />
+            <div className="input-field-error  m-30">
+              <Select
+                {...field}
+                className={className}
+                isSearchable={true}
+                options={options}
+                placeholder={<div className="placeholder">{placeholder}</div>}
+                isMulti={isMulti!}
+              />
+              {errorMsg && <InputError error={errorMsg.message?.toString()} />}
+            </div>
           )}
         />
       ) : (
         <Select
-          name={fieldName}
+          className={className}
           isSearchable={true}
           options={options}
           placeholder={<div className="placeholder">{placeholder}</div>}

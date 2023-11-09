@@ -1,21 +1,13 @@
 import { useForm, FormProvider } from "react-hook-form";
 import SelectList from "../Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
+import Button from "../Button/Button.tsx";
 
 function Filters() {
   const methods = useForm();
-
-  const onReset = () => {
-    methods.reset();
-    resetSelects(methods.reset);
-  };
-  const onSubmit = methods.handleSubmit(() => {
-    onReset();
-  });
-
   return (
     <>
-      <h2 className="subheading" >Filter By:</h2>
+      <h2 className="subheading">Filter By:</h2>
       <FormProvider {...methods}>
         <form
           className="global-width"
@@ -24,7 +16,7 @@ function Filters() {
         >
           <SelectList
             control={methods.control}
-            isFilter= {true}
+            isFilter={true}
             isMultiState={{
               isDepartmentsMulti: false,
               isDesignationsMulti: false,
@@ -34,7 +26,7 @@ function Filters() {
           />
         </form>
       </FormProvider>
-     </>
+    </>
   );
 }
 

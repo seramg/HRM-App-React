@@ -11,12 +11,10 @@ function Input({ validation, label, type, options, name }: InputProps) {
   } = useFormContext();
 
   const errorMsg = errors[name];
+  const className = errorMsg ? `input-border-error ${label}` : "label";
   return (
     <InputWrapper>
-      <div className="label-heading common-flex">
-        {label}
-        {errorMsg && <InputError error={errorMsg.message?.toString()} />}
-      </div>
+      {label}
       {options ? (
         <div className="common-flex radio-list">
           {options.map((option: string) => (
@@ -30,13 +28,16 @@ function Input({ validation, label, type, options, name }: InputProps) {
           ))}
         </div>
       ) : (
-        <input
-          type={type}
-          id={label}
-          className={`m-30 ${label}`}
-          placeholder={`Enter your ${label}`}
-          {...register(name, validation)}
-        />
+        <div className="input-field-error  m-30">
+          <input
+            type={type}
+            id={label}
+            className={className}
+            placeholder={`Enter your ${label}`}
+            {...register(name, validation)}
+          />
+          {errorMsg && <InputError error={errorMsg.message?.toString()} />}
+        </div>
       )}
     </InputWrapper>
   );

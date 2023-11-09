@@ -17,11 +17,21 @@ const InputWrapper = styled.label`
       color: var(--placeholder-color);
       font-size: 14px;
     }
+    &:focus{
+      border:1px solid  blue;
+    }
+    
   }
   input[type="date"]::-webkit-datetime-edit {
     color: var(--placeholder-color);
 }
-
+.input-border-error{
+    border:1px solid  red;
+}
+.input-field-error{
+  display:flex;
+  flex-direction:column;
+}
   .placeholder {
     color: var(--placeholder-color);
     font-size: 14px;

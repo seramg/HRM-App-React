@@ -20,7 +20,7 @@ function RadioGrp({
   const { register } = useFormContext();
 
   return (
-    <RadioWrapper key={option} className=" m-30 common-flex">
+    <RadioWrapper key={option} className=" common-flex">
       <input
         type="radio"
         id={`${label}-${option}`}

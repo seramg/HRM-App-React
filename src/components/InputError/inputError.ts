@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const InputErrorWrapper = styled.div`
+  display: flex;
   border-radius: 5px;
   gap: 5px !important;
-  background-color: #ffcccb;
   padding: 5px;
   & > * {
     color: red !important;

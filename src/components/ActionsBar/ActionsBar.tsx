@@ -16,6 +16,9 @@ function ActionsBar() {
       </div> */}
       <Filters />
       <Search />
+      <Button icon="" onClick={()=>{}}>
+        Clear
+      </Button>
     </ActionsWrapper>
   );
 }

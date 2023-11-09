@@ -31,11 +31,11 @@ function Form() {
             validation={{
               required: {
                 value: true,
-                message: "required",
+                message: "This field is required",
               },
               pattern: {
                 value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
-                message: "invalid value",
+                message: "This is an invalid value",
               },
               minLength: {
                 value: 2,
@@ -51,11 +51,11 @@ function Form() {
               validation={{
                 required: {
                   value: true,
-                  message: "required",
+                  message: "This field is required",
                 },
                 pattern: {
                   value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
-                  message: "invalid value",
+                  message: "This is an invalid value",
                 },
               }}
               label="Email"
@@ -66,7 +66,7 @@ function Form() {
               validation={{
                 required: {
                   value: true,
-                  message: "required",
+                  message: "This field is required",
                 },
                 pattern: {
                   value: RegExp("^[0-9]{10}$"),
@@ -82,7 +82,7 @@ function Form() {
             validation={{
               required: {
                 value: true,
-                message: "required",
+                message: "This field is required",
               },
               minLength: {
                 value: 2,
@@ -98,11 +98,11 @@ function Form() {
               validation={{
                 required: {
                   value: true,
-                  message: "required",
+                  message: "This field is required",
                 },
                 max: {
                   value: currentDate,
-                  message: "invalid value",
+                  message: "This is an invalid value",
                 },
               }}
               label="Date"
@@ -113,7 +113,7 @@ function Form() {
               validation={{
                 required: {
                   value: true,
-                  message: "required",
+                  message: "This field is required",
                 },
               }}
               label="Gender"
