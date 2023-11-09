@@ -3,7 +3,6 @@ import InputWrapper from "../Input/input.ts";
 import { SelectInputProps } from "../../core/interfaces/interface.ts";
 import { Controller, useFormContext } from "react-hook-form";
 import InputError from "../InputError/InputError.tsx";
-import { useEffect } from "react";
 
 function SelectInput({
   label,

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
 import TableWrapper from "./employeeTable.ts";
 import Button from "../Button/Button.tsx";
 import { Employee } from "../../core/interfaces/interface.ts";
-import { getData } from "../getData.tsx";
 import StyledLink from "../StyledLink.ts";
+import DataContext from "../../core/store/DataContext.tsx";
+import React from "react";
 
-function EmployeeTable({ employees }: { employees: Employee[] }) {
+function EmployeeTable() {
+  const { employees } = React.useContext(DataContext);
+
   return (
     <TableWrapper>
       <thead>

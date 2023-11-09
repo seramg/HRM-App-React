@@ -1,5 +1,12 @@
 import { Control, FieldValues } from "react-hook-form";
 
+export interface ContextProps {
+  employees: Employee[];
+  departments: SelectProps[];
+  designations: SelectProps[];
+  employment_modes: SelectProps[];
+  skills: SelectProps[];
+}
 export interface Skill {
   id: string;
   name: string;
@@ -36,7 +43,7 @@ export interface SelectInputProps {
   isMulti?: boolean;
   control?: Control<FieldValues, any>;
   fieldName: string;
-  isFilter:boolean
+  isFilter: boolean;
 }
 export interface InputProps {
   validation: {

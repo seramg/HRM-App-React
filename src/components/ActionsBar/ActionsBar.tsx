@@ -4,10 +4,6 @@ import Button from "../Button/Button.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import SelectList from "../Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
-import { Employee } from "../../core/interfaces/interface.ts";
-import { useState, useEffect } from "react";
-import { getData } from "../getData.tsx";
-import EmployeeTable from "../EmployeeTable/EmployeeTable.tsx";
 
 function ActionsBar() {
   const methods = useForm();
@@ -16,21 +12,6 @@ function ActionsBar() {
     methods.reset();
     resetSelects(methods.reset);
   };
-
-  const [employees, setEmployees] = useState<Employee[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getData();
-      const employees = data.employees;
-
-      if (data) {
-        setEmployees(data.employees);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -59,7 +40,6 @@ function ActionsBar() {
           Clear
         </Button>
       </ActionsWrapper>
-      <EmployeeTable employees={employees} />
     </>
   );
 }

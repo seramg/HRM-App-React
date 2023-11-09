@@ -1,43 +1,20 @@
-import { useState, useEffect } from "react";
-import {
-  IsMultiStateProps,
-  SelectProps,
-} from "../../core/interfaces/interface.ts";
-import { getData } from "../getData.tsx";
-import {
-  transformArrayToOptionsList,
-  transformArrayToSkillOptionsList,
-} from "../../utils/helper.ts";
+import { IsMultiStateProps } from "../../core/interfaces/interface.ts";
 import SelectInput from "./SelectInput.tsx";
 import { Control, FieldValues } from "react-hook-form";
+import React from "react";
+import DataContext from "../../core/store/DataContext.tsx";
 
 function SelectList({
   isMultiState,
   control,
-  isFilter
+  isFilter,
 }: {
   isMultiState: IsMultiStateProps;
   control: Control<FieldValues, any>;
-  isFilter?:boolean
+  isFilter?: boolean;
 }) {
-  const [designations, setDesignations] = useState<SelectProps[]>([]);
-  const [departments, setDepartments] = useState<SelectProps[]>([]);
-  const [empModes, setEmpModes] = useState<SelectProps[]>([]);
-  const [skills, setSkills] = useState<SelectProps[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getData();
-      if (data) {
-        setDesignations(transformArrayToOptionsList(data.designations));
-        setDepartments(transformArrayToOptionsList(data.departments));
-        setEmpModes(transformArrayToOptionsList(data.employment_modes));
-        setSkills(transformArrayToSkillOptionsList(data.skills));
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { departments, designations, employment_modes, skills } =
+    React.useContext(DataContext);
 
   return (
     <div className="select-list common-flex">
@@ -46,8 +23,8 @@ function SelectList({
         options={departments}
         placeholder="Select department"
         isMulti={isMultiState.isDepartmentsMulti}
-        control =  {control}
-        fieldName = "departments"
+        control={control}
+        fieldName="departments"
         isFilter={isFilter!}
       />
 
@@ -57,17 +34,17 @@ function SelectList({
         placeholder="Select designation"
         isMulti={isMultiState.isDesignationsMulti}
         control={control}
-        fieldName = "designations"
+        fieldName="designations"
         isFilter={isFilter!}
       />
 
       <SelectInput
         label="Employment Modes"
-        options={empModes}
+        options={employment_modes}
         placeholder="Select employment mode"
         isMulti={isMultiState.isEmpModesMulti}
         control={control}
-        fieldName = "employment_modes"
+        fieldName="employment_modes"
         isFilter={isFilter!}
       />
 
@@ -77,7 +54,7 @@ function SelectList({
         placeholder="Select skill"
         isMulti={isMultiState.isSkillsMulti}
         control={control}
-        fieldName = "skills"
+        fieldName="skills"
         isFilter={isFilter!}
       />
     </div>
