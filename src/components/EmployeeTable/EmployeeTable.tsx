@@ -74,10 +74,10 @@ function EmployeeTable() {
               <td className="employee-data">
                 <div className=" actions-list common-flex">
                   <StyledLink to="/employeeView" state= {employee.id}>
-                    <Button icon="visibility">""</Button>
+                    <Button icon="visibility"></Button>
                   </StyledLink>
-                  <Button icon="edit">""</Button>
-                  <Button icon="delete">""</Button>
+                  <Button icon="edit"></Button>
+                  <Button icon="delete"></Button>
                 </div>
               </td>
             </tr>

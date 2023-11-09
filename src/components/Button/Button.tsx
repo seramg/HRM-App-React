@@ -7,7 +7,7 @@ function Button({
   className,
   onClick
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   icon?: string;
   className?: string | undefined;
   onClick?:() => void;
