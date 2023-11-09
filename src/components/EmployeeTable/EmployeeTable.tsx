@@ -3,6 +3,7 @@ import TableWrapper from "./employeeTable.ts";
 import Button from "../Button/Button.tsx";
 import { Employee } from "../../core/interfaces/interface.ts";
 import { getData } from "../getData.tsx";
+import StyledLink from "../StyledLink.ts";
 
 function EmployeeTable() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -72,7 +73,9 @@ function EmployeeTable() {
               </td>
               <td className="employee-data">
                 <div className=" actions-list common-flex">
-                  <Button icon="visibility">""</Button>
+                  <StyledLink to="/employeeView" state= {employee.id}>
+                    <Button icon="visibility">""</Button>
+                  </StyledLink>
                   <Button icon="edit">""</Button>
                   <Button icon="delete">""</Button>
                 </div>

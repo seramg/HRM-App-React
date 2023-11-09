@@ -8,6 +8,7 @@ const FooterWrapper = styled.footer`
     padding: 20px 0 20px 0;
     text-align: center;
     font-size: 12px;
+    position:fixed;
   }
   `;
 export default FooterWrapper;

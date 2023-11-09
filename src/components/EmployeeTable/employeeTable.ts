@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const TableWrapper = styled.table`
-    margin-bottom: 80px;
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;  

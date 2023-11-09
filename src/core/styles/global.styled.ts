@@ -113,7 +113,7 @@ body {
   pointer-events: visible;
 }
 .main-section {
-  height: 100%;
+  height:100vh;
   margin-bottom: 80px;
 }
 table,tr{
