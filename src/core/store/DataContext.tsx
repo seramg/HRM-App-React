@@ -7,7 +7,7 @@ const DataContext = createContext<ContextProps>({
   designations: [],
   employment_modes: [],
   skills: [],
-  addFilters:(filters: { [x: string]: any }) => {}
+  addFilters:() => {}
 });
 
 export default DataContext;
