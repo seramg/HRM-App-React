@@ -1,7 +1,7 @@
 import { IsMultiStateProps } from "../../core/interfaces/interface.ts";
 import SelectInput from "./SelectInput.tsx";
 import { Control, FieldValues } from "react-hook-form";
-import React from "react";
+import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
 
 function SelectList({
@@ -14,7 +14,7 @@ function SelectList({
   isFilter?: boolean;
 }) {
   const { departments, designations, employment_modes, skills } =
-    React.useContext(DataContext);
+    useContext(DataContext);
 
   return (
     <div className="select-list common-flex">

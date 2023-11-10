@@ -1,10 +1,9 @@
 import ActionsWrapper from "./actionsBar";
 import Search from "./Search/Search.tsx";
 import Button from "../Button/Button.tsx";
-import { FormProvider, useForm } from "react-hook-form";
+import {  FormProvider, useForm } from "react-hook-form";
 import SelectList from "../Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
-
 function ActionsBar() {
   const methods = useForm();
 
@@ -12,7 +11,6 @@ function ActionsBar() {
     methods.reset();
     resetSelects(methods.reset);
   };
-
   return (
     <>
       <ActionsWrapper className="common-flex">
