@@ -1,15 +1,25 @@
 import ActionsWrapper from "./actionsBar";
 import Search from "./Search/Search.tsx";
 import Button from "../Button/Button.tsx";
-import {  FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import SelectList from "../Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
+import { useContext } from "react";
+import DataContext from "../../core/store/DataContext.tsx";
 function ActionsBar() {
   const methods = useForm();
+  const { addTableProps, tableProps } = useContext(DataContext);
 
   const onReset = () => {
     methods.reset();
     resetSelects(methods.reset);
+
+    const resetTableProps = tableProps
+      ? Object.fromEntries(
+          Object.keys(tableProps).map((key) => [key, undefined])
+        )
+      : {};
+    addTableProps(resetTableProps);
   };
   return (
     <>
@@ -17,7 +27,7 @@ function ActionsBar() {
         <h2 className="subheading">Filter By:</h2>
         <FormProvider {...methods}>
           <form
-            className="global-width"
+            className="global-width common-flex form-flex-align"
             onSubmit={(e) => e.preventDefault()}
             noValidate
           >
@@ -31,9 +41,9 @@ function ActionsBar() {
                 isSkillsMulti: true,
               }}
             />
+            <Search />
           </form>
         </FormProvider>
-        <Search />
         <Button icon="" onClick={onReset}>
           Clear
         </Button>

@@ -7,6 +7,7 @@ import { Controller, FieldValues, useFormContext } from "react-hook-form";
 import InputError from "../InputError/InputError.tsx";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
+import { handleChange } from "../../utils/helper.ts";
 
 function SelectInput({
   label,
@@ -25,19 +26,7 @@ function SelectInput({
 
   const errorMsg = errors[fieldName];
   const className = errorMsg ? `input-border-error ${label}` : "label";
-  const { addFilters } = useContext(DataContext);
-
-  const handleChange = (selectedOption: any, fieldName: string) => {
-    const currentFilters: FieldValues = getValues();
-    const updatedFilters = {
-      ...currentFilters,
-      [fieldName]: selectedOption,
-    };
-    Object.keys(updatedFilters).forEach((key: string) => {
-      setValue(key, updatedFilters[key]);
-    });
-    addFilters(updatedFilters);
-  };
+  const { addTableProps } = useContext(DataContext);
 
   return (
     <InputWrapper>
@@ -71,7 +60,7 @@ function SelectInput({
                 placeholder={<div className="placeholder">{placeholder}</div>}
                 isMulti={isMulti || false}
                 onChange={(selectedOption) =>
-                  handleChange(selectedOption, fieldName)
+                  handleChange(selectedOption, fieldName,getValues,setValue,addTableProps)
                 }
               />
             )}

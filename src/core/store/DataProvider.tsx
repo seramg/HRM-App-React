@@ -4,6 +4,7 @@ import { Employee, SelectProps } from "../interfaces/interface.ts";
 import { getData } from "../../components/getData.tsx";
 import {
   filterData,
+  searchData,
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
@@ -14,19 +15,20 @@ const DataProvider = ({ children }: { children: any }) => {
   const [departments, setDepartments] = useState<SelectProps[]>([]);
   const [empModes, setEmpModes] = useState<SelectProps[]>([]);
   const [skills, setSkills] = useState<SelectProps[]>([]);
-  const [filters, setFilters] = useState<{ [x: string]: any }>();
+  const [tableProps, setTableProps] = useState<{ [x: string]: any }>();
 
-  const addFilters = (filters: { [x: string]: any }) => {
-    setFilters(filters);
+  const addTableProps = (tableProps: { [x: string]: any; } | undefined) => {
+    setTableProps(tableProps);
   };
 
   const fetchData = async () => {
     const data = await getData();
-    if (data) {
+    if (data) { 
       const employees = data.employees;
-      const filteredEmployees = filterData(employees, filters);
-      console.log(filteredEmployees);
-      setEmployees(filteredEmployees);
+      console.log(tableProps)
+      const filteredEmployees = filterData(employees, tableProps);
+      const searchedEmployees = searchData(filteredEmployees, tableProps);
+      setEmployees(searchedEmployees);
       setDesignations(transformArrayToOptionsList(data.designations));
       setDepartments(transformArrayToOptionsList(data.departments));
       setEmpModes(transformArrayToOptionsList(data.employment_modes));
@@ -35,7 +37,7 @@ const DataProvider = ({ children }: { children: any }) => {
   };
   useEffect(() => {
     fetchData();
-  }, [filters]);
+  }, [tableProps]);
 
   return (
     <DataContext.Provider
@@ -45,7 +47,8 @@ const DataProvider = ({ children }: { children: any }) => {
         designations,
         employment_modes: empModes,
         skills,
-        addFilters,
+        tableProps,
+        addTableProps,
       }}
     >
       {children}

@@ -7,7 +7,8 @@ const DataContext = createContext<ContextProps>({
   designations: [],
   employment_modes: [],
   skills: [],
-  addFilters:() => {}
+  tableProps:{},
+  addTableProps: () => {},
 });
 
 export default DataContext;

@@ -1,4 +1,4 @@
-import { Control, FieldValues, UseFormGetValues } from "react-hook-form";
+import { Control, FieldValues } from "react-hook-form";
 
 export interface ContextProps {
   employees: Employee[];
@@ -6,14 +6,15 @@ export interface ContextProps {
   designations: SelectProps[];
   employment_modes: SelectProps[];
   skills: SelectProps[];
-  addFilters: (filters: { [x: string]: any }) => void;
+  tableProps: { [x: string]: any } | undefined;
+  addTableProps: (tableProps: { [x: string]: any } | undefined) => void;
 }
 
 export interface FilterProps {
   departments: SelectProps | undefined;
   designations: SelectProps | undefined;
   employment_modes: SelectProps | undefined;
-  skills: Skill[] | undefined;
+  skills: SelectProps[] | undefined;
 }
 export interface Skill {
   id: string;
