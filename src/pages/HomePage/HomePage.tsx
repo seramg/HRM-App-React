@@ -1,5 +1,5 @@
 import MainHeading from "./../../components/MainHeading/MainHeading.tsx";
-import ActionsBar from "./../../components/ActionsBar/ActionsBar.tsx";
+import ActionsBar from "../../components/ActionsBar/SearchAndFilter.ts";
 import EmployeeTable from "../../components/EmployeeTable/EmployeeTable.tsx";
 
 function HomePage() {

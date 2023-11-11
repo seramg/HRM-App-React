@@ -1,4 +1,4 @@
-import ActionsWrapper from "./actionsBar";
+import ActionsWrapper from "./SearchAndFilter.ts";
 import Search from "./Search/Search.tsx";
 import Button from "../Button/Button.tsx";
 import { FormProvider, useForm } from "react-hook-form";
@@ -6,6 +6,7 @@ import SelectList from "../Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
+import React from "react";
 function ActionsBar() {
   const methods = useForm();
   const { addTableProps, tableProps } = useContext(DataContext);

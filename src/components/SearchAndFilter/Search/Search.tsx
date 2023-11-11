@@ -1,9 +1,10 @@
-import SearchWrapper from "./search";
+import SearchWrapper from "./search.ts";
 import Button from "../../Button/Button.tsx";
 import { useFormContext } from "react-hook-form";
 import { useContext } from "react";
 import DataContext from "../../../core/store/DataContext.tsx";
 import { handleChange } from "../../../utils/helper.ts";
+import React from "react";
 
 function Search() {
   const { getValues, setValue, register } = useFormContext();
