@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
-const SearchWrapper = styled.div`
-    flex: 1;
-    background-color: var(--white-color);
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid  #D3D3D3;
-    
-    .material-symbols-outlined, .search-dropdown-btn-text{
-      margin: 0;
-      color:  #D3D3D3;  
-    }
-  
-  input:focus{
-    border:none;
+const SearchWrapper = styled.div<{ focus: boolean }>`
+  flex: 1;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  padding: 5px;
+  border: ${(props) => (props.focus ? "1px solid  blue" : "1px solid #d3d3d3")};
+
+  .material-symbols-outlined,
+  .search-dropdown-btn-text {
+    margin: 0;
+    color: #d3d3d3;
   }
-  
+
+  input:focus {
+    border: none;
+  }
+
   .search-form {
     flex: 1;
   }
@@ -27,21 +28,19 @@ const SearchWrapper = styled.div`
     text-decoration: none;
     font-size: 16px;
     color: var(--secondary-color);
-    padding:0;
+    padding: 0;
 
-    &::placeholder{
-      color:var(--placeholder-color)
+    &::placeholder {
+      color: var(--placeholder-color);
     }
   }
   .search-btn {
-    padding:0;
+    padding: 0;
     gap: 5px !important;
     border-radius: 0;
     background: none;
-    border-left: 1px solid  #D3D3D3;
+    border-left: 1px solid #d3d3d3;
     flex-direction: row-reverse;
   }
-
-
 `;
 export default SearchWrapper;

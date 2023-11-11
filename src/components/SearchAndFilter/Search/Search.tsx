@@ -1,19 +1,27 @@
 import SearchWrapper from "./search.ts";
 import Button from "../../Button/Button.tsx";
 import { useFormContext } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import DataContext from "../../../core/store/DataContext.tsx";
 import { handleChange } from "../../../utils/helper.ts";
-import React from "react";
+
 
 function Search() {
   const { getValues, setValue, register } = useFormContext();
-
   const name = "search-text";
   const { addTableProps } = useContext(DataContext);
+  const [focus, setFocus] = useState(false);
+
+  const handleFocus = () => {
+    setFocus(true);
+  };
+
+  const handleBlur = () => {
+    setFocus(false);
+  };
 
   return (
-    <SearchWrapper className="common-flex">
+    <SearchWrapper focus={focus} className="common-flex">
       <div id="searchForm" className="search-form common-flex">
         <span className="material-symbols-outlined search-icon">search</span>
         <input
@@ -21,6 +29,7 @@ function Search() {
           className="search-input"
           id="search-input"
           placeholder="Search by name"
+          onFocus={handleFocus}
           {...register(name, {
             onChange: (e) => {
               handleChange(
@@ -30,6 +39,9 @@ function Search() {
                 setValue,
                 addTableProps
               );
+            },
+            onBlur: () => {
+              handleBlur();
             },
           })}
         />
