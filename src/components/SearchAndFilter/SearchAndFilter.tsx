@@ -14,13 +14,7 @@ function ActionsBar() {
   const onReset = () => {
     methods.reset();
     resetSelects(methods.reset);
-
-    const resetTableProps = tableProps
-      ? Object.fromEntries(
-          Object.keys(tableProps).map((key) => [key, undefined])
-        )
-      : {};
-    addTableProps(resetTableProps);
+    if (tableProps) addTableProps(tableProps);
   };
   return (
     <>

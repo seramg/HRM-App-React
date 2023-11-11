@@ -4,10 +4,9 @@ import {
   UseFormSetValue,
   UseFormGetValues,
 } from "react-hook-form";
-import { Employee, Skill } from "../core/interfaces/interface.ts";
+import { Employee, Skill, TableProps } from "../core/interfaces/interface.ts";
 import { SelectProps } from "@mui/material";
-import { useContext } from "react";
-import DataContext from "../core/store/DataContext.tsx";
+import React from "react";
 
 export function transformArrayToOptionsList(array: string[]) {
   return array.map((value: string) => ({
@@ -25,10 +24,10 @@ export function transformArrayToSkillOptionsList(skills: Skill[]) {
 
 export function resetSelects(reset: UseFormReset<FieldValues>) {
   const resetValues = {
-    departments: undefined,
-    designations: undefined,
-    skills: undefined,
-    employment_modes: undefined,
+    departments: "",
+    designations: "",
+    skills: [],
+    employment_modes: "",
   };
   reset(resetValues);
 }
@@ -38,9 +37,9 @@ export const handleChange = (
   fieldName: string,
   getValues: UseFormGetValues<FieldValues>,
   setValue: UseFormSetValue<FieldValues>,
-  addTableProps: (tableProps: { [x: string]: any }) => void
+  addTableProps: (tableProps: TableProps) => void
 ) => {
-  const currentFilters: FieldValues = getValues();
+  const currentFilters = getValues();
   const updatedFilters = {
     ...currentFilters,
     [fieldName]: value,
@@ -92,13 +91,70 @@ export const searchData = (
   employees: Employee[],
   tableProps: { [x: string]: any } | undefined
 ): Employee[] => {
-  if (!tableProps || !tableProps["search-text"] || tableProps["search-text"] === "") {
+  if (
+    !tableProps ||
+    !tableProps["search-text"] ||
+    tableProps["search-text"] === ""
+  ) {
     return employees;
   }
 
   const searchText = tableProps["search-text"].toLowerCase();
-  
+
   return employees.filter((employee) =>
     employee["emp_name"].toLowerCase().includes(searchText)
   );
+};
+
+export const findSortCriteria = (children: React.ReactNode) => {
+  let sortCriteria = "id";
+  if (children === "Employment Id") {
+    sortCriteria = "id";
+  }
+  if (children === "Name") {
+    sortCriteria = "emp_name";
+  }
+  if (children === "Designation") {
+    sortCriteria = "designation";
+  }
+  if (children === "Department") {
+    sortCriteria = "department";
+  }
+  if (children === "Employment Modes") {
+    sortCriteria = "employment_mode";
+  }
+  return sortCriteria;
+};
+
+export const sortFn = (x: string, y: string, flag: number) => {
+  if (x > y) {
+    return flag;
+  }
+  if (y > x) {
+    return -1 * flag;
+  }
+  return 0;
+};
+
+export const sortData = (
+  employees: Employee[],
+  sort:{
+    sortTerm:string | undefined,
+    sortVal:boolean |undefined
+  },
+) => {
+  if ( sort && sort.sortVal != undefined) {
+    let flag = sort.sortVal ? +1 : -1;
+    if (employees === undefined) return employees;
+    employees.sort((a: Employee, b: Employee) => {
+      let x = a[sort.sortTerm as keyof Employee];
+      let y = b[sort.sortTerm as keyof Employee];
+      if (typeof x === "string" && typeof y === "string") {
+        return sortFn(x.toLowerCase(), y.toLowerCase(), flag);
+      } else {
+        return 0;
+      }
+    });
+  }
+  return employees;
 };

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import DataContext from "./DataContext.tsx";
-import { Employee, SelectProps } from "../interfaces/interface.ts";
+import { Employee, SelectProps, TableProps } from "../interfaces/interface.ts";
 import { getData } from "../../components/getData.tsx";
 import {
   filterData,
   searchData,
+  sortData,
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
@@ -15,19 +16,32 @@ const DataProvider = ({ children }: { children: any }) => {
   const [departments, setDepartments] = useState<SelectProps[]>([]);
   const [empModes, setEmpModes] = useState<SelectProps[]>([]);
   const [skills, setSkills] = useState<SelectProps[]>([]);
-  const [tableProps, setTableProps] = useState<{ [x: string]: any }>();
+  const [tableProps, setTableProps] = useState<TableProps>({
+    departments: undefined,
+    designations: undefined,
+    employment_modes: undefined,
+    skills: undefined,
+    sort: {
+      sortVal: undefined,
+      sortTerm: "id",
+    },
+  });
 
-  const addTableProps = (tableProps: { [x: string]: any; } | undefined) => {
+  const addTableProps = (tableProps: TableProps) => {
     setTableProps(tableProps);
   };
 
   const fetchData = async () => {
     const data = await getData();
-    if (data) { 
+    if (data) {
       const employees = data.employees;
-      console.log(tableProps)
-      const filteredEmployees = filterData(employees, tableProps);
+      const sortedEmployees = sortData(
+        employees,
+        tableProps.sort
+      );
+      const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
+
       setEmployees(searchedEmployees);
       setDesignations(transformArrayToOptionsList(data.designations));
       setDepartments(transformArrayToOptionsList(data.departments));

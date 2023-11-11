@@ -1,28 +1,44 @@
-import Button from "../Button/Button.tsx";
+import TableHeadButton from "./TableHeadButton.tsx";
+import { TableHeadWrapper } from "./tableHead.ts";
 
 function TableHead() {
+  // const iconState = {
+  //   iconVisible: false,
+  // };
   return (
-    <thead>
+    <TableHeadWrapper>
       <tr>
         <th>
-          <Button icon="expand_more" className="table-title">
+          <TableHeadButton
+            icon="expand_more"
+            className="table-title"
+          >
             Employee Id
-          </Button>
+          </TableHeadButton>
         </th>
         <th>
-          <Button icon="expand_more" className="table-title">
+          <TableHeadButton
+            icon="expand_more"
+            className="table-title"
+          >
             Name
-          </Button>
+          </TableHeadButton>
         </th>
         <th>
-          <Button icon="expand_more" className="table-title">
+          <TableHeadButton
+            icon="expand_more"
+            className="table-title"
+          >
             Designation
-          </Button>
+          </TableHeadButton>
         </th>
         <th>
-          <Button icon="expand_more" className="table-title">
+          <TableHeadButton
+            icon="expand_more"
+            className="table-title"
+          >
             Department
-          </Button>
+          </TableHeadButton>
         </th>
         <th>
           <span className="table-title"> Skills </span>
@@ -31,7 +47,7 @@ function TableHead() {
           <span className="table-title"> Actions </span>
         </th>
       </tr>
-    </thead>
+    </TableHeadWrapper>
   );
 }
 export default TableHead;

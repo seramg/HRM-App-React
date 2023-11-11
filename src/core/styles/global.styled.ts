@@ -131,6 +131,9 @@ td {
 .m-30 {
   margin-bottom: 30px;
 }
+.rotate {
+  transform: rotate(180deg);
+}
 `;
 
 export default GlobalStyle;

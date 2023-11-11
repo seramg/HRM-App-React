@@ -1,13 +1,24 @@
 import { Control, FieldValues } from "react-hook-form";
 
+export interface TableProps {
+  departments: SelectProps | undefined;
+  designations: SelectProps | undefined;
+  skills: Skill[] | undefined;
+  employment_modes: SelectProps | undefined;
+  sort: {
+    sortVal: boolean | undefined;
+    sortTerm: string | undefined ;
+  };
+}
+
 export interface ContextProps {
   employees: Employee[];
   departments: SelectProps[];
   designations: SelectProps[];
   employment_modes: SelectProps[];
   skills: SelectProps[];
-  tableProps: { [x: string]: any } | undefined;
-  addTableProps: (tableProps: { [x: string]: any } | undefined) => void;
+  tableProps: TableProps;
+  addTableProps: (tableProps: TableProps) => void;
 }
 
 export interface FilterProps {
