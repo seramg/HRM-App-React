@@ -16,6 +16,7 @@ const DataContext = createContext<ContextProps>({
       sortVal: false,
       sortTerm: undefined,
     },
+    search_term: undefined,
   },
   addTableProps: () => {},
 });

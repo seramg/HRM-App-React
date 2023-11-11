@@ -5,10 +5,9 @@ import { useContext, useState } from "react";
 import DataContext from "../../../core/store/DataContext.tsx";
 import { handleChange } from "../../../utils/helper.ts";
 
-
 function Search() {
   const { getValues, setValue, register } = useFormContext();
-  const name = "search-text";
+  const name = "search_term";
   const { addTableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
 
@@ -34,7 +33,7 @@ function Search() {
             onChange: (e) => {
               handleChange(
                 e.target.value,
-                "search-text",
+                name,
                 getValues,
                 setValue,
                 addTableProps

@@ -25,6 +25,7 @@ const DataProvider = ({ children }: { children: any }) => {
       sortVal: undefined,
       sortTerm: "id",
     },
+    search_term: undefined,
   });
 
   const addTableProps = (tableProps: TableProps) => {
@@ -35,10 +36,7 @@ const DataProvider = ({ children }: { children: any }) => {
     const data = await getData();
     if (data) {
       const employees = data.employees;
-      const sortedEmployees = sortData(
-        employees,
-        tableProps.sort
-      );
+      const sortedEmployees = sortData(employees, tableProps.sort);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
 

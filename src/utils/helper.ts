@@ -39,14 +39,36 @@ export const handleChange = (
   setValue: UseFormSetValue<FieldValues>,
   addTableProps: (tableProps: TableProps) => void
 ) => {
-  const currentFilters = getValues();
-  const updatedFilters = {
-    ...currentFilters,
+  const currentFilters: FieldValues = getValues();
+  let currentTableProps: TableProps = {
+    departments: undefined,
+    designations: undefined,
+    skills: undefined,
+    employment_modes: undefined,
+    sort: undefined,
+    search_term: undefined,
+  };
+  Object.keys(currentFilters).forEach((key: string) => {
+    if (
+      key === "departments" ||
+      key === "designations" ||
+      key === "skills" ||
+      key === "employment_modes" ||
+      key === "sort" ||
+      key === "search_term"
+    ) {
+      currentTableProps[key] = currentFilters[key];
+    }
+  });
+  const updatedFilters: TableProps = {
+    ...currentTableProps,
     [fieldName]: value,
   };
   Object.keys(updatedFilters).forEach((key: string) => {
-    setValue(key, updatedFilters[key]);
+    const tablePropsKey = key as keyof TableProps;
+    setValue(key, updatedFilters[tablePropsKey]);
   });
+
   addTableProps(updatedFilters);
 };
 
@@ -89,17 +111,17 @@ export const filterData = (
 
 export const searchData = (
   employees: Employee[],
-  tableProps: { [x: string]: any } | undefined
+  tableProps: TableProps
 ): Employee[] => {
   if (
     !tableProps ||
-    !tableProps["search-text"] ||
-    tableProps["search-text"] === ""
+    !tableProps["search_term"] ||
+    tableProps["search_term"] === ""
   ) {
     return employees;
   }
-
-  const searchText = tableProps["search-text"].toLowerCase();
+  console.log(tableProps);
+  const searchText = tableProps["search_term"].toLowerCase();
 
   return employees.filter((employee) =>
     employee["emp_name"].toLowerCase().includes(searchText)
@@ -138,12 +160,14 @@ export const sortFn = (x: string, y: string, flag: number) => {
 
 export const sortData = (
   employees: Employee[],
-  sort:{
-    sortTerm:string | undefined,
-    sortVal:boolean |undefined
-  },
+  sort:
+    | {
+        sortTerm: string | undefined;
+        sortVal: boolean | undefined;
+      }
+    | undefined
 ) => {
-  if ( sort && sort.sortVal != undefined) {
+  if (sort && sort.sortVal != undefined) {
     let flag = sort.sortVal ? +1 : -1;
     if (employees === undefined) return employees;
     employees.sort((a: Employee, b: Employee) => {

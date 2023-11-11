@@ -5,10 +5,13 @@ export interface TableProps {
   designations: SelectProps | undefined;
   skills: Skill[] | undefined;
   employment_modes: SelectProps | undefined;
-  sort: {
-    sortVal: boolean | undefined;
-    sortTerm: string | undefined ;
-  };
+  sort:
+    | {
+        sortVal: boolean | undefined;
+        sortTerm: string | undefined;
+      }
+    | undefined;
+  search_term: string | undefined;
 }
 
 export interface ContextProps {
