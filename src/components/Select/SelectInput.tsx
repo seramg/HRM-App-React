@@ -3,7 +3,7 @@ import InputWrapper from "../Input/input.ts";
 import {
   SelectInputProps,
 } from "../../core/interfaces/interface.ts";
-import { Controller, FieldValues, useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import InputError from "../InputError/InputError.tsx";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
@@ -41,6 +41,7 @@ function SelectInput({
               <div className="input-field-error  m-30">
                 <Select
                   {...field}
+                  isClearable={true}
                   className={className}
                   isSearchable={true}
                   options={options}
@@ -54,6 +55,7 @@ function SelectInput({
             ) : (
               <Select
                 {...field}
+                isClearable={true}
                 className={className}
                 isSearchable={true}
                 options={options}
