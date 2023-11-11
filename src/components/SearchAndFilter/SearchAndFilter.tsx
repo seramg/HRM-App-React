@@ -6,7 +6,7 @@ import SelectList from "../Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
-import React from "react";
+
 function ActionsBar() {
   const methods = useForm();
   const { addTableProps, tableProps } = useContext(DataContext);
