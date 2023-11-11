@@ -14,7 +14,7 @@ function EmployeeTable() {
       <tbody>
         {employees.length > 0 ? (
           employees.map((employee: Employee, index: number) => (
-            <TableData employee={employee} index={index} />
+            <TableData key={index} employee={employee} index={index} />
           ))
         ) : (
           <td className="no-data" colSpan={6}>

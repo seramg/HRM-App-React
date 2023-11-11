@@ -11,7 +11,7 @@ const InputWrapper = styled.label`
     outline: none;
     color: var(--secondary-color);
     background-color: white;
-    border: 1px solid var(--placeholder-color);
+    border: 1px solid #d3d3d3;
 
     &::placeholder {
       color: var(--placeholder-color);
