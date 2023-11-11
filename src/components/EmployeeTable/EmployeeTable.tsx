@@ -1,9 +1,9 @@
-import TableWrapper from "./employeeTable.ts";
+import React from "react";
 import { Employee } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
-import React from "react";
-import TableHead from "./TableHead.tsx";
 import TableData from "./TableData.tsx";
+import TableHead from "./TableHead.tsx";
+import TableWrapper from "./employeeTable.ts";
 
 function EmployeeTable() {
   const { employees } = React.useContext(DataContext);

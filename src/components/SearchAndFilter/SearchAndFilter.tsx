@@ -1,11 +1,11 @@
-import ActionsWrapper from "./SearchAndFilter.ts";
-import Search from "./Search/Search.tsx";
-import Button from "../Button/Button.tsx";
-import { FormProvider, useForm } from "react-hook-form";
-import SelectList from "../Select/SelectList.tsx";
-import { resetSelects } from "../../utils/helper.ts";
 import { useContext } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import DataContext from "../../core/store/DataContext.tsx";
+import { resetSelects } from "../../utils/helper.ts";
+import Button from "../Button/Button.tsx";
+import SelectList from "../Select/SelectList.tsx";
+import Search from "./Search/Search.tsx";
+import ActionsWrapper from "./SearchAndFilter.ts";
 
 function ActionsBar() {
   const methods = useForm();

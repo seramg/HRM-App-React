@@ -1,13 +1,13 @@
+import { useContext } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 import Select from "react-select";
-import InputWrapper from "../Input/input.ts";
 import {
   SelectInputProps,
 } from "../../core/interfaces/interface.ts";
-import { Controller, useFormContext } from "react-hook-form";
-import InputError from "../InputError/InputError.tsx";
-import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
 import { handleChange } from "../../utils/helper.ts";
+import InputWrapper from "../Input/input.ts";
+import InputError from "../InputError/InputError.tsx";
 
 function SelectInput({
   label,

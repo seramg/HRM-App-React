@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import DataContext from "./DataContext.tsx";
-import { Employee, SelectProps, TableProps } from "../interfaces/interface.ts";
 import { getData } from "../../components/getData.tsx";
 import {
   filterData,
@@ -9,6 +7,8 @@ import {
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
+import { Employee, SelectProps, TableProps } from "../interfaces/interface.ts";
+import DataContext from "./DataContext.tsx";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [employees, setEmployees] = useState<Employee[]>([]);

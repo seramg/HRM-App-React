@@ -1,8 +1,8 @@
 import { useFormContext } from "react-hook-form";
-import InputWrapper from "./input.ts";
 import { InputProps } from "../../core/interfaces/interface.ts";
 import InputError from "../InputError/InputError.tsx";
 import RadioGrp from "../Radio/RadioGrp.tsx";
+import InputWrapper from "./input.ts";
 
 function Input({ validation, label, type, options, name }: InputProps) {
   const {

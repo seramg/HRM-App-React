@@ -1,8 +1,8 @@
-import { IsMultiStateProps } from "../../core/interfaces/interface.ts";
-import SelectInput from "./SelectInput.tsx";
-import { Control, FieldValues } from "react-hook-form";
 import { useContext } from "react";
+import { Control, FieldValues } from "react-hook-form";
+import { IsMultiStateProps } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
+import SelectInput from "./SelectInput.tsx";
 
 function SelectList({
   isMultiState,
