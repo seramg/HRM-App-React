@@ -8,7 +8,7 @@ import SearchWrapper from "./search.ts";
 function Search() {
   const { getValues, setValue, register } = useFormContext();
   const name = "search_term";
-  const { addTableProps } = useContext(DataContext);
+  const { addTableProps,tableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
 
   const handleFocus = () => {
@@ -36,6 +36,7 @@ function Search() {
                 name,
                 getValues,
                 setValue,
+                tableProps,
                 addTableProps
               );
             },

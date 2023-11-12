@@ -37,6 +37,7 @@ export const handleChange = (
   fieldName: string,
   getValues: UseFormGetValues<FieldValues>,
   setValue: UseFormSetValue<FieldValues>,
+  tableProps: TableProps,
   addTableProps: (tableProps: TableProps) => void
 ) => {
   const currentFilters: FieldValues = getValues();
@@ -45,8 +46,8 @@ export const handleChange = (
     designations: undefined,
     skills: undefined,
     employment_modes: undefined,
-    sort: undefined,
     search_term: undefined,
+    sort: tableProps.sort,
   };
   Object.keys(currentFilters).forEach((key: string) => {
     if (
@@ -54,7 +55,6 @@ export const handleChange = (
       key === "designations" ||
       key === "skills" ||
       key === "employment_modes" ||
-      key === "sort" ||
       key === "search_term"
     ) {
       currentTableProps[key] = currentFilters[key];
@@ -72,10 +72,7 @@ export const handleChange = (
   addTableProps(updatedFilters);
 };
 
-export const filterData = (
-  employees: Employee[],
-  tableProps: { [x: string]: any } | undefined
-) => {
+export const filterData = (employees: Employee[], tableProps: TableProps) => {
   let employeeTableData = employees;
 
   if (
@@ -167,9 +164,10 @@ export const sortData = (
       }
     | undefined
 ) => {
+  console.log(sort);
   if (sort && sort.sortVal != undefined) {
     let flag = sort.sortVal ? +1 : -1;
-    if (employees === undefined) return employees;   
+    if (employees === undefined) return employees;
     employees.sort((a: Employee, b: Employee) => {
       let x = a[sort.sortTerm as keyof Employee];
       let y = b[sort.sortTerm as keyof Employee];

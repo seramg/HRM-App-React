@@ -1,9 +1,7 @@
 import { useContext } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Select from "react-select";
-import {
-  SelectInputProps,
-} from "../../core/interfaces/interface.ts";
+import { SelectInputProps } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import { handleChange } from "../../utils/helper.ts";
 import InputWrapper from "../Input/input.ts";
@@ -26,7 +24,7 @@ function SelectInput({
 
   const errorMsg = errors[fieldName];
   const className = errorMsg ? `input-border-error ${label}` : "label";
-  const { addTableProps } = useContext(DataContext);
+  const { addTableProps, tableProps } = useContext(DataContext);
 
   return (
     <InputWrapper>
@@ -62,7 +60,14 @@ function SelectInput({
                 placeholder={<div className="placeholder">{placeholder}</div>}
                 isMulti={isMulti || false}
                 onChange={(selectedOption) =>
-                  handleChange(selectedOption, fieldName,getValues,setValue,addTableProps)
+                  handleChange(
+                    selectedOption,
+                    fieldName,
+                    getValues,
+                    setValue,
+                    tableProps,
+                    addTableProps
+                  )
                 }
               />
             )}
