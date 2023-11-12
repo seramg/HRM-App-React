@@ -5,7 +5,7 @@ function Button({
   children,
   icon,
   className,
-  onClick
+  onClick,
 }: {
   children?: React.ReactNode;
   icon?: string;

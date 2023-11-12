@@ -17,15 +17,15 @@ const DataProvider = ({ children }: { children: any }) => {
   const [empModes, setEmpModes] = useState<SelectProps[]>([]);
   const [skills, setSkills] = useState<SelectProps[]>([]);
   const [tableProps, setTableProps] = useState<TableProps>({
-    departments: undefined,
-    designations: undefined,
-    employment_modes: undefined,
-    skills: undefined,
+    department: null,
+    designation: null,
+    employment_mode: null,
+    skills: null,
     sort: {
-      sortVal: undefined,
+      sortVal: true,
       sortTerm: "id",
     },
-    search_term: undefined,
+    search_term: null,
   });
 
   const addTableProps = (tableProps: TableProps) => {

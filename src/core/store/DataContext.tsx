@@ -8,15 +8,15 @@ const DataContext = createContext<ContextProps>({
   employment_modes: [],
   skills: [],
   tableProps: {
-    departments: undefined,
-    designations: undefined,
-    employment_modes: undefined,
-    skills: [],
+    department: null,
+    designation: null,
+    employment_mode: null,
+    skills: null,
     sort: {
       sortVal: undefined,
-      sortTerm: undefined,
+      sortTerm: null,
     },
-    search_term: undefined,
+    search_term: null,
   },
   addTableProps: () => {},
 });

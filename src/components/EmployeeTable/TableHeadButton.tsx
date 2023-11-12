@@ -29,6 +29,7 @@ function TableHeadButton({
         sortVal: sort,
       },
     };
+    console.log(updatedTableProps)
     addTableProps(updatedTableProps);
     sortData(employees, tableProps.sort);
   }

@@ -1,5 +1,4 @@
 import {
-  UseFormReset,
   FieldValues,
   UseFormSetValue,
   UseFormGetValues,
@@ -22,14 +21,15 @@ export function transformArrayToSkillOptionsList(skills: Skill[]) {
   }));
 }
 
-export function resetSelects(reset: UseFormReset<FieldValues>) {
-  const resetValues = {
-    departments: "",
-    designations: "",
-    skills: [],
-    employment_modes: "",
-  };
-  reset(resetValues);
+export function resetSelects() {
+  const resettedValues ={
+    department:null,
+    designation:null,
+    employment_mode:null,
+    skills:null,
+    search_term:null
+  }
+  return resettedValues;
 }
 
 export const handleChange = (
@@ -42,19 +42,15 @@ export const handleChange = (
 ) => {
   const currentFilters: FieldValues = getValues();
   let currentTableProps: TableProps = {
-    departments: undefined,
-    designations: undefined,
-    skills: undefined,
-    employment_modes: undefined,
-    search_term: undefined,
+    ...resetSelects(),
     sort: tableProps.sort,
   };
   Object.keys(currentFilters).forEach((key: string) => {
     if (
-      key === "departments" ||
-      key === "designations" ||
+      key === "department" ||
+      key === "designation" ||
       key === "skills" ||
-      key === "employment_modes" ||
+      key === "employment_mode" ||
       key === "search_term"
     ) {
       currentTableProps[key] = currentFilters[key];
@@ -77,14 +73,14 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
 
   if (
     tableProps &&
-    (tableProps.designations ||
-      tableProps.departments ||
+    (tableProps.designation ||
+      tableProps.department ||
       tableProps.skills ||
-      tableProps.employment_modes)
+      tableProps.employment_mode)
   ) {
     employeeTableData = employees.filter((employee) => {
-      const designationMatch = tableProps.designations
-        ? tableProps.designations.value === employee.designation
+      const designationMatch = tableProps.designation
+        ? tableProps.designation.value === employee.designation
         : true;
       const skillMatch = tableProps.skills
         ? tableProps.skills.every((skillFilter: SelectProps) => {
@@ -93,11 +89,11 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
             );
           })
         : true;
-      const departmentMatch = tableProps.departments
-        ? tableProps.departments.value === employee.department
+      const departmentMatch = tableProps.department
+        ? tableProps.department.value === employee.department
         : true;
-      const empModeMatch = tableProps.employment_modes
-        ? tableProps.employment_modes.value === employee.employment_mode
+      const empModeMatch = tableProps.employment_mode
+        ? tableProps.employment_mode.value === employee.employment_mode
         : true;
 
       return designationMatch && skillMatch && departmentMatch && empModeMatch;
@@ -158,14 +154,13 @@ export const sortData = (
   employees: Employee[],
   sort:
     | {
-        sortTerm: string | undefined;
+        sortTerm: string | null;
         sortVal: boolean | undefined;
       }
-    | undefined
+     |null
 ) => {
-  if (sort && sort.sortVal != undefined) {
+  if (sort && sort.sortVal != null) {
     let flag = sort.sortVal ? +1 : -1;
-    if (employees === undefined) return employees;
     employees.sort((a: Employee, b: Employee) => {
       let x = a[sort.sortTerm as keyof Employee];
       let y = b[sort.sortTerm as keyof Employee];

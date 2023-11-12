@@ -3,23 +3,32 @@ import Button from "../../components/Button/Button.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import Input from "../../components/Input/Input.tsx";
 import SelectList from "../../components/Select/SelectList.tsx";
-import { getNewEmpId, getNewEmployeeDetails, resetSelects } from "../../utils/helper.ts";
+import {
+  getNewEmpId,
+  getNewEmployeeDetails,
+  resetSelects,
+} from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
+import { TableProps } from "../../core/interfaces/interface.ts";
 
 function Form() {
   const currentDate = new Date().toISOString().split("T")[0];
   const methods = useForm();
-  const {employees} = useContext(DataContext);
+  const { employees, tableProps, addTableProps } = useContext(DataContext);
 
   const onReset = () => {
-    methods.reset();
-    resetSelects(methods.reset);
+    const resettedVals: TableProps = {
+      ...resetSelects(),
+      sort: tableProps.sort,
+    };
+    methods.reset(resettedVals);
+    addTableProps(resettedVals);
   };
   const onSubmit = methods.handleSubmit(() => {
     const newEmpId = getNewEmpId(employees);
-    const newEmployee= getNewEmployeeDetails(methods.getValues(),newEmpId);
+    const newEmployee = getNewEmployeeDetails(methods.getValues(), newEmpId);
     console.log(newEmployee);
     onReset();
   });

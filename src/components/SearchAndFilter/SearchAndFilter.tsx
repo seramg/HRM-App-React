@@ -1,20 +1,24 @@
-import { useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import DataContext from "../../core/store/DataContext.tsx";
-import { resetSelects } from "../../utils/helper.ts";
 import Button from "../Button/Button.tsx";
 import SelectList from "../Select/SelectList.tsx";
 import Search from "./Search/Search.tsx";
 import ActionsWrapper from "./SearchAndFilter.ts";
+import { resetSelects } from "../../utils/helper.ts";
+import { useContext } from "react";
+import DataContext from "../../core/store/DataContext.tsx";
+import { TableProps } from "../../core/interfaces/interface.ts";
 
 function ActionsBar() {
   const methods = useForm();
-  const { addTableProps, tableProps } = useContext(DataContext);
+  const { tableProps, addTableProps } = useContext(DataContext);
 
   const onReset = () => {
-    methods.reset();
-    resetSelects(methods.reset);
-    if (tableProps) addTableProps(tableProps);
+    const resettedVals: TableProps = {
+      ...resetSelects(),
+      sort: tableProps.sort,
+    };
+    methods.reset(resettedVals);
+    addTableProps(resettedVals);
   };
   return (
     <>
