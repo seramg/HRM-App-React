@@ -35,7 +35,7 @@ function SelectList({
         value={
           value?.department
             ? { value: value?.department, label: value?.department }
-            : { value: "", label: "" }
+            : null
         }
       />
 
@@ -50,7 +50,7 @@ function SelectList({
         value={
           value?.designation
             ? { value: value?.designation, label: value?.designation }
-            : { value: "", label: "" }
+            : null
         }
       />
 
@@ -65,7 +65,7 @@ function SelectList({
         value={
           value?.employment_mode
             ? { value: value?.employment_mode, label: value?.employment_mode }
-            : { value: "", label: "" }
+            : null
         }
       />
 

@@ -34,7 +34,6 @@ function Form() {
     const newEmpId = getNewEmpId(employees);
     const newEmployee = getNewEmployeeDetails(methods.getValues(), newEmpId);
     console.log(newEmployee);
-    onReset();
   });
 
   return (
@@ -47,9 +46,9 @@ function Form() {
         >
           <Fieldset className="form-details ">
             <legend className="subheading">Personal Information</legend>
-           
+
             <Input
-              value={employee.emp_name}
+              value={employee && employee.emp_name}
               validation={{
                 required: {
                   value: true,
@@ -70,7 +69,7 @@ function Form() {
             />
             <InputRow className="common-flex">
               <Input
-                value={employee.email}
+                value={employee && employee.email}
                 validation={{
                   required: {
                     value: true,
@@ -86,7 +85,7 @@ function Form() {
                 name="email"
               />
               <Input
-                value={employee.phone}
+                value={employee && employee.phone}
                 validation={{
                   required: {
                     value: true,
@@ -104,7 +103,7 @@ function Form() {
               />
             </InputRow>
             <Input
-              value={employee.address}
+              value={employee && employee.address}
               validation={{
                 required: {
                   value: true,
@@ -121,7 +120,7 @@ function Form() {
             />
             <InputRow className="common-flex">
               <Input
-                value={employee.date_of_birth}
+                value={employee && employee.date_of_birth}
                 validation={{
                   required: {
                     value: true,
@@ -137,7 +136,7 @@ function Form() {
                 name="date_of_birth"
               />
               <Input
-                value={employee.date_of_joining}
+                value={employee && employee.date_of_joining}
                 validation={{
                   required: {
                     value: true,
@@ -154,7 +153,7 @@ function Form() {
               />
             </InputRow>
             <Input
-              value={employee.gender}
+              value={employee && employee.gender}
               validation={{
                 required: {
                   value: true,

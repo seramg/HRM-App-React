@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Select from "react-select";
 import { SelectInputProps } from "../../core/interfaces/interface.ts";
@@ -26,8 +26,14 @@ function SelectInput({
   const errorMsg = errors[fieldName];
   const className = errorMsg ? `input-border-error ${label}` : "label";
   const { addTableProps, tableProps } = useContext(DataContext);
-  let selectOption = value;
-  console.log(selectOption)
+  const [currentSelectVal, setCurrentSelectVal] = useState(value);
+  
+  useEffect(() => {
+    if (value) {
+      setValue(fieldName, currentSelectVal);
+    }
+  }, []);
+
   return (
     <InputWrapper>
       {label}
@@ -41,13 +47,17 @@ function SelectInput({
               <div className="input-field-error  m-30">
                 <Select
                   {...field}
-                  defaultValue={selectOption}
+                  defaultValue={currentSelectVal}
                   isClearable={true}
                   className={className}
                   isSearchable={true}
                   options={options}
                   placeholder={<div className="placeholder">{placeholder}</div>}
                   isMulti={isMulti || false}
+                  onChange={(selectedOption) => {
+                    setCurrentSelectVal(selectedOption);
+                    setValue(fieldName, selectedOption);
+                  }}
                 />
                 {errorMsg && (
                   <InputError error={errorMsg.message?.toString()} />

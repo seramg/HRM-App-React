@@ -20,16 +20,17 @@ function RadioGrp({
   name: string;
 }) {
   const { register } = useFormContext();
-  const checked = value == option;
+  const checked = (value == option);
 
+  
   return (
     <RadioWrapper key={option} className=" common-flex">
       <input
         type="radio"
         id={`${label}-${option}`}
-        value={option} // Specify the value for this radio input
+        defaultValue={option} // Specify the value for this radio input
         {...register(name, validation)}
-        checked={checked}
+        defaultChecked={checked}
       />
       <label htmlFor={`${label}-${option}`}>{option}</label>
     </RadioWrapper>

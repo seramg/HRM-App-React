@@ -54,7 +54,7 @@ export interface SelectInputProps {
   control?: Control<FieldValues, any>;
   fieldName: string;
   isFilter: boolean;
-  value?:SelectProps | SelectProps[]
+  value?:SelectProps | SelectProps[] | null
 }
 export interface InputProps {
   validation: {

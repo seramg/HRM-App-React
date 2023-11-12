@@ -203,8 +203,6 @@ export const getNewEmployeeDetails = (formData: FieldValues, id: string) => {
     id: skill.value,
     name: skill.label,
   }));
-  console.log(skillsInNewFormat);
-
   const transformedInput = {
     id: id,
     emp_name: formData.emp_name,
@@ -219,5 +217,12 @@ export const getNewEmployeeDetails = (formData: FieldValues, id: string) => {
     department: formData.department.value,
     employment_mode: formData.employment_mode.value,
   };
+
   return transformedInput;
 };
+
+export const getDate = (dateVal:string) => {
+  const [day, month, year] = dateVal.split("-");
+  const newDate = new Date(`${year}-${month}-${day}`);
+  return newDate.toISOString().split('T')[0];
+}
