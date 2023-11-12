@@ -178,3 +178,51 @@ export const sortData = (
   }
   return employees;
 };
+
+export const getNewEmpId = (employees: Employee[]) => {
+  let largestId = null;
+  //Comparing the ids of the employee
+  for (const employee of employees) {
+    if (employee != null) {
+      const idNumber = parseInt(employee.id.substring(3));
+      if (largestId === null || idNumber > parseInt(largestId.substring(3))) {
+        largestId = employee.id;
+      }
+    }
+  }
+  //Creating the new id
+  if (largestId) {
+    const newEmpId = parseInt(largestId.substring(3)) + 1;
+    const newEmpIdStr =
+      newEmpId.toString().length <= 2
+        ? "0".concat(newEmpId.toString())
+        : newEmpId.toString();
+    return largestId.substring(0, 3).concat(newEmpIdStr);
+  } else {
+    return "EMP001";
+  }
+};
+
+export const getNewEmployeeDetails = (formData: FieldValues, id: string) => {
+  const skillsInNewFormat = formData.skills.map((skill: SelectProps) => ({
+    id: skill.value,
+    name: skill.label,
+  }));
+  console.log(skillsInNewFormat);
+
+  const transformedInput = {
+    id: id,
+    emp_name: formData.emp_name,
+    email: formData.email,
+    phone: formData.phone,
+    address: formData.address,
+    skills: skillsInNewFormat,
+    gender: formData.gender,
+    date_of_birth: formData.date_of_birth,
+    date_of_joining: formData.data_of_joining,
+    designation: formData.designation.value,
+    department: formData.department.value,
+    employment_mode: formData.employment_mode.value,
+  };
+  return transformedInput;
+};

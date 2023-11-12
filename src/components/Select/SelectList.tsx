@@ -24,7 +24,7 @@ function SelectList({
         placeholder="Select department"
         isMulti={isMultiState.isDepartmentsMulti}
         control={control}
-        fieldName="departments"
+        fieldName="department"
         isFilter={isFilter!}
       />
 
@@ -34,7 +34,7 @@ function SelectList({
         placeholder="Select designation"
         isMulti={isMultiState.isDesignationsMulti}
         control={control}
-        fieldName="designations"
+        fieldName="designation"
         isFilter={isFilter!}
       />
 
@@ -44,7 +44,7 @@ function SelectList({
         placeholder="Select employment mode"
         isMulti={isMultiState.isEmpModesMulti}
         control={control}
-        fieldName="employment_modes"
+        fieldName="employment_mode"
         isFilter={isFilter!}
       />
 

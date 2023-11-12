@@ -40,6 +40,7 @@ const InputWrapper = styled.label`
   .radio-list {
     gap: 10px;
     justify-content:flex-start;
+    margin-bottom:30px;
   }
   .select{
     overflow:hidden;
