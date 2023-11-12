@@ -26,7 +26,9 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
           <StyledLink to="/employeeView" state={employee.id}>
             <Button icon="visibility"></Button>
           </StyledLink>
-          <Button icon="edit"></Button>
+          <StyledLink to="employeeDetails" state={employee}>
+            <Button icon="edit"></Button>
+          </StyledLink>
           <Button icon="delete"></Button>
         </div>
       </td>

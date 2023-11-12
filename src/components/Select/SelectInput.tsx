@@ -15,6 +15,7 @@ function SelectInput({
   control,
   fieldName,
   isFilter,
+  value,
 }: SelectInputProps) {
   const {
     getValues,
@@ -25,7 +26,8 @@ function SelectInput({
   const errorMsg = errors[fieldName];
   const className = errorMsg ? `input-border-error ${label}` : "label";
   const { addTableProps, tableProps } = useContext(DataContext);
-
+  let selectOption = value;
+  console.log(selectOption)
   return (
     <InputWrapper>
       {label}
@@ -39,6 +41,7 @@ function SelectInput({
               <div className="input-field-error  m-30">
                 <Select
                   {...field}
+                  defaultValue={selectOption}
                   isClearable={true}
                   className={className}
                   isSearchable={true}

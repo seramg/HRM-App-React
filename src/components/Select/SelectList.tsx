@@ -1,17 +1,23 @@
 import { useContext } from "react";
 import { Control, FieldValues } from "react-hook-form";
-import { IsMultiStateProps } from "../../core/interfaces/interface.ts";
+import {
+  Employee,
+  IsMultiStateProps,
+} from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import SelectInput from "./SelectInput.tsx";
+import { transformArrayToSkillOptionsList } from "../../utils/helper.ts";
 
 function SelectList({
   isMultiState,
   control,
   isFilter,
+  value,
 }: {
   isMultiState: IsMultiStateProps;
   control: Control<FieldValues, any>;
   isFilter?: boolean;
+  value?: Employee;
 }) {
   const { departments, designations, employment_modes, skills } =
     useContext(DataContext);
@@ -26,6 +32,11 @@ function SelectList({
         control={control}
         fieldName="department"
         isFilter={isFilter!}
+        value={
+          value?.department
+            ? { value: value?.department, label: value?.department }
+            : { value: "", label: "" }
+        }
       />
 
       <SelectInput
@@ -36,6 +47,11 @@ function SelectList({
         control={control}
         fieldName="designation"
         isFilter={isFilter!}
+        value={
+          value?.designation
+            ? { value: value?.designation, label: value?.designation }
+            : { value: "", label: "" }
+        }
       />
 
       <SelectInput
@@ -46,6 +62,11 @@ function SelectList({
         control={control}
         fieldName="employment_mode"
         isFilter={isFilter!}
+        value={
+          value?.employment_mode
+            ? { value: value?.employment_mode, label: value?.employment_mode }
+            : { value: "", label: "" }
+        }
       />
 
       <SelectInput
@@ -56,6 +77,9 @@ function SelectList({
         control={control}
         fieldName="skills"
         isFilter={isFilter!}
+        value={
+          value?.skills ? transformArrayToSkillOptionsList(value?.skills) : []
+        }
       />
     </div>
   );

@@ -11,9 +11,13 @@ import {
 import { Fieldset, InputRow } from "./form.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
-import { TableProps } from "../../core/interfaces/interface.ts";
+import { Employee, TableProps } from "../../core/interfaces/interface.ts";
+import { useLocation } from "react-router-dom";
 
 function Form() {
+  const location = useLocation();
+  const employee: Employee = location.state;
+
   const currentDate = new Date().toISOString().split("T")[0];
   const methods = useForm();
   const { employees, tableProps, addTableProps } = useContext(DataContext);
@@ -43,7 +47,9 @@ function Form() {
         >
           <Fieldset className="form-details ">
             <legend className="subheading">Personal Information</legend>
+           
             <Input
+              value={employee.emp_name}
               validation={{
                 required: {
                   value: true,
@@ -64,6 +70,7 @@ function Form() {
             />
             <InputRow className="common-flex">
               <Input
+                value={employee.email}
                 validation={{
                   required: {
                     value: true,
@@ -79,6 +86,7 @@ function Form() {
                 name="email"
               />
               <Input
+                value={employee.phone}
                 validation={{
                   required: {
                     value: true,
@@ -96,6 +104,7 @@ function Form() {
               />
             </InputRow>
             <Input
+              value={employee.address}
               validation={{
                 required: {
                   value: true,
@@ -112,6 +121,7 @@ function Form() {
             />
             <InputRow className="common-flex">
               <Input
+                value={employee.date_of_birth}
                 validation={{
                   required: {
                     value: true,
@@ -127,6 +137,7 @@ function Form() {
                 name="date_of_birth"
               />
               <Input
+                value={employee.date_of_joining}
                 validation={{
                   required: {
                     value: true,
@@ -143,6 +154,7 @@ function Form() {
               />
             </InputRow>
             <Input
+              value={employee.gender}
               validation={{
                 required: {
                   value: true,
@@ -158,6 +170,7 @@ function Form() {
           <Fieldset className="other-details ">
             <legend className="subheading">Other Information</legend>
             <SelectList
+              value={employee}
               control={methods.control}
               isMultiState={{
                 isDepartmentsMulti: false,

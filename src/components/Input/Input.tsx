@@ -4,7 +4,7 @@ import InputError from "../InputError/InputError.tsx";
 import RadioGrp from "../Radio/RadioGrp.tsx";
 import InputWrapper from "./input.ts";
 
-function Input({ validation, label, type, options, name }: InputProps) {
+function Input({ value, validation, label, type, options, name }: InputProps) {
   const {
     register,
     formState: { errors },
@@ -19,6 +19,7 @@ function Input({ validation, label, type, options, name }: InputProps) {
         <div className="common-flex radio-list">
           {options.map((option: string) => (
             <RadioGrp
+              value={value}
               key={option}
               option={option}
               label={label}
@@ -31,6 +32,7 @@ function Input({ validation, label, type, options, name }: InputProps) {
         <div className="input-field-error  m-30">
           <input
             type={type}
+            value={value}
             id={label}
             className={className}
             placeholder={`Enter your ${label}`}
