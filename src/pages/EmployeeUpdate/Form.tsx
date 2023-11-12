@@ -6,7 +6,6 @@ import SelectList from "../../components/Select/SelectList.tsx";
 import { resetSelects } from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
 
-
 function Form() {
   const currentDate = new Date().toISOString().split("T")[0];
   const methods = useForm();
@@ -15,7 +14,8 @@ function Form() {
     methods.reset();
     resetSelects(methods.reset);
   };
-  const onSubmit = methods.handleSubmit(() => {
+  const onSubmit = methods.handleSubmit((data) => {
+    console.log(methods.getValues());
     onReset();
   });
 
@@ -108,7 +108,7 @@ function Form() {
                     message: "This is an invalid value",
                   },
                 }}
-                label="Date"
+                label="Date of Birth"
                 type="date"
                 name="date_of_birth"
               />
@@ -118,13 +118,28 @@ function Form() {
                     value: true,
                     message: "This field is required",
                   },
+                  max: {
+                    value: currentDate,
+                    message: "This is an invalid value",
+                  },
                 }}
-                label="Gender"
-                type="radio"
-                options={["Male", "Female", "Other"]}
-                name="gender"
+                label="Date of Joining"
+                type="date"
+                name="data_of_joining"
               />
             </InputRow>
+            <Input
+              validation={{
+                required: {
+                  value: true,
+                  message: "This field is required",
+                },
+              }}
+              label="Gender"
+              type="radio"
+              options={["Male", "Female", "Other"]}
+              name="gender"
+            />
           </Fieldset>
           <Fieldset className="other-details ">
             <legend className="subheading">Other Information</legend>

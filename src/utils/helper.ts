@@ -117,7 +117,6 @@ export const searchData = (
   ) {
     return employees;
   }
-  console.log(tableProps);
   const searchText = tableProps["search_term"].toLowerCase();
 
   return employees.filter((employee) =>
@@ -164,7 +163,6 @@ export const sortData = (
       }
     | undefined
 ) => {
-  console.log(sort);
   if (sort && sort.sortVal != undefined) {
     let flag = sort.sortVal ? +1 : -1;
     if (employees === undefined) return employees;

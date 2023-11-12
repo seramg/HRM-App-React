@@ -39,6 +39,7 @@ const InputWrapper = styled.label`
   }
   .radio-list {
     gap: 10px;
+    justify-content:flex-start;
   }
   .select{
     overflow:hidden;
