@@ -13,7 +13,7 @@ const DataContext = createContext<ContextProps>({
     employment_modes: undefined,
     skills: [],
     sort: {
-      sortVal: false,
+      sortVal: undefined,
       sortTerm: undefined,
     },
     search_term: undefined,

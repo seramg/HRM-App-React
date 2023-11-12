@@ -14,8 +14,7 @@ function TableHeadButton({
   icon?: string;
   className?: string | undefined;
 }) {
-  const [sort, setSort] = useState(true);
-  const [iconVisible, setIconVisible] = useState(false);
+  const [sort, setSort] = useState(false);
 
   const { employees, tableProps, addTableProps } = useContext(DataContext);
   const sortIcon = sort ? "rotate" : "";
@@ -23,7 +22,6 @@ function TableHeadButton({
 
   function sortBtnClickHandler() {
     setSort(() => !sort);
-    setIconVisible(true);
     const updatedTableProps: TableProps = {
       ...tableProps,
       sort: {
@@ -35,18 +33,13 @@ function TableHeadButton({
     sortData(employees, tableProps.sort);
   }
 
-  const sortBtnBlurHandler = () => {
-    setSort(() => true);
-    setIconVisible(false);
-  };
   return (
     <ButtonWrapper
       className={`common-flex ${className}`}
       onClick={sortBtnClickHandler}
-      onBlur={sortBtnBlurHandler}
     >
       <TableHeadIconWrapper
-        visible={iconVisible}
+        visible={true}
         className={`material-symbols-outlined ${sortIcon}`}
       >
         {icon}

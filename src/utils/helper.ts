@@ -169,7 +169,7 @@ export const sortData = (
 ) => {
   if (sort && sort.sortVal != undefined) {
     let flag = sort.sortVal ? +1 : -1;
-    if (employees === undefined) return employees;
+    if (employees === undefined) return employees;   
     employees.sort((a: Employee, b: Employee) => {
       let x = a[sort.sortTerm as keyof Employee];
       let y = b[sort.sortTerm as keyof Employee];
