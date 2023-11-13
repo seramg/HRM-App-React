@@ -46,8 +46,11 @@ function Form() {
     addTableProps(resettedTableProps);
   };
   const onSubmit = methods.handleSubmit(() => {
-    const newEmpId = getNewEmpId(employees);
-    const newEmployee = getNewEmployeeDetails(methods.getValues(), newEmpId);
+    let empId;
+    if (employee) empId = employee.id
+    else
+      empId = getNewEmpId(employees);
+    const newEmployee = getNewEmployeeDetails(methods.getValues(), empId);
     console.log(newEmployee);
   });
   return (
@@ -58,6 +61,7 @@ function Form() {
           onSubmit={(e) => e.preventDefault()}
           noValidate
         >
+          <h2>{!employee ? "Add New Employee" : `Edit Employee ${employee.id}`}</h2>
           <Fieldset className="form-details ">
             <legend className="subheading">Personal Information</legend>
 

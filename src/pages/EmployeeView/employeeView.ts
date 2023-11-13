@@ -5,7 +5,7 @@ const EmployeeViewWrapper = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 80px;
+  margin-top:80px;
   background-color:var(--white-color);
   padding:20px 0;
 
