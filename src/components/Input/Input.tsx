@@ -17,8 +17,6 @@ function Input({ value, validation, label, type, options, name }: InputProps) {
     value = getDate(value);
   }
 
-  const [currentInputVal]=useState(value);
-  
   return (
     <InputWrapper>
       {label}
@@ -26,7 +24,7 @@ function Input({ value, validation, label, type, options, name }: InputProps) {
         <div className="common-flex radio-list">
           {options.map((option: string) => (
             <RadioGrp
-              value={currentInputVal}
+              value={value}
               key={option}
               option={option}
               label={label}
@@ -39,7 +37,7 @@ function Input({ value, validation, label, type, options, name }: InputProps) {
         <div className="input-field-error  m-30">
           <input
             type={type}
-            defaultValue={currentInputVal}
+            defaultValue={value}
             id={label}
             className={className}
             placeholder={`Enter your ${label}`}

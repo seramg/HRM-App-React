@@ -21,14 +21,12 @@ function RadioGrp({
 }) {
   const { register } = useFormContext();
   const checked = (value == option);
-
-  
   return (
     <RadioWrapper key={option} className=" common-flex">
       <input
         type="radio"
         id={`${label}-${option}`}
-        defaultValue={option} // Specify the value for this radio input
+        value={option} // Specify the value for this radio input
         {...register(name, validation)}
         defaultChecked={checked}
       />

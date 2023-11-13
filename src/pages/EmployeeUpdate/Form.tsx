@@ -23,19 +23,33 @@ function Form() {
   const { employees, tableProps, addTableProps } = useContext(DataContext);
 
   const onReset = () => {
-    const resettedVals: TableProps = {
+    const resettedTableProps: TableProps = {
       ...resetSelects(),
       sort: tableProps.sort,
     };
-    methods.reset(resettedVals);
-    addTableProps(resettedVals);
+    if (employee) {
+      const resettedVals = {
+        ...resetSelects(),
+        emp_name: null,
+        email: null,
+        phone: null,
+        address: null,
+        date_of_birth: null,
+        date_of_joining: null,
+      }
+      methods.setValue('gender', null);
+      methods.reset(resettedVals);
+    }
+    else {
+      methods.reset(resettedTableProps);
+    }
+    addTableProps(resettedTableProps);
   };
   const onSubmit = methods.handleSubmit(() => {
     const newEmpId = getNewEmpId(employees);
     const newEmployee = getNewEmployeeDetails(methods.getValues(), newEmpId);
     console.log(newEmployee);
   });
-
   return (
     <main className="main-section global-width">
       <FormProvider {...methods}>
@@ -149,7 +163,7 @@ function Form() {
                 }}
                 label="Date of Joining"
                 type="date"
-                name="data_of_joining"
+                name="date_of_joining"
               />
             </InputRow>
             <Input

@@ -31,6 +31,8 @@ const TableWrapper = styled.table`
     border-radius: 10px;
     color: white;
   }
-
+  .alternate-table-row-color {
+    background-color: var(--white-color);
+  }
 `;
 export default TableWrapper;
