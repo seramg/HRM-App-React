@@ -8,9 +8,7 @@ import { useState } from 'react';
 
 function Input({ value, validation, label, type, options, name }: InputProps) {
   const {
-    getValues,
     register,
-    setValue,
     formState: { errors },
   } = useFormContext();
   const errorMsg = errors[name];
