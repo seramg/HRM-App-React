@@ -226,3 +226,10 @@ export const getDate = (dateVal:string) => {
   const newDate = new Date(`${year}-${month}-${day}`);
   return newDate.toISOString().split('T')[0];
 }
+
+export const getWorkExp=(dateOfJoining: string)=>{
+  const DOJ = new Date(dateOfJoining);
+  const now = new Date();
+  const workExp: number = Math.floor((now.getTime() - DOJ.getTime()) / (1000 * 60 * 60 * 24 * 30));
+  return workExp;
+}

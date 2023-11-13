@@ -5,7 +5,9 @@ const EmployeeViewWrapper = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 80px;
+  background-color:var(--white-color);
+  padding:20px 0;
 
   p,
   h2,
@@ -20,6 +22,9 @@ const EmployeeViewWrapper = styled.main`
   .primary-details {
     display: flex;
     flex-direction: column;
+  }
+  .other-details:last-child{
+    margin-bottom:0
   }
 `;
 export default EmployeeViewWrapper;
