@@ -134,9 +134,6 @@ td {
 .rotate {
   transform: rotate(180deg);
 }
-form{
-  margin-top:30px !important;
-}
 `;
 
 export default GlobalStyle;

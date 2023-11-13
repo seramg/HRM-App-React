@@ -1,13 +1,13 @@
 import EmployeeViewWrapper from "./employeeView.ts";
 import { useLocation } from "react-router-dom";
 import DataContext from "../../core/store/DataContext.tsx";
-import React from "react";
+import { useContext } from "react";
 import { getWorkExp } from "../../utils/helper.ts";
 
 function EmployeeView() {
   const location = useLocation();
   const employeeId = location.state;
-  const { employees } = React.useContext(DataContext);
+  const { employees } = useContext(DataContext);
   const employee = employees.find((employee) => employee.id === employeeId);
 
   return (
