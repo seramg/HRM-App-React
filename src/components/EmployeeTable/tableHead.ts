@@ -5,6 +5,12 @@ const TableHeadWrapper = styled.thead`
     cursor: pointer;
     color: var(--secondary-color);
   }
+    button {
+    flex-direction: row-reverse;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
 `;
 
 const TableHeadIconWrapper = styled.span<{ $visible: boolean }>`

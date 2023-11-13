@@ -2,9 +2,7 @@ import TableHeadButton from "./TableHeadButton.tsx";
 import { TableHeadWrapper } from "./tableHead.ts";
 
 function TableHead() {
-  // const iconState = {
-  //   iconVisible: false,
-  // };
+
   return (
     <TableHeadWrapper>
       <tr>

@@ -7,7 +7,9 @@ const ActionsWrapper = styled.div`
     border: 1px solid  #D3D3D3;
     background-color:var(--white-color);
     align-items:flex-end !important;
-    
+    .filter-title{
+      align-self:center;
+    }
     .form-flex-align{
       align-items:flex-end !important;
     }

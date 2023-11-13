@@ -1,10 +1,18 @@
+import { useState } from "react";
 import { Employee } from "../../core/interfaces/interface.ts";
 import Button from "../Button/Button.tsx";
+import Modal from "../Modal/Modal.tsx";
 import StyledLink from "../StyledLink";
+import TableDataWrapper from "./tableData.ts";
 
 function TableData({ employee, index }: { employee: Employee; index: number }) {
+  const [modal, setModal] = useState(false);
+
+  const cancelDltModal = () => {
+    setModal(() => !modal)
+  }
   return (
-    <tr
+    <TableDataWrapper
       key={employee.id}
       className={index % 2 !== 0 ? "alternate-table-row-color" : ""}
     >
@@ -29,10 +37,13 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
           <StyledLink to="employeeDetails" state={employee}>
             <Button icon="edit"></Button>
           </StyledLink>
-          <Button icon="delete"></Button>
+          <Button icon="delete" onClick={cancelDltModal}></Button>
         </div>
       </td>
-    </tr>
+      
+      {modal && <Modal cancelModal={cancelDltModal} employeeId={employee.id} />}
+
+    </TableDataWrapper>
   );
 }
 

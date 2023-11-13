@@ -8,12 +8,7 @@ const TableWrapper = styled.table`
   .material-symbols-outlined {
     color: var(--secondary-color);
   }
-  button {
-    flex-direction: row-reverse;
-    background: none;
-    padding: 0;
-    border-radius: 0;
-  }
+
   .actions-list {
     gap: 5px;
   }
@@ -36,8 +31,6 @@ const TableWrapper = styled.table`
     border-radius: 10px;
     color: white;
   }
-  .alternate-table-row-color {
-    background-color: var(--white-color);
-  }
+
 `;
 export default TableWrapper;

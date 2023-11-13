@@ -23,7 +23,7 @@ function ActionsBar() {
   return (
     <>
       <ActionsWrapper className="common-flex">
-        <h2 className="subheading">Filter By:</h2>
+        <h2 className="subheading filter-title">Filter By:</h2>
         <FormProvider {...methods}>
           <form
             className="global-width common-flex form-flex-align"

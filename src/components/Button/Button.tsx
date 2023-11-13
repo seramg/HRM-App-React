@@ -13,7 +13,7 @@ function Button({
   onClick?:() => void;
 }) {
   return (
-    <ButtonWrapper className={`common-flex ${className}`} onClick={onClick!}>
+    <ButtonWrapper className={`common-flex ${className??""}`} onClick={onClick!}>
       {icon && <span className="material-symbols-outlined"> {icon} </span>}
       {children !== "" ? children : ""}
     </ButtonWrapper>
