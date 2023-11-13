@@ -31,20 +31,21 @@ const DataProvider = ({ children }: { children: any }) => {
   const addTableProps = (tableProps: TableProps) => {
     setTableProps(tableProps);
   };
+  const data =  getData();
 
-  const fetchData = async () => {
-    const data = await getData();
-    if (data) {
-      const employees = data.employees;
+  const fetchData = async() => {
+    const dataCopy = await data;
+    if (dataCopy) {
+      const employees = dataCopy.employees;
       const sortedEmployees = sortData(employees, tableProps.sort);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
 
       setEmployees(searchedEmployees);
-      setDesignations(transformArrayToOptionsList(data.designations));
-      setDepartments(transformArrayToOptionsList(data.departments));
-      setEmpModes(transformArrayToOptionsList(data.employment_modes));
-      setSkills(transformArrayToSkillOptionsList(data.skills));
+      setDesignations(transformArrayToOptionsList(dataCopy.designations));
+      setDepartments(transformArrayToOptionsList(dataCopy.departments));
+      setEmpModes(transformArrayToOptionsList(dataCopy.employment_modes));
+      setSkills(transformArrayToSkillOptionsList(dataCopy.skills));
     }
   };
   useEffect(() => {
