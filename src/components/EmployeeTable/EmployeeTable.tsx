@@ -17,9 +17,11 @@ function EmployeeTable() {
             <TableData key={index} employee={employee} index={index} />
           ))
         ) : (
+            <tr>
           <td className="no-data" colSpan={6}>
             No data Available
-          </td>
+              </td>
+              </tr>
         )}
       </tbody>
     </TableWrapper>

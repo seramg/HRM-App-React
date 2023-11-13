@@ -7,10 +7,10 @@ const TableHeadWrapper = styled.thead`
   }
 `;
 
-const TableHeadIconWrapper = styled.span<{ visible: boolean }>`
+const TableHeadIconWrapper = styled.span<{ $visible: boolean }>`
   transition: 300ms;
   cursor: pointer;
-  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+  visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
 
 `;
 export {TableHeadWrapper,TableHeadIconWrapper};

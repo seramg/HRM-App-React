@@ -39,7 +39,7 @@ function TableHeadButton({
       onClick={sortBtnClickHandler}
     >
       <TableHeadIconWrapper
-        visible={true}
+        $visible={true}
         className={`material-symbols-outlined ${sortIcon}`}
       >
         {icon}

@@ -20,7 +20,7 @@ function Search() {
   };
 
   return (
-    <SearchWrapper focus={focus} className="common-flex">
+    <SearchWrapper $focus={focus} className="common-flex">
       <div id="searchForm" className="search-form common-flex">
         <span className="material-symbols-outlined search-icon">search</span>
         <input
