@@ -5,12 +5,18 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
   background-color: var(--white-color);
   border-radius: 4px;
   padding: 6px;
-   border: ${(props) => (props.$focus ? "1px solid  var(--placeholder-color)" : "1px solid #d3d3d3")};
+  border: ${(props) =>
+    props.$focus
+      ? "1px solid  var(--light-gray-color)"
+      : "1px solid var(--dark-gray-color)"};
 
-  .material-symbols-outlined,
+  .material-symbols-outlined {
+    color: ${(props) =>
+      props.$focus ? " var(--light-gray-color)" : "var(--dark-gray-color)"};
+  }
   .search-dropdown-btn-text {
     margin: 0;
-    color: #d3d3d3;
+    color: var(--dark-gray-color);
   }
 
   input:focus {
@@ -31,7 +37,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     padding: 0;
 
     &::placeholder {
-      color: var(--placeholder-color);
+      color: var(--light-gray-color);
     }
   }
   .search-btn {
@@ -39,7 +45,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     gap: 5px !important;
     border-radius: 0;
     background: none;
-    border-left: 1px solid #d3d3d3;
+    border-left: 1px solid var(--dark-gray-color);
     flex-direction: row-reverse;
   }
 `;

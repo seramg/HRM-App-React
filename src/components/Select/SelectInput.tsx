@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import Select, { CSSObjectWithLabel, ControlProps, StylesConfig } from "react-select";
-import { SelectInputProps, SelectProps } from "../../core/interfaces/interface.ts";
+import Select from "react-select";
+import { SelectInputProps } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import { handleChange } from "../../utils/helper.ts";
 import InputWrapper from "../Input/input.ts";
 import InputError from "../InputError/InputError.tsx";
+import selectStyles from "./selectCustomStyles.ts";
 
 function SelectInput({
   label,
@@ -34,18 +35,6 @@ function SelectInput({
     }
   }, []);
 
-  const selectStyles: StylesConfig<SelectProps> = {
-    control: (base: CSSObjectWithLabel, state: ControlProps<SelectProps>) => ({
-      ...base,
-      border: state.isFocused?'1px solid  var(--placeholder-color)':'1px solid  #d3d3d3',
-      boxShadow: 'none',
-      '&:hover': {
-        borderColor: 'none',
-      },
-  
-    }),
-    // Add more styles as needed
-  };
     return (
     <InputWrapper>
       {label}

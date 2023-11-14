@@ -5,46 +5,45 @@ const InputWrapper = styled.label`
   display: flex;
   flex-direction: column;
   flex: 1;
-  
-  input{
+
+  input {
     padding: 10px;
     outline: none;
     color: var(--secondary-color);
     background-color: white;
-    border: 1px solid #d3d3d3;
+    border: 1px solid var(--dark-gray-color);
 
     &::placeholder {
-      color: var(--placeholder-color);
+      color: var(--light-gray-color);
       font-size: 14px;
     }
-    &:focus{
-      border:1px solid  var(--placeholder-color);
+    &:focus {
+      border: 1px solid var(--light-gray-color);
     }
-    
   }
   input[type="date"]::-webkit-input-placeholder,
-  input[type="date"]::placeholder{
-    color: var(--placeholder-color);
-}
-.input-border-error{
-    border:1px solid  red;
-}
-.input-field-error{
-  display:flex;
-  flex-direction:column;
-}
+  input[type="date"]::placeholder {
+    color: var(--light-gray-color);
+  }
+  .input-border-error {
+    border: 1px solid red;
+  }
+  .input-field-error {
+    display: flex;
+    flex-direction: column;
+  }
   .placeholder {
-    color: var(--placeholder-color);
+    color: var(--light-gray-color);
     font-size: 14px;
   }
   .radio-list {
     gap: 10px;
-    justify-content:flex-start;
+    justify-content: flex-start;
   }
-  .select{
-    overflow:hidden;
-    text-overflow:emphasis;
-    width:200px;
+  .select {
+    overflow: hidden;
+    text-overflow: emphasis;
+    width: 200px;
   }
 `;
 export default InputWrapper;

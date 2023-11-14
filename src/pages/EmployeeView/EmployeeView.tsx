@@ -9,15 +9,17 @@ function EmployeeView() {
   const employeeId = location.state;
   const { employees } = useContext(DataContext);
   const employee = employees.find((employee) => employee.id === employeeId);
-
+  console.log(employee)
   return (
     employee && (
       <EmployeeViewWrapper className="main-section global-width">
         <div className="m-30 primary-details">
           <h2 className="name">{employee.emp_name}</h2>
+          <p className="employee-id">{employee.id}</p>
+        </div>
+        <div className="m-30 common-flex">
           <p className="email">{employee.email}</p>
           <p className="phone">{employee.phone}</p>
-          <p className="employee-id">{employee.id}</p>
         </div>
         <div className="other-details m-30 common-flex">
           <div className="date_of_birth">
