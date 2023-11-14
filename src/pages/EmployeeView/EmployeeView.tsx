@@ -1,60 +1,103 @@
 import EmployeeViewWrapper from "./employeeView.ts";
 import { useLocation } from "react-router-dom";
 import DataContext from "../../core/store/DataContext.tsx";
-import { useContext } from "react";
-import { getWorkExp } from "../../utils/helper.ts";
+import { useContext, useState } from "react";
+import { getDateView, getWorkExp } from "../../utils/helper.ts";
+import DetailsSection from "./Details.tsx";
+import Button from "../../components/Button/Button.tsx";
+import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 
 function EmployeeView() {
   const location = useLocation();
   const employeeId = location.state;
   const { employees } = useContext(DataContext);
   const employee = employees.find((employee) => employee.id === employeeId);
-  console.log(employee)
+  console.log(employee);
+  const [activeBtn, setActiveBtn] = useState("profile");
+
+  const handleButtonClick = (buttonType: string) => {
+    setActiveBtn(buttonType);
+  };
+
   return (
     employee && (
       <EmployeeViewWrapper className="main-section global-width">
-        <div className="m-30 primary-details">
-          <h2 className="name">{employee.emp_name}</h2>
-          <p className="employee-id">{employee.id}</p>
-        </div>
-        <div className="m-30 common-flex">
-          <p className="email">{employee.email}</p>
-          <p className="phone">{employee.phone}</p>
-        </div>
-        <div className="other-details m-30 common-flex">
-          <div className="date_of_birth">
-            <h3 className="date_of_birth">Date of Birth</h3>
-            <p className="value">{employee.date_of_birth}</p>
+        <h2 className="employee-name">{employee.emp_name}</h2>
+        <ButtonGrpWrapper className="details-section common-flex">
+          <Button
+            icon="person"
+            children="Personal Details"
+            className={`detail-heading ${
+              activeBtn === "profile" ? "add-border-bottom" : ""
+            }`}
+            onClick={() => handleButtonClick("profile")}
+          />
+          <Button
+            icon="business_center"
+            children="Work Details"
+            className={`detail-heading ${
+              activeBtn === "work" ? "add-border-bottom" : ""
+            }`}
+            onClick={() => handleButtonClick("work")}
+          />
+        </ButtonGrpWrapper>
+        {activeBtn === "profile" ? (
+          <div className="detail-element">
+            <DetailsSection
+              icon="person"
+              title="Full Name"
+              content={employee.emp_name}
+            />
+            <DetailsSection
+              icon="mail"
+              title="Email"
+              content={employee.email}
+            />
+            <DetailsSection
+              icon="phone_iphone"
+              title="Phone No"
+              content={employee.phone}
+            />
+            <DetailsSection
+              icon="calendar_month"
+              title="Date of Birth"
+              content={getDateView(employee.date_of_birth)}
+            />
+            <DetailsSection
+              icon="home"
+              title="Address"
+              content={employee.address}
+            />
           </div>
-          <div className="date_of_joining">
-            <h3 className="date_of_joining">Date of Joining</h3>
-            <p className="value">{employee.date_of_joining}</p>
+        ) : (
+          <div className="detail-element">
+            <DetailsSection
+              icon="person"
+              title="Designation"
+              content={employee.designation}
+            />
+            <DetailsSection
+              icon="mail"
+              title="Department"
+              content={employee.department}
+            />
+            <DetailsSection
+              icon="phone_iphone"
+              title="Employment Mode"
+              content={employee.employment_mode}
+            />
+            <DetailsSection
+              icon="calendar_month"
+              title="Date of Joining"
+              content={getDateView(employee.date_of_joining)}
+            />
+            <DetailsSection
+              icon="home"
+              title="Work Experience"
+              content={getWorkExp(employee.date_of_joining)}
+            />
           </div>
-          <div className="work_exp">
-            <h3 className="work_exp">Work Experience</h3>
-            <p className="value">
-              {getWorkExp(employee.date_of_joining)} years
-            </p>
-          </div>
-        </div>
-        <div className="other-details m-30 common-flex">
-          <div className="department">
-            <h3 className="department">Department</h3>
-            <p className="value">{employee.department}</p>
-          </div>
-          <div className="designation">
-            <h3 className="designation">Designation</h3>
-            <p className="value">{employee.designation}</p>
-          </div>
-          <div className="employment_mode">
-            <h3 className="employment_mode">Employment Mode</h3>
-            <p className="value">{employee.employment_mode}</p>
-          </div>
-        </div>
-        <div className="other-details m-30">
-          <h3 className="address">Address</h3>
-          <p className="value">{employee.address}</p>
-        </div>
+        )}
       </EmployeeViewWrapper>
     )
   );

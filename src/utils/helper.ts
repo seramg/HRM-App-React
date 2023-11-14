@@ -22,12 +22,12 @@ export function transformArrayToSkillOptionsList(skills: Skill[]) {
 }
 
 export function resetSelects() {
-  const resettedValues ={
-    department:null,
-    designation:null,
-    employment_mode:null,
-    skills:null,
-    search_term:null
+  const resettedValues = {
+    department: null,
+    designation: null,
+    employment_mode: null,
+    skills: null,
+    search_term: null
   }
   return resettedValues;
 }
@@ -84,10 +84,10 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
         : true;
       const skillMatch = tableProps.skills
         ? tableProps.skills.every((skillFilter: SelectProps) => {
-            return employee.skills.some(
-              (skill) => skill.id === skillFilter.value
-            );
-          })
+          return employee.skills.some(
+            (skill) => skill.id === skillFilter.value
+          );
+        })
         : true;
       const departmentMatch = tableProps.department
         ? tableProps.department.value === employee.department
@@ -154,10 +154,10 @@ export const sortData = (
   employees: Employee[],
   sort:
     | {
-        sortTerm: string | null;
-        sortVal: boolean | undefined;
-      }
-     |null
+      sortTerm: string | null;
+      sortVal: boolean | undefined;
+    }
+    | null
 ) => {
   if (sort && sort.sortVal != null) {
     let flag = sort.sortVal ? +1 : -1;
@@ -221,15 +221,23 @@ export const getNewEmployeeDetails = (formData: FieldValues, id: string) => {
   return transformedInput;
 };
 
-export const getDate = (dateVal:string) => {
-  const [day, month, year] = dateVal.split("-");
+export const getDate = (dateVal: string) => {
+  const [year, month, day] = dateVal.split("-");
   const newDate = new Date(`${year}-${month}-${day}`);
   return newDate.toISOString().split('T')[0];
 }
 
-export const getWorkExp=(dateOfJoining: string)=>{
-  const DOJ = new Date(dateOfJoining);
+export const getWorkExp = (dateOfJoining: string) => {
+  const [year, month, day] = dateOfJoining.split('-').map(Number);
+  const dateInNewFormat = new Date(year, month - 1, day);
+  const DOJ = new Date(dateInNewFormat);
   const now = new Date();
   const workExp: number = Math.floor((now.getTime() - DOJ.getTime()) / (1000 * 60 * 60 * 24 * 30));
-  return workExp;
+  return (workExp.toString() + "  months");
+}
+export const getDateView = (dateVal: string) => {
+  const [year, month, day] = dateVal.split("-").map(Number);
+  const monthName = new Date(year, month - 1, 1).toLocaleString('default', { month: 'long' });
+  const dateFormatted = day + " " + monthName + " " + year;
+  return dateFormatted;
 }

@@ -21,8 +21,8 @@
             }
           ],
           "gender": "Male",
-          "date_of_birth": "15-04-1985",
-          "date_of_joining": "10-01-2020",
+          "date_of_birth": "1985-04-15",
+          "date_of_joining": "2020-01-10",
           "designation": "Intern",
           "department": "Software Development",
           "employment_mode": "Part-Time"
@@ -44,8 +44,8 @@
             }
           ],
           "gender": "Female",
-          "date_of_birth": "25-07-1990",
-          "date_of_joining": "15-03-2018",
+          "date_of_birth": "1990-07-25",
+          "date_of_joining": "2018-03-15",
           "designation": "Engineer",
           "department": "Software Development",
           "employment_mode": "Full-Time"
@@ -67,8 +67,8 @@
             }
           ],
           "gender": "Male",
-          "date_of_birth": "10-12-1988",
-          "date_of_joining": "05-06-2015",
+          "date_of_birth": "1988-12-10",
+          "date_of_joining": "2015-06-05",
           "designation": "Associate Engineer",
           "department": "Web Development",
           "employment_mode": "Contract"
@@ -90,8 +90,8 @@
             }
           ],
           "gender": "Female",
-          "date_of_birth": "20-09-1992",
-          "date_of_joining": "02-04-2017",
+          "date_of_birth": "1995-09-02",
+          "date_of_joining": "2017-04-02",
           "designation": "Director",
           "department": "Project Management",
           "employment_mode": "Full-Time"
@@ -109,8 +109,8 @@
             }
           ],
           "gender": "Male",
-          "date_of_birth": "18-03-1987",
-          "date_of_joining": "20-11-2019",
+          "date_of_birth": "1987-03-17",
+          "date_of_joining": "2019-11-29",
           "designation": "CTO",
           "department": "Software Development",
           "employment_mode": "Full-Time"
@@ -128,8 +128,8 @@
             }
           ],
           "gender": "Female",
-          "date_of_birth": "12-08-1993",
-          "date_of_joining": "30-07-2016",
+          "date_of_birth": "1992-08-13",
+          "date_of_joining": "2010-07-16",
           "designation": "CFO",
           "department": "Database Management",
           "employment_mode": "Part-Time"
@@ -147,8 +147,8 @@
             }
           ],
           "gender": "Male",
-          "date_of_birth": "05-11-1991",
-          "date_of_joining": "10-09-2019",
+          "date_of_birth": "1991-11-11",
+          "date_of_joining": "1998-09-19",
           "designation": "Engineer",
           "department": "Software Development",
           "employment_mode": "Contract"
@@ -166,8 +166,8 @@
      }
      ],
      "gender": "Male",
-    "date_of_birth": "20-04-1984",
-     "date_of_joining": "02-01-2020",
+    "date_of_birth": "2019-04-14",
+     "date_of_joining": "2028-01-20",
      "designation": "Engineer",
      "department": "Web Development",
      "employment_mode": "Full-Time"
@@ -189,8 +189,8 @@
             }
           ],
           "gender": "Female",
-          "date_of_birth": "30-12-1987",
-          "date_of_joining": "15-09-2016",
+         "date_of_birth": "2018-12-17",
+          "date_of_joining": "2016-09-16",
           "designation": "Associate Engineer",
           "department": "Web Development",
           "employment_mode": "Full-Time"
@@ -212,8 +212,8 @@
             }
           ],
           "gender": "Male",
-          "date_of_birth": "18-05-1989",
-          "date_of_joining": "20-07-2017",
+          "date_of_birth": "1988-05-19",
+          "date_of_joining": "2017-07-17",
           "designation": "Engineer",
           "department": "Software Development",
           "employment_mode": "Full-Time"
@@ -235,8 +235,8 @@
             }
           ],
           "gender": "Female",
-          "date_of_birth": "12-01-1994",
-          "date_of_joining": "30-04-2019",
+          "date_of_birth": "1994-01-12",
+          "date_of_joining": "2019-04-04",
           "designation": "Associate Engineer",
           "department": "Software Development",
           "employment_mode": "Contract"
@@ -258,8 +258,8 @@
             }
           ],
           "gender": "Male",
-          "date_of_birth": "15-08-1990",
-          "date_of_joining": "02-03-2018",
+          "date_of_birth": "2000-08-10",
+          "date_of_joining": "2018-03-18",
           "designation": "Director",
           "department": "Project Management",
           "employment_mode": "Full-Time"
@@ -285,8 +285,8 @@
             }
           ],
           "gender": "Female",
-          "date_of_birth": "20-11-1986",
-          "date_of_joining": "02-10-2019",
+          "date_of_birth": "1986-11-16",
+          "date_of_joining": "2002-10-19",
           "designation": "CTO",
           "department": "Software Development",
           "employment_mode": "Full-Time"
