@@ -3,9 +3,9 @@ import styled from "styled-components";
 const SearchWrapper = styled.div<{ $focus: boolean }>`
   flex: 1;
   background-color: var(--white-color);
-  border-radius: 10px;
-  padding: 5px;
-  border: ${(props) => (props.$focus ? "1px solid  blue" : "1px solid #d3d3d3")};
+  border-radius: 4px;
+  padding: 6px;
+   border: ${(props) => (props.$focus ? "1px solid  var(--placeholder-color)" : "1px solid #d3d3d3")};
 
   .material-symbols-outlined,
   .search-dropdown-btn-text {

@@ -15,6 +15,7 @@ const ActionsWrapper = styled.div`
     }
     .select-list > *{
       flex:initial !important;
+      width:200px
     }
   }
 `;

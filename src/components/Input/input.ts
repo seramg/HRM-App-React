@@ -18,7 +18,7 @@ const InputWrapper = styled.label`
       font-size: 14px;
     }
     &:focus{
-      border:1px solid  blue;
+      border:1px solid  var(--placeholder-color);
     }
     
   }
