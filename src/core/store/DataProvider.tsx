@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getData } from "../../components/getData.tsx";
 import {
   filterData,
   searchData,
@@ -9,6 +8,7 @@ import {
 } from "../../utils/helper.ts";
 import { Employee, SelectProps, TableProps } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
+import { fetchData } from "../../components/fetchData.ts";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -31,9 +31,9 @@ const DataProvider = ({ children }: { children: any }) => {
   const addTableProps = (tableProps: TableProps) => {
     setTableProps(tableProps);
   };
-  const data =  getData();
+  const data =  fetchData();
 
-  const fetchData = async() => {
+  const getDataForTable = async() => {
     const dataCopy = await data;
     if (dataCopy) {
       const employees = dataCopy.employees;
@@ -49,7 +49,7 @@ const DataProvider = ({ children }: { children: any }) => {
     }
   };
   useEffect(() => {
-    fetchData();
+    getDataForTable();
   }, [tableProps]);
 
   return (

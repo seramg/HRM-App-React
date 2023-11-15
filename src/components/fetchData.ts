@@ -1,5 +1,11 @@
-export async function getData() {
+import { getData } from "../core/api/functions";
+
+export async function fetchData() {
   try {
+    let res;
+    const databaseUrl = import.meta.env.VITE_DATABASE_URL;
+    res = await getData<string>(databaseUrl + "employees.json");
+    console.log(res);
     const response = await fetch("/data.json", {
       headers: {
         "Content-Type": "application/json",
