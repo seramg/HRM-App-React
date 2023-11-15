@@ -4,7 +4,6 @@ import InputError from "../InputError/InputError.tsx";
 import RadioGrp from "../Radio/RadioGrp.tsx";
 import InputWrapper from "./input.ts";
 import { getDate } from "../../utils/helper.ts";
-import { useState } from "react";
 
 function Input({ value, validation, label, type, options, name }: InputProps) {
   const {
