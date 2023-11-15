@@ -15,6 +15,7 @@ export function transformArrayToOptionsList(array: string[]) {
 }
 
 export function transformArrayToSkillOptionsList(skills: Skill[]) {
+  console.log(skills)
   return skills.map((skill) => ({
     value: skill.id,
     label: skill.name,

@@ -1,7 +1,7 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "../Button/Button.tsx";
 import SelectList from "../Select/SelectList.tsx";
-import Search from "./Search/Search.tsx";
+import Search from "./components/Search.tsx";
 import ActionsWrapper from "./SearchAndFilter.ts";
 import { resetSelects } from "../../utils/helper.ts";
 import { useContext } from "react";

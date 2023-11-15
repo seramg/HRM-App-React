@@ -1,14 +1,10 @@
 import { useContext, useState } from "react";
-import { useFormContext } from "react-hook-form";
 import DataContext from "../../../core/store/DataContext.tsx";
 import Button from "../../Button/Button.tsx";
 import SearchWrapper from "./search.ts";
-import { TableProps } from "reactstrap";
-import { resetSelects } from "../../../utils/helper.ts";
+import { TableProps } from "../../../core/interfaces/interface.ts";
 
 function Search() {
-  // const { getValues, setValue, register } = useFormContext();
-  const name = "search_term";
   const { addTableProps, tableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
 
@@ -22,31 +18,11 @@ function Search() {
 
   const handleChange = ({ value }: { value: string }) => {
     let currentTableProps: TableProps = {
-      ...resetSelects(),
-      sort: tableProps.sort,
-    };
-    console.log(currentTableProps)
-    // Object.keys(currentFilters).forEach((key: string) => {
-    //   if (
-    //     key === "department" ||
-    //     key === "designation" ||
-    //     key === "skills" ||
-    //     key === "employment_mode" ||
-    //     key === "search_term"
-    //   ) {
-    //     currentTableProps[key] = currentFilters[key];
-    //   }
-    // });
-    // const updatedFilters: TableProps = {
-    //   ...currentTableProps,
-    //   [fieldName]: value,
-    // };
-    // Object.keys(updatedFilters).forEach((key: string) => {
-    //   const tablePropsKey = key as keyof TableProps;
-    //   setValue(key, updatedFilters[tablePropsKey]);
-    // });
+      ...tableProps,
+      search_term: value,
 
-    // addTableProps(updatedFilters);
+    };
+    addTableProps(currentTableProps);
   }
   return (
     <SearchWrapper $focus={focus} className="common-flex">
@@ -61,16 +37,7 @@ function Search() {
           onChange={(e) => {
             handleChange({ value: e.target.value })
           }}
-        // {...register(name, {
-        //   onChange: (e) => {
-        //     handleChange(
-        //       e.target.value,
-        //     );
-        //   },
-        //   onBlur: () => {
-        //     handleBlur();
-        //   },
-        // })}
+          onBlur={handleBlur}
         />
       </div>
       <Button icon="expand_more" className="search-btn">

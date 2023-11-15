@@ -53,7 +53,6 @@ export interface SelectInputProps {
   isMulti?: boolean;
   control?: Control<FieldValues, any>;
   fieldName: string;
-  isFilter: boolean;
   value?:SelectProps | SelectProps[] | null
 }
 export interface InputProps {
