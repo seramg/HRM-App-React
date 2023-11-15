@@ -9,10 +9,10 @@ const DetailsWrapper = styled.div`
     border-right: 1px solid var(--dark-gray-color); 
     gap:5px;
     width:20%;
-    justify-content:flex-start;
+    justify-content:flex-start !important;
   }
 .content{
-  width:90%;
+  width:80%;
 }
   .title {
     font-size: 14px;
