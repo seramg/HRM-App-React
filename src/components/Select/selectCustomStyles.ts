@@ -3,7 +3,6 @@ import {
   CSSObjectWithLabel,
   ControlProps,
   DropdownIndicatorProps,
-  IndicatorsContainerProps,
   StylesConfig,
 } from "react-select";
 
