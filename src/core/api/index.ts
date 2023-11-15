@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { onRequest, onRequestError } from './requestInterceptor';
 import { onResponse, onResponseError } from './responseInterceptor';
 
@@ -8,15 +8,21 @@ const API = axios.create({
     timeout: 120000,
 });
 
-API.interceptors.response.use(onResponse, onResponseError);
+API.interceptors.request.use(onRequest as unknown as (
+    (value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>>), 
+    onRequestError);
+API.interceptors.response.use(onResponse as unknown as (
+    value: AxiosResponse<any, any>) => AxiosResponse<any, any> | Promise<AxiosResponse<any, any>>, 
+    onResponseError);
 
-export const makeRequest = async <T>(
+
+export const makeRequest = (
     method: string,
     url: string,
     payload?: any,
     config?: AxiosRequestConfig
-): Promise<AxiosResponse<T>> => {
-    return API.request<T>({
+)=> {
+    return API.request({
         method,
         url,
         data: payload,

@@ -32,7 +32,6 @@ const DataProvider = ({ children }: { children: any }) => {
     setTableProps(tableProps);
   };
   const data =  fetchData();
-
   const getDataForTable = async() => {
     const dataCopy = await data;
     if (dataCopy) {
