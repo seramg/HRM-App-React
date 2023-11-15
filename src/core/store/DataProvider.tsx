@@ -34,6 +34,7 @@ const DataProvider = ({ children }: { children: any }) => {
   const data =  fetchData();
   const getDataForTable = async() => {
     const dataCopy = await data;
+    
     if (dataCopy) {
       const employees = dataCopy.employees;
       const sortedEmployees = sortData(employees, tableProps.sort);

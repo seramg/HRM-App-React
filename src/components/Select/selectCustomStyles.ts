@@ -32,6 +32,9 @@ const selectStyles: StylesConfig<SelectProps> = {
     color: state.isFocused
       ? "var(--light-gray-color)"
       : "var(--dark-gray-color)", // Set the color of the arrow
+        "&:hover": {
+      color: "var(--light-gray-color)",
+    },
   }),
 };
 export default selectStyles;

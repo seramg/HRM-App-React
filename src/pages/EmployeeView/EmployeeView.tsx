@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import DataContext from "../../core/store/DataContext.tsx";
 import { useContext, useState } from "react";
 import { getDateView, getWorkExp } from "../../utils/helper.ts";
-import DetailsSection from "./Details.tsx";
 import Button from "../../components/Button/Button.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
+import DetailsSection from "../../components/Details/Details.tsx";
 
 function EmployeeView() {
   const location = useLocation();
@@ -95,7 +95,12 @@ function EmployeeView() {
               icon="home"
               title="Work Experience"
               content={getWorkExp(employee.date_of_joining)}
-            />
+              />
+              <DetailsSection
+                icon="home"
+                title="Skills"
+                content={employee.skills}
+              />
           </div>
         )}
       </EmployeeViewWrapper>
