@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { TableProps } from "../../core/interfaces/interface.ts";
-import DataContext from "../../core/store/DataContext.tsx";
-import { findSortCriteria, sortData } from "../../utils/helper.ts";
-import ButtonWrapper from "../Button/button.ts";
+import { TableProps } from "../../../core/interfaces/interface.ts";
+import DataContext from "../../../core/store/DataContext.tsx";
+import { findSortCriteria, sortData } from "../../../utils/helper.ts";
+import ButtonWrapper from "../../Button/button.ts";
 import { TableHeadIconWrapper } from "./tableHead.ts";
 
 function TableHeadButton({
