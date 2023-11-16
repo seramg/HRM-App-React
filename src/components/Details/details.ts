@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const DetailsWrapper = styled.div`
-    justify-content:flex-start;
+    justify-content:flex-start !important;
     border: 1px solid var(--dark-gray-color); 
   }
   .heading {

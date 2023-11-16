@@ -1,6 +1,6 @@
 import LoaderWrapper from "./loader.ts";
 
 function Loader() {
-    return  <LoaderWrapper />;
+    return  <LoaderWrapper className="common-flex" />;
 }
 export default Loader;

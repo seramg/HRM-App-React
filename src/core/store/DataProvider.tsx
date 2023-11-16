@@ -11,6 +11,7 @@ import DataContext from "./DataContext.tsx";
 import { fetchData } from "../../components/fetchData.ts";
 
 const DataProvider = ({ children }: { children: any }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
@@ -29,13 +30,17 @@ const DataProvider = ({ children }: { children: any }) => {
   });
 
   const addTableProps = (tableProps: TableProps) => {
+    setLoading(true)
     setTableProps(tableProps);
   };
   const data =  fetchData();
   const getDataForTable = async() => {
+    setLoading(true)
+
     const dataCopy = await data;
-    
+
     if (dataCopy) {
+      setLoading(false)
       const employees = dataCopy.employees;
       const sortedEmployees = sortData(employees, tableProps.sort);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
@@ -49,6 +54,7 @@ const DataProvider = ({ children }: { children: any }) => {
     }
   };
   useEffect(() => {
+    setLoading(false)
     getDataForTable();
   }, [tableProps]);
 
@@ -62,6 +68,7 @@ const DataProvider = ({ children }: { children: any }) => {
         skills,
         tableProps,
         addTableProps,
+        loading,
       }}
     >
       {children}

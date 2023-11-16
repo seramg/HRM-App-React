@@ -26,6 +26,10 @@ function SelectList({
   const { departments, designations, employment_modes, skills } =
     useContext(DataContext);
 
+  function generatePlaceholder(fieldName: string): string {
+    return `Select ${fieldName.replace(/_/g, " ").toLowerCase()}`;
+  }
+
   function renderSelectInput(
     label: string,
     fieldName: string,
@@ -33,13 +37,27 @@ function SelectList({
     isMulti: boolean,
     value: string | Skill[] | undefined
   ) {
-    return !isFilter ? (
+    if (isFilter) {
+      return (
+        <SelectFilter
+          label={label}
+          options={options}
+          placeholder={generatePlaceholder(fieldName)}
+          isMulti={isMulti}
+          fieldName={fieldName}
+          control={control}
+        />
+      );
+    }
+    const placeholder = generatePlaceholder(fieldName);
+
+    return (
       <>
-        {fieldName === "skills" && value && Array.isArray(value) && (
+        {value && Array.isArray(value) && fieldName === "skills" && (
           <SelectInput
             label="Skills"
             options={skills}
-            placeholder={`Select ${fieldName.replace(/_/g, " ").toLowerCase()}`}
+            placeholder={placeholder}
             control={control}
             fieldName="skills"
             value={value ? transformArrayToSkillOptionsList(value) : []}
@@ -50,23 +68,24 @@ function SelectList({
           <SelectInput
             label={label}
             options={options}
-            placeholder={`Select ${fieldName.replace(/_/g, " ").toLowerCase()}`}
+            placeholder={placeholder}
             isMulti={isMulti}
             control={control}
             fieldName={fieldName}
             value={value ? { value, label: value } : null}
           />
         )}
+        {!value && (
+          <SelectInput
+            label={label}
+            options={options}
+            placeholder={placeholder}
+            isMulti={isMulti}
+            control={control}
+            fieldName={fieldName}
+          />
+        )}
       </>
-    ) : (
-      <SelectFilter
-        label={label}
-        options={options}
-        placeholder={`Select ${fieldName.replace(/_/g, " ").toLowerCase()}`}
-        isMulti={isMulti}
-        fieldName={fieldName}
-        control={control}
-      />
     );
   }
 

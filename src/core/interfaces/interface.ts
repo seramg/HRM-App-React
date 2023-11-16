@@ -20,6 +20,7 @@ export interface ContextProps {
   skills: SelectProps[];
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
+  loading: boolean;
 }
 
 export interface Skill {

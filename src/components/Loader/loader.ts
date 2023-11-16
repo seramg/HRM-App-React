@@ -4,10 +4,8 @@ const LoaderWrapper = styled.span`
     width: 48px;
     height: 48px;
     border: 5px solid #FFF;
-    border-bottom-color: #FF3D00;
+    border-bottom-color: var(--primary-color);
     border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
     animation: rotation 1s linear infinite;
     }
 

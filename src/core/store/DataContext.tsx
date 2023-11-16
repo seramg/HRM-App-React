@@ -19,6 +19,7 @@ const DataContext = createContext<ContextProps>({
     search_term: null,
   },
   addTableProps: () => {},
+  loading: false,
 });
 
 export default DataContext;
