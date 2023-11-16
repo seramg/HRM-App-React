@@ -27,7 +27,6 @@ function SelectInput({
       ...tableProps,
       [fieldName]: value,
     } as TableProps;
-    console.log(currentTableProps);
     setCurrentSelectVal(fieldVal)
     addTableProps(currentTableProps);
   };

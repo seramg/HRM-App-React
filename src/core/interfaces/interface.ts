@@ -1,14 +1,22 @@
 import { Control, FieldValues } from "react-hook-form";
 
+export interface Data {
+  departments: string[],
+  designations: string[],
+  skills: Skill[],
+  employment_modes: string[],
+  employees: Employee[]
+}
+export interface SortProps {
+  sortVal: boolean | undefined;
+  sortTerm: string | null;
+}
 export interface TableProps {
   department: SelectProps | null;
   designation: SelectProps | null;
   skills: SelectProps[] | null;
   employment_mode: SelectProps | null;
-  sort: {
-    sortVal: boolean | undefined;
-    sortTerm: string | null;
-  } | null;
+  sort: SortProps ;
   search_term: string | null;
 }
 
@@ -21,6 +29,7 @@ export interface ContextProps {
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
+  addLoader: (loadingState: boolean) => void;
 }
 
 export interface Skill {
@@ -54,7 +63,7 @@ export interface SelectInputProps {
   isMulti?: boolean;
   control?: Control<FieldValues, any>;
   fieldName: string;
-  value?:SelectProps | SelectProps[] | null
+  value?: SelectProps | SelectProps[] | null
 }
 export interface InputProps {
   validation: {
@@ -83,7 +92,7 @@ export interface InputProps {
   type: string;
   options?: string[];
   name: string;
-  value?:string
+  value?: string
 }
 
 export interface IsMultiStateProps {

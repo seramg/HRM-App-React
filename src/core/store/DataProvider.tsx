@@ -6,12 +6,18 @@ import {
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
-import { Employee, SelectProps, TableProps } from "../interfaces/interface.ts";
+import {
+  Data,
+  Employee,
+  SelectProps,
+  TableProps,
+} from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
 import { fetchData } from "../../components/fetchData.ts";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<Data>();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
@@ -30,33 +36,41 @@ const DataProvider = ({ children }: { children: any }) => {
   });
 
   const addTableProps = (tableProps: TableProps) => {
-    setLoading(true)
     setTableProps(tableProps);
   };
-  const data =  fetchData();
-  const getDataForTable = async() => {
-    setLoading(true)
 
-    const dataCopy = await data;
+  const addLoader = (loadingState: boolean) => {
+    setLoading(loadingState);
+  };
 
-    if (dataCopy) {
-      setLoading(false)
-      const employees = dataCopy.employees;
-      const sortedEmployees = sortData(employees, tableProps.sort);
+  const getDataForTable = async () => {
+    if (data) {
+      const sortedEmployees = sortData(data.employees, tableProps.sort);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
-
       setEmployees(searchedEmployees);
-      setDesignations(transformArrayToOptionsList(dataCopy.designations));
-      setDepartments(transformArrayToOptionsList(dataCopy.departments));
-      setEmpModes(transformArrayToOptionsList(dataCopy.employment_modes));
-      setSkills(transformArrayToSkillOptionsList(dataCopy.skills));
     }
   };
+
   useEffect(() => {
-    setLoading(false)
+    console.log(tableProps)
     getDataForTable();
   }, [tableProps]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchData().then((response: Data | null) => {
+      setLoading(false);
+      if (response) {
+        setData(response);
+        setEmployees(response.employees);
+        setDesignations(transformArrayToOptionsList(response.designations));
+        setDepartments(transformArrayToOptionsList(response.departments));
+        setEmpModes(transformArrayToOptionsList(response.employment_modes));
+        setSkills(transformArrayToSkillOptionsList(response.skills));  
+      }
+    });
+  }, []);
 
   return (
     <DataContext.Provider
@@ -69,6 +83,7 @@ const DataProvider = ({ children }: { children: any }) => {
         tableProps,
         addTableProps,
         loading,
+        addLoader,
       }}
     >
       {children}

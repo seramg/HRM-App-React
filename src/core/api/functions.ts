@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfig } from "axios";
 import { makeRequest } from ".";
 
 export const getData = async (url: string, config?: AxiosRequestConfig)=> {

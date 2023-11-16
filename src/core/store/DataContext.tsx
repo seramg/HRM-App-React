@@ -20,6 +20,7 @@ const DataContext = createContext<ContextProps>({
   },
   addTableProps: () => {},
   loading: false,
+  addLoader: () => {},
 });
 
 export default DataContext;
