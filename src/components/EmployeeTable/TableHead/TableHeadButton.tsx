@@ -14,23 +14,26 @@ function TableHeadButton({
   icon?: string;
   className?: string | undefined;
 }) {
-  const [sort, setSort] = useState(false);
+  const { tableProps, addTableProps, employees,addEmployees } = useContext(DataContext);
+  const [sort, setSort] = useState(tableProps.sort.sortVal);
 
-  const { employees, tableProps, addTableProps } = useContext(DataContext);
-  const sortIcon = sort ? "rotate" : "";
+  const sortIcon = sort ? "" : "rotate";
   let currentSortCriteria = findSortCriteria(children);
 
   function sortBtnClickHandler() {
-    setSort(() => !sort);
     const updatedTableProps: TableProps = {
       ...tableProps,
       sort: {
         sortTerm: currentSortCriteria.toString(),
-        sortVal: sort,
+        sortVal: !sort,
       },
     };
+    setSort(() => !sort);
     addTableProps(updatedTableProps);
-    sortData(employees, tableProps.sort);
+
+    const sorted = sortData(employees,updatedTableProps.sort)
+    addEmployees(sorted)
+
   }
 
   return (

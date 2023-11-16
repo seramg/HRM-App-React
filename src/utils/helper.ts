@@ -159,9 +159,10 @@ export const sortData = (
     }
     | null
 ) => {
+  let sortedEmployees = employees;
   if (sort && sort.sortVal != null) {
     let flag = sort.sortVal ? +1 : -1;
-    employees.sort((a: Employee, b: Employee) => {
+    sortedEmployees = employees.sort((a: Employee, b: Employee) => {
       let x = a[sort.sortTerm as keyof Employee];
       let y = b[sort.sortTerm as keyof Employee];
       if (typeof x === "string" && typeof y === "string") {
@@ -170,6 +171,7 @@ export const sortData = (
         return 0;
       }
     });
+    employees = sortedEmployees
   }
   return employees;
 };

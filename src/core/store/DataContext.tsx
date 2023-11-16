@@ -13,7 +13,7 @@ const DataContext = createContext<ContextProps>({
     employment_mode: null,
     skills: null,
     sort: {
-      sortVal: undefined,
+      sortVal: true,
       sortTerm: null,
     },
     search_term: null,
@@ -21,6 +21,7 @@ const DataContext = createContext<ContextProps>({
   addTableProps: () => {},
   loading: false,
   addLoader: () => {},
+  addEmployees:()=>{}
 });
 
 export default DataContext;

@@ -35,6 +35,9 @@ const DataProvider = ({ children }: { children: any }) => {
     search_term: null,
   });
 
+  const addEmployees = (employees: Employee[]) => {
+    setEmployees(employees);
+  };
   const addTableProps = (tableProps: TableProps) => {
     setTableProps(tableProps);
   };
@@ -43,17 +46,17 @@ const DataProvider = ({ children }: { children: any }) => {
     setLoading(loadingState);
   };
 
-  const getDataForTable = async () => {
+  const getDataForTable = () => {
     if (data) {
       const sortedEmployees = sortData(data.employees, tableProps.sort);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
-      setEmployees(searchedEmployees);
+       setEmployees(searchedEmployees);
     }
   };
 
   useEffect(() => {
-    console.log(tableProps)
+    console.log(tableProps);
     getDataForTable();
   }, [tableProps]);
 
@@ -67,7 +70,7 @@ const DataProvider = ({ children }: { children: any }) => {
         setDesignations(transformArrayToOptionsList(response.designations));
         setDepartments(transformArrayToOptionsList(response.departments));
         setEmpModes(transformArrayToOptionsList(response.employment_modes));
-        setSkills(transformArrayToSkillOptionsList(response.skills));  
+        setSkills(transformArrayToSkillOptionsList(response.skills));
       }
     });
   }, []);
@@ -84,6 +87,7 @@ const DataProvider = ({ children }: { children: any }) => {
         addTableProps,
         loading,
         addLoader,
+        addEmployees
       }}
     >
       {children}

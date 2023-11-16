@@ -8,7 +8,7 @@ export interface Data {
   employees: Employee[]
 }
 export interface SortProps {
-  sortVal: boolean | undefined;
+  sortVal: boolean;
   sortTerm: string | null;
 }
 export interface TableProps {
@@ -16,7 +16,7 @@ export interface TableProps {
   designation: SelectProps | null;
   skills: SelectProps[] | null;
   employment_mode: SelectProps | null;
-  sort: SortProps ;
+  sort: SortProps;
   search_term: string | null;
 }
 
@@ -30,6 +30,7 @@ export interface ContextProps {
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
   addLoader: (loadingState: boolean) => void;
+  addEmployees: (employees: Employee[]) => void;
 }
 
 export interface Skill {
