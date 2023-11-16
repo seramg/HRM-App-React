@@ -15,7 +15,6 @@ export function transformArrayToOptionsList(array: string[]) {
 }
 
 export function transformArrayToSkillOptionsList(skills: Skill[]) {
-  console.log(skills)
   return skills.map((skill) => ({
     value: skill.id,
     label: skill.name,
@@ -213,7 +212,7 @@ export const getNewEmployeeDetails = (formData: FieldValues, id: string) => {
     skills: skillsInNewFormat,
     gender: formData.gender,
     date_of_birth: formData.date_of_birth,
-    date_of_joining: formData.data_of_joining,
+    date_of_joining: formData.date_of_joining,
     designation: formData.designation.value,
     department: formData.department.value,
     employment_mode: formData.employment_mode.value,

@@ -5,7 +5,6 @@ import {
   TableProps,
 } from "../../../core/interfaces/interface.ts";
 import DataContext from "../../../core/store/DataContext.tsx";
-import { resetSelects } from "../../../utils/helper.ts";
 import InputWrapper from "../../Input/input.ts";
 import selectStyles from "../../Select/selectCustomStyles.ts";
 
@@ -20,10 +19,10 @@ function SelectInput({
 
   const handleChange = (value: any) => {
     let currentTableProps: TableProps = {
-      ...resetSelects(),
       ...tableProps,
       [fieldName]: value,
-    };
+    } as TableProps;
+    console.log(currentTableProps);
     addTableProps(currentTableProps);
   };
 
