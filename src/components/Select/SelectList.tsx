@@ -19,7 +19,7 @@ function SelectList({
   value,
 }: {
   isMultiState: IsMultiStateProps;
-  control: Control<FieldValues, any>;
+  control?: Control<FieldValues, any>;
   isFilter?: boolean;
   value?: Employee;
 }) {
@@ -45,7 +45,6 @@ function SelectList({
           placeholder={generatePlaceholder(fieldName)}
           isMulti={isMulti}
           fieldName={fieldName}
-          control={control}
         />
       );
     }

@@ -1,4 +1,3 @@
-import { useForm } from "react-hook-form";
 import Button from "../Button/Button.tsx";
 import SelectList from "../Select/SelectList.tsx";
 import Search from "./components/Search.tsx";
@@ -9,7 +8,6 @@ import DataContext from "../../core/store/DataContext.tsx";
 import { TableProps } from "../../core/interfaces/interface.ts";
 
 function ActionsBar() {
-  const methods = useForm();
   const { tableProps, addTableProps } = useContext(DataContext);
 
   const onReset = () => {
@@ -17,7 +15,6 @@ function ActionsBar() {
       ...resetSelects(),
       sort: tableProps.sort,
     };
-    methods.reset(resettedVals);
     addTableProps(resettedVals);
   };
   return (
@@ -26,7 +23,6 @@ function ActionsBar() {
         <h2 className="subheading filter-title">Filter By:</h2>
         <div className="global-width common-flex form-flex-align">
           <SelectList
-            control={methods.control}
             isFilter={true}
             isMultiState={{
               isDepartmentsMulti: false,

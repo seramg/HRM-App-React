@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Employee } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import TableWrapper from "./employeeTable.ts";
@@ -7,7 +7,6 @@ import TableHead from "./TableHead/TableHead.tsx";
 import Loader from "./../Loader/Loader.tsx";
 function EmployeeTable() {
   const { employees, loading } = useContext(DataContext);
-  console.log(employees);
 
   return (
     <TableWrapper>
