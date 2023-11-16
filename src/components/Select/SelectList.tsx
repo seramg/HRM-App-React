@@ -65,6 +65,7 @@ function SelectList({
         placeholder={`Select ${fieldName.replace(/_/g, " ").toLowerCase()}`}
         isMulti={isMulti}
         fieldName={fieldName}
+        control={control}
       />
     );
   }
