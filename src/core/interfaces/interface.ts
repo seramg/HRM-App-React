@@ -29,7 +29,7 @@ export interface ContextProps {
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
-  addLoader: (loadingState: boolean) => void;
+  fetchDataAndSetContext: () => void;
   addEmployees: (employees: Employee[]) => void;
 }
 

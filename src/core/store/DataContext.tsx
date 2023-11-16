@@ -20,7 +20,7 @@ const DataContext = createContext<ContextProps>({
   },
   addTableProps: () => {},
   loading: false,
-  addLoader: () => {},
+  fetchDataAndSetContext: () => {},
   addEmployees:()=>{}
 });
 

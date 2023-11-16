@@ -31,7 +31,7 @@ function TableHeadButton({
     setSort(() => !sort);
     addTableProps(updatedTableProps);
 
-    const sorted = sortData(employees,updatedTableProps.sort)
+    const sorted = sortData(employees,updatedTableProps)
     addEmployees(sorted)
 
   }

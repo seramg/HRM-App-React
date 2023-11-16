@@ -152,19 +152,18 @@ export const sortFn = (x: string, y: string, flag: number) => {
 
 export const sortData = (
   employees: Employee[],
-  sort:
-    | {
-      sortTerm: string | null;
-      sortVal: boolean | undefined;
-    }
-    | null
+  tableProps: TableProps
 ) => {
   let sortedEmployees = employees;
-  if (sort && sort.sortVal != null) {
-    let flag = sort.sortVal ? +1 : -1;
+
+  if (tableProps && tableProps.sort) {
+    
+    const sortProp = tableProps.sort;
+    let flag = sortProp.sortVal ? +1 : -1;
+
     sortedEmployees = employees.sort((a: Employee, b: Employee) => {
-      let x = a[sort.sortTerm as keyof Employee];
-      let y = b[sort.sortTerm as keyof Employee];
+      let x = a[sortProp.sortTerm as keyof Employee];
+      let y = b[sortProp.sortTerm as keyof Employee];
       if (typeof x === "string" && typeof y === "string") {
         return sortFn(x.toLowerCase(), y.toLowerCase(), flag);
       } else {

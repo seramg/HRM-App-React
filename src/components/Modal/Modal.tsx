@@ -12,7 +12,7 @@ function Modal({
   cancelModal: () => void;
   employeeId: string;
 }) {
-  const { employees, addLoader } = useContext(DataContext);
+  const { employees, fetchDataAndSetContext } = useContext(DataContext);
 
   const confirmDlt = async () => {
     const indexToDlt = employees.findIndex(
@@ -27,13 +27,12 @@ function Modal({
     const url = `/employees/${indexToDlt}.json`;
 
     try {
-      addLoader(true);
       const response = await deleteData(url);
       console.log("Item deleted successfully:", response);
     } catch (error) {
       console.error("Error deleting item:", error);
     } finally {
-      addLoader(false);
+      fetchDataAndSetContext()
     }
 
     cancelModal();

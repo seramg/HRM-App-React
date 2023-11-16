@@ -48,10 +48,31 @@ const DataProvider = ({ children }: { children: any }) => {
 
   const getDataForTable = () => {
     if (data) {
-      const sortedEmployees = sortData(data.employees, tableProps.sort);
+      const sortedEmployees = sortData(data.employees, tableProps);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
-       setEmployees(searchedEmployees);
+      setEmployees(searchedEmployees);
+    }
+  };
+
+  const fetchDataAndSetContext = async () => {
+    try {
+      addLoader(true);
+      const response = await fetchData();
+      console.log("Data fetched successfully:", response);
+
+      if (response) {
+        setData(response);
+        setEmployees(response.employees);
+        setDesignations(transformArrayToOptionsList(response.designations));
+        setDepartments(transformArrayToOptionsList(response.departments));
+        setEmpModes(transformArrayToOptionsList(response.employment_modes));
+        setSkills(transformArrayToSkillOptionsList(response.skills));
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      addLoader(false);
     }
   };
 
@@ -61,18 +82,7 @@ const DataProvider = ({ children }: { children: any }) => {
   }, [tableProps]);
 
   useEffect(() => {
-    setLoading(true);
-    fetchData().then((response: Data | null) => {
-      setLoading(false);
-      if (response) {
-        setData(response);
-        setEmployees(response.employees);
-        setDesignations(transformArrayToOptionsList(response.designations));
-        setDepartments(transformArrayToOptionsList(response.departments));
-        setEmpModes(transformArrayToOptionsList(response.employment_modes));
-        setSkills(transformArrayToSkillOptionsList(response.skills));
-      }
-    });
+    fetchDataAndSetContext();
   }, []);
 
   return (
@@ -86,8 +96,8 @@ const DataProvider = ({ children }: { children: any }) => {
         tableProps,
         addTableProps,
         loading,
-        addLoader,
-        addEmployees
+        fetchDataAndSetContext,
+        addEmployees,
       }}
     >
       {children}
