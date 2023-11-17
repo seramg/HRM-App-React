@@ -7,7 +7,6 @@ import {
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
 import {
-  Data,
   Employee,
   SelectProps,
   TableProps,

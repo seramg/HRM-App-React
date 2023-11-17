@@ -1,12 +1,5 @@
 import { Control } from "react-hook-form";
 
-export interface Data {
-  departments: string[],
-  designations: string[],
-  skills: Skill[],
-  employment_modes: string[],
-  employees: Employee[]
-}
 export interface SortProps {
   sortVal: boolean;
   sortTerm: string | null;
