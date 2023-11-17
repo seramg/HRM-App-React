@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { TableProps } from "../../../core/interfaces/interface.ts";
 import DataContext from "../../../core/store/DataContext.tsx";
-import { findSortCriteria, sortData } from "../../../utils/helper.ts";
+import { findSortCriteria } from "../../../utils/helper.ts";
 import ButtonWrapper from "../../Button/button.ts";
 import { TableHeadIconWrapper } from "./tableHead.ts";
 
@@ -14,11 +14,10 @@ function TableHeadButton({
   icon?: string;
   className?: string | undefined;
 }) {
-  const { tableProps, addTableProps, employees,addEmployees } = useContext(DataContext);
-  const [sort, setSort] = useState(tableProps.sort.sortVal);
+  const { tableProps, addTableProps } = useContext(DataContext);
 
-  const sortIcon = sort ? "" : "rotate";
   let currentSortCriteria = findSortCriteria(children);
+  const sortIcon = currentSortCriteria=== tableProps.sort.sortTerm? tableProps.sort.sortVal ? "" : "rotate":"";
 
   function sortBtnClickHandler() {
     const updatedTableProps: TableProps = {
@@ -28,7 +27,6 @@ function TableHeadButton({
         sortVal: !tableProps.sort.sortVal,
       },
     };
-    setSort(() => !tableProps.sort.sortVal);
     addTableProps(updatedTableProps);
   }
 
