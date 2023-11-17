@@ -1,15 +1,15 @@
 import { AxiosRequestConfig } from "axios";
 import { makeRequest } from ".";
 
-export const getData = async (url: string, config?: AxiosRequestConfig)=> {
+export const getData =  (url: string, config?: AxiosRequestConfig)=> {
     return makeRequest('get', url, null, config);
 };
 
-export const postData = async(url: string, payload: object, config?: AxiosRequestConfig) => {
+export const postData = (url: string, payload: object, config?: AxiosRequestConfig) => {
     return makeRequest('post', url, payload, config);
 };
 
-export const updateData = async(
+export const updateData = (
     url: string,
     payload: any,
     config?: AxiosRequestConfig
@@ -17,6 +17,6 @@ export const updateData = async(
     return makeRequest('put', url, payload, config);
 };
 
-export const deleteData = async (url: string, config?: AxiosRequestConfig)=> {
+export const deleteData =  (url: string, config?: AxiosRequestConfig)=> {
     return makeRequest('delete', url, null, config);
 };

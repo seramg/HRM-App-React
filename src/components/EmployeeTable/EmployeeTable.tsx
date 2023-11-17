@@ -7,17 +7,18 @@ import TableHead from "./TableHead/TableHead.tsx";
 import Loader from "./../Loader/Loader.tsx";
 function EmployeeTable() {
   const { employees, loading } = useContext(DataContext);
-
   return (
     <TableWrapper>
       <TableHead />
       {loading ? (
-        <Loader />
+        <tbody>
+          <Loader />
+        </tbody>
       ) : (
         <tbody>
           {employees.length > 0 ? (
             employees.map((employee: Employee, index: number) => (
-              <TableData key={index} employee={employee} index={index} />
+              <TableData key={employee.id} employee={employee} index={index} />
             ))
           ) : (
             <tr>

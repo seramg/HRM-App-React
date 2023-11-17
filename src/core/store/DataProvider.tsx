@@ -13,11 +13,11 @@ import {
   TableProps,
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
-import { fetchData } from "../../components/fetchData.ts";
+import { getData } from "../api/functions.ts";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<Data>();
+  const [dataEmployees, setDataEmployees] = useState<Employee[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
@@ -47,27 +47,31 @@ const DataProvider = ({ children }: { children: any }) => {
   };
 
   const getDataForTable = () => {
-    if (data) {
-      const sortedEmployees = sortData(data.employees, tableProps);
+    if (employees) {
+      console.log("get data for table")
+      const sortedEmployees = sortData(dataEmployees, tableProps);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
-      setEmployees(searchedEmployees);
+      console.log(searchedEmployees)
+      setEmployees([...searchedEmployees]);
     }
   };
+
 
   const fetchDataAndSetContext = async () => {
     try {
       addLoader(true);
-      const response = await fetchData();
-      console.log("Data fetched successfully:", response);
+      const getResponse = await getData("/.json");
+      const dataResponse = getResponse.data
+      console.log("Data fetched successfully:", dataResponse);
 
-      if (response) {
-        setData(response);
-        setEmployees(response.employees);
-        setDesignations(transformArrayToOptionsList(response.designations));
-        setDepartments(transformArrayToOptionsList(response.departments));
-        setEmpModes(transformArrayToOptionsList(response.employment_modes));
-        setSkills(transformArrayToSkillOptionsList(response.skills));
+      if (dataResponse) {
+        setEmployees(dataResponse.employees);
+        setDataEmployees(dataResponse.employees);
+        setDesignations(transformArrayToOptionsList(dataResponse.designations));
+        setDepartments(transformArrayToOptionsList(dataResponse.departments));
+        setEmpModes(transformArrayToOptionsList(dataResponse.employment_modes));
+        setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
       }
     } catch (error) {
       console.error("Error fetching data:", error);

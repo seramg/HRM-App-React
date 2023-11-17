@@ -37,7 +37,7 @@ function SelectFilter({
             ...tableProps,
             [fieldName]: selectedOption,
           } as TableProps;
-          setCurrentSelectVal(fieldVal);
+          setCurrentSelectVal(selectedOption);
 
           addTableProps(currentTableProps);
         }}

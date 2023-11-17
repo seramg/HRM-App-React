@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoaderWrapper = styled.span`
+const LoaderWrapper = styled.tr`
     width: 48px;
     height: 48px;
     border: 5px solid #FFF;

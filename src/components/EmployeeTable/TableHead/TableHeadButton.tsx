@@ -25,15 +25,11 @@ function TableHeadButton({
       ...tableProps,
       sort: {
         sortTerm: currentSortCriteria.toString(),
-        sortVal: !sort,
+        sortVal: !tableProps.sort.sortVal,
       },
     };
-    setSort(() => !sort);
+    setSort(() => !tableProps.sort.sortVal);
     addTableProps(updatedTableProps);
-
-    const sorted = sortData(employees,updatedTableProps)
-    addEmployees(sorted)
-
   }
 
   return (

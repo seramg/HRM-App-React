@@ -72,12 +72,9 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
   let employeeTableData = employees;
 
   if (
-    tableProps &&
-    (tableProps.designation ||
-      tableProps.department ||
-      tableProps.skills ||
-      tableProps.employment_mode)
+    tableProps 
   ) {
+    console.log("filtering")
     employeeTableData = employees.filter((employee) => {
       const designationMatch = tableProps.designation
         ? tableProps.designation.value === employee.designation
@@ -172,7 +169,7 @@ export const sortData = (
     });
     employees = sortedEmployees
   }
-  return employees;
+  return sortedEmployees;
 };
 
 export const getNewEmpId = (employees: Employee[]) => {
