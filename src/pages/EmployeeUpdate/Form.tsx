@@ -189,12 +189,6 @@ function Form() {
             <SelectList
               value={employee}
               control={methods.control}
-              isMultiState={{
-                isDepartmentsMulti: false,
-                isDesignationsMulti: false,
-                isEmpModesMulti: false,
-                isSkillsMulti: true,
-              }}
             />
           </Fieldset>
           <ButtonGrpWrapper>

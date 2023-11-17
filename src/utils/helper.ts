@@ -239,3 +239,7 @@ export const getDateView = (dateVal: string) => {
   const dateFormatted = day + " " + monthName + " " + year;
   return dateFormatted;
 }
+
+export const generatePlaceholder=(fieldName: string): string =>{
+    return `Select ${fieldName.replace(/_/g, " ").toLowerCase()}`;
+}

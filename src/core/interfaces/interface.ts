@@ -63,7 +63,7 @@ export interface SelectInputProps {
   placeholder: string;
   isMulti?: boolean;
   control?: Control<FieldValues, any>;
-  fieldName: string;
+  fieldName:  keyof TableProps;
   value?: SelectProps | SelectProps[] | null
 }
 export interface InputProps {

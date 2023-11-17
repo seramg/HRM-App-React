@@ -7,6 +7,7 @@ import {
 import DataContext from "../../../core/store/DataContext.tsx";
 import InputWrapper from "../../Input/input.ts";
 import selectStyles from "../../Select/selectCustomStyles.ts";
+import { SelectProps } from "@mui/material";
 
 function SelectFilter({
   label,
@@ -17,7 +18,7 @@ function SelectFilter({
 }: SelectInputProps) {
   const { addTableProps, tableProps } = useContext(DataContext);
 
-  const fieldVal = tableProps[fieldName as keyof TableProps];
+  const fieldVal = tableProps[fieldName] as SelectProps | SelectProps[];
   const [currentSelectVal, setCurrentSelectVal] = useState(fieldVal);
 
   return (
@@ -33,13 +34,21 @@ function SelectFilter({
         isMulti={isMulti || false}
         styles={selectStyles}
         onChange={(selectedOption) => {
-          let currentTableProps: TableProps = {
-            ...tableProps,
-            [fieldName]: selectedOption,
-          } as TableProps;
-          setCurrentSelectVal(selectedOption);
-
-          addTableProps(currentTableProps);
+          if (isMulti) {
+            let currentTableProps: TableProps = {
+              ...tableProps,
+              [fieldName]: selectedOption,
+            } as TableProps;
+            setCurrentSelectVal(selectedOption as SelectProps[]);
+            addTableProps(currentTableProps);
+          } else {
+            let currentTableProps: TableProps = {
+              ...tableProps,
+              [fieldName]: selectedOption,
+            } as TableProps;
+            setCurrentSelectVal(selectedOption as SelectProps);
+            addTableProps(currentTableProps);
+          }
         }}
       />
     </InputWrapper>

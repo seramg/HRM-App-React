@@ -2,52 +2,33 @@ import { useContext } from "react";
 import { Control, FieldValues } from "react-hook-form";
 import {
   Employee,
-  IsMultiStateProps,
   SelectProps,
   Skill,
+  TableProps,
 } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import SelectInput from "./SelectInput.tsx";
-import { transformArrayToSkillOptionsList } from "../../utils/helper.ts";
+import { generatePlaceholder, transformArrayToSkillOptionsList } from "../../utils/helper.ts";
 import React from "react";
-import SelectFilter from "../SearchAndFilter/components/SelectFilter.tsx";
 
 function SelectList({
-  isMultiState,
   control,
-  isFilter = false,
   value,
 }: {
-  isMultiState: IsMultiStateProps;
-  control?: Control<FieldValues, any>;
-  isFilter?: boolean;
+  control: Control<FieldValues, any>;
   value?: Employee;
 }) {
   const { departments, designations, employment_modes, skills } =
     useContext(DataContext);
 
-  function generatePlaceholder(fieldName: string): string {
-    return `Select ${fieldName.replace(/_/g, " ").toLowerCase()}`;
-  }
-
   function renderSelectInput(
     label: string,
-    fieldName: string,
+    fieldName: keyof TableProps,
     options: SelectProps[],
     isMulti: boolean,
     value: string | Skill[] | undefined
   ) {
-    if (isFilter) {
-      return (
-        <SelectFilter
-          label={label}
-          options={options}
-          placeholder={generatePlaceholder(fieldName)}
-          isMulti={isMulti}
-          fieldName={fieldName}
-        />
-      );
-    }
+
     const placeholder = generatePlaceholder(fieldName);
 
     return (
@@ -88,36 +69,42 @@ function SelectList({
     );
   }
 
-  const fields = [
-    {
-      label: "Departments",
-      fieldName: "department",
-      options: departments,
-      isMulti: isMultiState.isDepartmentsMulti,
-      value: value?.department,
-    },
-    {
-      label: "Designations",
-      fieldName: "designation",
-      options: designations,
-      isMulti: isMultiState.isDesignationsMulti,
-      value: value?.designation,
-    },
-    {
-      label: "Employment Modes",
-      fieldName: "employment_mode",
-      options: employment_modes,
-      isMulti: isMultiState.isEmpModesMulti,
-      value: value?.employment_mode,
-    },
-    {
-      label: "Skills",
-      fieldName: "skills",
-      options: skills,
-      isMulti: isMultiState.isSkillsMulti,
-      value: value?.skills,
-    },
-  ];
+  const fields: {
+    label: string,
+    options: SelectProps[],
+    isMulti: boolean,
+    value: string | Skill[] | undefined,
+    fieldName: keyof TableProps
+  }[] = [
+      {
+        label: "Departments",
+        fieldName: "department",
+        options: departments,
+        isMulti: false,
+        value: value?.department,
+      },
+      {
+        label: "Designations",
+        fieldName: "designation",
+        options: designations,
+        isMulti: false,
+        value: value?.designation,
+      },
+      {
+        label: "Employment Modes",
+        fieldName: "employment_mode",
+        options: employment_modes,
+        isMulti: false,
+        value: value?.employment_mode,
+      },
+      {
+        label: "Skills",
+        fieldName: "skills",
+        options: skills,
+        isMulti: true,
+        value: value?.skills,
+      },
+    ];
 
   return (
     <div className="select-list common-flex">
