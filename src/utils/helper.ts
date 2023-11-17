@@ -3,7 +3,7 @@ import {
   UseFormSetValue,
   UseFormGetValues,
 } from "react-hook-form";
-import { Employee, Skill, TableProps } from "../core/interfaces/interface.ts";
+import { Employee, FormEmployee, Skill, TableProps } from "../core/interfaces/interface.ts";
 import { SelectProps } from "@mui/material";
 import React from "react";
 
@@ -20,7 +20,22 @@ export function transformArrayToSkillOptionsList(skills: Skill[]) {
     label: skill.name,
   }));
 }
-
+export function convertToFormEmployee(employee: Employee): FormEmployee {
+  return {
+    address: employee.address,
+    date_of_birth: employee.date_of_birth,
+    date_of_joining: employee.date_of_joining,
+    department: { label: employee.department, value: employee.department },
+    designation: { label: employee.designation, value: employee.designation },
+    emp_name: employee.emp_name,
+    employment_mode: { label: employee.employment_mode, value: employee.employment_mode },
+    email: employee.email,
+    gender: employee.gender,
+    id: employee.id,
+    phone: employee.phone,
+    skills: transformArrayToSkillOptionsList(employee.skills),
+  };
+}
 export function resetSelects() {
   const resettedValues = {
     department: null,

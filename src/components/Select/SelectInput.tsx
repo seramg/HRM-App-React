@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Select from "react-select";
-import { SelectInputProps } from "../../core/interfaces/interface.ts";
+import { Employee, SelectProps } from "../../core/interfaces/interface.ts";
 import InputWrapper from "../Input/input.ts";
 import InputError from "../InputError/InputError.tsx";
 import selectStyles from "./selectCustomStyles.ts";
@@ -11,24 +10,21 @@ function SelectInput({
   options,
   placeholder,
   isMulti,
-  control,
   fieldName,
-  value,
-}: SelectInputProps) {
+}: {
+  label: string;
+  options: SelectProps[];
+  placeholder: string;
+  isMulti?: boolean;
+  fieldName: keyof Employee;
+}) {
   const {
-    setValue,
+    control,
     formState: { errors },
   } = useFormContext();
 
   const errorMsg = errors[fieldName];
   const className = errorMsg ? `input-border-error ${label}` : "label";
-  const [currentSelectVal, setCurrentSelectVal] = useState(value);
-
-  useEffect(() => {
-    if (value) {
-      setValue(fieldName, currentSelectVal);
-    }
-  }, []);
 
   return (
     <InputWrapper>
@@ -42,7 +38,6 @@ function SelectInput({
             <div className="input-field-error  m-30">
               <Select
                 {...field}
-                defaultValue={currentSelectVal}
                 isClearable={true}
                 className={className}
                 isSearchable={true}
@@ -50,10 +45,6 @@ function SelectInput({
                 placeholder={<div className="placeholder">{placeholder}</div>}
                 isMulti={isMulti || false}
                 styles={selectStyles}
-                onChange={(selectedOption) => {
-                  setCurrentSelectVal(selectedOption);
-                  setValue(fieldName, selectedOption);
-                }}
               />
               {errorMsg && <InputError error={errorMsg.message?.toString()} />}
             </div>

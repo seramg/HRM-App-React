@@ -4,6 +4,7 @@ import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import Input from "../../components/Input/Input.tsx";
 import SelectList from "../../components/Select/SelectList.tsx";
 import {
+  convertToFormEmployee,
   getNewEmpId,
   getNewEmployeeDetails,
   resetSelects,
@@ -11,7 +12,7 @@ import {
 import { Fieldset, InputRow } from "./form.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
-import { Employee, TableProps } from "../../core/interfaces/interface.ts";
+import { Employee, FormEmployee, TableProps } from "../../core/interfaces/interface.ts";
 import { useLocation } from "react-router-dom";
 
 function Form() {
@@ -19,7 +20,11 @@ function Form() {
   const employee: Employee = location.state;
 
   const currentDate = new Date().toISOString().split("T")[0];
-  const methods = useForm();
+
+  const formEmployee = convertToFormEmployee(employee)
+  const methods = useForm<FormEmployee>({
+    defaultValues: formEmployee
+  });
   const { employees, tableProps, addTableProps } = useContext(DataContext);
 
   const onReset = () => {
@@ -27,22 +32,16 @@ function Form() {
       ...resetSelects(),
       sort: tableProps.sort,
     };
-    if (employee) {
-      const resettedVals = {
-        ...resetSelects(),
-        emp_name: null,
-        email: null,
-        phone: null,
-        address: null,
-        date_of_birth: null,
-        date_of_joining: null,
-      }
-      methods.setValue('gender', null);
-      methods.reset(resettedVals);
+    const resettedVals = {
+      ...resetSelects(),
+      emp_name: null,
+      email: null,
+      phone: null,
+      address: null,
+      date_of_birth: null,
+      date_of_joining: null,
     }
-    else {
-      methods.reset(resettedTableProps);
-    }
+    methods.reset(resettedVals);
     addTableProps(resettedTableProps);
   };
   const onSubmit = methods.handleSubmit(() => {
@@ -66,7 +65,6 @@ function Form() {
             <legend className="subheading">Personal Information</legend>
 
             <Input
-              value={employee && employee.emp_name}
               validation={{
                 required: {
                   value: true,
@@ -87,7 +85,6 @@ function Form() {
             />
             <InputRow className="common-flex">
               <Input
-                value={employee && employee.email}
                 validation={{
                   required: {
                     value: true,
@@ -103,7 +100,6 @@ function Form() {
                 name="email"
               />
               <Input
-                value={employee && employee.phone}
                 validation={{
                   required: {
                     value: true,
@@ -121,7 +117,6 @@ function Form() {
               />
             </InputRow>
             <Input
-              value={employee && employee.address}
               validation={{
                 required: {
                   value: true,
@@ -138,7 +133,6 @@ function Form() {
             />
             <InputRow className="common-flex">
               <Input
-                value={employee && employee.date_of_birth}
                 validation={{
                   required: {
                     value: true,
@@ -154,7 +148,6 @@ function Form() {
                 name="date_of_birth"
               />
               <Input
-                value={employee && employee.date_of_joining}
                 validation={{
                   required: {
                     value: true,
@@ -171,7 +164,6 @@ function Form() {
               />
             </InputRow>
             <Input
-              value={employee && employee.gender}
               validation={{
                 required: {
                   value: true,
@@ -187,8 +179,6 @@ function Form() {
           <Fieldset className="other-details ">
             <legend className="subheading">Other Information</legend>
             <SelectList
-              value={employee}
-              control={methods.control}
             />
           </Fieldset>
           <ButtonGrpWrapper>

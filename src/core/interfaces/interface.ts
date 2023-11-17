@@ -1,4 +1,4 @@
-import { Control, FieldValues } from "react-hook-form";
+import { Control } from "react-hook-form";
 
 export interface Data {
   departments: string[],
@@ -51,6 +51,20 @@ export interface Employee {
   phone: string;
   skills: Skill[];
 }
+export interface FormEmployee {
+  address: string | null;
+  date_of_birth: string | null;
+  date_of_joining: string | null;
+  department: SelectProps | null;
+  designation: SelectProps | null;
+  emp_name: string | null;
+  employment_mode: SelectProps | null;
+  email: string | null;
+  gender: string | null;
+  id: string;
+  phone: string | null;
+  skills: SelectProps[] | null;
+}
 
 export interface SelectProps {
   value: string;
@@ -62,7 +76,7 @@ export interface SelectInputProps {
   options: SelectProps[];
   placeholder: string;
   isMulti?: boolean;
-  control?: Control<FieldValues, any>;
+  control?: Control<Employee, any>;
   fieldName:  keyof TableProps;
   value?: SelectProps | SelectProps[] | null
 }

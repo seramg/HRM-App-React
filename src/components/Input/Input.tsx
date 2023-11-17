@@ -5,16 +5,13 @@ import RadioGrp from "../Radio/RadioGrp.tsx";
 import InputWrapper from "./input.ts";
 import { getDate } from "../../utils/helper.ts";
 
-function Input({ value, validation, label, type, options, name }: InputProps) {
+function Input({  validation, label, type, options, name }: InputProps) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
   const errorMsg = errors[name];
   const className = errorMsg ? `input-border-error ${label}` : "label";
-  if(type==="date" && value){
-    value = getDate(value);
-  }
 
   return (
     <InputWrapper>
@@ -24,7 +21,6 @@ function Input({ value, validation, label, type, options, name }: InputProps) {
         <div className="common-flex radio-list">
           {options.map((option: string) => (
             <RadioGrp
-              value={value}
               key={option}
               option={option}
               label={label}
@@ -39,7 +35,6 @@ function Input({ value, validation, label, type, options, name }: InputProps) {
         <div className="input-field-error  m-30">
           <input
             type={type}
-            defaultValue={value}
             id={label}
             className={className}
             placeholder={`Enter your ${label}`}
