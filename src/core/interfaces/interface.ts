@@ -1,7 +1,13 @@
 import { Control } from "react-hook-form";
 
+export enum SortDirection {
+  ASC = 'asc',
+  DESC = 'desc',
+  NO_SORT = 'no-sort',
+}
+
 export interface SortProps {
-  sortVal: boolean;
+  sortVal: SortDirection;
   sortTerm: string | null;
 }
 export interface TableProps {

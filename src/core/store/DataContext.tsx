@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ContextProps } from "../interfaces/interface";
+import { ContextProps, SortDirection } from "../interfaces/interface";
 
 const DataContext = createContext<ContextProps>({
   employees: [],
@@ -13,8 +13,8 @@ const DataContext = createContext<ContextProps>({
     employment_mode: null,
     skills: null,
     sort: {
-      sortVal: true,
-      sortTerm: null,
+      sortVal: SortDirection.NO_SORT,
+      sortTerm: "",
     },
     search_term: null,
   },

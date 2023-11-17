@@ -9,6 +9,7 @@ import {
 import {
   Employee,
   SelectProps,
+  SortDirection,
   TableProps,
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
@@ -28,8 +29,8 @@ const DataProvider = ({ children }: { children: any }) => {
     employment_mode: null,
     skills: null,
     sort: {
-      sortVal: true,
-      sortTerm: "id",
+      sortVal: SortDirection.NO_SORT,
+      sortTerm: "",
     },
     search_term: null,
   });
@@ -47,22 +48,21 @@ const DataProvider = ({ children }: { children: any }) => {
 
   const getDataForTable = () => {
     if (employees) {
-      console.log("get data for table")
+      // console.log("get data for table");
       const sortedEmployees = sortData(dataEmployees, tableProps);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
-      console.log(searchedEmployees)
+      console.log(searchedEmployees);
       setEmployees([...searchedEmployees]);
     }
   };
-
 
   const fetchDataAndSetContext = async () => {
     try {
       addLoader(true);
       const getResponse = await getData("/.json");
-      const dataResponse = getResponse.data
-      console.log("Data fetched successfully:", dataResponse);
+      const dataResponse = getResponse.data;
+      // console.log("Data fetched successfully:", dataResponse);
 
       if (dataResponse) {
         setEmployees(dataResponse.employees);

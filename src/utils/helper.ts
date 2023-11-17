@@ -3,7 +3,7 @@ import {
   UseFormSetValue,
   UseFormGetValues,
 } from "react-hook-form";
-import { Employee, FormEmployee, Skill, TableProps } from "../core/interfaces/interface.ts";
+import { Employee, FormEmployee, Skill, SortDirection, TableProps } from "../core/interfaces/interface.ts";
 import { SelectProps } from "@mui/material";
 import React from "react";
 
@@ -49,15 +49,15 @@ export function resetSelects() {
 
 export function defaultFormVal() {
   const resettedVals = {
-      ...resetSelects(),
-      emp_name: null,
-      email: null,
-      phone: null,
-      address: null,
-      date_of_birth: null,
-      date_of_joining: null,
-      gender: null,
-      id: null
+    ...resetSelects(),
+    emp_name: null,
+    email: null,
+    phone: null,
+    address: null,
+    date_of_birth: null,
+    date_of_joining: null,
+    gender: null,
+    id: null
   }
   return resettedVals;
 }
@@ -101,9 +101,8 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
   let employeeTableData = employees;
 
   if (
-    tableProps 
+    tableProps
   ) {
-    console.log("filtering")
     employeeTableData = employees.filter((employee) => {
       const designationMatch = tableProps.designation
         ? tableProps.designation.value === employee.designation
@@ -183,9 +182,8 @@ export const sortData = (
   let sortedEmployees = employees;
 
   if (tableProps && tableProps.sort) {
-    
     const sortProp = tableProps.sort;
-    let flag = sortProp.sortVal ? +1 : -1;
+    let flag = sortProp.sortVal === SortDirection.ASC ? -1 : +1;
 
     sortedEmployees = employees.sort((a: Employee, b: Employee) => {
       let x = a[sortProp.sortTerm as keyof Employee];
@@ -269,12 +267,12 @@ export const getDateView = (dateVal: string) => {
   return dateFormatted;
 }
 
-export const generatePlaceholder=(fieldName: string): string =>{
-    return `Select ${fieldName.replace(/_/g, " ").toLowerCase()}`;
+export const generatePlaceholder = (fieldName: string): string => {
+  return `Select ${fieldName.replace(/_/g, " ").toLowerCase()}`;
 }
 
 export const getUrlType = (pathName: string) => {
-const pathParts = pathName.split('/');
-const secondPartOfPath = pathParts[1];
+  const pathParts = pathName.split('/');
+  const secondPartOfPath = pathParts[1];
   return secondPartOfPath;
 }

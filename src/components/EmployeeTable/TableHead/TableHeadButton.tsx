@@ -1,5 +1,8 @@
 import { useContext } from "react";
-import { TableProps } from "../../../core/interfaces/interface.ts";
+import {
+  SortDirection,
+  TableProps,
+} from "../../../core/interfaces/interface.ts";
 import DataContext from "../../../core/store/DataContext.tsx";
 import { findSortCriteria } from "../../../utils/helper.ts";
 import ButtonWrapper from "../../Button/button.ts";
@@ -17,14 +20,29 @@ function TableHeadButton({
   const { tableProps, addTableProps } = useContext(DataContext);
 
   let currentSortCriteria = findSortCriteria(children);
-  const sortIcon = currentSortCriteria=== tableProps.sort.sortTerm? tableProps.sort.sortVal ? "" : "rotate":"";
+  const visible = currentSortCriteria === tableProps.sort.sortTerm;
+  let sortIcon = "rotate";
+  let newSortProp = SortDirection.NO_SORT;
+
+  if (visible) {
+    if (tableProps.sort.sortVal === SortDirection.DESC) {
+      newSortProp = SortDirection.ASC;
+      sortIcon = "";
+    } else if (tableProps.sort.sortVal === SortDirection.ASC) {
+      newSortProp = SortDirection.DESC;
+    } else if (tableProps.sort.sortVal === SortDirection.NO_SORT) {
+      newSortProp = SortDirection.ASC;
+      sortIcon = "";
+    }
+  }
 
   function sortBtnClickHandler() {
+    
     const updatedTableProps: TableProps = {
       ...tableProps,
       sort: {
         sortTerm: currentSortCriteria.toString(),
-        sortVal: !tableProps.sort.sortVal,
+        sortVal: newSortProp,
       },
     };
     addTableProps(updatedTableProps);
@@ -36,7 +54,7 @@ function TableHeadButton({
       onClick={sortBtnClickHandler}
     >
       <TableHeadIconWrapper
-        $visible={true}
+        $visible={visible}
         className={`material-symbols-outlined ${sortIcon}`}
       >
         {icon}
