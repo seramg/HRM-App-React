@@ -19,7 +19,7 @@ function SelectFilter({
   const { addTableProps, tableProps } = useContext(DataContext);
 
   const fieldVal = tableProps[fieldName] as SelectProps | SelectProps[];
-  const [currentSelectVal, setCurrentSelectVal] = useState(fieldVal);
+  const [currentSelectVal, setCurrentSelectVal] = useState(() => fieldVal);
 
   return (
     <InputWrapper>
@@ -31,24 +31,16 @@ function SelectFilter({
         isSearchable={true}
         options={options}
         placeholder={<div className="placeholder">{placeholder}</div>}
-        isMulti={isMulti || false}
+        isMulti={isMulti}
         styles={selectStyles}
         onChange={(selectedOption) => {
-          if (isMulti) {
-            let currentTableProps: TableProps = {
-              ...tableProps,
-              [fieldName]: selectedOption,
-            } as TableProps;
-            setCurrentSelectVal(selectedOption as SelectProps[]);
-            addTableProps(currentTableProps);
-          } else {
-            let currentTableProps: TableProps = {
-              ...tableProps,
-              [fieldName]: selectedOption,
-            } as TableProps;
-            setCurrentSelectVal(selectedOption as SelectProps);
-            addTableProps(currentTableProps);
-          }
+          const currentTableProps: TableProps = {
+            ...tableProps,
+            [fieldName]: selectedOption,
+          };
+          if (isMulti) setCurrentSelectVal(selectedOption as SelectProps[]);
+          else setCurrentSelectVal(selectedOption as SelectProps);
+          addTableProps(currentTableProps);
         }}
       />
     </InputWrapper>

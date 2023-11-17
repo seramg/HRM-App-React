@@ -42,27 +42,11 @@ const DataProvider = ({ children }: { children: any }) => {
     setTableProps(tableProps);
   };
 
-  const addLoader = (loadingState: boolean) => {
-    setLoading(loadingState);
-  };
-
-  const getDataForTable = () => {
-    if (employees) {
-      // console.log("get data for table");
-      const sortedEmployees = sortData(dataEmployees, tableProps);
-      const filteredEmployees = filterData(sortedEmployees, tableProps);
-      const searchedEmployees = searchData(filteredEmployees, tableProps);
-      console.log(searchedEmployees);
-      setEmployees([...searchedEmployees]);
-    }
-  };
-
   const fetchDataAndSetContext = async () => {
     try {
-      addLoader(true);
+      setLoading(true);
       const getResponse = await getData("/.json");
       const dataResponse = getResponse.data;
-      // console.log("Data fetched successfully:", dataResponse);
 
       if (dataResponse) {
         setEmployees(dataResponse.employees);
@@ -75,14 +59,9 @@ const DataProvider = ({ children }: { children: any }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      addLoader(false);
+      setLoading(false);
     }
   };
-
-  useEffect(() => {
-    console.log(tableProps);
-    getDataForTable();
-  }, [tableProps]);
 
   useEffect(() => {
     fetchDataAndSetContext();
@@ -101,6 +80,7 @@ const DataProvider = ({ children }: { children: any }) => {
         loading,
         fetchDataAndSetContext,
         addEmployees,
+        dataEmployees,
       }}
     >
       {children}

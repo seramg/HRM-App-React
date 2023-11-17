@@ -1,12 +1,26 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { Employee } from "../../core/interfaces/interface.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import TableWrapper from "./employeeTable.ts";
 import TableData from "./TableData/TableData.tsx";
 import TableHead from "./TableHead/TableHead.tsx";
 import Loader from "./../Loader/Loader.tsx";
+import { filterData, searchData, sortData } from "../../utils/helper.ts";
+
 function EmployeeTable() {
-  const { employees, loading } = useContext(DataContext);
+  const { employees, loading, tableProps, dataEmployees } =
+    useContext(DataContext);
+
+  const employeesVal = useMemo(() => {
+    if (employees) {
+      const sortedEmployees = sortData(dataEmployees, tableProps);
+      const filteredEmployees = filterData(sortedEmployees, tableProps);
+      const searchedEmployees = searchData(filteredEmployees, tableProps);
+      return [...searchedEmployees];
+    }
+    return [...employees];
+  }, [tableProps, employees]);
+
   return (
     <TableWrapper>
       <TableHead />
@@ -16,8 +30,8 @@ function EmployeeTable() {
         </tbody>
       ) : (
         <tbody>
-          {employees.length > 0 ? (
-            employees.map((employee: Employee, index: number) => (
+          {employeesVal.length > 0 ? (
+            employeesVal.map((employee: Employee, index: number) => (
               <TableData key={employee.id} employee={employee} index={index} />
             ))
           ) : (

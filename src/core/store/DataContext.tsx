@@ -21,7 +21,8 @@ const DataContext = createContext<ContextProps>({
   addTableProps: () => {},
   loading: false,
   fetchDataAndSetContext: () => {},
-  addEmployees:()=>{}
+  addEmployees:()=>{},
+  dataEmployees: []
 });
 
 export default DataContext;

@@ -30,6 +30,7 @@ export interface ContextProps {
   loading: boolean;
   fetchDataAndSetContext: () => void;
   addEmployees: (employees: Employee[]) => void;
+  dataEmployees: Employee[];
 }
 
 export interface Skill {
