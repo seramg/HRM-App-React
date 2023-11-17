@@ -61,7 +61,7 @@ export interface FormEmployee {
   employment_mode: SelectProps | null;
   email: string | null;
   gender: string | null;
-  id: string;
+  id: string| null;
   phone: string | null;
   skills: SelectProps[] | null;
 }

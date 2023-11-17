@@ -1,5 +1,5 @@
 import EmployeeViewWrapper from "./employeeView.ts";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import DataContext from "../../core/store/DataContext.tsx";
 import { useContext, useState } from "react";
 import { getDateView, getWorkExp } from "../../utils/helper.ts";
@@ -8,8 +8,11 @@ import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import DetailsSection from "../../components/Details/Details.tsx";
 
 function EmployeeView() {
-  const location = useLocation();
-  const employeeId = location.state;
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const employeeId = searchParams.get("employeeId");
+
+
   const { employees } = useContext(DataContext);
   const employee = employees.find((employee) => employee.id === employeeId);
   console.log(employee);

@@ -47,6 +47,20 @@ export function resetSelects() {
   return resettedValues;
 }
 
+export function defaultFormVal() {
+  const resettedVals = {
+      ...resetSelects(),
+      emp_name: null,
+      email: null,
+      phone: null,
+      address: null,
+      date_of_birth: null,
+      date_of_joining: null,
+      gender: null,
+      id: null
+  }
+  return resettedVals;
+}
 export const handleChange = (
   value: any,
   fieldName: string,
@@ -257,4 +271,10 @@ export const getDateView = (dateVal: string) => {
 
 export const generatePlaceholder=(fieldName: string): string =>{
     return `Select ${fieldName.replace(/_/g, " ").toLowerCase()}`;
+}
+
+export const getUrlType = (pathName: string) => {
+const pathParts = pathName.split('/');
+const secondPartOfPath = pathParts[1];
+  return secondPartOfPath;
 }

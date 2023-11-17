@@ -31,10 +31,10 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
       </td>
       <td className="employee-data">
         <div className=" actions-list common-flex">
-          <StyledLink to="/employeeView" state={employee.id}>
+          <StyledLink to={`/employeeView?employeeId=${employee.id}`} >
             <Button icon="visibility"></Button>
           </StyledLink>
-          <StyledLink to="employeeDetails" state={employee}>
+          <StyledLink to={`/edit-employee?employeeId=${employee.id}`} >
             <Button icon="edit"></Button>
           </StyledLink>
           <Button icon="delete" onClick={cancelDltModal}></Button>

@@ -5,45 +5,57 @@ import Input from "../../components/Input/Input.tsx";
 import SelectList from "../../components/Select/SelectList.tsx";
 import {
   convertToFormEmployee,
+  defaultFormVal,
   getNewEmpId,
   getNewEmployeeDetails,
+  getUrlType,
   resetSelects,
 } from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
 import { Employee, FormEmployee, TableProps } from "../../core/interfaces/interface.ts";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 function Form() {
+  const { employees, tableProps, addTableProps } = useContext(DataContext);
   const location = useLocation();
-  const employee: Employee = location.state;
+  const urlType = getUrlType(location.pathname);
+
+
+  const defaultValues = defaultFormVal();
+
+  const [searchParams] = useSearchParams();
+
+  let employeeId: string | null, employee: Employee | undefined, formEmployee: FormEmployee;
+  if (urlType === "edit-employee") {
+    employeeId = searchParams.get("employeeId");
+    employee = employees.find((employee) => employee.id === employeeId);
+    if (employee)
+      formEmployee = convertToFormEmployee(employee)
+    else
+      formEmployee = defaultValues;
+  }
+  else {
+    employeeId = null;
+    formEmployee = defaultValues;
+  }
 
   const currentDate = new Date().toISOString().split("T")[0];
 
-  const formEmployee = convertToFormEmployee(employee)
   const methods = useForm<FormEmployee>({
     defaultValues: formEmployee
   });
-  const { employees, tableProps, addTableProps } = useContext(DataContext);
 
   const onReset = () => {
     const resettedTableProps: TableProps = {
       ...resetSelects(),
       sort: tableProps.sort,
     };
-    const resettedVals = {
-      ...resetSelects(),
-      emp_name: null,
-      email: null,
-      phone: null,
-      address: null,
-      date_of_birth: null,
-      date_of_joining: null,
-    }
-    methods.reset(resettedVals);
+    methods.reset(defaultValues);
     addTableProps(resettedTableProps);
   };
+
   const onSubmit = methods.handleSubmit(() => {
     let empId;
     if (employee) empId = employee.id

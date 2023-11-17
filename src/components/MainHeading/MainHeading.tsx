@@ -5,7 +5,7 @@ function MainHeading() {
   return (
     <SectionWrapper className="common-section">
       <h1 className="page-title">Employees</h1>
-      <StyledLink to="employeeDetails">
+      <StyledLink to="add-employee">
         <Button icon="add_circle">Add New Employee</Button>
       </StyledLink>
     </SectionWrapper>
