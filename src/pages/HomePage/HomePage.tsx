@@ -7,7 +7,7 @@ function HomePage() {
     <main className="main-section global-width">
       <MainHeading />
       <ActionsBar />
-        <EmployeeTable />
+      <EmployeeTable />
     </main>
   );
 }

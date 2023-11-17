@@ -42,7 +42,7 @@ export function resetSelects() {
     designation: null,
     employment_mode: null,
     skills: null,
-    search_term: null
+    search_term: ""
   }
   return resettedValues;
 }
@@ -104,24 +104,27 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
     tableProps
   ) {
     employeeTableData = employees.filter((employee) => {
-      const designationMatch = tableProps.designation
-        ? tableProps.designation.value === employee.designation
-        : true;
-      const skillMatch = tableProps.skills
-        ? tableProps.skills.every((skillFilter: SelectProps) => {
-          return employee.skills.some(
-            (skill) => skill.id === skillFilter.value
-          );
-        })
-        : true;
-      const departmentMatch = tableProps.department
-        ? tableProps.department.value === employee.department
-        : true;
-      const empModeMatch = tableProps.employment_mode
-        ? tableProps.employment_mode.value === employee.employment_mode
-        : true;
+      if (employee) {
+        const designationMatch = tableProps.designation
+          ? tableProps.designation.value === employee.designation
+          : true;
+        const skillMatch = tableProps.skills
+          ? tableProps.skills.every((skillFilter: SelectProps) => {
+            return employee.skills.some(
+              (skill) => skill.id === skillFilter.value
+            );
+          })
+          : true;
+        const departmentMatch = tableProps.department
+          ? tableProps.department.value === employee.department
+          : true;
+        const empModeMatch = tableProps.employment_mode
+          ? tableProps.employment_mode.value === employee.employment_mode
+          : true;
 
-      return designationMatch && skillMatch && departmentMatch && empModeMatch;
+        return designationMatch && skillMatch && departmentMatch && empModeMatch;
+      }
+      return true;
     });
   }
   return employeeTableData;
@@ -141,6 +144,7 @@ export const searchData = (
   const searchText = tableProps["search_term"].toLowerCase();
 
   return employees.filter((employee) =>
+    employee &&
     employee["emp_name"].toLowerCase().includes(searchText)
   );
 };
@@ -181,18 +185,21 @@ export const sortData = (
 ) => {
   let sortedEmployees = employees;
 
-  if (tableProps && tableProps.sort) {
+  if (tableProps && tableProps.sort && tableProps.sort.sortTerm != "") {
     const sortProp = tableProps.sort;
     let flag = sortProp.sortVal === SortDirection.ASC ? -1 : +1;
 
     sortedEmployees = employees.sort((a: Employee, b: Employee) => {
-      let x = a[sortProp.sortTerm as keyof Employee];
-      let y = b[sortProp.sortTerm as keyof Employee];
-      if (typeof x === "string" && typeof y === "string") {
-        return sortFn(x.toLowerCase(), y.toLowerCase(), flag);
-      } else {
-        return 0;
+      if (a && b) {
+        let x = a[sortProp.sortTerm as keyof Employee];
+        let y = b[sortProp.sortTerm as keyof Employee];
+        if (typeof x === "string" && typeof y === "string") {
+          return sortFn(x.toLowerCase(), y.toLowerCase(), flag);
+        } else {
+          return 0;
+        }
       }
+      return 0;
     });
     employees = sortedEmployees
   }

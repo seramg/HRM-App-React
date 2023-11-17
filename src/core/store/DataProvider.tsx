@@ -13,7 +13,7 @@ import {
   TableProps,
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
-import { getData } from "../api/functions.ts";
+import { getData, updateData } from "../api/functions.ts";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -32,7 +32,7 @@ const DataProvider = ({ children }: { children: any }) => {
       sortVal: SortDirection.NO_SORT,
       sortTerm: "",
     },
-    search_term: null,
+    search_term: "",
   });
 
   const addEmployees = (employees: Employee[]) => {
@@ -44,7 +44,7 @@ const DataProvider = ({ children }: { children: any }) => {
 
   const fetchDataAndSetContext = async () => {
     try {
-      setLoading(true);
+      setLoading(true);  
       const getResponse = await getData("/.json");
       const dataResponse = getResponse.data;
 

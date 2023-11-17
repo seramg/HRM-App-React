@@ -7,8 +7,6 @@ import { TableProps } from "../../../core/interfaces/interface.ts";
 function Search() {
   const { addTableProps, tableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
-  const fieldVal = tableProps.search_term;
-  const [currentSelectVal, setCurrentSelectVal] = useState(fieldVal);
 
   const handleFocus = () => {
     setFocus(true);
@@ -23,7 +21,6 @@ function Search() {
       ...tableProps,
       search_term: value,
     };
-    setCurrentSelectVal(tableProps.search_term);
     addTableProps(currentTableProps);
   };
   return (
@@ -32,7 +29,7 @@ function Search() {
         <span className="material-symbols-outlined search-icon">search</span>
         <input
           type="text"
-          defaultValue={currentSelectVal ? currentSelectVal : ""}
+          value={tableProps.search_term as string}
           className="search-input"
           id="search-input"
           placeholder="Search by name"

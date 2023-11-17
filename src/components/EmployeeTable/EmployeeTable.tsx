@@ -31,9 +31,16 @@ function EmployeeTable() {
       ) : (
         <tbody>
           {employeesVal.length > 0 ? (
-            employeesVal.map((employee: Employee, index: number) => (
-              <TableData key={employee.id} employee={employee} index={index} />
-            ))
+            employeesVal.map((employee: Employee, index: number) => {
+              return (
+                employee &&
+                <TableData
+                  key={employee.id}
+                  employee={employee}
+                  index={index}
+                />
+              );
+            })
           ) : (
             <tr>
               <td className="no-data" colSpan={6}>

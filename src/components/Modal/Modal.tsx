@@ -16,7 +16,7 @@ function Modal({
 
   const confirmDlt = async () => {
     const indexToDlt = employees.findIndex(
-      (employee) => employee.id === employeeId
+      (employee) => employee && employee.id === employeeId
     );
 
     if (indexToDlt === -1) {

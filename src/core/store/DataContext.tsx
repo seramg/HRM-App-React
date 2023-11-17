@@ -16,7 +16,7 @@ const DataContext = createContext<ContextProps>({
       sortVal: SortDirection.NO_SORT,
       sortTerm: "",
     },
-    search_term: null,
+    search_term: "",
   },
   addTableProps: () => {},
   loading: false,

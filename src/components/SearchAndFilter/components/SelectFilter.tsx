@@ -18,14 +18,11 @@ function SelectFilter({
 }: SelectInputProps) {
   const { addTableProps, tableProps } = useContext(DataContext);
 
-  const fieldVal = tableProps[fieldName] as SelectProps | SelectProps[];
-  const [currentSelectVal, setCurrentSelectVal] = useState(() => fieldVal);
-
   return (
     <InputWrapper>
       {label}
       <Select
-        value={currentSelectVal}
+        value={tableProps[fieldName] as SelectProps | SelectProps[]}
         isClearable={true}
         className="label"
         isSearchable={true}
@@ -38,8 +35,6 @@ function SelectFilter({
             ...tableProps,
             [fieldName]: selectedOption,
           };
-          if (isMulti) setCurrentSelectVal(selectedOption as SelectProps[]);
-          else setCurrentSelectVal(selectedOption as SelectProps);
           addTableProps(currentTableProps);
         }}
       />
