@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  filterData,
-  searchData,
-  sortData,
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
@@ -13,7 +10,8 @@ import {
   TableProps,
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
-import { getData, updateData } from "../api/functions.ts";
+import { getData } from "../api/functions.ts";
+import { toast } from "react-toastify";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -42,20 +40,44 @@ const DataProvider = ({ children }: { children: any }) => {
     setTableProps(tableProps);
   };
 
-  const fetchDataAndSetContext = async () => {
+  const fetchDataAndSetContext = async (
+    toastMsg = "Data fetched successfully"
+  ) => {
     try {
-      setLoading(true);  
-      const getResponse = await getData("/.json");
-      const dataResponse = getResponse.data;
+      setLoading(true);
+      const customToastId = "fetch-toast-id";
+      toast.promise(
+        getData("/.json").then((getResponse) => {
+          const dataResponse = getResponse.data;
 
-      if (dataResponse) {
-        setEmployees(dataResponse.employees);
-        setDataEmployees(dataResponse.employees);
-        setDesignations(transformArrayToOptionsList(dataResponse.designations));
-        setDepartments(transformArrayToOptionsList(dataResponse.departments));
-        setEmpModes(transformArrayToOptionsList(dataResponse.employment_modes));
-        setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
-      }
+          if (dataResponse) {
+            setEmployees(dataResponse.employees);
+            setDataEmployees(dataResponse.employees);
+            setDesignations(
+              transformArrayToOptionsList(dataResponse.designations)
+            );
+            setDepartments(
+              transformArrayToOptionsList(dataResponse.departments)
+            );
+            setEmpModes(
+              transformArrayToOptionsList(dataResponse.employment_modes)
+            );
+            setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
+
+            return dataResponse; // Resolve the promise with the data
+          } else {
+            throw new Error("No data received");
+          }
+        }),
+        {
+          pending: "Fetching data...",
+          success: toastMsg,
+          error: "Error fetching data",
+        },
+        {
+          toastId: customToastId,
+        }
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

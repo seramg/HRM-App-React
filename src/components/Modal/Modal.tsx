@@ -32,9 +32,8 @@ function Modal({
     } catch (error) {
       console.error("Error deleting item:", error);
     } finally {
-      fetchDataAndSetContext()
+      fetchDataAndSetContext(`Deleted user ${employees[indexToDlt].emp_name}`);
     }
-
     cancelModal();
   };
   return (

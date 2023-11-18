@@ -28,7 +28,7 @@ export interface ContextProps {
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
-  fetchDataAndSetContext: () => void;
+  fetchDataAndSetContext: (toastMsg?:string) => void;
   addEmployees: (employees: Employee[]) => void;
   dataEmployees: Employee[];
 }

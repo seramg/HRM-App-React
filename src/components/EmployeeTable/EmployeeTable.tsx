@@ -33,12 +33,13 @@ function EmployeeTable() {
           {employeesVal.length > 0 ? (
             employeesVal.map((employee: Employee, index: number) => {
               return (
-                employee &&
-                <TableData
-                  key={employee.id}
-                  employee={employee}
-                  index={index}
-                />
+                employee && (
+                  <TableData
+                    key={employee.id}
+                    employee={employee}
+                    index={index}
+                  />
+                )
               );
             })
           ) : (
