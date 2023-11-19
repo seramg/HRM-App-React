@@ -7,7 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 function HomePage() {
   return (
     <main className="main-section global-width">
-      <ToastContainer position="top-right" autoClose={5000} closeOnClick />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        closeOnClick
+        pauseOnFocusLoss={false}
+      />
       <MainHeading />
       <ActionsBar />
       <EmployeeTable />

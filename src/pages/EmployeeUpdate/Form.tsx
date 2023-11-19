@@ -28,7 +28,6 @@ function Form() {
     employees,
     tableProps,
     addTableProps,
-    addEmployees,
     fetchDataAndSetContext,
   } = useContext(DataContext);
   const location = useLocation();
@@ -47,9 +46,7 @@ function Form() {
     employeeId = searchParams.get("employeeId");
     employee = employees.find((emp) => emp && emp.id === employeeId);
 
-    formEmployee = employee
-      ? convertToFormEmployee(employee)
-      : defaultValues;
+    formEmployee = employee ? convertToFormEmployee(employee) : defaultValues;
   } else {
     employeeId = null;
     formEmployee = defaultValues;
@@ -77,14 +74,11 @@ function Form() {
     if (!employee) {
       const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(employees) };
       try {
-        const response = await updateData(
+        await updateData(
           `/employees/${employees.length}.json`,
           newEmployeeToAdd
         );
         console.log("Employee added successfully");
-
-        // Update the state with the new employee
-        addEmployees([...employees, response.data]);
 
         // Display toast for success state
         toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
@@ -104,19 +98,8 @@ function Form() {
       );
 
       try {
-        const response = await updateData(
-          `/employees/${employeeIndex}.json`,
-          employeeEdited
-        );
+        await updateData(`/employees/${employeeIndex}.json`, employeeEdited);
         console.log("Employee edited successfully");
-
-        // Update the state with the edited employee
-        const updatedEmployees = employees.map((currentEmployee) =>
-          currentEmployee && currentEmployee.id === employeeId
-            ? response.data
-            : currentEmployee
-        );
-        addEmployees([...updatedEmployees]);
 
         // Display toast for success state
         toast.success(`Edited user ${employeeEdited.emp_name}`, {
