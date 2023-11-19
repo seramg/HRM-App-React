@@ -4,17 +4,10 @@ import RadioWrapper from "./radioGrp.ts";
 function RadioGrp({
   option,
   label,
-  validation,
   name,
 }: {
   option: string;
   label: string;
-  validation: {
-    required: {
-      value: boolean;
-      message: string;
-    };
-  };
   name: string;
 }) {
   const { register } = useFormContext();
@@ -25,7 +18,12 @@ function RadioGrp({
         type="radio"
         id={`${label}-${option}`}
         value={option} // Specify the value for this radio input
-        {...register(name, validation)}
+        {...register(name, {
+          required: {
+            value: true,
+            message: "This field is required",
+          },
+        })}
       />
       <label htmlFor={`${label}-${option}`}>{option}</label>
     </RadioWrapper>

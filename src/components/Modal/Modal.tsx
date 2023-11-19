@@ -28,21 +28,14 @@ function Modal({
     const url = `/employees/${indexToDlt}.json`;
 
     try {
-      await deleteData(url); 
-      console.log("Item deleted successfully");
-
-      toast.promise(
-        Promise.resolve(), 
-        {
-          pending: "Deleting the user",
-          success: `Deleted user ${employees[indexToDlt].emp_name}`,
-          error: "Error deleting data",
-        },
-        {
-          toastId: "delete-toast-id",
-        }
-      );
+      await deleteData(url);
+      console.log("Employee deleted successfully");
+      // Display toast for success state
+      toast.success(`Deleted user ${employees[indexToDlt].emp_name}`, {
+        toastId: "delete-toast-id",
+      });
     } catch (error) {
+      toast.error("Error deleting user");
       console.error("Error deleting item:", error);
     } finally {
       fetchDataAndSetContext();

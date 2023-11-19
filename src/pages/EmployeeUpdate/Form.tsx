@@ -14,29 +14,43 @@ import {
 import { Fieldset, InputRow } from "./form.ts";
 import { useContext } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
-import { Employee, FormEmployee, TableProps } from "../../core/interfaces/interface.ts";
-import { useLocation, useSearchParams } from "react-router-dom";
+import {
+  Employee,
+  FormEmployee,
+  TableProps,
+} from "../../core/interfaces/interface.ts";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { updateData } from "../../core/api/functions.ts";
+import { toast } from "react-toastify";
 
 function Form() {
-  const { employees, tableProps, addTableProps } = useContext(DataContext);
+  const {
+    employees,
+    tableProps,
+    addTableProps,
+    addEmployees,
+    fetchDataAndSetContext,
+  } = useContext(DataContext);
   const location = useLocation();
+  const navigate = useNavigate();
   const urlType = getUrlType(location.pathname);
-
 
   const defaultValues = defaultFormVal();
 
   const [searchParams] = useSearchParams();
 
-  let employeeId: string | null, employee: Employee | undefined, formEmployee: FormEmployee;
+  let employeeId: string | null,
+    employee: Employee | undefined,
+    formEmployee: FormEmployee;
+
   if (urlType === "edit-employee") {
     employeeId = searchParams.get("employeeId");
-    employee = employees.find((employee) => employee.id === employeeId);
-    if (employee)
-      formEmployee = convertToFormEmployee(employee)
-    else
-      formEmployee = defaultValues;
-  }
-  else {
+    employee = employees.find((emp) => emp && emp.id === employeeId);
+
+    formEmployee = employee
+      ? convertToFormEmployee(employee)
+      : defaultValues;
+  } else {
     employeeId = null;
     formEmployee = defaultValues;
   }
@@ -44,7 +58,8 @@ function Form() {
   const currentDate = new Date().toISOString().split("T")[0];
 
   const methods = useForm<FormEmployee>({
-    defaultValues: formEmployee
+    mode: "onChange",
+    defaultValues: formEmployee,
   });
 
   const onReset = () => {
@@ -56,14 +71,67 @@ function Form() {
     addTableProps(resettedTableProps);
   };
 
-  const onSubmit = methods.handleSubmit(() => {
-    let empId;
-    if (employee) empId = employee.id
-    else
-      empId = getNewEmpId(employees);
-    const newEmployee = getNewEmployeeDetails(methods.getValues(), empId);
-    console.log(newEmployee);
+  const onSubmit = methods.handleSubmit(async () => {
+    const newEmployee = getNewEmployeeDetails(methods.getValues());
+
+    if (!employee) {
+      const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(employees) };
+      try {
+        const response = await updateData(
+          `/employees/${employees.length}.json`,
+          newEmployeeToAdd
+        );
+        console.log("Employee added successfully");
+
+        // Update the state with the new employee
+        addEmployees([...employees, response.data]);
+
+        // Display toast for success state
+        toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
+          toastId: "add-toast-id",
+        });
+      } catch (error) {
+        toast.error("Error adding new user");
+        console.error("Error submitting form:", error);
+      } finally {
+        navigate(`/`);
+        fetchDataAndSetContext();
+      }
+    } else {
+      const employeeEdited = { ...newEmployee, id: employee.id };
+      const employeeIndex = employees.findIndex(
+        (employee) => employee && employee.id === employeeId
+      );
+
+      try {
+        const response = await updateData(
+          `/employees/${employeeIndex}.json`,
+          employeeEdited
+        );
+        console.log("Employee edited successfully");
+
+        // Update the state with the edited employee
+        const updatedEmployees = employees.map((currentEmployee) =>
+          currentEmployee && currentEmployee.id === employeeId
+            ? response.data
+            : currentEmployee
+        );
+        addEmployees([...updatedEmployees]);
+
+        // Display toast for success state
+        toast.success(`Edited user ${employeeEdited.emp_name}`, {
+          toastId: "edit-toast-id",
+        });
+      } catch (error) {
+        toast.error("Error editing user");
+        console.error("Error submitting form:", error);
+      } finally {
+        navigate(`/`);
+        fetchDataAndSetContext();
+      }
+    }
   });
+
   return (
     <main className="main-section global-width">
       <FormProvider {...methods}>
@@ -72,16 +140,14 @@ function Form() {
           onSubmit={(e) => e.preventDefault()}
           noValidate
         >
-          <h2>{!employee ? "Add New Employee" : `Edit Employee ${employee.id}`}</h2>
+          <h2>
+            {!employee ? "Add New Employee" : `Edit Employee ${employee.id}`}
+          </h2>
           <Fieldset className="form-details ">
             <legend className="subheading">Personal Information</legend>
 
             <Input
               validation={{
-                required: {
-                  value: true,
-                  message: "This field is required",
-                },
                 pattern: {
                   value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
                   message: "This is an invalid value",
@@ -98,10 +164,6 @@ function Form() {
             <InputRow className="common-flex">
               <Input
                 validation={{
-                  required: {
-                    value: true,
-                    message: "This field is required",
-                  },
                   pattern: {
                     value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
                     message: "This is an invalid value",
@@ -113,10 +175,6 @@ function Form() {
               />
               <Input
                 validation={{
-                  required: {
-                    value: true,
-                    message: "This field is required",
-                  },
                   pattern: {
                     value: RegExp("^[0-9]{10}$"),
                     message:
@@ -130,10 +188,6 @@ function Form() {
             </InputRow>
             <Input
               validation={{
-                required: {
-                  value: true,
-                  message: "This field is required",
-                },
                 minLength: {
                   value: 2,
                   message: "min 2 characters",
@@ -146,10 +200,6 @@ function Form() {
             <InputRow className="common-flex">
               <Input
                 validation={{
-                  required: {
-                    value: true,
-                    message: "This field is required",
-                  },
                   max: {
                     value: currentDate,
                     message: "This is an invalid value",
@@ -161,10 +211,6 @@ function Form() {
               />
               <Input
                 validation={{
-                  required: {
-                    value: true,
-                    message: "This field is required",
-                  },
                   max: {
                     value: currentDate,
                     message: "This is an invalid value",
@@ -176,12 +222,6 @@ function Form() {
               />
             </InputRow>
             <Input
-              validation={{
-                required: {
-                  value: true,
-                  message: "This field is required",
-                },
-              }}
               label="Gender"
               type="radio"
               options={["Male", "Female", "Other"]}
@@ -190,8 +230,7 @@ function Form() {
           </Fieldset>
           <Fieldset className="other-details ">
             <legend className="subheading">Other Information</legend>
-            <SelectList
-            />
+            <SelectList />
           </Fieldset>
           <ButtonGrpWrapper>
             <Button icon="" onClick={onReset}>

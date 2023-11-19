@@ -230,13 +230,12 @@ export const getNewEmpId = (employees: Employee[]) => {
   }
 };
 
-export const getNewEmployeeDetails = (formData: FieldValues, id: string) => {
+export const getNewEmployeeDetails = (formData: FieldValues) => {
   const skillsInNewFormat = formData.skills.map((skill: SelectProps) => ({
     id: skill.value,
     name: skill.label,
   }));
   const transformedInput = {
-    id: id,
     emp_name: formData.emp_name,
     email: formData.email,
     phone: formData.phone,

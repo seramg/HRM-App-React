@@ -81,11 +81,7 @@ export interface SelectInputProps {
   value?: SelectProps | SelectProps[] | null
 }
 export interface InputProps {
-  validation: {
-    required: {
-      value: boolean;
-      message: string;
-    };
+  validation?: {
     minLength?: {
       value: number;
       message: string;
