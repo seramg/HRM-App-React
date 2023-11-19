@@ -4,6 +4,7 @@ import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import Input from "../../components/Input/Input.tsx";
 import SelectList from "../../components/Select/SelectList.tsx";
 import {
+  checkEmployeesEqual,
   convertToFormEmployee,
   defaultFormVal,
   getNewEmpId,
@@ -24,12 +25,8 @@ import { updateData } from "../../core/api/functions.ts";
 import { toast } from "react-toastify";
 
 function Form() {
-  const {
-    employees,
-    tableProps,
-    addTableProps,
-    fetchDataAndSetContext,
-  } = useContext(DataContext);
+  const { employees, tableProps, addTableProps, fetchDataAndSetContext } =
+    useContext(DataContext);
   const location = useLocation();
   const navigate = useNavigate();
   const urlType = getUrlType(location.pathname);
@@ -97,20 +94,28 @@ function Form() {
         (employee) => employee && employee.id === employeeId
       );
 
-      try {
-        await updateData(`/employees/${employeeIndex}.json`, employeeEdited);
-        console.log("Employee edited successfully");
+      if (!checkEmployeesEqual(employee, employeeEdited)) {
+        try {
+          await updateData(`/employees/${employeeIndex}.json`, employeeEdited);
+          console.log("Employee edited successfully");
 
-        // Display toast for success state
-        toast.success(`Edited user ${employeeEdited.emp_name}`, {
-          toastId: "edit-toast-id",
+          // Display toast for success state
+          toast.success(`Edited user ${employeeEdited.emp_name}`, {
+            toastId: "edit-toast-id",
+          });
+        } catch (error) {
+          toast.error("Error editing user");
+          console.error("Error submitting form:", error);
+        } finally {
+          navigate(`/`);
+          fetchDataAndSetContext();
+        }
+      }
+      else{
+        toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {
+          toastId: "no-edit-toast-id",
         });
-      } catch (error) {
-        toast.error("Error editing user");
-        console.error("Error submitting form:", error);
-      } finally {
         navigate(`/`);
-        fetchDataAndSetContext();
       }
     }
   });

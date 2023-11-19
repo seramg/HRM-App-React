@@ -282,3 +282,43 @@ export const getUrlType = (pathName: string) => {
   const secondPartOfPath = pathParts[1];
   return secondPartOfPath;
 }
+
+export const checkEmployeesEqual = (originalEmployee: Employee, editedEmployee: Employee) => {
+  const originalEmpKeys = Object.keys(originalEmployee);
+
+  for (let key of originalEmpKeys) {
+    const keyProp = key as keyof Employee;
+    if (originalEmployee[keyProp] != editedEmployee[keyProp]) {
+      if (keyProp === "skills") {
+        const skillsEqual = checkSkillsEqual(originalEmployee[keyProp], editedEmployee[keyProp]);
+        if (skillsEqual) return true;
+        return false
+      }
+      return false
+    }
+  }
+  return true;
+}
+
+export const checkSkillsEqual = (originalSkillList: Skill[], editedSkillList: Skill[]) => {
+
+  if (originalSkillList.length != editedSkillList.length) {
+    return false;
+  }
+
+  for (let i = 0; i < originalSkillList.length; i++) {
+    const originalSkill = originalSkillList[i];
+    const editedSkill = editedSkillList[i];
+
+    const originalSkillKeys = Object.keys(originalSkill);
+    for (let key of originalSkillKeys) {
+      const keyProp = key as keyof Skill;
+      if (originalSkill[keyProp] != editedSkill[keyProp]) {
+        console.log(originalSkill[keyProp], editedSkill[keyProp])
+        return false
+      }
+    }
+  }
+
+  return true;
+}
