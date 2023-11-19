@@ -10,7 +10,7 @@ import {
   TableProps,
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
-import { getData } from "../api/functions.ts";
+import { getData, updateData } from "../api/functions.ts";
 import { toast } from "react-toastify";
 
 const DataProvider = ({ children }: { children: any }) => {
@@ -40,9 +40,7 @@ const DataProvider = ({ children }: { children: any }) => {
     setTableProps(tableProps);
   };
 
-  const fetchDataAndSetContext = async (
-    toastMsg = "Data fetched successfully"
-  ) => {
+  const fetchDataAndSetContext = async () => {
     try {
       setLoading(true);
       const customToastId = "fetch-toast-id";
@@ -71,7 +69,7 @@ const DataProvider = ({ children }: { children: any }) => {
         }),
         {
           pending: "Fetching data...",
-          success: toastMsg,
+          success: "Data fetched successfully",
           error: "Error fetching data",
         },
         {

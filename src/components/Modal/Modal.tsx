@@ -4,6 +4,7 @@ import Button from "../Button/Button.tsx";
 import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import ModalWrapper from "./modal";
 import DataContext from "../../core/store/DataContext.tsx";
+import { toast } from "react-toastify";
 
 function Modal({
   cancelModal,
@@ -27,13 +28,26 @@ function Modal({
     const url = `/employees/${indexToDlt}.json`;
 
     try {
-      const response = await deleteData(url);
-      console.log("Item deleted successfully:", response);
+      await deleteData(url); 
+      console.log("Item deleted successfully");
+
+      toast.promise(
+        Promise.resolve(), 
+        {
+          pending: "Deleting the user",
+          success: `Deleted user ${employees[indexToDlt].emp_name}`,
+          error: "Error deleting data",
+        },
+        {
+          toastId: "delete-toast-id",
+        }
+      );
     } catch (error) {
       console.error("Error deleting item:", error);
     } finally {
-      fetchDataAndSetContext(`Deleted user ${employees[indexToDlt].emp_name}`);
+      fetchDataAndSetContext();
     }
+
     cancelModal();
   };
   return (
