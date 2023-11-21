@@ -3,8 +3,7 @@ import {
   UseFormSetValue,
   UseFormGetValues,
 } from "react-hook-form";
-import { Employee, FormEmployee, Skill, SortDirection, TableProps } from "../core/interfaces/interface.ts";
-import { SelectOptionProps } from "@mui/material";
+import { Employee, FormEmployee, SelectOptionProps, Skill, SortDirection, TableProps } from "../core/interfaces/interface.ts";
 import React from "react";
 
 export function transformArrayToOptionsList(array: string[]) {

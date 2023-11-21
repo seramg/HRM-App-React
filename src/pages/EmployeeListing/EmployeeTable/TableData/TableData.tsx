@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Employee } from "../../../core/interfaces/interface.ts";
+import { Employee } from "../../../../core/interfaces/interface.ts";
 import TableDataWrapper from "./tableData.ts";
-import StyledLink from "./../../StyledLink.ts";
-import Button from "./../../Button/Button.tsx";
-import SkillsChip from "./../../Skills/SkillsChip.tsx";
-import DeleteModal from "../../DeleteModal/DeleteModal.tsx";
+import StyledLink from "../../../../components/StyledLink.ts";
+import Button from "../../../../components/Button/Button.tsx";
+import SkillsChip from "../../../../components/Skills/SkillsChip.tsx";
+import DeleteModal from "../../../../components/DeleteModal/DeleteModal.tsx";
 
 function TableData({ employee, index }: { employee: Employee; index: number }) {
   

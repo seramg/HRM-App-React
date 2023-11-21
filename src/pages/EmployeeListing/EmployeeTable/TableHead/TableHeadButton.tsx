@@ -2,11 +2,11 @@ import { useContext } from "react";
 import {
   SortDirection,
   TableProps,
-} from "../../../core/interfaces/interface.ts";
-import DataContext from "../../../core/store/DataContext.tsx";
-import { findSortCriteria } from "../../../utils/helper.ts";
-import ButtonWrapper from "../../Button/button.ts";
+} from "../../../../core/interfaces/interface.ts";
+import DataContext from "../../../../core/store/DataContext.tsx";
+import { findSortCriteria } from "../../../../utils/helper.ts";
 import { TableHeadIconWrapper } from "./tableHead.ts";
+import ButtonWrapper from "../../../../components/Button/button.ts";
 
 function TableHeadButton({
   children,

@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import DataContext from "../../../core/store/DataContext.tsx";
-import Button from "../../Button/Button.tsx";
 import SearchWrapper from "./search.ts";
-import { TableProps } from "../../../core/interfaces/interface.ts";
+import { TableProps } from "../../../../../core/interfaces/interface.ts";
+import DataContext from "../../../../../core/store/DataContext.tsx";
+import Button from "../../../../../components/Button/Button.tsx";
 
 function SearchBar() {
   const { addTableProps, tableProps } = useContext(DataContext);
@@ -23,6 +23,7 @@ function SearchBar() {
     };
     addTableProps(currentTableProps);
   };
+  
   return (
     <SearchWrapper $focus={focus} className="common-flex">
       <div id="searchForm" className="search-form common-flex">

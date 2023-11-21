@@ -3,10 +3,10 @@ import Select from "react-select";
 import {
   Employee,
   SelectOptionProps,
-} from "../../core/interfaces/interface.ts";
-import InputWrapper from "../Input/input.ts";
-import InputError from "../InputError/InputError.tsx";
-import selectStyles from "./selectCustomStyles.ts";
+} from "../../../core/interfaces/interface.ts";
+import InputWrapper from "../../../components/Input/input.ts";
+import InputError from "../../../components/InputError/InputError.tsx";
+import selectStyles from "../../../components/SelectStyle/selectCustomStyles.ts";
 
 function FormSelect({
   label,

@@ -1,11 +1,11 @@
 import { useContext, useMemo, useState } from "react";
-import { Employee } from "../../core/interfaces/interface.ts";
-import DataContext from "../../core/store/DataContext.tsx";
+import { Employee } from "../../../core/interfaces/interface.ts";
+import DataContext from "../../../core/store/DataContext.tsx";
 import TableWrapper from "./employeeTable.ts";
 import TableData from "./TableData/TableData.tsx";
 import TableHead from "./TableHead/TableHead.tsx";
-import Loader from "./../Loader/Loader.tsx";
-import { filterData, searchData, sortData } from "../../utils/helper.ts";
+import Loader from "../../../components/Loader/Loader.tsx";
+import { filterData, searchData, sortData } from "../../../utils/helper.ts";
 import Pagination from "./Pagination/Pagination.tsx";
 
 let PageSize = 10;

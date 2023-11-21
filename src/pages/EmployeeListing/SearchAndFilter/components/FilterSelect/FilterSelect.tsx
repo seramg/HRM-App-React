@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Select from "react-select";
 import {
   SelectDropdownProps,
   SelectOptionProps,
   TableProps,
-} from "../../../core/interfaces/interface.ts";
-import DataContext from "../../../core/store/DataContext.tsx";
-import InputWrapper from "../../Input/input.ts";
-import selectStyles from "../../Select/selectCustomStyles.ts";
+} from "../../../../../core/interfaces/interface.ts";
+import DataContext from "../../../../../core/store/DataContext.tsx";
+import InputWrapper from "../../../../../components/Input/input.ts";
+import selectStyles from "../../../../../components/SelectStyle/selectCustomStyles.ts";
 
 function FilterSelect({
   label,

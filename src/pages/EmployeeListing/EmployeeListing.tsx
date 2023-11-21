@@ -1,8 +1,8 @@
-import MainHeading from "../../components/MainHeading/MainHeading.tsx";
-import ActionsBar from "../../components/SearchAndFilter/SearchAndFilter.tsx";
-import EmployeeTable from "../../components/EmployeeTable/EmployeeTable.tsx";
+import EmployeeTable from "./EmployeeTable/EmployeeTable.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ActionsBar from "./SearchAndFilter/ActionsBar.tsx";
+import MainHeading from "./MainHeading/MainHeading.tsx";
 
 function EmployeeListing() {
   return (
@@ -13,7 +13,7 @@ function EmployeeListing() {
         closeOnClick
         pauseOnFocusLoss={false} // avoid pausing when the window looses the focus
       />
-      <MainHeading /> 
+      <MainHeading />
       {/* include searching filtering techniques */}
       <ActionsBar />
       <EmployeeTable />

@@ -2,7 +2,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../components/Button/Button.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import Input from "../../components/Input/Input.tsx";
-import FormSelectList from "../../components/Select/FormSelectList.tsx";
 import {
   checkEmployeesEqual,
   convertToFormEmployee,
@@ -24,6 +23,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { updateData } from "../../core/api/functions.ts";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader.tsx";
+import FormSelectList from "./FormSelect/FormSelectList.tsx";
 
 function Form() {
   const {

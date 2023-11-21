@@ -1,43 +1,43 @@
 import { useContext } from "react";
-import DataContext from "../../core/store/DataContext.tsx";
-import FormSelect from "./FormSelect.tsx";
+import DataContext from "../../../../../core/store/DataContext";
+import FilterSelect from "./FilterSelect";
 
-function FormSelectList() {
+function FilterSelectList() {
   const { departments, designations, employment_modes, skills } =
     useContext(DataContext);
 
   return (
     <div className="select-list common-flex">
-      <FormSelect
+      <FilterSelect
         label="Departments"
         options={departments}
         placeholder="Select department"
         isMulti={false}
         fieldName="department"
       />
-      <FormSelect
+      <FilterSelect
         label="Designations"
         options={designations}
         placeholder="Select designation"
         isMulti={false}
         fieldName="designation"
       />
-      <FormSelect
+      <FilterSelect
         label="Employment Modes"
         options={employment_modes}
         placeholder="Select employment modes"
         isMulti={false}
         fieldName="employment_mode"
       />
-      <FormSelect
+      <FilterSelect
         label="Skills"
         options={skills}
         placeholder="Select skills"
-        isMulti={true}
+        isMulti={true} //employees can have multiple skills
         fieldName="skills"
       />
     </div>
   );
 }
 
-export default FormSelectList;
+export default FilterSelectList;

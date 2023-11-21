@@ -1,11 +1,11 @@
-import Button from "../Button/Button.tsx";
-import SearchBar from "./components/SearchBar.tsx";
-import ActionsWrapper from "./SearchAndFilter.ts";
-import { resetFiltersAndSearchBar } from "../../utils/helper.ts";
+import Button from "../../../components/Button/Button.tsx";
+import SearchBar from "./components/SearchBar/SearchBar.tsx";
+import { resetFiltersAndSearchBar } from "../../../utils/helper.ts";
 import { useContext } from "react";
-import DataContext from "../../core/store/DataContext.tsx";
-import { TableProps } from "../../core/interfaces/interface.ts";
-import FilterSelectList from "./components/FilterSelectList.tsx";
+import DataContext from "../../../core/store/DataContext.tsx";
+import { TableProps } from "../../../core/interfaces/interface.ts";
+import FilterSelectList from "./components/FilterSelect/FilterSelectList.tsx";
+import ActionsWrapper from "./actionsBar.ts";
 
 function ActionsBar() {
   const { tableProps, addTableProps } = useContext(DataContext);

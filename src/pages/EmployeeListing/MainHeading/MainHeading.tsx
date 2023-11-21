@@ -1,6 +1,6 @@
-import Button from "../Button/Button.tsx";
-import StyledLink from "../StyledLink.ts";
-import SectionWrapper from "./mainHeading";
+import SectionWrapper from "./mainHeading.ts";
+import StyledLink from './../../../components/StyledLink.ts';
+import Button from "../../../components/Button/Button.tsx";
 
 function MainHeading() {
   return (
