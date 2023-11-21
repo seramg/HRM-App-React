@@ -34,5 +34,10 @@ const TableWrapper = styled.table`
   .alternate-table-row-color {
     background-color: var(--white-color);
   }
+  .pagination-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }  
 `;
 export default TableWrapper;
