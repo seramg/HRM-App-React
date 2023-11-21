@@ -45,39 +45,20 @@ const DataProvider = ({ children }: { children: any }) => {
   const fetchDataAndSetContext = async () => {
     try {
       addLoader(true);
-      const customToastId = "fetch-toast-id";
-      toast.promise(
-        getData("/.json").then((getResponse) => {
-          const dataResponse = getResponse.data;
+      const response = await getData("/.json");
+      const dataResponse = response.data;
+      if (dataResponse) {
+        setEmployees(dataResponse.employees);
+        setDataEmployees(dataResponse.employees);
+        setDesignations(transformArrayToOptionsList(dataResponse.designations));
+        setDepartments(transformArrayToOptionsList(dataResponse.departments));
+        setEmpModes(transformArrayToOptionsList(dataResponse.employment_modes));
+        setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
 
-          if (dataResponse) {
-            setEmployees(dataResponse.employees);
-            setDataEmployees(dataResponse.employees);
-            setDesignations(
-              transformArrayToOptionsList(dataResponse.designations)
-            );
-            setDepartments(
-              transformArrayToOptionsList(dataResponse.departments)
-            );
-            setEmpModes(
-              transformArrayToOptionsList(dataResponse.employment_modes)
-            );
-            setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
-
-            return dataResponse; // Resolve the promise with the data
-          } else {
-            throw new Error("No data received");
-          }
-        }),
-        {
-          pending: "Fetching data...",
-          success: "Data fetched successfully",
-          error: "Error fetching data",
-        },
-        {
-          toastId: customToastId,
-        }
-      );
+        return dataResponse; // Resolve the promise with the data
+      } else {
+        throw new Error("No data received");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
