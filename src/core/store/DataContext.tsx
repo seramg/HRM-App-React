@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ContextProps, SortDirection } from "../interfaces/interface";
+import { ContextProps, Data, SortDirection } from "../interfaces/interface";
 
 const DataContext = createContext<ContextProps>({
   employees: [],
@@ -20,9 +20,21 @@ const DataContext = createContext<ContextProps>({
   },
   addTableProps: () => {},
   loading: false,
-  fetchDataAndSetContext: () => {},
-  addEmployees:()=>{},
-  dataEmployees: []
+  fetchEmployeeData: async () => ({
+    employees: [],
+    departments: [],
+    designations: [],
+    employment_modes: [],
+    skills: [],
+  }),
+  addEmployees: () => {},
+  data: {
+    employees: [],
+    departments: [],
+    designations: [],
+    employment_modes: [],
+    skills: [],
+  },
 });
 
 export default DataContext;

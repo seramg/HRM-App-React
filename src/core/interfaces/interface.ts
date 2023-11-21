@@ -18,7 +18,13 @@ export interface TableProps {
   sort: SortProps;
   search_term: string | null;
 }
-
+export interface Data {
+  employees: Employee[];
+  departments: string[];
+  designations: string[];
+  employment_modes: string[];
+  skills: Skill[];
+}
 export interface ContextProps {
   employees: Employee[];
   departments: SelectProps[];
@@ -28,9 +34,9 @@ export interface ContextProps {
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
-  fetchDataAndSetContext: () => void;
+  fetchEmployeeData: () => Promise<Data>;
   addEmployees: (employees: Employee[]) => void;
-  dataEmployees: Employee[];
+  data: Data;
 }
 
 export interface Skill {
@@ -61,7 +67,7 @@ export interface FormEmployee {
   employment_mode: SelectProps | null;
   email: string | null;
   gender: string | null;
-  id: string| null;
+  id: string | null;
   phone: string | null;
   skills: SelectProps[] | null;
 }
@@ -77,7 +83,7 @@ export interface SelectInputProps {
   placeholder: string;
   isMulti?: boolean;
   control?: Control<Employee, any>;
-  fieldName:  keyof TableProps;
+  fieldName: keyof TableProps;
   value?: SelectProps | SelectProps[] | null
 }
 export interface InputProps {

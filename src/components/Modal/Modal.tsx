@@ -13,7 +13,7 @@ function Modal({
   cancelModal: () => void;
   employeeId: string;
 }) {
-  const { employees, fetchDataAndSetContext } = useContext(DataContext);
+  const { employees, fetchEmployeeData } = useContext(DataContext);
 
   const confirmDlt = async () => {
     const indexToDlt = employees.findIndex(
@@ -38,7 +38,7 @@ function Modal({
       toast.error("Error deleting user");
       console.error("Error deleting item:", error);
     } finally {
-      fetchDataAndSetContext();
+      fetchEmployeeData();
     }
 
     cancelModal();

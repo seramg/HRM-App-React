@@ -13,7 +13,7 @@ import {
   resetSelects,
 } from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
-import { useContext } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
 import {
   Employee,
@@ -25,8 +25,13 @@ import { updateData } from "../../core/api/functions.ts";
 import { toast } from "react-toastify";
 
 function Form() {
-  const { employees, tableProps, addTableProps, fetchDataAndSetContext } =
-    useContext(DataContext);
+  const {
+    employees,
+    tableProps,
+    addTableProps,
+    fetchEmployeeData,
+    addEmployees,
+  } = useContext(DataContext);
   const location = useLocation();
   const navigate = useNavigate();
   const urlType = getUrlType(location.pathname);
@@ -35,19 +40,14 @@ function Form() {
 
   const [searchParams] = useSearchParams();
 
-  let employeeId: string | null,
-    employee: Employee | undefined,
-    formEmployee: FormEmployee;
-
-  if (urlType === "edit-employee") {
-    employeeId = searchParams.get("employeeId");
-    employee = employees.find((emp) => emp && emp.id === employeeId);
-
-    formEmployee = employee ? convertToFormEmployee(employee) : defaultValues;
-  } else {
-    employeeId = null;
-    formEmployee = defaultValues;
-  }
+  const employeeId: string | null =
+    urlType === "edit-employee" ? searchParams.get("employeeId") : null;
+  let employee: Employee | undefined = employees
+    ? employees.find((emp) => emp && emp.id === employeeId)
+    : undefined;
+  let formEmployee: FormEmployee = employee
+    ? convertToFormEmployee(employee)
+    : defaultValues;
 
   const currentDate = new Date().toISOString().split("T")[0];
 
@@ -86,7 +86,7 @@ function Form() {
         console.error("Error submitting form:", error);
       } finally {
         navigate(`/`);
-        fetchDataAndSetContext();
+        fetchEmployeeData();
       }
     } else {
       const employeeEdited = { ...newEmployee, id: employee.id };
@@ -108,10 +108,9 @@ function Form() {
           console.error("Error submitting form:", error);
         } finally {
           navigate(`/`);
-          fetchDataAndSetContext();
+          fetchEmployeeData();
         }
-      }
-      else{
+      } else {
         toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {
           toastId: "no-edit-toast-id",
         });
@@ -119,6 +118,21 @@ function Form() {
       }
     }
   });
+
+  useEffect(() => {
+    if (urlType === "edit-employee" && !employee) {
+      fetchEmployeeData().then((response) => {
+        addEmployees(response.employees);
+        employee = response.employees
+          ? response.employees.find((emp) => emp && emp.id === employeeId)
+          : undefined;
+        formEmployee = employee
+          ? convertToFormEmployee(employee)
+          : defaultValues;
+        methods.reset(formEmployee);
+      });
+    }
+  }, []);
 
   return (
     <main className="main-section global-width">

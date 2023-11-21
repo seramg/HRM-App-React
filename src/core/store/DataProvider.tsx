@@ -4,6 +4,7 @@ import {
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
 import {
+  Data,
   Employee,
   SelectProps,
   SortDirection,
@@ -11,11 +12,16 @@ import {
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
 import { getData } from "../api/functions.ts";
-import { toast } from "react-toastify";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [dataEmployees, setDataEmployees] = useState<Employee[]>([]);
+  const [data, setData] = useState<Data>({
+    employees: [],
+    departments: [],
+    designations: [],
+    employment_modes: [],
+    skills: [],
+  });
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
@@ -42,19 +48,14 @@ const DataProvider = ({ children }: { children: any }) => {
   const addLoader = (loadingState: boolean) => {
     setLoading(loadingState);
   };
-  const fetchDataAndSetContext = async () => {
+  const fetchEmployeeData = async () => {
     try {
       addLoader(true);
       const response = await getData("/.json");
       const dataResponse = response.data;
       if (dataResponse) {
+        setData(dataResponse);
         setEmployees(dataResponse.employees);
-        setDataEmployees(dataResponse.employees);
-        setDesignations(transformArrayToOptionsList(dataResponse.designations));
-        setDepartments(transformArrayToOptionsList(dataResponse.departments));
-        setEmpModes(transformArrayToOptionsList(dataResponse.employment_modes));
-        setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
-
         return dataResponse; // Resolve the promise with the data
       } else {
         throw new Error("No data received");
@@ -65,9 +66,22 @@ const DataProvider = ({ children }: { children: any }) => {
       addLoader(false);
     }
   };
+  const fetchFirebaseData = async () => {
+    try {
+      const dataResponse = await fetchEmployeeData();
+      if (dataResponse) {
+        setDesignations(transformArrayToOptionsList(dataResponse.designations));
+        setDepartments(transformArrayToOptionsList(dataResponse.departments));
+        setEmpModes(transformArrayToOptionsList(dataResponse.employment_modes));
+        setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
+      }
+    } catch (error) {
+      console.error("Error fetching dropdown data:", error);
+    }
+  };
 
   useEffect(() => {
-    fetchDataAndSetContext();
+    fetchFirebaseData();
   }, []);
 
   return (
@@ -81,9 +95,9 @@ const DataProvider = ({ children }: { children: any }) => {
         tableProps,
         addTableProps,
         loading,
-        fetchDataAndSetContext,
+        fetchEmployeeData,
         addEmployees,
-        dataEmployees,
+        data,
       }}
     >
       {children}
