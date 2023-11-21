@@ -15,13 +15,7 @@ import { getData } from "../api/functions.ts";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<Data>({
-    employees: [],
-    departments: [],
-    designations: [],
-    employment_modes: [],
-    skills: [],
-  });
+  const [dataEmployees, setDataEmployees] = useState<Employee[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [designations, setDesignations] = useState<SelectProps[]>([]);
   const [departments, setDepartments] = useState<SelectProps[]>([]);
@@ -52,9 +46,9 @@ const DataProvider = ({ children }: { children: any }) => {
     try {
       addLoader(true);
       const response = await getData("/.json");
-      const dataResponse = response.data;
+      const dataResponse: Data = response.data;
       if (dataResponse) {
-        setData(dataResponse);
+        setDataEmployees(dataResponse.employees);
         setEmployees(dataResponse.employees);
         return dataResponse; // Resolve the promise with the data
       } else {
@@ -97,7 +91,8 @@ const DataProvider = ({ children }: { children: any }) => {
         loading,
         fetchEmployeeData,
         addEmployees,
-        data,
+        addLoader,
+        dataEmployees,
       }}
     >
       {children}

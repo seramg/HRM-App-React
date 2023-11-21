@@ -34,9 +34,10 @@ export interface ContextProps {
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
-  fetchEmployeeData: () => Promise<Data>;
+  fetchEmployeeData: () => void;
   addEmployees: (employees: Employee[]) => void;
-  data: Data;
+  addLoader:(loadingState:boolean)=>void;
+  dataEmployees: Employee[];
 }
 
 export interface Skill {

@@ -8,12 +8,12 @@ import Loader from "./../Loader/Loader.tsx";
 import { filterData, searchData, sortData } from "../../utils/helper.ts";
 
 function EmployeeTable() {
-  const { employees, loading, tableProps, data } =
+  const { employees, loading, tableProps, dataEmployees } =
     useContext(DataContext);
 
   const employeesVal = useMemo(() => {
     if (employees) {
-      const sortedEmployees = sortData(data.employees, tableProps);
+      const sortedEmployees = sortData(dataEmployees, tableProps);
       const filteredEmployees = filterData(sortedEmployees, tableProps);
       const searchedEmployees = searchData(filteredEmployees, tableProps);
       return [...searchedEmployees];

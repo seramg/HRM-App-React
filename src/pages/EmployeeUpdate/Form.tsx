@@ -13,7 +13,7 @@ import {
   resetSelects,
 } from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
 import {
   Employee,
@@ -23,6 +23,7 @@ import {
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { updateData } from "../../core/api/functions.ts";
 import { toast } from "react-toastify";
+import Loader from "../../components/Loader/Loader.tsx";
 
 function Form() {
   const {
@@ -30,7 +31,8 @@ function Form() {
     tableProps,
     addTableProps,
     fetchEmployeeData,
-    addEmployees,
+    addLoader,
+    loading,
   } = useContext(DataContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,19 +44,25 @@ function Form() {
 
   const employeeId: string | null =
     urlType === "edit-employee" ? searchParams.get("employeeId") : null;
-  let employee: Employee | undefined = employees
-    ? employees.find((emp) => emp && emp.id === employeeId)
-    : undefined;
-  let formEmployee: FormEmployee = employee
-    ? convertToFormEmployee(employee)
-    : defaultValues;
+
+  const employee: Employee | undefined = employees?.find(
+    (emp) => emp && emp.id === employeeId
+  );
 
   const currentDate = new Date().toISOString().split("T")[0];
 
   const methods = useForm<FormEmployee>({
     mode: "onChange",
-    defaultValues: formEmployee,
   });
+
+  useEffect(() => {
+    addLoader(true);
+    const newformEmployee = employee
+      ? convertToFormEmployee(employee)
+      : defaultValues;
+    addLoader(false);
+    methods.reset(newformEmployee);
+  }, [employee]);
 
   const onReset = () => {
     const resettedTableProps: TableProps = {
@@ -119,20 +127,7 @@ function Form() {
     }
   });
 
-  useEffect(() => {
-    if (urlType === "edit-employee" && !employee) {
-      fetchEmployeeData().then((response) => {
-        addEmployees(response.employees);
-        employee = response.employees
-          ? response.employees.find((emp) => emp && emp.id === employeeId)
-          : undefined;
-        formEmployee = employee
-          ? convertToFormEmployee(employee)
-          : defaultValues;
-        methods.reset(formEmployee);
-      });
-    }
-  }, []);
+  if (loading) return <Loader />;
 
   return (
     <main className="main-section global-width">
