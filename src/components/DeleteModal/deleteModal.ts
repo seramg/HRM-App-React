@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ModalWrapper = styled.td`
+const DeleteModalWrapper = styled.td`
    top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -21,4 +21,4 @@ const ModalWrapper = styled.td`
     align-self: end;
   }
 `;
-export default ModalWrapper;
+export default DeleteModalWrapper;

@@ -5,6 +5,7 @@ function InputError({ error }: { error: string | undefined }) {
     <InputErrorWrapper className="input-error">
       <span className="material-symbols-outlined">warning</span>
       <span className="error-text">{error}</span>
+      {/* input error  message */}
     </InputErrorWrapper>
   );
 }

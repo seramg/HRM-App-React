@@ -1,11 +1,14 @@
 import { Controller, useFormContext } from "react-hook-form";
 import Select from "react-select";
-import { Employee, SelectProps } from "../../core/interfaces/interface.ts";
+import {
+  Employee,
+  SelectOptionProps,
+} from "../../core/interfaces/interface.ts";
 import InputWrapper from "../Input/input.ts";
 import InputError from "../InputError/InputError.tsx";
 import selectStyles from "./selectCustomStyles.ts";
 
-function SelectInput({
+function FormSelect({
   label,
   options,
   placeholder,
@@ -13,7 +16,7 @@ function SelectInput({
   fieldName,
 }: {
   label: string;
-  options: SelectProps[];
+  options: SelectOptionProps[];
   placeholder: string;
   isMulti?: boolean;
   fieldName: keyof Employee;
@@ -23,7 +26,7 @@ function SelectInput({
     formState: { errors },
   } = useFormContext();
 
-  const errorMsg = errors[fieldName];
+  const errorMsg = errors[fieldName]; // gets the input errors if it violates the validation
   const className = errorMsg ? `input-border-error ${label}` : "label";
 
   return (
@@ -44,9 +47,12 @@ function SelectInput({
                 options={options}
                 placeholder={<div className="placeholder">{placeholder}</div>}
                 isMulti={isMulti || false}
-                styles={selectStyles}
+                styles={selectStyles} // custom style for select dropdown
               />
-              {errorMsg && <InputError error={errorMsg.message?.toString()} />}
+              {
+                errorMsg && <InputError error={errorMsg.message?.toString()} />
+                // gets the error component if it has errormsg set
+              }
             </div>
           </>
         )}
@@ -55,4 +61,4 @@ function SelectInput({
   );
 }
 
-export default SelectInput;
+export default FormSelect;

@@ -1,13 +1,13 @@
-import { SelectProps } from "@mui/material";
 import {
   CSSObjectWithLabel,
   ControlProps,
   DropdownIndicatorProps,
   StylesConfig,
 } from "react-select";
+import { SelectOptionProps } from "../../core/interfaces/interface";
 
-const selectStyles: StylesConfig<SelectProps> = {
-  control: (base: CSSObjectWithLabel, state: ControlProps<SelectProps>) => ({
+const selectStyles: StylesConfig<SelectOptionProps> = {
+  control: (base: CSSObjectWithLabel, state: ControlProps<SelectOptionProps>) => ({
     ...base,
     border: state.isFocused
       ? "1px solid  var(--light-gray-color)"
@@ -25,13 +25,13 @@ const selectStyles: StylesConfig<SelectProps> = {
   }),
   dropdownIndicator: (
     base: CSSObjectWithLabel,
-    state: DropdownIndicatorProps<SelectProps>
+    state: DropdownIndicatorProps<SelectOptionProps>
   ) => ({
     ...base,
     color: state.isFocused
       ? "var(--light-gray-color)"
       : "var(--dark-gray-color)", // Set the color of the arrow
-        "&:hover": {
+    "&:hover": {
       color: "var(--light-gray-color)",
     },
   }),

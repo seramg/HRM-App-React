@@ -4,7 +4,7 @@ import {
   UseFormGetValues,
 } from "react-hook-form";
 import { Employee, FormEmployee, Skill, SortDirection, TableProps } from "../core/interfaces/interface.ts";
-import { SelectProps } from "@mui/material";
+import { SelectOptionProps } from "@mui/material";
 import React from "react";
 
 export function transformArrayToOptionsList(array: string[]) {
@@ -36,7 +36,7 @@ export function convertToFormEmployee(employee: Employee): FormEmployee {
     skills: transformArrayToSkillOptionsList(employee.skills),
   };
 }
-export function resetSelects() {
+export function resetFiltersAndSearchBar() {
   const resettedValues = {
     department: null,
     designation: null,
@@ -49,7 +49,7 @@ export function resetSelects() {
 
 export function defaultFormVal() {
   const resettedVals = {
-    ...resetSelects(),
+    ...resetFiltersAndSearchBar(),
     emp_name: null,
     email: null,
     phone: null,
@@ -71,7 +71,7 @@ export const handleChange = (
 ) => {
   const currentFilters: FieldValues = getValues();
   let currentTableProps: TableProps = {
-    ...resetSelects(),
+    ...resetFiltersAndSearchBar(),
     sort: tableProps.sort,
   };
   Object.keys(currentFilters).forEach((key: string) => {
@@ -109,7 +109,7 @@ export const filterData = (employees: Employee[], tableProps: TableProps) => {
           ? tableProps.designation.value === employee.designation
           : true;
         const skillMatch = tableProps.skills
-          ? tableProps.skills.every((skillFilter: SelectProps) => {
+          ? tableProps.skills.every((skillFilter: SelectOptionProps) => {
             return employee.skills.some(
               (skill) => skill.id === skillFilter.value
             );
@@ -231,7 +231,7 @@ export const getNewEmpId = (employees: Employee[]) => {
 };
 
 export const getNewEmployeeDetails = (formData: FieldValues) => {
-  const skillsInNewFormat = formData.skills.map((skill: SelectProps) => ({
+  const skillsInNewFormat = formData.skills.map((skill: SelectOptionProps) => ({
     id: skill.value,
     name: skill.label,
   }));

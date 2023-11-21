@@ -16,7 +16,8 @@ function EmployeeTable() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const employeesVal = useMemo(() => {
+  const employeesTableView = useMemo(() => {
+    
     if (!employees) {
       return [];
     }
@@ -37,12 +38,13 @@ function EmployeeTable() {
         <TableHead />
         {loading ? (
           <tbody>
-            <Loader />
+            {/* This component is rendered when data is fetching from database */}
+            <Loader /> 
           </tbody>
         ) : (
           <tbody>
-            {employeesVal.length > 0 ? (
-              employeesVal.map((employee: Employee, index: number) => {
+            {employeesTableView.length > 0 ? (
+              employeesTableView.map((employee: Employee, index: number) => {
                 return (
                   employee && (
                     <TableData

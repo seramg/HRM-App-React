@@ -20,17 +20,6 @@ const TableWrapper = styled.table`
   .no-data {
     text-align: center;
   }
-  .skill-list {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .skill-card {
-    background-color: var(--primary-color);
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-  }
   .alternate-table-row-color {
     background-color: var(--white-color);
   }

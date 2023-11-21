@@ -1,22 +1,23 @@
-import MainHeading from "./../../components/MainHeading/MainHeading.tsx";
+import MainHeading from "../../components/MainHeading/MainHeading.tsx";
 import ActionsBar from "../../components/SearchAndFilter/SearchAndFilter.tsx";
 import EmployeeTable from "../../components/EmployeeTable/EmployeeTable.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function HomePage() {
+function EmployeeListing() {
   return (
-    <main className="main-section global-width">
+    <>
       <ToastContainer
         position="top-right"
         autoClose={5000}
         closeOnClick
-        pauseOnFocusLoss={false}
+        pauseOnFocusLoss={false} // avoid pausing when the window looses the focus
       />
-      <MainHeading />
+      <MainHeading /> 
+      {/* include searching filtering techniques */}
       <ActionsBar />
       <EmployeeTable />
-    </main>
+    </>
   );
 }
-export default HomePage;
+export default EmployeeListing;

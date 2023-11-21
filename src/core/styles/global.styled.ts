@@ -135,6 +135,17 @@ td {
 .rotate {
   transform: rotate(180deg);
 }
+.skill-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.skill-card {
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
 `;
 
 export default GlobalStyle;

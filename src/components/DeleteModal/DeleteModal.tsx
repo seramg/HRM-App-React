@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { deleteData } from "../../core/api/functions.ts";
 import Button from "../Button/Button.tsx";
 import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
-import ModalWrapper from "./modal";
 import DataContext from "../../core/store/DataContext.tsx";
 import { toast } from "react-toastify";
+import DeleteModalWrapper from "./../DeleteModal/deleteModal.ts";
 
-function Modal({
-  cancelModal,
+function DeleteModal({
+  cancelDltModal,
   employeeId,
 }: {
-  cancelModal: () => void;
+  cancelDltModal: () => void;
   employeeId: string;
 }) {
   const { employees, fetchEmployeeData } = useContext(DataContext);
@@ -28,7 +28,7 @@ function Modal({
     const url = `/employees/${indexToDlt}.json`;
 
     try {
-      await deleteData(url);
+      await deleteData(url); // deleting employee in firebase
       console.log("Employee deleted successfully");
       // Display toast for success state
       toast.success(`Deleted user ${employees[indexToDlt].emp_name}`, {
@@ -38,14 +38,19 @@ function Modal({
       toast.error("Error deleting user");
       console.error("Error deleting item:", error);
     } finally {
-      fetchEmployeeData();
+      fetchEmployeeData(); // data fetched after employee deletion
     }
 
-    cancelModal();
+    cancelDltModal();
   };
+
   return (
-    <ModalWrapper>
-      <Button icon="close" className="close-btn" onClick={cancelModal}></Button>
+    <DeleteModalWrapper>
+      <Button
+        icon="close"
+        className="close-btn"
+        onClick={cancelDltModal}
+      ></Button>
       <h2 className="subheading">
         Are you sure you want to delete the employee {employeeId}?
       </h2>
@@ -54,10 +59,10 @@ function Modal({
         details related to the employee. Are you sure you want to continue?
       </p>
       <ButtonGrpWrapper>
-        <Button onClick={cancelModal}>Cancel</Button>
+        <Button onClick={cancelDltModal}>Cancel</Button>
         <Button onClick={confirmDlt}>Confirm</Button>
       </ButtonGrpWrapper>
-    </ModalWrapper>
+    </DeleteModalWrapper>
   );
 }
-export default Modal;
+export default DeleteModal;

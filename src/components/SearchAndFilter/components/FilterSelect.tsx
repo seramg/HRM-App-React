@@ -1,28 +1,28 @@
 import { useContext, useState } from "react";
 import Select from "react-select";
 import {
-  SelectInputProps,
+  SelectDropdownProps,
+  SelectOptionProps,
   TableProps,
 } from "../../../core/interfaces/interface.ts";
 import DataContext from "../../../core/store/DataContext.tsx";
 import InputWrapper from "../../Input/input.ts";
 import selectStyles from "../../Select/selectCustomStyles.ts";
-import { SelectProps } from "@mui/material";
 
-function SelectFilter({
+function FilterSelect({
   label,
   options,
   placeholder,
   isMulti,
   fieldName,
-}: SelectInputProps) {
+}: SelectDropdownProps) {
   const { addTableProps, tableProps } = useContext(DataContext);
 
   return (
     <InputWrapper>
       {label}
       <Select
-        value={tableProps[fieldName] as SelectProps | SelectProps[]}
+        value={tableProps[fieldName] as SelectOptionProps | SelectOptionProps[]}
         isClearable={true}
         className="label"
         isSearchable={true}
@@ -33,7 +33,7 @@ function SelectFilter({
         onChange={(selectedOption) => {
           const currentTableProps: TableProps = {
             ...tableProps,
-            [fieldName]: selectedOption,
+            [fieldName]: selectedOption, // once the select dropdown option is changed, the totalprops changes
           };
           addTableProps(currentTableProps);
         }}
@@ -42,4 +42,4 @@ function SelectFilter({
   );
 }
 
-export default SelectFilter;
+export default FilterSelect;

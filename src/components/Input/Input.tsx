@@ -5,11 +5,13 @@ import RadioGrp from "../Radio/RadioGrp.tsx";
 import InputWrapper from "./input.ts";
 
 function Input({  validation, label, type, options, name }: InputProps) {
+  
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  const errorMsg = errors[name];
+
+  const errorMsg = errors[name]; // error value for input
   const className = errorMsg ? `input-border-error ${label}` : "label";
 
   return (
@@ -43,7 +45,7 @@ function Input({  validation, label, type, options, name }: InputProps) {
                 message: "This field is required",
               },
             })}
-            max={validation?.max?.value} 
+            max={validation?.max?.value} // for date input
           />
           {errorMsg && <InputError error={errorMsg.message?.toString()} />}
         </div>

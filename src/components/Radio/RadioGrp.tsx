@@ -10,6 +10,7 @@ function RadioGrp({
   label: string;
   name: string;
 }) {
+
   const { register } = useFormContext();
 
   return (
@@ -21,7 +22,7 @@ function RadioGrp({
         {...register(name, {
           required: {
             value: true,
-            message: "This field is required",
+            message: "This field is required", // validation fpr radio input
           },
         })}
       />

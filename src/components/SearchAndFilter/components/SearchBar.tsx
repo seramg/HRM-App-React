@@ -4,7 +4,7 @@ import Button from "../../Button/Button.tsx";
 import SearchWrapper from "./search.ts";
 import { TableProps } from "../../../core/interfaces/interface.ts";
 
-function Search() {
+function SearchBar() {
   const { addTableProps, tableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
 
@@ -49,4 +49,4 @@ function Search() {
     </SearchWrapper>
   );
 }
-export default Search;
+export default SearchBar;

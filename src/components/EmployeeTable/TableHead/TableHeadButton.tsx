@@ -19,12 +19,13 @@ function TableHeadButton({
 }) {
   const { tableProps, addTableProps } = useContext(DataContext);
 
-  let currentSortCriteria = findSortCriteria(children);
+  const currentSortCriteria = findSortCriteria(children); // get the employee property from the data label on which the table is sorted
   const visible = currentSortCriteria === tableProps.sort.sortTerm;
   let sortIcon = "rotate";
-  let newSortProp = SortDirection.NO_SORT;
+  let newSortProp = SortDirection.NO_SORT; // sorting order
 
   if (visible) {
+     // inverting the sort order with the sorticon toggling the visibility 
     if (tableProps.sort.sortVal === SortDirection.DESC) {
       newSortProp = SortDirection.ASC;
       sortIcon = "";
@@ -37,11 +38,10 @@ function TableHeadButton({
   }
 
   function sortBtnClickHandler() {
-    
     const updatedTableProps: TableProps = {
-      ...tableProps,
+      ...tableProps, // maintain the tableprops value
       sort: {
-        sortTerm: currentSortCriteria.toString(),
+        sortTerm: currentSortCriteria.toString(), 
         sortVal: newSortProp,
       },
     };
@@ -49,18 +49,20 @@ function TableHeadButton({
   }
 
   return (
-    <ButtonWrapper
-      className={`common-flex ${className}`}
-      onClick={sortBtnClickHandler}
-    >
-      <TableHeadIconWrapper
-        $visible={visible}
-        className={`material-symbols-outlined ${sortIcon}`}
+    <th>
+      <ButtonWrapper
+        className={`common-flex ${className}`}
+        onClick={sortBtnClickHandler}
       >
-        {icon}
-      </TableHeadIconWrapper>
-      {children}
-    </ButtonWrapper>
+        <TableHeadIconWrapper
+          $visible={visible}
+          className={`material-symbols-outlined ${sortIcon}`}
+        >
+          {icon}
+        </TableHeadIconWrapper>
+        {children}
+      </ButtonWrapper>
+    </th>
   );
 }
 export default TableHeadButton;

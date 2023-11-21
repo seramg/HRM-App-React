@@ -6,7 +6,7 @@ import {
 import {
   Data,
   Employee,
-  SelectProps,
+  SelectOptionProps,
   SortDirection,
   TableProps,
 } from "../interfaces/interface.ts";
@@ -17,18 +17,18 @@ const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [dataEmployees, setDataEmployees] = useState<Employee[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
-  const [designations, setDesignations] = useState<SelectProps[]>([]);
-  const [departments, setDepartments] = useState<SelectProps[]>([]);
-  const [empModes, setEmpModes] = useState<SelectProps[]>([]);
-  const [skills, setSkills] = useState<SelectProps[]>([]);
+  const [designations, setDesignations] = useState<SelectOptionProps[]>([]);
+  const [departments, setDepartments] = useState<SelectOptionProps[]>([]);
+  const [empModes, setEmpModes] = useState<SelectOptionProps[]>([]);
+  const [skills, setSkills] = useState<SelectOptionProps[]>([]);
   const [tableProps, setTableProps] = useState<TableProps>({
     department: null,
     designation: null,
     employment_mode: null,
     skills: null,
     sort: {
-      sortVal: SortDirection.NO_SORT,
-      sortTerm: "",
+      sortVal: SortDirection.NO_SORT, // sorting order
+      sortTerm: "", // sort the table using this property
     },
     search_term: "",
   });

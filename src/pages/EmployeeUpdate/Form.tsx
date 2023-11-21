@@ -2,7 +2,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../components/Button/Button.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import Input from "../../components/Input/Input.tsx";
-import SelectList from "../../components/Select/SelectList.tsx";
+import FormSelectList from "../../components/Select/FormSelectList.tsx";
 import {
   checkEmployeesEqual,
   convertToFormEmployee,
@@ -10,7 +10,7 @@ import {
   getNewEmpId,
   getNewEmployeeDetails,
   getUrlType,
-  resetSelects,
+  resetFiltersAndSearchBar,
 } from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
 import { useContext, useEffect } from "react";
@@ -66,7 +66,7 @@ function Form() {
 
   const onReset = () => {
     const resettedTableProps: TableProps = {
-      ...resetSelects(),
+      ...resetFiltersAndSearchBar(),
       sort: tableProps.sort,
     };
     methods.reset(defaultValues);
@@ -227,7 +227,7 @@ function Form() {
           </Fieldset>
           <Fieldset className="other-details ">
             <legend className="subheading">Other Information</legend>
-            <SelectList />
+            <FormSelectList />
           </Fieldset>
           <ButtonGrpWrapper>
             <Button icon="" onClick={onReset}>

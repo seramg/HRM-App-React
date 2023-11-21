@@ -11,10 +11,10 @@ export interface SortProps {
   sortTerm: string | null;
 }
 export interface TableProps {
-  department: SelectProps | null;
-  designation: SelectProps | null;
-  skills: SelectProps[] | null;
-  employment_mode: SelectProps | null;
+  department: SelectOptionProps | null;
+  designation: SelectOptionProps | null;
+  skills: SelectOptionProps[] | null;
+  employment_mode: SelectOptionProps | null;
   sort: SortProps;
   search_term: string | null;
 }
@@ -27,16 +27,16 @@ export interface Data {
 }
 export interface ContextProps {
   employees: Employee[];
-  departments: SelectProps[];
-  designations: SelectProps[];
-  employment_modes: SelectProps[];
-  skills: SelectProps[];
+  departments: SelectOptionProps[];
+  designations: SelectOptionProps[];
+  employment_modes: SelectOptionProps[];
+  skills: SelectOptionProps[];
   tableProps: TableProps;
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
   fetchEmployeeData: () => void;
   addEmployees: (employees: Employee[]) => void;
-  addLoader:(loadingState:boolean)=>void;
+  addLoader: (loadingState: boolean) => void;
   dataEmployees: Employee[];
 }
 
@@ -62,30 +62,30 @@ export interface FormEmployee {
   address: string | null;
   date_of_birth: string | null;
   date_of_joining: string | null;
-  department: SelectProps | null;
-  designation: SelectProps | null;
+  department: SelectOptionProps | null;
+  designation: SelectOptionProps | null;
   emp_name: string | null;
-  employment_mode: SelectProps | null;
+  employment_mode: SelectOptionProps | null;
   email: string | null;
   gender: string | null;
   id: string | null;
   phone: string | null;
-  skills: SelectProps[] | null;
+  skills: SelectOptionProps[] | null;
 }
 
-export interface SelectProps {
+export interface SelectOptionProps {
   value: string;
   label: string;
 }
 
-export interface SelectInputProps {
+export interface SelectDropdownProps {
   label: string;
-  options: SelectProps[];
+  options: SelectOptionProps[];
   placeholder: string;
   isMulti?: boolean;
   control?: Control<Employee, any>;
   fieldName: keyof TableProps;
-  value?: SelectProps | SelectProps[] | null
+  value?: SelectOptionProps | SelectOptionProps[] | null
 }
 export interface InputProps {
   validation?: {
