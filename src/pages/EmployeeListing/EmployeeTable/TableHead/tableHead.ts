@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
 const TableHeadWrapper = styled.thead`
-  .table-title {
+  .table-button-head{
     cursor: pointer;
+    color: var(--secondary-color);
+
+  }
+  .table-title {
     color: var(--secondary-color);
   }
     button {
@@ -10,6 +14,11 @@ const TableHeadWrapper = styled.thead`
     background: none;
     padding: 0;
     border-radius: 0;
+  }
+  th{
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--secondary-color);
   }
 `;
 

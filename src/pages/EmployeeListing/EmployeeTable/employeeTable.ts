@@ -12,11 +12,7 @@ const TableWrapper = styled.table`
   .actions-list {
     gap: 5px;
   }
-  .employee-data {
-    font-size: 14px;
-    font-weight: normal;
-  }
-
+  
   .no-data {
     text-align: center;
   }

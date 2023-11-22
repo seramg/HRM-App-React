@@ -51,7 +51,7 @@ function TableHeadButton({
   return (
     <th>
       <ButtonWrapper
-        className={`common-flex ${className}`}
+        className={`common-flex table-button-head`}
         onClick={sortBtnClickHandler}
       >
         <TableHeadIconWrapper

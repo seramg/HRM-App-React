@@ -5,20 +5,20 @@ function TableHead() {
   return (
     <TableHeadWrapper>
       <tr>
-        <TableHeadButton icon="expand_more" className="table-title">
+        <TableHeadButton icon="expand_more" >
           Employee Id
         </TableHeadButton>
-        <TableHeadButton icon="expand_more" className="table-title">
+        <TableHeadButton icon="expand_more" >
           Name
         </TableHeadButton>
-        <TableHeadButton icon="expand_more" className="table-title">
+        <TableHeadButton icon="expand_more" >
           Designation
         </TableHeadButton>
-        <TableHeadButton icon="expand_more" className="table-title">
+        <TableHeadButton icon="expand_more" >
           Department
         </TableHeadButton>
         <th>
-          <span className="table-title"> Skills </span>
+          <span className="table-title" > Skills </span>
         </th>
         <th>
           <span className="table-title"> Actions </span>
