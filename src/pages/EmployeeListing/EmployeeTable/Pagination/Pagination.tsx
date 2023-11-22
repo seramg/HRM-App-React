@@ -3,14 +3,14 @@ import PaginationWrapper from "./pagination.ts";
 
 function Pagination({
   onPageChange,
-  totalCount,
+  totalPageCount,
   siblingCount = 1,
   currentPage,
   pageSize,
   className,
 }: {
   onPageChange: (page:number) => void;
-  totalCount: number;
+  totalPageCount: number;
   siblingCount?: number;
   currentPage: number;
   pageSize: number;
@@ -18,12 +18,11 @@ function Pagination({
 }) {
   const paginationRange = usePagination({
     currentPage,
-    totalCount,
+    totalPageCount,
     siblingCount,
     pageSize,
   });
 
-  console.log(paginationRange)
 
   if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
     return null;

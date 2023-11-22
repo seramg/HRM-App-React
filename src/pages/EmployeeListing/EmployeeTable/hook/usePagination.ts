@@ -10,12 +10,12 @@ const range = (start: number, end: number) => {
 
 
 function usePagination({
-    totalCount,
+    totalPageCount,
     pageSize,
     siblingCount = 1,
     currentPage
 }: {
-    totalCount: number,
+    totalPageCount: number,
     pageSize: number,
     siblingCount?: number,
     currentPage: number
@@ -23,7 +23,6 @@ function usePagination({
 
     const paginationRange = useMemo(() => {
 
-        const totalPageCount = Math.ceil(totalCount / pageSize);
         // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
         const totalPageNumbers = siblingCount + 5; // always 6
         
@@ -80,7 +79,7 @@ function usePagination({
             
             return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
         }
-    }, [totalCount, pageSize, siblingCount, currentPage]);
+    }, [totalPageCount, pageSize, siblingCount, currentPage]);
 
     return paginationRange;
 
