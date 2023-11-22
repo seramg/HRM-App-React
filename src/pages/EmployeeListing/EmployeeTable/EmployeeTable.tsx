@@ -5,10 +5,10 @@ import TableWrapper from "./employeeTable.ts";
 import TableData from "./TableData/TableData.tsx";
 import TableHead from "./TableHead/TableHead.tsx";
 import Loader from "../../../components/Loader/Loader.tsx";
-import { filterData, searchData, sortData } from "../../../utils/helper.ts";
+import { filterData, removeNullEmployees, searchData, sortData } from "../../../utils/helper.ts";
 import Pagination from "./Pagination/Pagination.tsx";
 
-let PageSize = 10;
+let pageSize = 5;
 
 function EmployeeTable() {
   const { employees, loading, tableProps, dataEmployees } =
@@ -21,15 +21,15 @@ function EmployeeTable() {
     if (!employees) {
       return [];
     }
-
     const sortedEmployees = sortData(dataEmployees, tableProps);
     const filteredEmployees = filterData(sortedEmployees, tableProps);
     const searchedEmployees = searchData(filteredEmployees, tableProps);
+    const nonNullEmployees = removeNullEmployees(searchedEmployees);
+    
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
 
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-
-    return searchedEmployees.slice(firstPageIndex, lastPageIndex);
+    return nonNullEmployees.slice(firstPageIndex, lastPageIndex);
   }, [tableProps, employees, currentPage]);
 
   return (
@@ -69,7 +69,7 @@ function EmployeeTable() {
         className="pagination-bar"
         currentPage={currentPage}
         totalCount={employees.length}
-        pageSize={PageSize}
+        pageSize={pageSize}
         onPageChange={(page: number) => setCurrentPage(page)}
       />
     </>

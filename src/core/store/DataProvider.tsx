@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  removeNullEmployees,
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
@@ -42,6 +43,8 @@ const DataProvider = ({ children }: { children: any }) => {
   const addLoader = (loadingState: boolean) => {
     setLoading(loadingState);
   };
+
+  
   const fetchEmployeeData = async () => {
     try {
       addLoader(true);
@@ -49,7 +52,8 @@ const DataProvider = ({ children }: { children: any }) => {
       const dataResponse: Data = response.data;
       if (dataResponse) {
         setDataEmployees(dataResponse.employees);
-        setEmployees(dataResponse.employees);
+        const nonNullEmployees = removeNullEmployees(dataResponse.employees)
+        setEmployees(nonNullEmployees);
         return dataResponse; // Resolve the promise with the data
       } else {
         throw new Error("No data received");

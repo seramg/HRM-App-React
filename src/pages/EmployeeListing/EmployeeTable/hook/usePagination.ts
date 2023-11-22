@@ -25,14 +25,15 @@ function usePagination({
 
         const totalPageCount = Math.ceil(totalCount / pageSize);
         // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-        const totalPageNumbers = siblingCount + 5;
-
+        const totalPageNumbers = siblingCount + 5; // always 6
+        
         /*
           If the number of pages is less than the page numbers we want to show in our
           paginationComponent, we return the range [1..totalPageCount]
         */
         if (totalPageNumbers >= totalPageCount) {
             return range(1, totalPageCount);
+            // the dots will appear only if the totalPageCount > 6
         }
 
         const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
@@ -45,6 +46,8 @@ function usePagination({
           We do not want to show dots if there is only one position left 
           after/before the left/right page count as that would lead to a change if our Pagination
           component size which we do not want
+
+          Following code will render only when page numbers > 6
         */
         const shouldShowLeftDots = leftSiblingIndex > 2;
         const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2;
@@ -52,6 +55,7 @@ function usePagination({
         const firstPageIndex = 1;
         const lastPageIndex = totalPageCount;
 
+        // Show dots to the right side. More pages on right.
         if (!shouldShowLeftDots && shouldShowRightDots) {
             let leftItemCount = 3 + 2 * siblingCount;
             let leftRange = range(1, leftItemCount);
@@ -59,17 +63,21 @@ function usePagination({
             return [...leftRange, DOTS, totalPageCount];
         }
 
+        // Show dots to the left side. More pages on left.
         if (shouldShowLeftDots && !shouldShowRightDots) {
             let rightItemCount = 3 + 2 * siblingCount;
             let rightRange = range(
                 totalPageCount - rightItemCount + 1,
                 totalPageCount
             );
+
             return [firstPageIndex, DOTS, ...rightRange];
         }
 
+        // Show dots to the left and right side. Almost large number of pages on left and right side.
         if (shouldShowLeftDots && shouldShowRightDots) {
             let middleRange = range(leftSiblingIndex, rightSiblingIndex);
+            
             return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
         }
     }, [totalCount, pageSize, siblingCount, currentPage]);

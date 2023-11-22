@@ -265,6 +265,7 @@ export const getWorkExp = (dateOfJoining: string) => {
   const workExp: number = Math.floor((now.getTime() - DOJ.getTime()) / (1000 * 60 * 60 * 24 * 30));
   return (workExp.toString() + "  months");
 }
+
 export const getDateView = (dateVal: string) => {
   const [year, month, day] = dateVal.split("-").map(Number);
   const monthName = new Date(year, month - 1, 1).toLocaleString('default', { month: 'long' });
@@ -320,4 +321,12 @@ export const checkSkillsEqual = (originalSkillList: Skill[], editedSkillList: Sk
   }
 
   return true;
+}
+
+export const removeNullEmployees = (employees: Employee[]) => {
+  return employees.filter((employee) => {
+    if (employee) {
+      return employee
+    }
+  })
 }
