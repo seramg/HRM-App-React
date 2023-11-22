@@ -33,6 +33,7 @@ const DataProvider = ({ children }: { children: any }) => {
     },
     search_term: "",
   });
+  const [employeesCount, setEmployeesCount] = useState<number>(0);
 
   const addEmployees = (employees: Employee[]) => {
     setEmployees(employees);
@@ -44,7 +45,7 @@ const DataProvider = ({ children }: { children: any }) => {
     setLoading(loadingState);
   };
 
-  
+
   const fetchEmployeeData = async () => {
     try {
       addLoader(true);
@@ -64,6 +65,7 @@ const DataProvider = ({ children }: { children: any }) => {
       addLoader(false);
     }
   };
+
   const fetchFirebaseData = async () => {
     try {
       const dataResponse = await fetchEmployeeData();
@@ -72,6 +74,7 @@ const DataProvider = ({ children }: { children: any }) => {
         setDepartments(transformArrayToOptionsList(dataResponse.departments));
         setEmpModes(transformArrayToOptionsList(dataResponse.employment_modes));
         setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
+        setEmployeesCount(dataResponse.employeesCount)
       }
     } catch (error) {
       console.error("Error fetching dropdown data:", error);
@@ -97,6 +100,7 @@ const DataProvider = ({ children }: { children: any }) => {
         addEmployees,
         addLoader,
         dataEmployees,
+        employeesCount,
       }}
     >
       {children}

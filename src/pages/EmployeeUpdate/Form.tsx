@@ -33,6 +33,7 @@ function Form() {
     fetchEmployeeData,
     addLoader,
     loading,
+    employeesCount
   } = useContext(DataContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -77,14 +78,17 @@ function Form() {
     const newEmployee = getNewEmployeeDetails(methods.getValues());
 
     if (!employee) {
-      const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(employees) };
+      const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(employeesCount) };
       try {
         await updateData(
           `/employees/${employees.length}.json`,
           newEmployeeToAdd
         );
-        console.log("Employee added successfully");
 
+        await updateData("/employeesCount.json", employeesCount + 1);
+        console.log("Employee added successfully");
+        navigate(`/`);
+        fetchEmployeeData();
         // Display toast for success state
         toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
           toastId: "add-toast-id",
@@ -93,8 +97,6 @@ function Form() {
         toast.error("Error adding new user");
         console.error("Error submitting form:", error);
       } finally {
-        navigate(`/`);
-        fetchEmployeeData();
       }
     } else {
       const employeeEdited = { ...newEmployee, id: employee.id };
@@ -111,12 +113,12 @@ function Form() {
           toast.success(`Edited user ${employeeEdited.emp_name}`, {
             toastId: "edit-toast-id",
           });
+          navigate(`/`);
+          fetchEmployeeData();
         } catch (error) {
           toast.error("Error editing user");
           console.error("Error submitting form:", error);
         } finally {
-          navigate(`/`);
-          fetchEmployeeData();
         }
       } else {
         toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {

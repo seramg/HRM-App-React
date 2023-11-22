@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { deleteData } from "../../core/api/functions.ts";
+import { deleteData, updateData } from "../../core/api/functions.ts";
 import Button from "../Button/Button.tsx";
 import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import DataContext from "../../core/store/DataContext.tsx";
@@ -13,7 +13,7 @@ function DeleteModal({
   cancelDltModal: () => void;
   employeeId: string;
 }) {
-  const { employees, fetchEmployeeData } = useContext(DataContext);
+  const { employees,employeesCount, fetchEmployeeData } = useContext(DataContext);
 
   const confirmDlt = async () => {
     const indexToDlt = employees.findIndex(

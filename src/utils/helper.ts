@@ -205,25 +205,15 @@ export const sortData = (
   return sortedEmployees;
 };
 
-export const getNewEmpId = (employees: Employee[]) => {
-  let largestId = null;
-  //Comparing the ids of the employee
-  for (const employee of employees) {
-    if (employee != null) {
-      const idNumber = parseInt(employee.id.substring(3));
-      if (largestId === null || idNumber > parseInt(largestId.substring(3))) {
-        largestId = employee.id;
-      }
-    }
-  }
+export const getNewEmpId = (employeesCount: number) => {
   //Creating the new id
-  if (largestId) {
-    const newEmpId = parseInt(largestId.substring(3)) + 1;
+  if (employeesCount) {
+    const newEmpId = employeesCount + 1;
     const newEmpIdStr =
       newEmpId.toString().length <= 2
         ? "0".concat(newEmpId.toString())
         : newEmpId.toString();
-    return largestId.substring(0, 3).concat(newEmpIdStr);
+    return "EMP".concat(newEmpIdStr);
   } else {
     return "EMP001";
   }

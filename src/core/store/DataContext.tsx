@@ -24,6 +24,7 @@ const DataContext = createContext<ContextProps>({
   addEmployees: () => {},
   addLoader: () => {},
   dataEmployees: [],
+  employeesCount: 0
 });
 
 export default DataContext;
