@@ -5,13 +5,18 @@ import StyledLink from "../../../../components/StyledLink.ts";
 import Button from "../../../../components/Button/Button.tsx";
 import SkillsChip from "../../../../components/Skills/SkillsChip.tsx";
 import DeleteModal from "../../../../components/DeleteModal/DeleteModal.tsx";
+import { useNavigate } from "react-router-dom";
 
 function TableData({ employee, index }: { employee: Employee; index: number }) {
-  
-  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close 
+  const navigate = useNavigate();
+  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close
 
   const cancelDltModal = () => {
     setDeleteModal(() => !deleteModal);
+  };
+
+  const handleEmployeeDetailsView = () => {
+    navigate(`/view-employee?employeeId=${employee.id}`);
   };
 
   return (
@@ -20,7 +25,10 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
       className={index % 2 !== 0 ? "alternate-table-row-color" : ""} // alternate colour for each row
     >
       <td className="employee-data employee-id">{employee.id}</td>
-      <td className="employee-data">{employee.emp_name}</td>
+      {/* navigating to view employee page */}
+      <td className="employee-data employee-view" onClick={handleEmployeeDetailsView}>
+        {employee.emp_name}
+      </td>
       <td className="employee-data">{employee.designation}</td>
       <td className="employee-data">{employee.department}</td>
       <td className="employee-data">
@@ -28,10 +36,6 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
       </td>
       <td className="employee-data">
         <div className=" actions-list common-flex">
-          {/* navigating to view employee page */}
-          <StyledLink to={`/view-employee?employeeId=${employee.id}`}>
-            <Button icon="visibility"></Button>
-          </StyledLink>
           {/* navigating to edit employee page */}
           <StyledLink to={`/edit-employee?employeeId=${employee.id}`}>
             <Button icon="edit"></Button>
@@ -41,7 +45,9 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
         </div>
       </td>
 
-      {deleteModal && <DeleteModal cancelDltModal={cancelDltModal} employeeId={employee.id} />}
+      {deleteModal && (
+        <DeleteModal cancelDltModal={cancelDltModal} employeeId={employee.id} />
+      )}
     </TableDataWrapper>
   );
 }

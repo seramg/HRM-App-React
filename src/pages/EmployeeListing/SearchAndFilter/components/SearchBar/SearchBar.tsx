@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import SearchWrapper from "./search.ts";
 import { TableProps } from "../../../../../core/interfaces/interface.ts";
 import DataContext from "../../../../../core/store/DataContext.tsx";
-import Button from "../../../../../components/Button/Button.tsx";
 
 function SearchBar() {
+
   const { addTableProps, tableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
 
@@ -23,7 +23,7 @@ function SearchBar() {
     };
     addTableProps(currentTableProps);
   };
-  
+
   return (
     <SearchWrapper $focus={focus} className="common-flex">
       <div id="searchForm" className="search-form common-flex">
@@ -41,12 +41,6 @@ function SearchBar() {
           onBlur={handleBlur}
         />
       </div>
-      <Button icon="expand_more" className="search-btn">
-        <p
-          id="search-dropdown-btn-text"
-          className="search-dropdown-btn-text"
-        ></p>
-      </Button>
     </SearchWrapper>
   );
 }

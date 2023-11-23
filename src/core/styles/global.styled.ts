@@ -163,8 +163,12 @@ th, td {
 }
 
 th:first-child,td:first-child,
-th:last-child, td:last-child {
+{
   width:90px
+}
+
+th:last-child, td:last-child {
+  width:50px;
 }
 
 `;

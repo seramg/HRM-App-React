@@ -6,7 +6,21 @@ const TableDataWrapper = styled.tr`
     font-weight: 500;
     padding: 10px;
 }
+.employee-view{
+    color: #0000FF;
+    cursor:pointer; 
 
+    &:visited{
+        color:#800080;
+    }
+    &:active{
+        text-decoration:underline;
+    }
+    &:hover{
+        color:#000099;
+        text-decoration:underline;
+    }
+}
 button {
     flex-direction: row-reverse;
     background: none;

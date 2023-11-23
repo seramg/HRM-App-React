@@ -12,11 +12,13 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
 
   .material-symbols-outlined {
     color: ${(props) =>
-    props.$focus ? " var(--dark-gray-color)" : "var(--light-gray-color)"};
+      props.$focus ? " var(--secondary-color)" : "var(--dark-gray-color)"};
   }
   .search-dropdown-btn-text {
     margin: 0;
-    color: var(--dark-gray-color);
+    color: ${(props) =>
+      props.$focus ? " var(--secondary-color)" : "var(--dark-gray-color)"};
+    font-weight: 700;
   }
 
   input:focus {
@@ -41,7 +43,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     }
   }
   .search-btn {
-    padding: 0;
+    padding: 5px;
     gap: 5px !important;
     border-radius: 0;
     background: none;
