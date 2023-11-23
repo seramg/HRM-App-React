@@ -4,6 +4,12 @@ const TableHeadWrapper = styled.thead`
   .table-button-head{
     cursor: pointer;
     color: var(--secondary-color);
+
+    &:hover{
+      .sort-icon{
+        visibility: visible;
+      }
+    }
   }
   .table-title {
     font-size:18px;

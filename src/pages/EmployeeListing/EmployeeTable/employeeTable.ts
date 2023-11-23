@@ -4,6 +4,7 @@ const TableWrapper = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+  table-layout: fixed;
 
   .material-symbols-outlined {
     color: var(--secondary-color);

@@ -21,7 +21,7 @@ function EmployeeTable() {
 
   const [currentPage, setCurrentPage] = useState(1);
   let totalCount = 0;
-  let totalPageCount =0;
+  let totalPageCount = 0;
 
   const employeesTableView = useMemo(() => {
     if (!employees) {
@@ -51,10 +51,8 @@ function EmployeeTable() {
       <TableWrapper>
         <TableHead />
         {loading ? (
-          <tbody>
-            {/* This component is rendered when data is fetching from database */}
-            <Loader />
-          </tbody>
+          /* This component is rendered when data is fetching from database */
+          <Loader />
         ) : (
           <tbody>
             {employeesTableView.length > 0 ? (

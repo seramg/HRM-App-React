@@ -54,7 +54,7 @@ function TableHeadButton({
       >
         <TableHeadIconWrapper
           $visible={visible}
-          className={`material-symbols-outlined ${sortIcon}`}
+          className={`material-symbols-outlined sort-icon ${sortIcon}`}
         >
           {icon}
         </TableHeadIconWrapper>

@@ -120,7 +120,7 @@ body {
   min-height:100%;
   margin-bottom: 80px;
 }
-table,tr{
+tr{
   border: 1px solid  #D3D3D3;
 }
 thead{
@@ -131,6 +131,10 @@ th,
 td {
   padding: 10px;
   border-spacing: 0;
+  text-align:left;
+  overflow: hidden;
+  white-space: nowrap; // text content won't wrap to the next line
+  text-overflow: ellipsis;
 }
 .m-30 {
   margin-bottom: 30px;
@@ -153,6 +157,16 @@ td {
 input{
   font-weight:500;
 }
+
+th, td {
+  width: 150px;
+}
+
+th:first-child,td:first-child,
+th:last-child, td:last-child {
+  width:90px
+}
+
 `;
 
 export default GlobalStyle;
