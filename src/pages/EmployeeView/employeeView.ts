@@ -7,7 +7,7 @@ const EmployeeViewWrapper = styled.main`
   margin-top: 80px !important;
   background-color: var(--white-color);
   padding: 20px 0;
-  border: 1px solid var(--dark-gray-color);
+  border: 1px solid var(--light-gray-color);
   border-radius: 10px;
   
   > * {
@@ -22,8 +22,8 @@ const EmployeeViewWrapper = styled.main`
     padding-bottom: 10px;
   }
   .details-section {
-    border-top: 1px solid var(--dark-gray-color);
-    border-bottom: 1px solid var(--dark-gray-color);
+    border-top: 1px solid var(--light-gray-color);
+    border-bottom: 1px solid var(--light-gray-color);
     width: 100%;
     justify-content: flex-start;
   }

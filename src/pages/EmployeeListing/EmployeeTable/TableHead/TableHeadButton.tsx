@@ -11,11 +11,9 @@ import ButtonWrapper from "../../../../components/Button/button.ts";
 function TableHeadButton({
   children,
   icon,
-  className,
 }: {
   children?: React.ReactNode;
   icon?: string;
-  className?: string | undefined;
 }) {
   const { tableProps, addTableProps } = useContext(DataContext);
 
@@ -25,7 +23,7 @@ function TableHeadButton({
   let newSortProp = SortDirection.NO_SORT; // sorting order
 
   if (visible) {
-     // inverting the sort order with the sorticon toggling the visibility 
+    // inverting the sort order with the sorticon toggling the visibility
     if (tableProps.sort.sortVal === SortDirection.DESC) {
       newSortProp = SortDirection.ASC;
       sortIcon = "";
@@ -41,7 +39,7 @@ function TableHeadButton({
     const updatedTableProps: TableProps = {
       ...tableProps, // maintain the tableprops value
       sort: {
-        sortTerm: currentSortCriteria.toString(), 
+        sortTerm: currentSortCriteria.toString(),
         sortVal: newSortProp,
       },
     };
@@ -60,7 +58,7 @@ function TableHeadButton({
         >
           {icon}
         </TableHeadIconWrapper>
-        {children}
+        <label className="table-title">{children}</label>
       </ButtonWrapper>
     </th>
   );

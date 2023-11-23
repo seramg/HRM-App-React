@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InputWrapper = styled.label`
+const InputWrapper = styled.div`
   gap: 10px;
   display: flex;
   flex-direction: column;
@@ -11,19 +11,20 @@ const InputWrapper = styled.label`
     outline: none;
     color: var(--secondary-color);
     background-color: white;
-    border: 1px solid var(--dark-gray-color);
+    border: 1px solid var(--light-gray-color);
+    font-size: 14px,
 
     &::placeholder {
-      color: var(--light-gray-color);
+      color: var(--dark-gray-color);
       font-size: 14px;
     }
     &:focus {
-      border: 1px solid var(--light-gray-color);
+      border: 1px solid var(--dark-gray-color);
     }
   }
   input[type="date"]::-webkit-input-placeholder,
   input[type="date"]::placeholder {
-    color: var(--light-gray-color);
+    color: var(--dark-gray-color);
   }
   .input-border-error {
     border: 1px solid red;
@@ -33,11 +34,11 @@ const InputWrapper = styled.label`
     flex-direction: column;
   }
   .placeholder {
-    color: var(--light-gray-color);
+    color: var(--dark-gray-color);
     font-size: 14px;
   }
   .radio-list {
-    gap: 10px;
+    gap: 15px;
     justify-content: flex-start;
   }
   .select {

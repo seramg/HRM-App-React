@@ -31,7 +31,7 @@ function FormSelect({
 
   return (
     <InputWrapper>
-      {label}
+      <label className="subheading">{label}</label>
       <Controller
         name={fieldName}
         control={control}

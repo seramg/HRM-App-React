@@ -16,7 +16,7 @@ function Input({  validation, label, type, options, name }: InputProps) {
 
   return (
     <InputWrapper>
-      {label}
+      <label className="subheading">{label}</label>
       {options ? (
         <div className="m-30">
           <div className="common-flex radio-list">

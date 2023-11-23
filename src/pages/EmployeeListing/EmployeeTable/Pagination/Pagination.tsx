@@ -9,7 +9,7 @@ function Pagination({
   pageSize,
   className,
 }: {
-  onPageChange: (page:number) => void;
+  onPageChange: (page: number) => void;
   totalPageCount: number;
   siblingCount?: number;
   currentPage: number;
@@ -22,7 +22,6 @@ function Pagination({
     siblingCount,
     pageSize,
   });
-
 
   if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
     return null;
@@ -44,7 +43,7 @@ function Pagination({
         className={`pagination-item ${currentPage === 1 ? "disabled" : ""} `}
         onClick={onPrevious}
       >
-        <div className="arrow left" />
+        <span className="material-symbols-outlined arrow">chevron_left</span>
       </li>
       {paginationRange &&
         paginationRange.map((pageNumber) => {
@@ -70,7 +69,7 @@ function Pagination({
         } `}
         onClick={onNext}
       >
-        <div className="arrow right" />
+        <span className="material-symbols-outlined arrow">chevron_right</span>
       </li>
     </PaginationWrapper>
   );

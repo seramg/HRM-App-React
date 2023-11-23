@@ -20,7 +20,7 @@ function FilterSelect({
 
   return (
     <InputWrapper>
-      {label}
+      <label className="subheading">{label}</label>
       <Select
         value={tableProps[fieldName] as SelectOptionProps | SelectOptionProps[]}
         isClearable={true}

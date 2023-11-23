@@ -7,7 +7,6 @@
   color: white;
   padding: 16px 20px;
   border-radius: 10px;
-  cursor: pointer;
   text-decoration: none;
   `;
   export default ButtonWrapper;

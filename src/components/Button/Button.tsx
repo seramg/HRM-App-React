@@ -10,12 +10,15 @@ function Button({
   children?: React.ReactNode;
   icon?: string;
   className?: string | undefined;
-  onClick?:() => void;
+  onClick?: () => void;
 }) {
   return (
-    <ButtonWrapper className={`common-flex ${className??""}`} onClick={onClick!}>
+    <ButtonWrapper
+      className={`common-flex ${className ?? ""}`}
+      onClick={onClick!}
+    >
       {icon && <span className="material-symbols-outlined"> {icon} </span>}
-      {children !== "" ? children : ""}
+      {children && <label>{children}</label>}
     </ButtonWrapper>
   );
 }

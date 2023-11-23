@@ -7,12 +7,12 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
   padding: 6px;
   border: ${(props) =>
     props.$focus
-      ? "1px solid  var(--light-gray-color)"
-      : "1px solid var(--dark-gray-color)"};
+      ? "1px solid  var(--dark-gray-color)"
+      : "1px solid var(--light-gray-color)"};
 
   .material-symbols-outlined {
     color: ${(props) =>
-      props.$focus ? " var(--light-gray-color)" : "var(--dark-gray-color)"};
+    props.$focus ? " var(--dark-gray-color)" : "var(--light-gray-color)"};
   }
   .search-dropdown-btn-text {
     margin: 0;
@@ -37,7 +37,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     padding: 0;
 
     &::placeholder {
-      color: var(--light-gray-color);
+      color: var(--dark-gray-color);
     }
   }
   .search-btn {
@@ -45,7 +45,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     gap: 5px !important;
     border-radius: 0;
     background: none;
-    border-left: 1px solid var(--dark-gray-color);
+    border-left: 1px solid var(--light-gray-color);
     flex-direction: row-reverse;
   }
 `;
