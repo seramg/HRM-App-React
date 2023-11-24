@@ -7,13 +7,13 @@ import { toast } from "react-toastify";
 import DeleteModalWrapper from "./../DeleteModal/deleteModal.ts";
 
 function DeleteModal({
-  cancelDltModal,
+  changeDltModalOpenStatus,
   employeeId,
 }: {
-  cancelDltModal: () => void;
+  changeDltModalOpenStatus: () => void;
   employeeId: string;
 }) {
-  const { employees,employeesCount, fetchEmployeeData } = useContext(DataContext);
+  const { employees, employeesCount, fetchEmployeeData } = useContext(DataContext);
 
   const confirmDlt = async () => {
     const indexToDlt = employees.findIndex(
@@ -41,15 +41,15 @@ function DeleteModal({
       fetchEmployeeData(); // data fetched after employee deletion
     }
 
-    cancelDltModal();
+    changeDltModalOpenStatus();
   };
-
+  console.log(changeDltModalOpenStatus)
   return (
     <DeleteModalWrapper>
       <Button
         icon="close"
         className="close-btn"
-        onClick={cancelDltModal}
+        onClick={changeDltModalOpenStatus}
       ></Button>
       <h2 className="subheading">
         Are you sure you want to delete the employee {employeeId}?
@@ -59,7 +59,7 @@ function DeleteModal({
         details related to the employee. Are you sure you want to continue?
       </p>
       <ButtonGrpWrapper>
-        <Button onClick={cancelDltModal}>Cancel</Button>
+        <Button onClick={changeDltModalOpenStatus}>Cancel</Button>
         <Button onClick={confirmDlt}>Confirm</Button>
       </ButtonGrpWrapper>
     </DeleteModalWrapper>

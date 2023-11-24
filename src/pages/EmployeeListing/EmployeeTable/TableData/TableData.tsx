@@ -7,17 +7,22 @@ import SkillsChip from "../../../../components/Skills/SkillsChip.tsx";
 import DeleteModal from "../../../../components/DeleteModal/DeleteModal.tsx";
 import { useNavigate } from "react-router-dom";
 
-function TableData({ employee, index }: { employee: Employee; index: number }) {
+function TableData({ employee, index, changeDltModalOpenStatus, idToDltProp }: {
+  employee: Employee; index: number, changeDltModalOpenStatus: () => void, idToDltProp: {
+    idToDlt: string;
+    addIdToDlt: (idToDlt: string) => void;
+  }
+}) {
   const navigate = useNavigate();
-  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close
-
-  const cancelDltModal = () => {
-    setDeleteModal(() => !deleteModal);
-  };
 
   const handleEmployeeDetailsView = () => {
     navigate(`/view-employee?employeeId=${employee.id}`);
   };
+
+  const handleCancelBtn = () => {
+    changeDltModalOpenStatus();
+    idToDltProp.addIdToDlt(employee.id);
+  }
 
   return (
     <TableDataWrapper
@@ -41,13 +46,9 @@ function TableData({ employee, index }: { employee: Employee; index: number }) {
             <Button icon="edit"></Button>
           </StyledLink>
           {/* opens the modal on click */}
-          <Button icon="delete" onClick={cancelDltModal}></Button>
+          <Button icon="delete" onClick={handleCancelBtn}></Button>
         </div>
       </td>
-
-      {deleteModal && (
-        <DeleteModal cancelDltModal={cancelDltModal} employeeId={employee.id} />
-      )}
     </TableDataWrapper>
   );
 }

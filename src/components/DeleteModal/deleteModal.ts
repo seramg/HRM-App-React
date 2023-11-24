@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DeleteModalWrapper = styled.td`
+const DeleteModalWrapper = styled.div`
    top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,6 +16,10 @@ const DeleteModalWrapper = styled.td`
   button{
     background:none;
     color: var(--secondary-color) !important;
+
+    > span{
+          color: var(--secondary-color) !important;
+    }
   }
   .close-btn{
     align-self: end;

@@ -12,6 +12,7 @@ import {
   sortData,
 } from "../../../utils/helper.ts";
 import Pagination from "./Pagination/Pagination.tsx";
+import DeleteModal from "../../../components/DeleteModal/DeleteModal.tsx";
 
 let pageSize = 5;
 
@@ -46,6 +47,19 @@ function EmployeeTable() {
     return nonNullEmployees.slice(firstPageIndex, lastPageIndex);
   }, [tableProps, employees, currentPage]);
 
+  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close
+  const [idToDlt, setIdToDlt] = useState("");
+
+  const addIdToDlt = (idToDlt: string) => {
+    setIdToDlt(idToDlt);
+  }
+  const idToDltProp = { idToDlt, addIdToDlt }
+
+  const changeDltModalOpenStatus = () => {
+    setDeleteModal(() => !deleteModal);
+  };
+
+
   return (
     <>
       <TableWrapper>
@@ -63,6 +77,8 @@ function EmployeeTable() {
                       key={employee.id}
                       employee={employee}
                       index={index}
+                      changeDltModalOpenStatus={changeDltModalOpenStatus}
+                      idToDltProp={idToDltProp}
                     />
                   )
                 );
@@ -77,6 +93,9 @@ function EmployeeTable() {
           </tbody>
         )}
       </TableWrapper>
+      {deleteModal && (
+        <DeleteModal changeDltModalOpenStatus={changeDltModalOpenStatus} employeeId={idToDlt} />
+      )}
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
