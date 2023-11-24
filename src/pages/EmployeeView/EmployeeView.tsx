@@ -6,6 +6,7 @@ import { getDateView, getWorkExp } from "../../utils/helper.ts";
 import Button from "../../components/Button/Button.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import DetailsSection from "../../components/Details/Details.tsx";
+import Loader from "../../components/Loader/loader.ts";
 
 function EmployeeView() {
   let [searchParams] = useSearchParams();
@@ -13,13 +14,15 @@ function EmployeeView() {
   const employeeId = searchParams.get("employeeId");
 
 
-  const { employees } = useContext(DataContext);
+  const { employees,loading } = useContext(DataContext);
   const employee = employees.find((employee) => (employee) && employee.id === employeeId);
   const [activeBtn, setActiveBtn] = useState("profile");
 
   const handleButtonClick = (buttonType: string) => {
     setActiveBtn(buttonType);
   };
+
+  if (loading) return <Loader />;
 
   return (
     employee && (
