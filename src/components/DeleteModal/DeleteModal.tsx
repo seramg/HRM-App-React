@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { deleteData, updateData } from "../../core/api/functions.ts";
+import { deleteData, getData, updateData } from "../../core/api/functions.ts";
 import Button from "../Button/Button.tsx";
 import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import DataContext from "../../core/store/DataContext.tsx";
@@ -13,11 +13,11 @@ function DeleteModal({
   changeDltModalOpenStatus: () => void;
   employeeId: string;
 }) {
-  const { employees, employeesCount, fetchEmployeeData } = useContext(DataContext);
+  const { dataEmployees, fetchEmployeeData } = useContext(DataContext);
 
   const confirmDlt = async () => {
-    const indexToDlt = employees.findIndex(
-      (employee) => employee && employee.id === employeeId
+    const indexToDlt = dataEmployees.findIndex(
+      (dataEmployee) => dataEmployee && dataEmployee.id === employeeId
     );
 
     if (indexToDlt === -1) {
@@ -31,7 +31,7 @@ function DeleteModal({
       await deleteData(url); // deleting employee in firebase
       console.log("Employee deleted successfully");
       // Display toast for success state
-      toast.success(`Deleted user ${employees[indexToDlt].emp_name}`, {
+      toast.success(`Deleted user ${dataEmployees[indexToDlt].emp_name}`, {
         toastId: "delete-toast-id",
       });
     } catch (error) {
@@ -43,7 +43,7 @@ function DeleteModal({
 
     changeDltModalOpenStatus();
   };
-  console.log(changeDltModalOpenStatus)
+
   return (
     <DeleteModalWrapper>
       <Button
