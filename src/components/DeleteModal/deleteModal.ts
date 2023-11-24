@@ -11,7 +11,7 @@ const DeleteModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
-  z-index: 5;
+  z-index: 1;
 
   button{
     background:none;

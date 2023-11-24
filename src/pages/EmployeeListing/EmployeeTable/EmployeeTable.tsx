@@ -19,6 +19,9 @@ let pageSize = 5;
 function EmployeeTable() {
   const { employees, loading, tableProps, dataEmployees } =
     useContext(DataContext);
+  
+  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close
+  const [idToDlt, setIdToDlt] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   let totalCount = 0;
@@ -45,10 +48,8 @@ function EmployeeTable() {
     const lastPageIndex = firstPageIndex + pageSize;
 
     return nonNullEmployees.slice(firstPageIndex, lastPageIndex);
-  }, [tableProps, employees, currentPage]);
+  }, [tableProps, employees, currentPage,deleteModal]);
 
-  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close
-  const [idToDlt, setIdToDlt] = useState("");
 
   const addIdToDlt = (idToDlt: string) => {
     setIdToDlt(idToDlt);
