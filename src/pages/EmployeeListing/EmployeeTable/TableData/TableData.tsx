@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Employee } from "../../../../core/interfaces/interface.ts";
 import TableDataWrapper from "./tableData.ts";
 import StyledLink from "../../../../components/StyledLink.ts";
 import Button from "../../../../components/Button/Button.tsx";
 import SkillsChip from "../../../../components/Skills/SkillsChip.tsx";
-import DeleteModal from "../../../../components/DeleteModal/DeleteModal.tsx";
 import { useNavigate } from "react-router-dom";
 
 function TableData({ employee, index, changeDltModalOpenStatus, idToDltProp }: {

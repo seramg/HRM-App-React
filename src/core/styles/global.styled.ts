@@ -143,16 +143,18 @@ td {
   transform: rotate(180deg);
 }
 .skill-list {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin:5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .skill-card {
   background-color: var(--primary-color);
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   color: white;
+  margin-right:5px;
+  display: inline-block; /* Ensure each skill card is on a single line */
 }
 input{
   font-weight:500;

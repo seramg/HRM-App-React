@@ -28,9 +28,5 @@ button {
     border-radius: 0;
 }
 
-.skill-list{
-    max-width: 100%;
-    overflow-x: auto;
-}
 `;
 export default TableDataWrapper;
