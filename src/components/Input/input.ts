@@ -24,14 +24,17 @@ const InputWrapper = styled.div`
   }
   input[type="date"]::-webkit-input-placeholder,
   input[type="date"]::placeholder {
-    color: var(--dark-gray-color);
+    color: var(--dark-gray-color) !important;
   }
-  .input-border-error {
+
+  .input-border-error, .input-border-error:focus {
     border: 1px solid red;
-  }
+  }  
   .input-field-error {
     display: flex;
     flex-direction: column;
+    position: relative;
+    min-height: 70px; /* Adjust the min-height based on your design */  
   }
   .placeholder {
     color: var(--dark-gray-color);
@@ -41,10 +44,8 @@ const InputWrapper = styled.div`
     gap: 15px;
     justify-content: flex-start;
   }
-  .select {
-    overflow: hidden;
-    text-overflow: emphasis;
-    width: 200px;
+  .select-border-radius{
+    border-radius: 4px;
   }
 `;
 export default InputWrapper;

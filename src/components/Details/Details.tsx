@@ -13,12 +13,15 @@ const DetailsSection = ({
 }) => {
   return (
     <DetailsWrapper className="common-flex">
-      <div className="heading common-flex">
+      <div className="heading overflow-ellipsis">
         <span className="material-symbols-outlined ">{icon}</span>
         <p className="title">{title}</p>
       </div>
-      {(typeof content === "string") ? <p className="content">{content}</p> :
-        <SkillsChip skills={content} />}
+      {typeof content === "string" ? (
+        <p className="content overflow-ellipsis">{content}</p>
+      ) : (
+        <SkillsChip skills={content} />
+      )}
     </DetailsWrapper>
   );
 };

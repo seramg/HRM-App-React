@@ -144,9 +144,6 @@ td {
 }
 .skill-list {
   margin:5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .skill-card {
   background-color: var(--primary-color);
@@ -173,6 +170,11 @@ th:last-child, td:last-child {
   width:50px;
 }
 
+.overflow-ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
 `;
 
 export default GlobalStyle;

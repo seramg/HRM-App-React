@@ -21,10 +21,15 @@ list-style-type: none;
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
       cursor: pointer;
+      
+      .arrow{
+        color: var(--primary-color);
+      }
     }
 
     &.selected {
-      background-color: var(--light-gray-color);
+      background-color: var(--primary-color);
+      color: var(--white-color);
     }
 
     .arrow {

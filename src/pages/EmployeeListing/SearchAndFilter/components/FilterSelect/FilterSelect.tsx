@@ -7,7 +7,7 @@ import {
 } from "../../../../../core/interfaces/interface.ts";
 import DataContext from "../../../../../core/store/DataContext.tsx";
 import InputWrapper from "../../../../../components/Input/input.ts";
-import selectStyles from "../../../../../components/SelectStyle/selectCustomStyles.ts";
+import selectStyleComponent from "../../../../../components/SelectStyle/selectCustomStyles.ts";
 
 function FilterSelect({
   label,
@@ -27,9 +27,11 @@ function FilterSelect({
         className="label"
         isSearchable={true}
         options={options}
-        placeholder={<div className="placeholder">{placeholder}</div>}
+        placeholder={
+          <div className="placeholder overflow-ellipsis">{placeholder}</div>
+        }
         isMulti={isMulti}
-        styles={selectStyles}
+        styles={selectStyleComponent()}
         onChange={(selectedOption) => {
           const currentTableProps: TableProps = {
             ...tableProps,

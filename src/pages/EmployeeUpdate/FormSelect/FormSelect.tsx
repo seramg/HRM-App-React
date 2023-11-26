@@ -27,7 +27,7 @@ function FormSelect({
   } = useFormContext();
 
   const errorMsg = errors[fieldName]; // gets the input errors if it violates the validation
-  const className = errorMsg ? `input-border-error ${label}` : "label";
+  const className = errorMsg ? `input-border-error select-border-radius ${label}` : "label";
 
   return (
     <InputWrapper>
@@ -47,7 +47,7 @@ function FormSelect({
                 options={options}
                 placeholder={<div className="placeholder">{placeholder}</div>}
                 isMulti={isMulti || false}
-                styles={selectStyles} // custom style for select dropdown
+                styles={selectStyles(errorMsg?.toString())} // custom style for select dropdown
               />
               {
                 errorMsg && <InputError error={errorMsg.message?.toString()} />

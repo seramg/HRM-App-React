@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { deleteData, getData, updateData } from "../../core/api/functions.ts";
+import { deleteData } from "../../core/api/functions.ts";
 import Button from "../Button/Button.tsx";
 import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import DataContext from "../../core/store/DataContext.tsx";
@@ -51,16 +51,23 @@ function DeleteModal({
         className="close-btn"
         onClick={changeDltModalOpenStatus}
       ></Button>
-      <h2 className="subheading">
+      <h2 className="delete-modal-heading">Confirm user removal</h2>
+      <p className="confirm-delete">
         Are you sure you want to delete the employee {employeeId}?
-      </h2>
-      <p className="text">
-        The data selected will be permanently removed. It would remove all the
-        details related to the employee. Are you sure you want to continue?
       </p>
-      <ButtonGrpWrapper>
-        <Button onClick={changeDltModalOpenStatus}>Cancel</Button>
-        <Button onClick={confirmDlt}>Confirm</Button>
+      <div className="warning-container">
+        <div className="warning-heading common-flex">
+          <span className="material-icons-round">warning</span>
+          <p className="title">Warning</p>
+        </div>
+        <p className="warning-text">
+          The data selected will be permanently removed. It would remove all the
+          details related to the employee. Are you sure you want to continue?
+        </p>
+      </div>
+      <ButtonGrpWrapper className="button-gap">
+        <Button className="cancel-btn" onClick={changeDltModalOpenStatus}>No, Cancel</Button>
+        <Button className="delete-btn" icon="delete" onClick={confirmDlt}>Yes, confirm delete</Button>
       </ButtonGrpWrapper>
     </DeleteModalWrapper>
   );
