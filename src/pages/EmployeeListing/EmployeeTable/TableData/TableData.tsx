@@ -4,6 +4,7 @@ import StyledLink from "../../../../components/StyledLink.ts";
 import Button from "../../../../components/Button/Button.tsx";
 import SkillsChip from "../../../../components/Skills/SkillsChip.tsx";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function TableData({ employee, index, changeDltModalOpenStatus, idToDltProp }: {
   employee: Employee; index: number, changeDltModalOpenStatus: () => void, idToDltProp: {
@@ -22,6 +23,16 @@ function TableData({ employee, index, changeDltModalOpenStatus, idToDltProp }: {
     idToDltProp.addIdToDlt(employee.id);
   }
 
+  const [hover,setHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
+
   return (
     <TableDataWrapper
       key={employee.id}
@@ -34,8 +45,9 @@ function TableData({ employee, index, changeDltModalOpenStatus, idToDltProp }: {
       </td>
       <td className="employee-data">{employee.designation}</td>
       <td className="employee-data">{employee.department}</td>
-      <td className="employee-data">
+      <td className="employee-data" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <SkillsChip skills={employee.skills} />
+        {hover && <div className="tooltip">Tooltip Text</div>}
       </td>
       <td className="employee-data">
         <div className=" actions-list common-flex">
