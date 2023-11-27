@@ -1,26 +1,38 @@
 import EmployeeViewWrapper from "./employeeView.ts";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import DataContext from "../../core/store/DataContext.tsx";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getDateView, getWorkExp } from "../../utils/helper.ts";
 import Button from "../../components/Button/Button.tsx";
 import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import DetailsSection from "../../components/Details/Details.tsx";
 import Loader from "../../components/Loader/loader.ts";
+import { toast } from "react-toastify";
 
 function EmployeeView() {
   let [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const employeeId = searchParams.get("employeeId");
 
-
-  const { employees,loading } = useContext(DataContext);
-  const employee = employees.find((employee) => (employee) && employee.id === employeeId);
+  const { employees, loading } = useContext(DataContext);
   const [activeBtn, setActiveBtn] = useState("profile");
 
   const handleButtonClick = (buttonType: string) => {
     setActiveBtn(buttonType);
   };
+
+  const employee = employees.find((emp) => emp && emp.id === employeeId);
+
+  useEffect(() => {
+    if (!employeeId) {
+      // Display error toast after initial render
+      toast.error("No employee Id was provided", {
+        toastId: "employee-not-found",
+      });
+      navigate("/");
+    }
+  }, []);
 
   if (loading) return <Loader />;
 
@@ -100,12 +112,12 @@ function EmployeeView() {
               icon="home"
               title="Work Experience"
               content={getWorkExp(employee.date_of_joining)}
-              />
-              <DetailsSection
-                icon="home"
-                title="Skills"
-                content={employee.skills}
-              />
+            />
+            <DetailsSection
+              icon="home"
+              title="Skills"
+              content={employee.skills}
+            />
           </div>
         )}
       </EmployeeViewWrapper>

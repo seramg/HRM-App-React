@@ -34,6 +34,7 @@ function Form() {
     addLoader,
     loading,
   } = useContext(DataContext);
+
   const location = useLocation();
   const navigate = useNavigate();
   const urlType = getUrlType(location.pathname);
@@ -56,6 +57,13 @@ function Form() {
   });
 
   useEffect(() => {
+    if (!employeeId && urlType === "edit-employee") {
+      // Display error toast after initial render
+      toast.error("No employee Id was provided", {
+        toastId: "employee-not-found",
+      });
+      navigate("/");
+    }
     addLoader(true);
     const newformEmployee = employee
       ? convertToFormEmployee(employee)
@@ -73,42 +81,40 @@ function Form() {
     addTableProps(resettedTableProps);
   };
 
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(false); // for submit btn
 
   const onSubmit = methods.handleSubmit(async () => {
     const newEmployee = getNewEmployeeDetails(methods.getValues());
     setShowLoader(true);
+
     if (!employee) {
-      const currentEmployeesCount = await getData("/employeesCount.json");
-
-      let newEmployeesCount;
-      if (currentEmployeesCount) {
-        newEmployeesCount = currentEmployeesCount.data;
-      } else {
-        newEmployeesCount = 0;
-      }
-
-      const newEmployeeToAdd = {
-        ...newEmployee,
-        id: getNewEmpId(newEmployeesCount),
-      };
-      console.log(newEmployeeToAdd);
       try {
+        // to get the current employee count to assign the new emp id
+        const currentEmployeesCount =
+          (await getData("/employeesCount.json"))?.data || 0;
+
+        const newEmployeeToAdd = {
+          ...newEmployee,
+          id: getNewEmpId(currentEmployeesCount),
+        };
+
         await updateData(
           `/employees/${newEmployeeToAdd.id}.json`,
           newEmployeeToAdd
         );
-        await updateData("/employeesCount.json", newEmployeesCount + 1);
+        await updateData("/employeesCount.json", currentEmployeesCount + 1);
+
         console.log("Employee added successfully");
         // Display toast for success state
         toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
           toastId: "add-toast-id",
         });
-        setShowLoader(false);
       } catch (error) {
-        toast.error("Error adding new user");
+        // Display error toast
+        toast.error("Error adding new user",{toastId:"error-add-user"});
         console.error("Error submitting form:", error);
       } finally {
+        setShowLoader(false);
         navigate(`/`);
         fetchEmployeeData();
       }
@@ -124,15 +130,17 @@ function Form() {
           toast.success(`Edited user ${employeeEdited.emp_name}`, {
             toastId: "edit-toast-id",
           });
-          setShowLoader(false);
         } catch (error) {
-          toast.error("Error editing user");
+          // Display error toast
+          toast.error("Error editing user",{toastId:"error-edit-user"});
           console.error("Error submitting form:", error);
         } finally {
+          setShowLoader(false);
           navigate(`/`);
           fetchEmployeeData();
         }
       } else {
+        // Display info toast
         toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {
           toastId: "no-edit-toast-id",
         });

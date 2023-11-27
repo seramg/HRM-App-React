@@ -29,21 +29,20 @@ function TableData({
 
   const handleCancelBtn = () => {
     changeDltModalOpenStatus();
-    idToDltProp.addIdToDlt(employee.id);
+    idToDltProp.addIdToDlt(employee.id);//id is set to have the employee of that id to be deleted inside the delete modal
   };
 
+  //tooltip on hovering skills
   const [hover, setHover] = useState(false);
-
   const handleMouseEnter = () => {
     setHover(true);
   };
-
   const handleMouseLeave = () => {
     setHover(false);
   };
 
+  //check for skills overflowing the scroll width
   const [skillsOverflow, setSkillsOverflow] = useState(false);
-
   const handleSkillsOverflow = (isOverflow: boolean) => {
     setSkillsOverflow(isOverflow);
   };
