@@ -15,5 +15,23 @@
   > label{
     cursor: pointer;
   }
+  .btn-loader{
+    width: 24px;
+    height: 24px;
+    margin: auto;  
+    border: 5px solid #FFF;
+    border-bottom-color: var(--white-color);
+    border-radius: 100%;
+    animation: rotation 1s linear infinite;
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+  }
   `;
   export default ButtonWrapper;

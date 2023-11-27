@@ -12,7 +12,7 @@ import {
   resetFiltersAndSearchBar,
 } from "../../utils/helper.ts";
 import { Fieldset, InputRow } from "./form.ts";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import DataContext from "../../core/store/DataContext.tsx";
 import {
   Employee,
@@ -73,9 +73,11 @@ function Form() {
     addTableProps(resettedTableProps);
   };
 
+  const [showLoader, setShowLoader] = useState(false);
+
   const onSubmit = methods.handleSubmit(async () => {
     const newEmployee = getNewEmployeeDetails(methods.getValues());
-
+    setShowLoader(true);
     if (!employee) {
       const currentEmployeesCount = await getData("/employeesCount.json");
 
@@ -90,7 +92,7 @@ function Form() {
         ...newEmployee,
         id: getNewEmpId(newEmployeesCount),
       };
-      console.log(newEmployeeToAdd)
+      console.log(newEmployeeToAdd);
       try {
         await updateData(
           `/employees/${newEmployeeToAdd.id}.json`,
@@ -102,6 +104,7 @@ function Form() {
         toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
           toastId: "add-toast-id",
         });
+        setShowLoader(false);
       } catch (error) {
         toast.error("Error adding new user");
         console.error("Error submitting form:", error);
@@ -121,12 +124,13 @@ function Form() {
           toast.success(`Edited user ${employeeEdited.emp_name}`, {
             toastId: "edit-toast-id",
           });
-          navigate(`/`);
-          fetchEmployeeData();
+          setShowLoader(false);
         } catch (error) {
           toast.error("Error editing user");
           console.error("Error submitting form:", error);
         } finally {
+          navigate(`/`);
+          fetchEmployeeData();
         }
       } else {
         toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {
@@ -243,7 +247,7 @@ function Form() {
             <Button icon="" onClick={onReset}>
               Clear
             </Button>
-            <Button icon="" onClick={onSubmit}>
+            <Button icon="" onClick={onSubmit} loading={showLoader}>
               Submit
             </Button>
           </ButtonGrpWrapper>

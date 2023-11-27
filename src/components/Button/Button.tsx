@@ -6,19 +6,27 @@ function Button({
   icon,
   className,
   onClick,
+  loading,
 }: {
   children?: React.ReactNode;
   icon?: string;
   className?: string | undefined;
   onClick?: () => void;
+  loading?: boolean;
 }) {
   return (
     <ButtonWrapper
       className={`common-flex ${className ?? ""}`}
       onClick={onClick!}
     >
-      {icon && <span className="material-symbols-outlined"> {icon} </span>}
-      {children && <label>{children}</label>}
+      {loading ? (
+        <span className="btn-loader"/>
+      ) : (
+        <>
+          {icon && <span className="material-symbols-outlined"> {icon} </span>}
+          {children && <label>{children}</label>}
+        </>
+      )}
     </ButtonWrapper>
   );
 }
