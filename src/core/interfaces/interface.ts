@@ -24,7 +24,6 @@ export interface Data {
   designations: string[];
   employment_modes: string[];
   skills: Skill[];
-  employeesCount: number;
 }
 export interface ContextProps {
   employees: Employee[];
@@ -39,7 +38,6 @@ export interface ContextProps {
   addEmployees: (employees: Employee[]) => void;
   addLoader: (loadingState: boolean) => void;
   dataEmployees: Employee[];
-  employeesCount: number;
 }
 
 export interface Skill {

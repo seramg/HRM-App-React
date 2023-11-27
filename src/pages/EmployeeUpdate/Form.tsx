@@ -20,20 +20,19 @@ import {
   TableProps,
 } from "../../core/interfaces/interface.ts";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { updateData } from "../../core/api/functions.ts";
+import { getData, updateData } from "../../core/api/functions.ts";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader.tsx";
 import FormSelectList from "./FormSelect/FormSelectList.tsx";
 
 function Form() {
   const {
-    employees,
+    dataEmployees,
     tableProps,
     addTableProps,
     fetchEmployeeData,
     addLoader,
     loading,
-    employeesCount
   } = useContext(DataContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,7 +45,7 @@ function Form() {
   const employeeId: string | null =
     urlType === "edit-employee" ? searchParams.get("employeeId") : null;
 
-  const employee: Employee | undefined = employees?.find(
+  const employee: Employee | undefined = dataEmployees?.find(
     (emp) => emp && emp.id === employeeId
   );
 
@@ -78,14 +77,23 @@ function Form() {
     const newEmployee = getNewEmployeeDetails(methods.getValues());
 
     if (!employee) {
-      const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(employeesCount) };
+      const currentEmployeesCount = await getData("/employeesCount.json");
+
+      let newEmployeesCount;
+      if(currentEmployeesCount){
+        newEmployeesCount = currentEmployeesCount.data;
+      }
+      else{
+        newEmployeesCount=0;
+      }
+
+      const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(newEmployeesCount) };
       try {
         await updateData(
-          `/employees/${employees.length}.json`,
+          `/employees/${dataEmployees.length}.json`,
           newEmployeeToAdd
         );
-
-        await updateData("/employeesCount.json", employeesCount + 1);
+        await updateData("/employeesCount.json", newEmployeesCount + 1);
         console.log("Employee added successfully");
         navigate(`/`);
         fetchEmployeeData();
@@ -100,7 +108,7 @@ function Form() {
       }
     } else {
       const employeeEdited = { ...newEmployee, id: employee.id };
-      const employeeIndex = employees.findIndex(
+      const employeeIndex = dataEmployees.findIndex(
         (employee) => employee && employee.id === employeeId
       );
 
