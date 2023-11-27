@@ -13,6 +13,7 @@ import {
 } from "../interfaces/interface.ts";
 import DataContext from "./DataContext.tsx";
 import { getData } from "../api/functions.ts";
+import { toast } from "react-toastify";
 
 const DataProvider = ({ children }: { children: any }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,7 +45,6 @@ const DataProvider = ({ children }: { children: any }) => {
     setLoading(loadingState);
   };
 
-
   const fetchEmployeeData = async () => {
     try {
       addLoader(true);
@@ -52,13 +52,15 @@ const DataProvider = ({ children }: { children: any }) => {
       const dataResponse: Data = response.data;
       if (dataResponse) {
         setDataEmployees(dataResponse.employees);
-        const nonNullEmployees = removeNullEmployees(dataResponse.employees)
+        const nonNullEmployees = removeNullEmployees(dataResponse.employees);
         setEmployees(nonNullEmployees);
         return dataResponse; // Resolve the promise with the data
       } else {
+        toast.error("No data is recieved");
         throw new Error("No data received");
       }
     } catch (error) {
+      toast.error("Error fetching employees");
       console.error("Error fetching data:", error);
     } finally {
       addLoader(false);
@@ -75,6 +77,7 @@ const DataProvider = ({ children }: { children: any }) => {
         setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
       }
     } catch (error) {
+      toast.error("Error fetching dropdown data");
       console.error("Error fetching dropdown data:", error);
     }
   };

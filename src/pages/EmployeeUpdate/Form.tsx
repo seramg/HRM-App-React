@@ -80,14 +80,17 @@ function Form() {
       const currentEmployeesCount = await getData("/employeesCount.json");
 
       let newEmployeesCount;
-      if(currentEmployeesCount){
+      if (currentEmployeesCount) {
         newEmployeesCount = currentEmployeesCount.data;
-      }
-      else{
-        newEmployeesCount=0;
+      } else {
+        newEmployeesCount = 0;
       }
 
-      const newEmployeeToAdd = { ...newEmployee, id: getNewEmpId(newEmployeesCount) };
+      const newEmployeeToAdd = {
+        ...newEmployee,
+        id: getNewEmpId(newEmployeesCount),
+      };
+      console.log(newEmployeeToAdd)
       try {
         await updateData(
           `/employees/${dataEmployees.length}.json`,
@@ -95,8 +98,6 @@ function Form() {
         );
         await updateData("/employeesCount.json", newEmployeesCount + 1);
         console.log("Employee added successfully");
-        navigate(`/`);
-        fetchEmployeeData();
         // Display toast for success state
         toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
           toastId: "add-toast-id",
@@ -105,6 +106,8 @@ function Form() {
         toast.error("Error adding new user");
         console.error("Error submitting form:", error);
       } finally {
+        navigate(`/`);
+        fetchEmployeeData();
       }
     } else {
       const employeeEdited = { ...newEmployee, id: employee.id };

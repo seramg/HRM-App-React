@@ -3,6 +3,7 @@ import EmployeeListing from "./EmployeeListing/EmployeeListing.tsx";
 import Form from "./EmployeeUpdate/Form.tsx";
 import EmployeeView from "./EmployeeView/EmployeeView.tsx";
 import Layout from "./Layout.tsx";
+import Error404 from './../components/Error404/Error404.tsx';
 
 const router = createBrowserRouter(
   [
@@ -26,9 +27,11 @@ const router = createBrowserRouter(
           element: <EmployeeView />,
         },
       ],
+      errorElement: <Error404 />,
     },
   ],
   { basename: import.meta.env.DEV ? "/" : "/HRM-App-React/" }
 );
+
 
 export default router;
