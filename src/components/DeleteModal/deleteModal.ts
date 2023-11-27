@@ -7,13 +7,12 @@ const DeleteModalWrapper = styled.div`
   position: fixed;
   background-color: white;
   border-radius: 10px;
-  border: 2px solid var(--secondary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content:center;
   padding: 15px;
-  z-index: 1;
+  z-index: 2;
 
   .delete-modal-heading{
     margin: 0;

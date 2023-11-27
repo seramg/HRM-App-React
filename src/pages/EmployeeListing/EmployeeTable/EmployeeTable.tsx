@@ -16,11 +16,16 @@ import DeleteModal from "../../../components/DeleteModal/DeleteModal.tsx";
 
 let pageSize = 5;
 
-function EmployeeTable() {
+function EmployeeTable({
+  deleteModal,
+  changeDltModalOpenStatus,
+}: {
+  deleteModal: boolean;
+  changeDltModalOpenStatus: () => void;
+}) {
   const { employees, loading, tableProps, dataEmployees } =
     useContext(DataContext);
-  
-  const [deleteModal, setDeleteModal] = useState(false); // determines whether the modal is open or close
+
   const [idToDlt, setIdToDlt] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,18 +53,12 @@ function EmployeeTable() {
     const lastPageIndex = firstPageIndex + pageSize;
 
     return nonNullEmployees.slice(firstPageIndex, lastPageIndex);
-  }, [tableProps, employees, currentPage,deleteModal]);
-
+  }, [tableProps, employees, currentPage, deleteModal]);
 
   const addIdToDlt = (idToDlt: string) => {
     setIdToDlt(idToDlt);
-  }
-  const idToDltProp = { idToDlt, addIdToDlt }
-
-  const changeDltModalOpenStatus = () => {
-    setDeleteModal(() => !deleteModal);
   };
-
+  const idToDltProp = { idToDlt, addIdToDlt };
 
   return (
     <>
@@ -95,7 +94,10 @@ function EmployeeTable() {
         )}
       </TableWrapper>
       {deleteModal && (
-        <DeleteModal changeDltModalOpenStatus={changeDltModalOpenStatus} employeeId={idToDlt} />
+        <DeleteModal
+          changeDltModalOpenStatus={changeDltModalOpenStatus}
+          employeeId={idToDlt}
+        />
       )}
       <Pagination
         className="pagination-bar"

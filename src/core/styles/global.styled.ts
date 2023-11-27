@@ -102,15 +102,20 @@ body {
   display: none;
 }
 .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0;
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  pointer-events: none;
-  transition: 0.5s ease;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: auto; /* Disable pointer events on the overlay so that clicks pass through */
+  transition: 0.5s ease;  
+
+  body{
+    overflow:hidden;
+  }
 }
 .open{
   opacity: 0.6;
