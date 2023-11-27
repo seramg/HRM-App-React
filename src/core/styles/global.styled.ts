@@ -137,9 +137,6 @@ td {
   padding: 10px;
   border-spacing: 0;
   text-align:left;
-  overflow: hidden;
-  white-space: nowrap; // text content won't wrap to the next line
-  text-overflow: ellipsis;
 }
 .m-30 {
   margin-bottom: 30px;
