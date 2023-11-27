@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-const TooltipWrapper = styled.div`
+const TooltipWrapper = styled.div<{ $left: number }>`
   position: absolute;
-  background-color: #333;
-  color: white;
+  background-color: var(--white-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--dark-gray-color);
   padding: 5px;
   border-radius: 3px;
   z-index: 1;
@@ -13,6 +14,7 @@ const TooltipWrapper = styled.div`
   visibility: visible;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  white-space: nowrap;
 
   &:before {
     content: "";
@@ -21,7 +23,7 @@ const TooltipWrapper = styled.div`
     border-style: solid;
     border-color: transparent transparent #333 transparent;
     top: -10px;
-    left: 50%;
+    left: ${(props) => `calc(${props.$left}% - 50px)`}; // Adjust this value based on your design
     transform: translateX(-50%);
   }
 `;

@@ -44,8 +44,8 @@ function TableData({
 
   const [skillsOverflow, setSkillsOverflow] = useState(false);
 
-  const handleSkillsOverflow = () => {
-    setSkillsOverflow(true);
+  const handleSkillsOverflow = (isOverflow: boolean) => {
+    setSkillsOverflow(isOverflow);
   };
 
   return (
