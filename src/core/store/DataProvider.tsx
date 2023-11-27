@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  removeNullEmployees,
   transformArrayToOptionsList,
   transformArrayToSkillOptionsList,
 } from "../../utils/helper.ts";
@@ -51,9 +50,8 @@ const DataProvider = ({ children }: { children: any }) => {
       const response = await getData("/.json");
       const dataResponse: Data = response.data;
       if (dataResponse) {
-        setDataEmployees(dataResponse.employees);
-        const nonNullEmployees = removeNullEmployees(dataResponse.employees);
-        setEmployees(nonNullEmployees);
+        setDataEmployees(Object.values(dataResponse.employees));
+        setEmployees(Object.values(dataResponse.employees));
         return dataResponse; // Resolve the promise with the data
       } else {
         toast.error("No data is recieved");

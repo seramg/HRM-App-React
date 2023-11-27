@@ -7,7 +7,6 @@ import TableHead from "./TableHead/TableHead.tsx";
 import Loader from "../../../components/Loader/Loader.tsx";
 import {
   filterData,
-  removeNullEmployees,
   searchData,
   sortData,
 } from "../../../utils/helper.ts";
@@ -39,9 +38,8 @@ function EmployeeTable({
     const sortedEmployees = sortData(dataEmployees, tableProps);
     const filteredEmployees = filterData(sortedEmployees, tableProps);
     const searchedEmployees = searchData(filteredEmployees, tableProps);
-    const nonNullEmployees = removeNullEmployees(searchedEmployees);
     // Update totalCount based on the filtered data length
-    totalCount = nonNullEmployees.length;
+    totalCount = searchedEmployees.length;
 
     // Calculate the total number of pages based on the filtered data length
     totalPageCount = Math.ceil(totalCount / pageSize);
@@ -52,7 +50,7 @@ function EmployeeTable({
     const firstPageIndex = (validCurrentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
 
-    return nonNullEmployees.slice(firstPageIndex, lastPageIndex);
+    return searchedEmployees.slice(firstPageIndex, lastPageIndex);
   }, [tableProps, employees, currentPage, deleteModal]);
 
   const addIdToDlt = (idToDlt: string) => {

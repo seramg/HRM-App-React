@@ -1,9 +1,9 @@
 import { Control } from "react-hook-form";
 
 export enum SortDirection {
-  ASC = 'asc',
-  DESC = 'desc',
-  NO_SORT = 'no-sort',
+  ASC = "asc",
+  DESC = "desc",
+  NO_SORT = "no-sort",
 }
 
 export interface SortProps {
@@ -19,11 +19,12 @@ export interface TableProps {
   search_term: string | null;
 }
 export interface Data {
-  employees: Employee[];
+  employees: { [key: string]: Employee };
   departments: string[];
   designations: string[];
   employment_modes: string[];
   skills: Skill[];
+  employeesCount: number;
 }
 export interface ContextProps {
   employees: Employee[];
@@ -85,7 +86,7 @@ export interface SelectDropdownProps {
   isMulti?: boolean;
   control?: Control<Employee, any>;
   fieldName: keyof TableProps;
-  value?: SelectOptionProps | SelectOptionProps[] | null
+  value?: SelectOptionProps | SelectOptionProps[] | null;
 }
 export interface InputProps {
   validation?: {
@@ -110,7 +111,7 @@ export interface InputProps {
   type: string;
   options?: string[];
   name: string;
-  value?: string
+  value?: string;
 }
 
 export interface IsMultiStateProps {

@@ -13,25 +13,17 @@ function DeleteModal({
   changeDltModalOpenStatus: () => void;
   employeeId: string;
 }) {
-  const { dataEmployees, fetchEmployeeData } = useContext(DataContext);
+  const { fetchEmployeeData } = useContext(DataContext);
 
   const confirmDlt = async () => {
-    const indexToDlt = dataEmployees.findIndex(
-      (dataEmployee) => dataEmployee && dataEmployee.id === employeeId
-    );
 
-    if (indexToDlt === -1) {
-      console.error("Employee not found.");
-      return;
-    }
-
-    const url = `/employees/${indexToDlt}.json`;
+    const url = `/employees/${employeeId}.json`;
 
     try {
       await deleteData(url); // deleting employee in firebase
       console.log("Employee deleted successfully");
       // Display toast for success state
-      toast.success(`Deleted user ${dataEmployees[indexToDlt].emp_name}`, {
+      toast.success(`Deleted user ${employeeId}`, {
         toastId: "delete-toast-id",
       });
     } catch (error) {

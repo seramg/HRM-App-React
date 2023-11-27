@@ -27,7 +27,7 @@ import FormSelectList from "./FormSelect/FormSelectList.tsx";
 
 function Form() {
   const {
-    dataEmployees,
+    employees,
     tableProps,
     addTableProps,
     fetchEmployeeData,
@@ -45,7 +45,7 @@ function Form() {
   const employeeId: string | null =
     urlType === "edit-employee" ? searchParams.get("employeeId") : null;
 
-  const employee: Employee | undefined = dataEmployees?.find(
+  const employee: Employee | undefined = employees.find(
     (emp) => emp && emp.id === employeeId
   );
 
@@ -93,7 +93,7 @@ function Form() {
       console.log(newEmployeeToAdd)
       try {
         await updateData(
-          `/employees/${dataEmployees.length}.json`,
+          `/employees/${newEmployeeToAdd.id}.json`,
           newEmployeeToAdd
         );
         await updateData("/employeesCount.json", newEmployeesCount + 1);
@@ -111,13 +111,10 @@ function Form() {
       }
     } else {
       const employeeEdited = { ...newEmployee, id: employee.id };
-      const employeeIndex = dataEmployees.findIndex(
-        (employee) => employee && employee.id === employeeId
-      );
 
       if (!checkEmployeesEqual(employee, employeeEdited)) {
         try {
-          await updateData(`/employees/${employeeIndex}.json`, employeeEdited);
+          await updateData(`/employees/${employeeId}.json`, employeeEdited);
           console.log("Employee edited successfully");
 
           // Display toast for success state
