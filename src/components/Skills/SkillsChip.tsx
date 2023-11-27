@@ -6,32 +6,34 @@ function SkillsChip({
   handleSkillsOverflow,
 }: {
   skills: Skill[];
-  handleSkillsOverflow: (isOverflow: boolean) => void;
+  handleSkillsOverflow?: (isOverflow: boolean) => void;
 }) {
   const skillsContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const skillsContainer = skillsContainerRef.current;
+    if (handleSkillsOverflow) {
+      const skillsContainer = skillsContainerRef.current;
 
-    const handleResize = () => {
-      if (skillsContainer) {
-        const isOverflowing =
-          skillsContainer.scrollWidth > skillsContainer.clientWidth;
+      const handleResize = () => {
+        if (skillsContainer) {
+          const isOverflowing =
+            skillsContainer.scrollWidth > skillsContainer.clientWidth;
 
-        handleSkillsOverflow(isOverflowing);
-      }
-    };
+          handleSkillsOverflow(isOverflowing);
+        }
+      };
 
-    // Initial check
-    handleResize();
+      // Initial check
+      handleResize();
 
-    // Add event listener
-    window.addEventListener("resize", handleResize); // calculate the scrollwidth whenever the window gets resized
+      // Add event listener
+      window.addEventListener("resize", handleResize); // calculate the scrollwidth whenever the window gets resized
 
-    // Cleanup function to remove the event listener
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      // Cleanup function to remove the event listener
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, [skills, skillsContainerRef]);
 
   return (
