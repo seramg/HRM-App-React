@@ -25,6 +25,7 @@ function EmployeeView() {
   const employee = employees.find((emp) => emp && emp.id === employeeId);
 
   useEffect(() => {
+
     if (!employeeId) {
       // Display error toast after initial render
       toast.error("No employee Id was provided", {
@@ -32,11 +33,14 @@ function EmployeeView() {
       });
       navigate("/");
     } else {
-      if (!employee) {
-        throw new Response("Bad Request", { status: 400 });
+      
+      if (!loading && !employee) {
+        console.log(employee, loading);
+        throw new Response("Employee Not Found", { status: 404 });
       }
+
     }
-  }, []);
+  }, [employeeId, employee, loading]);
 
   if (loading) return <Loader />;
 

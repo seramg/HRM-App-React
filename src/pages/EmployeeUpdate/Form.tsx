@@ -31,7 +31,6 @@ function Form() {
     tableProps,
     addTableProps,
     fetchEmployeeData,
-    addLoader,
     loading,
   } = useContext(DataContext);
 
@@ -66,18 +65,17 @@ function Form() {
         navigate("/");
       }
       else {
-        if (!employee) {
-          throw new Response("Bad Request", { status: 400 });
+        if (!loading && !employee) {
+          console.log(employee, loading);
+          throw new Response("Employee Not Found", { status: 404 });
         }
       }
     }
-    addLoader(true);
     const newformEmployee = employee
       ? convertToFormEmployee(employee)
       : defaultValues;
-    addLoader(false);
     methods.reset(newformEmployee);
-  }, [employee]);
+  }, [employee, loading, employeeId]);
 
   const onReset = () => {
     const resettedTableProps: TableProps = {

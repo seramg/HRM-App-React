@@ -15,7 +15,7 @@ import { getData } from "../api/functions.ts";
 import { toast } from "react-toastify";
 
 const DataProvider = ({ children }: { children: any }) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [dataEmployees, setDataEmployees] = useState<Employee[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [designations, setDesignations] = useState<SelectOptionProps[]>([]);
@@ -46,7 +46,6 @@ const DataProvider = ({ children }: { children: any }) => {
 
   const fetchEmployeeData = async () => {
     try {
-      addLoader(true);
       const response = await getData("/.json");
       const dataResponse: Data = response.data;
       if (dataResponse) {
