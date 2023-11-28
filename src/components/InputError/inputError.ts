@@ -5,7 +5,6 @@ const InputErrorWrapper = styled.div`
   border-radius: 5px;
   gap: 5px !important;
   padding: 5px;
-  position: absolute;
   bottom:0;
   
   & > * {
