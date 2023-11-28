@@ -54,7 +54,8 @@ function Pagination({
             <li
               className={`pagination-item ${
                 pageNumber === currentPage ? "selected" : ""
-              } `}
+                } `}
+              key={pageNumber}
               onClick={() => {
                 if (typeof pageNumber === "number") onPageChange(pageNumber);
               }}

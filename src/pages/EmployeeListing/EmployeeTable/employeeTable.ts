@@ -25,5 +25,8 @@ const TableWrapper = styled.table`
     display: flex;
     justify-content: center;
   }  
+  .no-border-row{
+    border:none;
+  }
 `;
 export default TableWrapper;

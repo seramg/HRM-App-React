@@ -63,8 +63,14 @@ function EmployeeTable({
       <TableWrapper>
         <TableHead />
         {loading ? (
-          /* This component is rendered when data is fetching from database */
-          <Loader />
+          <tbody>
+            <tr className="no-border-row">
+              <td rowSpan={5}>
+                {/* This component is rendered when data is fetching from database  */}
+                <Loader />
+              </td>
+            </tr>
+          </tbody>
         ) : (
           <tbody>
             {employeesTableView.length > 0 ? (

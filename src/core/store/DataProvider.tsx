@@ -46,7 +46,7 @@ const DataProvider = ({ children }: { children: any }) => {
 
   const fetchEmployeeData = async () => {
     try {
-      const response = await getData("/.json");
+      const response = await getData("/.sjson");
       const dataResponse: Data = response.data;
       if (dataResponse) {
         setDataEmployees(Object.values(dataResponse.employees));
