@@ -66,8 +66,9 @@ function Form() {
       }
       else {
         if (!loading && !employee) {
-          console.log(employee, loading);
-          throw new Response("Employee Not Found", { status: 404,statusText:"Employee Not Found" });
+          throw new Response("Employee Not Found", {
+            status: 404,
+          });
         }
       }
     }
@@ -161,114 +162,114 @@ function Form() {
   return (
     (urlType === "add-employee" || (urlType === "edit-employee" && employee)) &&
     < FormProvider {...methods}>
-      <form
-        className="global-width"
-        onSubmit={(e) => e.preventDefault()}
-        noValidate
-      >
-        <h2>
-          {urlType === "add-employee" && "Add New Employee"}
-          {urlType === "edit-employee" && employee && `Edit Employee ${employee.id}`}
-        </h2>
-        <Fieldset className="form-details ">
-          <legend className="subheading">Personal Information</legend>
+        <form
+          className="global-width"
+          onSubmit={(e) => e.preventDefault()}
+          noValidate
+        >
+          <h2>
+            {urlType === "add-employee" && "Add New Employee"}
+            {urlType === "edit-employee" && employee && `Edit Employee ${employee.id}`}
+          </h2>
+          <Fieldset className="form-details ">
+            <legend className="subheading">Personal Information</legend>
 
-          <Input
-            validation={{
-              pattern: {
-                value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
-                message: "This is an invalid value",
-              },
-              minLength: {
-                value: 2,
-                message: "min 2 characters",
-              },
-            }}
-            label="Name"
-            type="text"
-            name="emp_name"
-          />
-          <InputRow className="common-flex">
             <Input
               validation={{
                 pattern: {
-                  value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
+                  value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
                   message: "This is an invalid value",
                 },
-              }}
-              label="Email"
-              type="email"
-              name="email"
-            />
-            <Input
-              validation={{
-                pattern: {
-                  value: RegExp("^[0-9]{10}$"),
-                  message:
-                    "Phone number must be 10 digits with no alphabets.",
+                minLength: {
+                  value: 2,
+                  message: "min 2 characters",
                 },
               }}
-              label="Phone Number"
-              type="tel"
-              name="phone"
+              label="Name"
+              type="text"
+              name="emp_name"
             />
-          </InputRow>
-          <Input
-            validation={{
-              minLength: {
-                value: 2,
-                message: "min 2 characters",
-              },
-            }}
-            label="Address"
-            type="textarea"
-            name="address"
-          />
-          <InputRow className="common-flex">
+            <InputRow className="common-flex">
+              <Input
+                validation={{
+                  pattern: {
+                    value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
+                    message: "This is an invalid value",
+                  },
+                }}
+                label="Email"
+                type="email"
+                name="email"
+              />
+              <Input
+                validation={{
+                  pattern: {
+                    value: RegExp("^[0-9]{10}$"),
+                    message:
+                      "Phone number must be 10 digits with no alphabets.",
+                  },
+                }}
+                label="Phone Number"
+                type="tel"
+                name="phone"
+              />
+            </InputRow>
             <Input
               validation={{
-                max: {
-                  value: currentDate,
-                  message: "This is an invalid value",
+                minLength: {
+                  value: 2,
+                  message: "min 2 characters",
                 },
               }}
-              label="Date of Birth"
-              type="date"
-              name="date_of_birth"
+              label="Address"
+              type="textarea"
+              name="address"
             />
+            <InputRow className="common-flex">
+              <Input
+                validation={{
+                  max: {
+                    value: currentDate,
+                    message: "This is an invalid value",
+                  },
+                }}
+                label="Date of Birth"
+                type="date"
+                name="date_of_birth"
+              />
+              <Input
+                validation={{
+                  max: {
+                    value: currentDate,
+                    message: "This is an invalid value",
+                  },
+                }}
+                label="Date of Joining"
+                type="date"
+                name="date_of_joining"
+              />
+            </InputRow>
             <Input
-              validation={{
-                max: {
-                  value: currentDate,
-                  message: "This is an invalid value",
-                },
-              }}
-              label="Date of Joining"
-              type="date"
-              name="date_of_joining"
+              label="Gender"
+              type="radio"
+              options={["Male", "Female", "Other"]}
+              name="gender"
             />
-          </InputRow>
-          <Input
-            label="Gender"
-            type="radio"
-            options={["Male", "Female", "Other"]}
-            name="gender"
-          />
-        </Fieldset>
-        <Fieldset className="other-details ">
-          <legend className="subheading">Other Information</legend>
-          <FormSelectList />
-        </Fieldset>
-        <ButtonGrpWrapper>
-          <Button icon="" onClick={onReset}>
-            Clear
-          </Button>
-          <Button icon="" onClick={onSubmit} loading={showLoader}>
-            Submit
-          </Button>
-        </ButtonGrpWrapper>
-      </form>
-    </FormProvider >
+          </Fieldset>
+          <Fieldset className="other-details ">
+            <legend className="subheading">Other Information</legend>
+            <FormSelectList />
+          </Fieldset>
+          <ButtonGrpWrapper>
+            <Button icon="" onClick={onReset}>
+              Clear
+            </Button>
+            <Button icon="" onClick={onSubmit} loading={showLoader}>
+              Submit
+            </Button>
+          </ButtonGrpWrapper>
+        </form>
+      </FormProvider >
   );
 }
 export default Form;
