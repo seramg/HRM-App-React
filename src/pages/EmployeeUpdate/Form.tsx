@@ -67,7 +67,7 @@ function Form() {
       else {
         if (!loading && !employee) {
           console.log(employee, loading);
-          throw new Response("Employee Not Found", { status: 404 });
+          throw new Response("Employee Not Found", { status: 404,statusText:"Employee Not Found" });
         }
       }
     }

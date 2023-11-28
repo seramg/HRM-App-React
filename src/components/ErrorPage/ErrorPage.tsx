@@ -1,6 +1,6 @@
 import ErrorPageWrapper from "./errorPage.js";
 import StyledLink from "../StyledLink.js";
-import Button from "../Button/Button.js";
+import Button from "../Button/Button.tsx";
 import { useRouteError } from "react-router-dom";
 
 function ErrorPage() {
