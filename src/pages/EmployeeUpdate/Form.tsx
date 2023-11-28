@@ -57,12 +57,19 @@ function Form() {
   });
 
   useEffect(() => {
-    if (!employeeId && urlType === "edit-employee") {
-      // Display error toast after initial render
-      toast.error("No employee Id was provided", {
-        toastId: "employee-not-found",
-      });
-      navigate("/");
+    if (urlType === "edit-employee") {
+      if (!employeeId) {
+        // Display error toast after initial render
+        toast.error("No employee Id was provided", {
+          toastId: "employee-not-found",
+        });
+        navigate("/");
+      }
+      else {
+        if (!employee) {
+          throw new Response("Bad Request", { status: 400 });
+        }
+      }
     }
     addLoader(true);
     const newformEmployee = employee
@@ -87,7 +94,7 @@ function Form() {
     const newEmployee = getNewEmployeeDetails(methods.getValues());
     setShowLoader(true);
 
-    if (!employee) {
+    if (urlType === "add-employee") {
       try {
         // to get the current employee count to assign the new emp id
         const currentEmployeesCount =
@@ -111,7 +118,7 @@ function Form() {
         });
       } catch (error) {
         // Display error toast
-        toast.error("Error adding new user",{toastId:"error-add-user"});
+        toast.error("Error adding new user", { toastId: "error-add-user" });
         console.error("Error submitting form:", error);
       } finally {
         setShowLoader(false);
@@ -119,32 +126,34 @@ function Form() {
         fetchEmployeeData();
       }
     } else {
-      const employeeEdited = { ...newEmployee, id: employee.id };
+      if (employee) {
+        const employeeEdited = { ...newEmployee, id: employee.id };
 
-      if (!checkEmployeesEqual(employee, employeeEdited)) {
-        try {
-          await updateData(`/employees/${employeeId}.json`, employeeEdited);
-          console.log("Employee edited successfully");
+        if (!checkEmployeesEqual(employee, employeeEdited)) {
+          try {
+            await updateData(`/employees/${employeeId}.json`, employeeEdited);
+            console.log("Employee edited successfully");
 
-          // Display toast for success state
-          toast.success(`Edited user ${employeeEdited.emp_name}`, {
-            toastId: "edit-toast-id",
+            // Display toast for success state
+            toast.success(`Edited user ${employeeEdited.emp_name}`, {
+              toastId: "edit-toast-id",
+            });
+          } catch (error) {
+            // Display error toast
+            toast.error("Error editing user", { toastId: "error-edit-user" });
+            console.error("Error submitting form:", error);
+          } finally {
+            setShowLoader(false);
+            navigate(`/`);
+            fetchEmployeeData();
+          }
+        } else {
+          // Display info toast
+          toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {
+            toastId: "no-edit-toast-id",
           });
-        } catch (error) {
-          // Display error toast
-          toast.error("Error editing user",{toastId:"error-edit-user"});
-          console.error("Error submitting form:", error);
-        } finally {
-          setShowLoader(false);
           navigate(`/`);
-          fetchEmployeeData();
         }
-      } else {
-        // Display info toast
-        toast.info(`No edit has been made to ${employeeEdited.emp_name}`, {
-          toastId: "no-edit-toast-id",
-        });
-        navigate(`/`);
       }
     }
   });
@@ -152,116 +161,116 @@ function Form() {
   if (loading) return <Loader />;
 
   return (
-    <main className="main-section global-width">
-      <FormProvider {...methods}>
-        <form
-          className="global-width"
-          onSubmit={(e) => e.preventDefault()}
-          noValidate
-        >
-          <h2>
-            {!employee ? "Add New Employee" : `Edit Employee ${employee.id}`}
-          </h2>
-          <Fieldset className="form-details ">
-            <legend className="subheading">Personal Information</legend>
+    (urlType === "add-employee" || (urlType === "edit-employee" && employee)) &&
+    < FormProvider {...methods}>
+      <form
+        className="global-width"
+        onSubmit={(e) => e.preventDefault()}
+        noValidate
+      >
+        <h2>
+          {urlType === "add-employee" && "Add New Employee"}
+          {urlType === "edit-employee" && employee && `Edit Employee ${employee.id}`}
+        </h2>
+        <Fieldset className="form-details ">
+          <legend className="subheading">Personal Information</legend>
 
+          <Input
+            validation={{
+              pattern: {
+                value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
+                message: "This is an invalid value",
+              },
+              minLength: {
+                value: 2,
+                message: "min 2 characters",
+              },
+            }}
+            label="Name"
+            type="text"
+            name="emp_name"
+          />
+          <InputRow className="common-flex">
             <Input
               validation={{
                 pattern: {
-                  value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
+                  value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
                   message: "This is an invalid value",
                 },
-                minLength: {
-                  value: 2,
-                  message: "min 2 characters",
-                },
               }}
-              label="Name"
-              type="text"
-              name="emp_name"
+              label="Email"
+              type="email"
+              name="email"
             />
-            <InputRow className="common-flex">
-              <Input
-                validation={{
-                  pattern: {
-                    value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
-                    message: "This is an invalid value",
-                  },
-                }}
-                label="Email"
-                type="email"
-                name="email"
-              />
-              <Input
-                validation={{
-                  pattern: {
-                    value: RegExp("^[0-9]{10}$"),
-                    message:
-                      "Phone number must be 10 digits with no alphabets.",
-                  },
-                }}
-                label="Phone Number"
-                type="tel"
-                name="phone"
-              />
-            </InputRow>
             <Input
               validation={{
-                minLength: {
-                  value: 2,
-                  message: "min 2 characters",
+                pattern: {
+                  value: RegExp("^[0-9]{10}$"),
+                  message:
+                    "Phone number must be 10 digits with no alphabets.",
                 },
               }}
-              label="Address"
-              type="textarea"
-              name="address"
+              label="Phone Number"
+              type="tel"
+              name="phone"
             />
-            <InputRow className="common-flex">
-              <Input
-                validation={{
-                  max: {
-                    value: currentDate,
-                    message: "This is an invalid value",
-                  },
-                }}
-                label="Date of Birth"
-                type="date"
-                name="date_of_birth"
-              />
-              <Input
-                validation={{
-                  max: {
-                    value: currentDate,
-                    message: "This is an invalid value",
-                  },
-                }}
-                label="Date of Joining"
-                type="date"
-                name="date_of_joining"
-              />
-            </InputRow>
+          </InputRow>
+          <Input
+            validation={{
+              minLength: {
+                value: 2,
+                message: "min 2 characters",
+              },
+            }}
+            label="Address"
+            type="textarea"
+            name="address"
+          />
+          <InputRow className="common-flex">
             <Input
-              label="Gender"
-              type="radio"
-              options={["Male", "Female", "Other"]}
-              name="gender"
+              validation={{
+                max: {
+                  value: currentDate,
+                  message: "This is an invalid value",
+                },
+              }}
+              label="Date of Birth"
+              type="date"
+              name="date_of_birth"
             />
-          </Fieldset>
-          <Fieldset className="other-details ">
-            <legend className="subheading">Other Information</legend>
-            <FormSelectList />
-          </Fieldset>
-          <ButtonGrpWrapper>
-            <Button icon="" onClick={onReset}>
-              Clear
-            </Button>
-            <Button icon="" onClick={onSubmit} loading={showLoader}>
-              Submit
-            </Button>
-          </ButtonGrpWrapper>
-        </form>
-      </FormProvider>
-    </main>
+            <Input
+              validation={{
+                max: {
+                  value: currentDate,
+                  message: "This is an invalid value",
+                },
+              }}
+              label="Date of Joining"
+              type="date"
+              name="date_of_joining"
+            />
+          </InputRow>
+          <Input
+            label="Gender"
+            type="radio"
+            options={["Male", "Female", "Other"]}
+            name="gender"
+          />
+        </Fieldset>
+        <Fieldset className="other-details ">
+          <legend className="subheading">Other Information</legend>
+          <FormSelectList />
+        </Fieldset>
+        <ButtonGrpWrapper>
+          <Button icon="" onClick={onReset}>
+            Clear
+          </Button>
+          <Button icon="" onClick={onSubmit} loading={showLoader}>
+            Submit
+          </Button>
+        </ButtonGrpWrapper>
+      </form>
+    </FormProvider >
   );
 }
 export default Form;

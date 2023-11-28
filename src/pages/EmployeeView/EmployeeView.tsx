@@ -31,6 +31,10 @@ function EmployeeView() {
         toastId: "employee-not-found",
       });
       navigate("/");
+    } else {
+      if (!employee) {
+        throw new Response("Bad Request", { status: 400 });
+      }
     }
   }, []);
 
@@ -44,17 +48,15 @@ function EmployeeView() {
           <Button
             icon="person"
             children="Personal Details"
-            className={`detail-heading ${
-              activeBtn === "profile" ? "add-border-bottom" : ""
-            }`}
+            className={`detail-heading ${activeBtn === "profile" ? "add-border-bottom" : ""
+              }`}
             onClick={() => handleButtonClick("profile")}
           />
           <Button
             icon="business_center"
             children="Work Details"
-            className={`detail-heading ${
-              activeBtn === "work" ? "add-border-bottom" : ""
-            }`}
+            className={`detail-heading ${activeBtn === "work" ? "add-border-bottom" : ""
+              }`}
             onClick={() => handleButtonClick("work")}
           />
         </ButtonGrpWrapper>
