@@ -5,6 +5,12 @@ import ButtonGrpWrapper from "../Button/buttonGrpWrapper.ts";
 import DataContext from "../../core/store/DataContext.tsx";
 import { toast } from "react-toastify";
 import DeleteModalWrapper from "./../DeleteModal/deleteModal.ts";
+import {
+  DELETE_MODAL_HEADING,
+  CONFIRM_DELETE_TEXT,
+  WARNING_HEADING,
+  WARNING_TEXT,
+} from "./constants/constants.ts";
 
 function DeleteModal({
   changeDltModalOpenStatus,
@@ -16,7 +22,6 @@ function DeleteModal({
   const { fetchEmployeeData } = useContext(DataContext);
 
   const confirmDlt = async () => {
-
     const url = `/employees/${employeeId}.json`;
 
     try {
@@ -27,7 +32,7 @@ function DeleteModal({
         toastId: "delete-toast-id",
       });
     } catch (error) {
-      toast.error("Error deleting user",{toastId:"delete-user"});
+      toast.error("Error deleting user", { toastId: "delete-user" });
       console.error("Error deleting item:", error);
     } finally {
       fetchEmployeeData(); // data fetched after employee deletion
@@ -43,23 +48,22 @@ function DeleteModal({
         className="close-btn"
         onClick={changeDltModalOpenStatus}
       ></Button>
-      <h2 className="delete-modal-heading">Confirm user removal</h2>
-      <p className="confirm-delete">
-        Are you sure you want to delete the employee {employeeId}?
-      </p>
+      <h2 className="delete-modal-heading">{DELETE_MODAL_HEADING}</h2>
+      <p className="confirm-delete">{CONFIRM_DELETE_TEXT(employeeId)}</p>
       <div className="warning-container">
         <div className="warning-heading common-flex">
           <span className="material-icons-round">warning</span>
-          <p className="title">Warning</p>
+          <p className="title">{WARNING_HEADING}</p>
         </div>
-        <p className="warning-text">
-          The data selected will be permanently removed. It would remove all the
-          details related to the employee. Are you sure you want to continue?
-        </p>
+        <p className="warning-text">{WARNING_TEXT}</p>
       </div>
       <ButtonGrpWrapper className="button-gap">
-        <Button className="cancel-btn" onClick={changeDltModalOpenStatus}>No, Cancel</Button>
-        <Button className="delete-btn" icon="delete" onClick={confirmDlt}>Yes, confirm delete</Button>
+        <Button className="cancel-btn" onClick={changeDltModalOpenStatus}>
+          No, Cancel
+        </Button>
+        <Button className="delete-btn" icon="delete" onClick={confirmDlt}>
+          Yes, confirm delete
+        </Button>
       </ButtonGrpWrapper>
     </DeleteModalWrapper>
   );

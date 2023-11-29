@@ -75,7 +75,7 @@ function TableData({
           skills={employee.skills}
           handleSkillsOverflow={handleSkillsOverflow}
         />
-        {hover && skillsOverflow && <Tooltip skills={employee.skills} />}
+        {hover && skillsOverflow && <Tooltip message={employee.skills} />}
       </td>
       <td className="employee-data overflow-ellipsis">
         <div className=" actions-list common-flex">
