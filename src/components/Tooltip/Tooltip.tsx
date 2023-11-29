@@ -11,9 +11,9 @@ function Tooltip({ message }: { message: Skill[] | string }) {
   };
 
   useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove); //calculate the mouseposition whenever the mouse moves
+    window.addEventListener('mousemove', handleMouseMove);//calculate the mouseposition whenever the mouse moves
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -21,7 +21,6 @@ function Tooltip({ message }: { message: Skill[] | string }) {
   if (Array.isArray(message))
     tooltipMsg = message.map((msg) => msg.name).join(", ");
   else tooltipMsg = message;
-
   return <TooltipWrapper $left={mousePosition.x}>{tooltipMsg}</TooltipWrapper>;
 }
 

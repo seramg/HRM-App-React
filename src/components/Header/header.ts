@@ -13,5 +13,8 @@ const HeaderWrapper = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+  .logo{
+    position:relative
+  }
 `;
 export default HeaderWrapper;
