@@ -24,15 +24,17 @@ import { getData, updateData } from "../../core/api/functions.ts";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader.tsx";
 import FormSelectList from "./FormSelect/FormSelectList.tsx";
+import {
+  nameValidation,
+  emailValidation,
+  phoneValidation,
+  addressValidation,
+  dateValidation,
+} from "./constants/validationConfig.ts";
 
 function Form() {
-  const {
-    employees,
-    tableProps,
-    addTableProps,
-    fetchEmployeeData,
-    loading,
-  } = useContext(DataContext);
+  const { employees, tableProps, addTableProps, fetchEmployeeData, loading } =
+    useContext(DataContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -49,8 +51,6 @@ function Form() {
     (emp) => emp && emp.id === employeeId
   );
 
-  const currentDate = new Date().toISOString().split("T")[0];
-
   const methods = useForm<FormEmployee>({
     mode: "onChange",
   });
@@ -63,8 +63,7 @@ function Form() {
           toastId: "employee-not-found",
         });
         navigate("/");
-      }
-      else {
+      } else {
         if (!loading && !employee) {
           throw new Response("Employee Not Found", {
             status: 404,
@@ -160,8 +159,9 @@ function Form() {
   if (loading) return <Loader />;
 
   return (
-    (urlType === "add-employee" || (urlType === "edit-employee" && employee)) &&
-    < FormProvider {...methods}>
+    (urlType === "add-employee" ||
+      (urlType === "edit-employee" && employee)) && (
+      <FormProvider {...methods}>
         <form
           className="global-width"
           onSubmit={(e) => e.preventDefault()}
@@ -169,81 +169,48 @@ function Form() {
         >
           <h2>
             {urlType === "add-employee" && "Add New Employee"}
-            {urlType === "edit-employee" && employee && `Edit Employee ${employee.id}`}
+            {urlType === "edit-employee" &&
+              employee &&
+              `Edit Employee ${employee.id}`}
           </h2>
           <Fieldset className="form-details ">
             <legend className="subheading">Personal Information</legend>
 
             <Input
-              validation={{
-                pattern: {
-                  value: RegExp("^[A-Za-z ]*[A-Za-z][A-Za-z ]*$"),
-                  message: "This is an invalid value",
-                },
-                minLength: {
-                  value: 2,
-                  message: "min 2 characters",
-                },
-              }}
+              validation={nameValidation}
               label="Name"
               type="text"
               name="emp_name"
             />
             <InputRow className="common-flex">
               <Input
-                validation={{
-                  pattern: {
-                    value: RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
-                    message: "This is an invalid value",
-                  },
-                }}
+                validation={emailValidation}
                 label="Email"
                 type="email"
                 name="email"
               />
               <Input
-                validation={{
-                  pattern: {
-                    value: RegExp("^[0-9]{10}$"),
-                    message:
-                      "Phone number must be 10 digits with no alphabets.",
-                  },
-                }}
+                validation={phoneValidation}
                 label="Phone Number"
                 type="tel"
                 name="phone"
               />
             </InputRow>
             <Input
-              validation={{
-                minLength: {
-                  value: 2,
-                  message: "min 2 characters",
-                },
-              }}
+              validation={addressValidation}
               label="Address"
               type="textarea"
               name="address"
             />
             <InputRow className="common-flex">
               <Input
-                validation={{
-                  max: {
-                    value: currentDate,
-                    message: "This is an invalid value",
-                  },
-                }}
+                validation={dateValidation}
                 label="Date of Birth"
                 type="date"
                 name="date_of_birth"
               />
               <Input
-                validation={{
-                  max: {
-                    value: currentDate,
-                    message: "This is an invalid value",
-                  },
-                }}
+                validation={dateValidation}
                 label="Date of Joining"
                 type="date"
                 name="date_of_joining"
@@ -269,7 +236,8 @@ function Form() {
             </Button>
           </ButtonGrpWrapper>
         </form>
-      </FormProvider >
+      </FormProvider>
+    )
   );
 }
 export default Form;

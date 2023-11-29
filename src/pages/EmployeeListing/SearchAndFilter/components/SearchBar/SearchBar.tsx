@@ -3,7 +3,7 @@ import SearchWrapper from "./search.ts";
 import { TableProps } from "../../../../../core/interfaces/interface.ts";
 import DataContext from "../../../../../core/store/DataContext.tsx";
 
-function SearchBar() {
+function SearchBar({placeholder}:{placeholder:string}) {
 
   const { addTableProps, tableProps } = useContext(DataContext);
   const [focus, setFocus] = useState(false);
@@ -33,7 +33,7 @@ function SearchBar() {
           value={tableProps.search_term as string}
           className="search-input"
           id="search-input"
-          placeholder="Search by name"
+          placeholder={placeholder}
           onFocus={handleFocus}
           onChange={(e) => {
             handleChange({ value: e.target.value });

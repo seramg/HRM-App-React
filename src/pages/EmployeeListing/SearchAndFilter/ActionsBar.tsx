@@ -24,7 +24,7 @@ function ActionsBar() {
         <h2 className="subheading filter-title">Filter By:</h2>
         <div className="global-width common-flex form-flex-align">
           <FilterSelectList />
-          <SearchBar />
+          <SearchBar placeholder="Search by name" />
         </div>
         <Button icon="" onClick={onReset}>
           Clear
