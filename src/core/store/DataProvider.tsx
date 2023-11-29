@@ -53,11 +53,9 @@ const DataProvider = ({ children }: { children: any }) => {
         setEmployees(Object.values(dataResponse.employees));
         return dataResponse; // Resolve the promise with the data
       } else {
-        toast.error("No data is recieved",{toastId:"no-data"});
-        throw new Error("No data received");
+        toast.error("No data is recieved", { toastId: "no-data" });
       }
     } catch (error) {
-      toast.error("Error fetching employees",{toastId:"employees-unfetched"});
       console.error("Error fetching data:", error);
     } finally {
       addLoader(false);
@@ -74,7 +72,6 @@ const DataProvider = ({ children }: { children: any }) => {
         setSkills(transformArrayToSkillOptionsList(dataResponse.skills));
       }
     } catch (error) {
-      toast.error("Error fetching dropdown data",{toastId:"dropdown-unfetched"});
       console.error("Error fetching dropdown data:", error);
     }
   };
