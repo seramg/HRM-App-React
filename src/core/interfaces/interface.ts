@@ -6,6 +6,14 @@ export enum SortDirection {
   NO_SORT = "no-sort",
 }
 
+export interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+export interface ErrorState {
+  hasError: boolean;
+  error: { message: string };
+}
 export interface SortProps {
   sortVal: SortDirection;
   sortTerm: string | null;
