@@ -7,7 +7,6 @@ function ErrorPage() {
   const [searchParams] = useSearchParams();
 
   const statusCode: string | null = searchParams.get("statusCode");
-  console.log(statusCode);
 
   let errorMessage;
   switch (statusCode) {

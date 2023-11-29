@@ -109,7 +109,6 @@ function Form() {
         );
         await updateData("/employeesCount.json", currentEmployeesCount + 1);
 
-        console.log("Employee added successfully");
         // Display toast for success state
         toast.success(`Added user ${newEmployeeToAdd.emp_name}`, {
           toastId: "add-toast-id",
@@ -117,7 +116,6 @@ function Form() {
       } catch (error) {
         // Display error toast
         toast.error("Error adding new user", { toastId: "error-add-user" });
-        console.error("Error submitting form:", error);
       } finally {
         setShowLoader(false);
         navigate(`/`);
@@ -130,8 +128,6 @@ function Form() {
         if (!checkEmployeesEqual(employee, employeeEdited)) {
           try {
             await updateData(`/employees/${employeeId}.json`, employeeEdited);
-            console.log("Employee edited successfully");
-
             // Display toast for success state
             toast.success(`Edited user ${employeeEdited.emp_name}`, {
               toastId: "edit-toast-id",
@@ -139,7 +135,6 @@ function Form() {
           } catch (error) {
             // Display error toast
             toast.error("Error editing user", { toastId: "error-edit-user" });
-            console.error("Error submitting form:", error);
           } finally {
             setShowLoader(false);
             navigate(`/`);

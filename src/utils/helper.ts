@@ -304,7 +304,6 @@ export const checkSkillsEqual = (originalSkillList: Skill[], editedSkillList: Sk
     for (let key of originalSkillKeys) {
       const keyProp = key as keyof Skill;
       if (originalSkill[keyProp] != editedSkill[keyProp]) {
-        console.log(originalSkill[keyProp], editedSkill[keyProp])
         return false
       }
     }

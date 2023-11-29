@@ -26,14 +26,12 @@ function DeleteModal({
 
     try {
       await deleteData(url); // deleting employee in firebase
-      console.log("Employee deleted successfully");
       // Display toast for success state
       toast.success(`Deleted user ${employeeId}`, {
         toastId: "delete-toast-id",
       });
     } catch (error) {
       toast.error("Error deleting user", { toastId: "delete-user" });
-      console.error("Error deleting item:", error);
     } finally {
       fetchEmployeeData(); // data fetched after employee deletion
     }

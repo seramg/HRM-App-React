@@ -15,7 +15,6 @@ interface ErrorResponse {
 }
 
 export function onResponseError(error: AxiosError): Promise<any> {
-  console.log("onResponseError called", error);
 
   if (
     (error.response?.status === HTTP_STATUS.SERVER_ERROR ||
