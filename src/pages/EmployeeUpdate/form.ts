@@ -3,7 +3,9 @@ import colors from "../../core/constants/colors";
 
 const Fieldset = styled.fieldset`
   margin: 30px 0;
-  background-color:  ${colors.WHITE_COLOR};
+  background-color: ${colors.WHITE_COLOR};
+  border: 1px solid ${colors.DARK_GRAY_COLOR};
+  
   .submit-btn {
     margin: 30px;
   }

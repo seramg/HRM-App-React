@@ -38,7 +38,7 @@ body {
 }
 .global-width {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: auto;
 }
 .page-title {
   margin: 0;
