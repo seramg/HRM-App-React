@@ -5,6 +5,7 @@ import {
   StylesConfig,
 } from "react-select";
 import { SelectOptionProps } from "../../core/interfaces/interface";
+import colors from "../../core/constants/colors";
 
 function selectStyleComponent(error?:string){
 
@@ -13,8 +14,8 @@ const selectStyles: StylesConfig<SelectOptionProps> = {
     ...base,
     fontSize:"14px",
     border:error?"none": state.isFocused
-      ? "1px solid  var(--dark-gray-color)"
-      : "1px solid  var(--light-gray-color)",
+      ? `1px solid  ${colors.DARK_GRAY_COLOR}`
+      : `1px solid  ${colors.LIGHT_GRAY_COLOR}`,
     boxShadow: "none",
     "&:hover": {
       borderColor: "none",
@@ -32,10 +33,10 @@ const selectStyles: StylesConfig<SelectOptionProps> = {
   ) => ({
     ...base,
     color: state.isFocused
-      ? "var(--dark-gray-color)"
-      : "var(--light-gray-color)", // Set the color of the arrow
+      ? `${colors.DARK_GRAY_COLOR}`
+      : `${colors.LIGHT_GRAY_COLOR}`, // Set the color of the arrow
       "&:hover, &:active, &:focus": {
-        color: "var(--dark-gray-color)",
+        color: `${colors.DARK_GRAY_COLOR}`,
     },
   }),
 }

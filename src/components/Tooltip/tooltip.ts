@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import colors from "../../core/constants/colors";
 
 const TooltipWrapper = styled.div<{ $left: number }>`
   position: absolute;
-  background-color: var(--white-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--dark-gray-color);
+  background-color:  ${colors.WHITE_COLOR};
+  color: ${colors.SECONDARY_COLOR};
+  border: 1px solid ${colors.DARK_GRAY_COLOR};
   padding: 5px;
   border-radius: 3px;
   z-index: 1;

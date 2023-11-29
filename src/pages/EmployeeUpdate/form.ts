@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import colors from "../../core/constants/colors";
 
 const Fieldset = styled.fieldset`
   margin: 30px 0;
-  background-color:var(--white-color);
+  background-color:  ${colors.WHITE_COLOR};
   .submit-btn {
     margin: 30px;
   }

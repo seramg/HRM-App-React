@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../core/constants/colors";
 
 const TableWrapper = styled.table`
   border-collapse: collapse;
@@ -7,7 +8,7 @@ const TableWrapper = styled.table`
   table-layout: fixed;
 
   .material-symbols-outlined {
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
   }
 
   .actions-list {
@@ -18,7 +19,7 @@ const TableWrapper = styled.table`
     text-align: center;
   }
   .alternate-table-row-color {
-    background-color: var(--white-color);
+    background-color:  ${colors.WHITE_COLOR};
   }
   .pagination-bar {
     width: 100%;

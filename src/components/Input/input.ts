@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../core/constants/colors";
 
 const InputWrapper = styled.div`
   gap: 10px;
@@ -9,22 +10,22 @@ const InputWrapper = styled.div`
   input {
     padding: 10px;
     outline: none;
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
     background-color: white;
-    border: 1px solid var(--light-gray-color);
+    border: 1px solid ${colors.LIGHT_GRAY_COLOR};
     font-size: 14px,
 
     &::placeholder {
-      color: var(--dark-gray-color);
+      color: ${colors.DARK_GRAY_COLOR};
       font-size: 14px;
     }
     &:focus {
-      border: 1px solid var(--dark-gray-color);
+      border: 1px solid ${colors.DARK_GRAY_COLOR};
     }
   }
   input[type="date"]::-webkit-input-placeholder,
   input[type="date"]::placeholder {
-    color: var(--dark-gray-color) !important;
+    color: ${colors.DARK_GRAY_COLOR} !important;
   }
 
   .input-border-error, .input-border-error:focus {
@@ -37,7 +38,7 @@ const InputWrapper = styled.div`
     min-height: 70px; /* Adjust the min-height based on your design */  
   }
   .placeholder {
-    color: var(--dark-gray-color);
+    color: ${colors.DARK_GRAY_COLOR};
     font-size: 14px;
   }
   .radio-list {

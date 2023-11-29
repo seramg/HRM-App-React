@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../../core/constants/colors";
 
 const PaginationWrapper = styled.ul`
 display: flex;
@@ -9,7 +10,7 @@ list-style-type: none;
     height: 32px;
     text-align: center;
     margin: auto 4px;
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
     display: flex;
     align-items: center;
     border-radius: 25px;
@@ -23,24 +24,24 @@ list-style-type: none;
       cursor: pointer;
       
       .arrow{
-        color: var(--primary-color);
+        color: ${colors.PRIMARY_COLOR};
       }
     }
 
     &.selected {
-      background-color: var(--primary-color);
-      color: var(--white-color);
+      background-color: ${colors.PRIMARY_COLOR};
+      color:  ${colors.WHITE_COLOR};
     }
 
     .arrow {
-      color: var(--dark-gray-color);
+      color: ${colors.DARK_GRAY_COLOR};
     }
 
     &.disabled {
       pointer-events: none;
 
       .arrow {
-        color: var(--light-gray-color)
+        color: ${colors.LIGHT_GRAY_COLOR}
       }
 
       &:hover {

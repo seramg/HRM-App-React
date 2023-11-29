@@ -1,13 +1,14 @@
 import { styled } from "styled-components";
+import colors from "../../core/constants/colors";
 
 const EmployeeViewWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-top: 80px !important;
-  background-color: var(--white-color);
+  background-color:  ${colors.WHITE_COLOR};
   padding: 20px 0;
-  border: 1px solid var(--light-gray-color);
+  border: 1px solid ${colors.LIGHT_GRAY_COLOR};
   border-radius: 10px;
   
   > * {
@@ -22,24 +23,24 @@ const EmployeeViewWrapper = styled.main`
     padding-bottom: 10px;
   }
   .details-section {
-    border-top: 1px solid var(--light-gray-color);
-    border-bottom: 1px solid var(--light-gray-color);
+    border-top: 1px solid ${colors.LIGHT_GRAY_COLOR};
+    border-bottom: 1px solid ${colors.LIGHT_GRAY_COLOR};
     width: 100%;
     justify-content: flex-start;
   }
 
   .material-symbols-outlined {
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
     font-size: 20px;
   }
   button {
     background:none;
     border-radius:0;
     font-size: 18px;
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
   }
   .add-border-bottom{
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 1px solid ${colors.PRIMARY_COLOR};
   }
 
   .detail-element {
@@ -49,7 +50,7 @@ const EmployeeViewWrapper = styled.main`
     gap:10px;
     width:100%;
     .material-symbols-outlined {
-      color: var(--light-gray-color);
+      color: ${colors.LIGHT_GRAY_COLOR};
     } 
   }
 

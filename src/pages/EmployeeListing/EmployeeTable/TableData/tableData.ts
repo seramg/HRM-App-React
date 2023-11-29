@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../../core/constants/colors";
 
 const TableDataWrapper = styled.tr`
 
@@ -8,17 +9,14 @@ const TableDataWrapper = styled.tr`
     position:relative;
 }
 .employee-view{
-    color: #0000FF;
+    color: ${colors.LINK_COLOR};
     cursor:pointer; 
 
-    &:visited{
-        color:#800080;
-    }
     &:active{
         text-decoration:underline;
     }
     &:hover{
-        color:#000099;
+        color:${colors.LINK_HIGHLIGHT_COLOR};
         text-decoration:underline;
     }
 }

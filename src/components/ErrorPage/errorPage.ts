@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../core/constants/colors";
 
 const ErrorPageWrapper = styled.div`
   display: flex;
@@ -13,11 +14,11 @@ const ErrorPageWrapper = styled.div`
     font-size: 105px;
     font-weight: 900;
     line-height: 1.5;
-    color: var(--dark-gray-color);
+    color: ${colors.DARK_GRAY_COLOR};
   }
 
   .error-subtitle {
-    color: var(--dark-gray-color);
+    color: ${colors.DARK_GRAY_COLOR};
   }
   .back-to-home-btn {
     background-color: blue;

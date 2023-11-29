@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import colors from "../../../../core/constants/colors";
 
 const TableHeadWrapper = styled.thead`
   .table-button-head{
     cursor: pointer;
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
 
     &:hover{
       .sort-icon{
@@ -14,7 +15,7 @@ const TableHeadWrapper = styled.thead`
   .table-title {
     font-size:18px;
     font-weight: 700;
-    color: var(--secondary-color);
+    color: ${colors.SECONDARY_COLOR};
   }
     button {
     flex-direction: row-reverse;

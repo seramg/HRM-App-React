@@ -1,10 +1,11 @@
   import styled from 'styled-components';
+import colors from '../../core/constants/colors';
 
   const ButtonWrapper = styled.button`
   border: none;
-  background: var(--primary-color);
+  background: ${colors.PRIMARY_COLOR};
   cursor: pointer;
-  color: white;
+  color: ${colors.WHITE_COLOR};
   padding: 16px 20px;
   border-radius: 10px;
   text-decoration: none;
@@ -20,7 +21,7 @@
     height: 24px;
     margin: auto;  
     border: 5px solid #FFF;
-    border-bottom-color: var(--white-color);
+    border-bottom-color: ${colors.WHITE_COLOR};
     border-radius: 100%;
     animation: rotation 1s linear infinite;
 

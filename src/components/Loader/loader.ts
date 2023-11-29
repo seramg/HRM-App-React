@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../core/constants/colors";
 
 const LoaderWrapper = styled.span`
     position: absolute;
@@ -10,7 +11,7 @@ const LoaderWrapper = styled.span`
     bottom:0;
     margin: auto;  
     border: 5px solid #FFF;
-    border-bottom-color: var(--primary-color);
+    border-bottom-color: ${colors.PRIMARY_COLOR};
     border-radius: 100%;
     animation: rotation 1s linear infinite;
 
