@@ -32,7 +32,7 @@ function Input({  validation, label, type, options, name }: InputProps) {
           {errorMsg && <InputError error={errorMsg.message?.toString()} />}
         </div>
       ) : (
-        <div className="input-field-error  m-30">
+        <div className="input-field-error">
           <input
             type={type}
             id={label}
