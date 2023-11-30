@@ -14,8 +14,8 @@ function Header() {
   };
 
   return (
-    <HeaderWrapper>
-      <div className="header-content global-width">
+    <HeaderWrapper className="">
+      <div className="header-content">
         <StyledLink to="/">
           <span className="logo" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <h1 className="page-title">HRM</h1>

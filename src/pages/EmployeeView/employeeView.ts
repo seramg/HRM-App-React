@@ -10,7 +10,6 @@ const EmployeeViewWrapper = styled.div`
   border: 1px solid ${colors.LIGHT_GRAY_COLOR};
   border-radius: 10px;
   max-width: 1000px;
-  margin: 80px auto;
   
   > * {
     padding: 0   20px;
@@ -35,13 +34,19 @@ const EmployeeViewWrapper = styled.div`
     font-size: 20px;
   }
   button {
+    border:1px solid transparent;
     background:none;
     border-radius:0;
     font-size: 18px;
+    padding:16px 0;
     color: ${colors.SECONDARY_COLOR};
+    label{
+      overflow:hidden;
+      white-space:nowrap;
+    text-overflow:ellipsis;}
   }
   .add-border-bottom{
-    border-bottom: 1px solid ${colors.PRIMARY_COLOR};
+    border-bottom: 1px solid ${colors.PRIMARY_COLOR} !important;
   }
 
   .detail-element {

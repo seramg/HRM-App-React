@@ -8,8 +8,13 @@ import ButtonGrpWrapper from "../../components/Button/buttonGrpWrapper.ts";
 import DetailsSection from "../../components/Details/Details.tsx";
 import Loader from "../../components/Loader/loader.ts";
 import { toast } from "react-toastify";
+import { useMediaQuery } from 'usehooks-ts'
 
 function EmployeeView() {
+
+  //mobile design
+  const matches = useMediaQuery('(min-width: 768px)')
+
   let [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -33,7 +38,7 @@ function EmployeeView() {
       });
       navigate("/");
     } else {
-      
+
       if (!loading && !employee) {
         throw new Response("Employee Not Found", { status: 404 });
       }
@@ -67,27 +72,27 @@ function EmployeeView() {
           <div className="detail-element">
             <DetailsSection
               icon="person"
-              title="Full Name"
+              title={matches ? "Full Name" : ""}
               content={employee.emp_name}
             />
             <DetailsSection
               icon="mail"
-              title="Email"
+              title={matches ? "Email" : ""}
               content={employee.email}
             />
             <DetailsSection
               icon="phone_iphone"
-              title="Phone No"
+              title={matches ? "Phone No" : ""}
               content={employee.phone}
             />
             <DetailsSection
               icon="calendar_month"
-              title="Date of Birth"
+              title={matches ? "Date of Birth" : ""}
               content={getDateView(employee.date_of_birth)}
             />
             <DetailsSection
               icon="home"
-              title="Address"
+              title={matches ? "Address" : ""}
               content={employee.address}
             />
           </div>
@@ -95,32 +100,32 @@ function EmployeeView() {
           <div className="detail-element">
             <DetailsSection
               icon="person"
-              title="Designation"
+              title={matches ? "Designation" : ""}
               content={employee.designation}
             />
             <DetailsSection
               icon="mail"
-              title="Department"
+              title={matches ? "Department" : ""}
               content={employee.department}
             />
             <DetailsSection
               icon="phone_iphone"
-              title="Employment Mode"
+              title={matches ? "Employment Mode" : ""}
               content={employee.employment_mode}
             />
             <DetailsSection
               icon="calendar_month"
-              title="Date of Joining"
+              title={matches ? "Date of Joining" : ""}
               content={getDateView(employee.date_of_joining)}
             />
             <DetailsSection
               icon="home"
-              title="Work Experience"
+              title={matches ? "Work Experience" : ""}
               content={getWorkExp(employee.date_of_joining)}
             />
             <DetailsSection
               icon="home"
-              title="Skills"
+              title={matches ? "Skills" : ""}
               content={employee.skills}
             />
           </div>

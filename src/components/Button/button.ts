@@ -1,7 +1,7 @@
-  import styled from 'styled-components';
+import styled from 'styled-components';
 import colors from '../../core/constants/colors';
 
-  const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.button`
   border: none;
   background: ${colors.PRIMARY_COLOR};
   cursor: pointer;
@@ -13,8 +13,14 @@ import colors from '../../core/constants/colors';
   overflow: hidden; 
   text-overflow: ellipsis; 
   
+  >*{
+    width:100%;
+  }
   > label{
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
   }
   .btn-loader{
     width: 24px;
@@ -35,4 +41,4 @@ import colors from '../../core/constants/colors';
     } 
   }
   `;
-  export default ButtonWrapper;
+export default ButtonWrapper;

@@ -5,9 +5,9 @@ import React from "react";
 
 function Layout() {
   return (
-    <React.Fragment>
+    <>
       <Header />
-      <main className="main-section global-width">
+      <main className="main-section global-width global-padding">
 
         {/* This element will render either 
         <EmployeeListing /> when URL is '/'
@@ -17,7 +17,7 @@ function Layout() {
         <Outlet />
       </main>
       <Footer />
-    </React.Fragment>
+    </>
   );
 }
 

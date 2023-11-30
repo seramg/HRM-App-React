@@ -20,6 +20,7 @@ const TableDataWrapper = styled.tr`
         text-decoration:underline;
     }
 }
+
 button {
     flex-direction: row-reverse;
     background: none;

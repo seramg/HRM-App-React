@@ -6,7 +6,7 @@ function TableHead() {
     <TableHeadWrapper>
       <tr>
         <TableHeadButton icon="expand_more" >
-          Employee Id
+          Id
         </TableHeadButton>
         <TableHeadButton icon="expand_more" >
           Name
