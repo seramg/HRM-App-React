@@ -1,15 +1,16 @@
 import { styled } from "styled-components";
 import colors from "../../core/constants/colors";
 
-const EmployeeViewWrapper = styled.main`
+const EmployeeViewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 80px !important;
   background-color:  ${colors.WHITE_COLOR};
   padding: 20px 0;
   border: 1px solid ${colors.LIGHT_GRAY_COLOR};
   border-radius: 10px;
+  max-width: 1000px;
+  margin: 80px auto;
   
   > * {
     padding: 0   20px;

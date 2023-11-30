@@ -158,7 +158,6 @@ function Form() {
       (urlType === "edit-employee" && employee)) && (
       <FormProvider {...methods}>
         <form
-          className="global-width"
           onSubmit={(e) => e.preventDefault()}
           noValidate
         >

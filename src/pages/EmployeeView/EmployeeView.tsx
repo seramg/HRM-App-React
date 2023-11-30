@@ -45,7 +45,7 @@ function EmployeeView() {
 
   return (
     employee && (
-      <EmployeeViewWrapper className="main-section global-width">
+      <EmployeeViewWrapper>
         <h2 className="employee-name">{employee.emp_name}</h2>
         <ButtonGrpWrapper className="details-section common-flex">
           <Button

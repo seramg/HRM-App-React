@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header.tsx";
 import Footer from "../components/Footer/Footer.tsx";
+import React from "react";
 
 function Layout() {
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main className="main-section global-width">
 
@@ -16,7 +17,7 @@ function Layout() {
         <Outlet />
       </main>
       <Footer />
-    </>
+    </React.Fragment>
   );
 }
 
