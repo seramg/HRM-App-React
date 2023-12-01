@@ -31,7 +31,7 @@ function FormSelect({
 
   return (
     <InputWrapper>
-      <label className="subheading">{label}</label>
+      <label className="subheading overflow-ellipsis">{label}</label>
       <Controller
         name={fieldName}
         control={control}
@@ -45,7 +45,7 @@ function FormSelect({
                 className={className}
                 isSearchable={true}
                 options={options}
-                placeholder={<div className="placeholder">{placeholder}</div>}
+                placeholder={<div className="placeholder overflow-ellipsis">{placeholder}</div>}
                 isMulti={isMulti || false}
                 styles={selectStyles(errorMsg?.toString())} // custom style for select dropdown
               />

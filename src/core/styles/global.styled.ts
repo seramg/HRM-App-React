@@ -150,7 +150,7 @@ input{
   gap:5px;
   flex-wrap:wrap;
    > *{
-    flex:initial !important;
+    flex:1;
   }
 }
 table{

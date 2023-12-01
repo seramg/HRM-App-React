@@ -20,7 +20,7 @@ function FilterSelect({
 
   return (
     <InputWrapper>
-      <label className="subheading">{label}</label>
+      <label className="subheading overflow-ellipsis">{label}</label>
       <Select
         value={tableProps[fieldName] as SelectOptionProps | SelectOptionProps[]}
         isClearable={true}
