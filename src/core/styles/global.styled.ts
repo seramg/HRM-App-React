@@ -12,8 +12,8 @@ const GlobalStyle = createGlobalStyle`
   font-family: 'Manrope';
   src: local('Manrope'),
   url(${ManropeBold}) ,
-  url(${ManropeMedium}) ,
-  url(${ManropeLight}) ,
+  url(${ManropeMedium}),
+  url(${ManropeLight});
   font-weight: 700;
   font-weight: 500;
   font-weight: 300;
@@ -147,16 +147,17 @@ input{
 }
 
 .select-list{
-  gap:5px;
-  flex-wrap:wrap;
-   > *{
-    flex:1;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* see notes below */
+  grid-gap:5px;
+  width: 100%;
+  flex: 1;
+}
+.table-overflow-scroll{
+  overflow-x:auto;
 }
 table{
-  width:100%;
-  display:block;
-  overflow-x:auto;
+  width:  1370px;
 }
 tr{
   border: 1px solid  #D3D3D3;
@@ -171,21 +172,38 @@ td {
   border-spacing: 0;
   text-align:left;
 }
-th:nth-child(5), td:nth-child(5) {
-  max-width: 200px; /* Adjust the width as needed */
+th:nth-child(5), td:nth-child(5){
+  width: 200px; 
+}
+th:nth-child(6), td:nth-child(6) {
+  width: 100px; 
 }
 thead,tbody{
   width: 100%;
-  display: table;
 }
-tr{
-  width:200%;
-  max-width:1400px;
-}
+
 .overflow-ellipsis{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; 
+}
+
+@media only screen and (max-width: 1200px) {
+  .select-list{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* see notes below */
+  }
+  .form-flex-align{
+    flex-direction: column;
+  }
+ .search-bar{
+  width: 100%;
+ }
+}
+
+@media only screen and (max-width: 728px) {
+  .select-list{
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* see notes below */
+  }
 }
 `;
 

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import colors from "../../../../../core/constants/colors";
 
 const SearchWrapper = styled.div<{ $focus: boolean }>`
-  min-width: 200px;
   flex: 1;
   background-color: ${colors.WHITE_COLOR};
   border-radius: 4px;

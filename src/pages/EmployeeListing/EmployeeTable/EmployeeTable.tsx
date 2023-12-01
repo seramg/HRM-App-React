@@ -5,11 +5,7 @@ import TableWrapper from "./employeeTable.ts";
 import TableData from "./TableData/TableData.tsx";
 import TableHead from "./TableHead/TableHead.tsx";
 import Loader from "../../../components/Loader/Loader.tsx";
-import {
-  filterData,
-  searchData,
-  sortData,
-} from "../../../utils/helper.ts";
+import { filterData, searchData, sortData } from "../../../utils/helper.ts";
 import Pagination from "./Pagination/Pagination.tsx";
 import DeleteModal from "../../../components/DeleteModal/DeleteModal.tsx";
 
@@ -60,49 +56,52 @@ function EmployeeTable({
 
   return (
     <>
-      <TableWrapper>
-        <TableHead />
-        {loading ? (
-          <tbody>
-            <tr className="no-border-row">
-              <td rowSpan={5}>
-                {/* This component is rendered when data is fetching from database  */}
-                <Loader />
-              </td>
-            </tr>
-          </tbody>
-        ) : (
-          <tbody>
-            {employeesTableView.length > 0 ? (
-              employeesTableView.map((employee: Employee, index: number) => {
-                return (
-                  employee && (
-                    <TableData
-                      key={employee.id}
-                      employee={employee}
-                      index={index}
-                      changeDltModalOpenStatus={changeDltModalOpenStatus}
-                      idToDltProp={idToDltProp}
-                    />
-                  )
-                );
-              })
-            ) : (
-              <tr>
-                <td className="no-data" colSpan={6}>
-                  No data Available
+      <div className="table-overflow-scroll">
+        <TableWrapper>
+          <TableHead />
+          {loading ? (
+            <tbody>
+              <tr className="no-border-row">
+                <td rowSpan={5}>
+                  {/* This component is rendered when data is fetching from database  */}
+                  <Loader />
                 </td>
               </tr>
-            )}
-          </tbody>
+            </tbody>
+          ) : (
+            <tbody>
+              {employeesTableView.length > 0 ? (
+                employeesTableView.map((employee: Employee, index: number) => {
+                  return (
+                    employee && (
+                      <TableData
+                        key={employee.id}
+                        employee={employee}
+                        index={index}
+                        changeDltModalOpenStatus={changeDltModalOpenStatus}
+                        idToDltProp={idToDltProp}
+                      />
+                    )
+                  );
+                })
+              ) : (
+                <tr>
+                  <td className="no-data" colSpan={6}>
+                    No data Available
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          )}
+        </TableWrapper>
+        {deleteModal && (
+          <DeleteModal
+            changeDltModalOpenStatus={changeDltModalOpenStatus}
+            employeeId={idToDlt}
+          />
         )}
-      </TableWrapper>
-      {deleteModal && (
-        <DeleteModal
-          changeDltModalOpenStatus={changeDltModalOpenStatus}
-          employeeId={idToDlt}
-        />
-      )}
+      </div>
+
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}

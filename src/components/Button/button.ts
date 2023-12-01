@@ -10,9 +10,6 @@ const ButtonWrapper = styled.button<{ $isChildren: boolean }>`
   padding: ${(props) => (props.$isChildren ? `16px 20px` : `0`)};
   border-radius: 10px;
   text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   gap: 5px;
 
   span {

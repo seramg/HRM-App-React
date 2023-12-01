@@ -7,15 +7,23 @@ const InputWrapper = styled.div`
   flex-direction: column;
   flex: 1;
 
+  .subheading {
+    white-space: nowrap;
+  }
+
   input {
     padding: 10px;
     outline: none;
     color: ${colors.SECONDARY_COLOR};
     background-color: white;
     border: 1px solid ${colors.LIGHT_GRAY_COLOR};
-    font-size: 14px,
+    font-size: 14px;
+    width: 100%;
 
     &::placeholder {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       color: ${colors.DARK_GRAY_COLOR};
       font-size: 14px;
     }
@@ -28,14 +36,15 @@ const InputWrapper = styled.div`
     color: ${colors.DARK_GRAY_COLOR} !important;
   }
 
-  .input-border-error, .input-border-error:focus {
+  .input-border-error,
+  .input-border-error:focus {
     border: 1px solid red;
-  }  
+  }
   .input-field-error {
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: 70px; /* Adjust the min-height based on your design */  
+    min-height: 70px; /* Adjust the min-height based on your design */
   }
   .placeholder {
     color: ${colors.DARK_GRAY_COLOR};
@@ -44,8 +53,9 @@ const InputWrapper = styled.div`
   .radio-list {
     gap: 15px;
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
-  .select-border-radius{
+  .select-border-radius {
     border-radius: 4px;
   }
 `;

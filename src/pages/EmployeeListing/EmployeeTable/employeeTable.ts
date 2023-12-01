@@ -4,7 +4,6 @@ import colors from "../../../core/constants/colors";
 const TableWrapper = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
   table-layout: fixed;
 
   .actions-list {

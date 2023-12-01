@@ -52,20 +52,20 @@ function TableData({
       key={employee.id}
       className={index % 2 !== 0 ? "alternate-table-row-color" : ""} // alternate colour for each row
     >
-      <td className="employee-data overflow-ellipsis employee-id">
+      <td className="employee-data employee-id">
         {employee.id}
       </td>
       {/* navigating to view employee page */}
       <td
-        className="employee-data overflow-ellipsis employee-view"
+        className="employee-data  employee-view"
         onClick={handleEmployeeDetailsView}
       >
         {employee.emp_name}
       </td>
-      <td className="employee-data overflow-ellipsis">
+      <td className="employee-data ">
         {employee.designation}
       </td>
-      <td className="employee-data overflow-ellipsis">{employee.department}</td>
+      <td className="employee-data ">{employee.department}</td>
       <td
         className="employee-data "
         onMouseEnter={handleMouseEnter}

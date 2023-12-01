@@ -20,7 +20,7 @@ function ActionsBar() {
 
   return (
     <>
-      <ActionsWrapper className="common-flex">
+      <ActionsWrapper className="common-flex actionsBar">
         <h2 className="subheading filter-title">Filter By:</h2>
         <div className="global-width common-flex form-flex-align">
           <FilterSelectList />

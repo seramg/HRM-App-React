@@ -7,7 +7,7 @@ function FilterSelectList() {
     useContext(DataContext);
 
   return (
-    <div className="select-list common-flex">
+    <div className="select-list">
       <FilterSelect
         label="Departments"
         options={departments}

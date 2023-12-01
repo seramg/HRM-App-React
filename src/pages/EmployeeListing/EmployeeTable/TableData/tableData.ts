@@ -7,6 +7,7 @@ const TableDataWrapper = styled.tr`
     font-size: 14px;
     font-weight: 500;
     position:relative;
+    white-space:nowrap;
 }
 .employee-view{
     color: ${colors.LINK_COLOR};

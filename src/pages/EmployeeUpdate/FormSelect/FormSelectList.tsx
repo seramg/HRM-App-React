@@ -7,7 +7,7 @@ function FormSelectList() {
     useContext(DataContext);
 
   return (
-    <div className="select-list common-flex">
+    <div className="select-list">
       <FormSelect
         label="Departments"
         options={departments}
