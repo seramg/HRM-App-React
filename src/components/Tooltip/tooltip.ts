@@ -14,7 +14,7 @@ const TooltipWrapper = styled.div<{ $left: number }>`
   visibility: visible;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
-  white-space: nowrap;
+  white-space: wrap;
 
   &:before {
     content: "";

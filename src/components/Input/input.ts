@@ -21,19 +21,12 @@ const InputWrapper = styled.div`
     width: 100%;
 
     &::placeholder {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       color: ${colors.DARK_GRAY_COLOR};
       font-size: 14px;
     }
     &:focus {
       border: 1px solid ${colors.DARK_GRAY_COLOR};
     }
-  }
-  input[type="date"]::-webkit-input-placeholder,
-  input[type="date"]::placeholder {
-    color: ${colors.DARK_GRAY_COLOR} !important;
   }
 
   .input-border-error,
@@ -57,6 +50,14 @@ const InputWrapper = styled.div`
   }
   .select-border-radius {
     border-radius: 4px;
+  }
+
+  @media only screen and (max-width: 728px) {
+    .input-field-error {
+      input {
+        min-width: 100px;
+      }
+    }
   }
 `;
 export default InputWrapper;
