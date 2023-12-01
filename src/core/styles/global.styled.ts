@@ -190,7 +190,8 @@ thead,tbody{
 
 @media only screen and (max-width: 1200px) {
   .select-list{
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* see notes below */
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr)); /* see notes below */
   }
   .form-flex-align{
     flex-direction: column;
