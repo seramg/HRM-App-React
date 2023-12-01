@@ -8,15 +8,16 @@ const ActionsWrapper = styled.div`
     border: 1px solid  ${colors.LIGHT_GRAY_COLOR};
     background-color:  ${colors.WHITE_COLOR};
     align-items:flex-end !important;
+    flex-wrap:wrap;
+    gap:10px;
+
     .filter-title{
       align-self:center;
     }
     .form-flex-align{
       align-items:flex-end !important;
-    }
-    .select-list > *{
-      flex:initial !important;
-      width:200px
+      flex-wrap:wrap;
+      gap:15px;
     }
   }
 `;

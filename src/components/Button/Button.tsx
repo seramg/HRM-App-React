@@ -16,11 +16,12 @@ function Button({
 }) {
   return (
     <ButtonWrapper
+      $isChildren={children ? true : false}
       className={`common-flex ${className ?? ""}`}
       onClick={onClick!}
     >
       {loading ? (
-        <span className="btn-loader"/>
+        <span className="btn-loader" />
       ) : (
         <>
           {icon && <span className="material-symbols-outlined"> {icon} </span>}

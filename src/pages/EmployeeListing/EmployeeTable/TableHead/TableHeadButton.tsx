@@ -47,8 +47,9 @@ function TableHeadButton({
   }
 
   return (
-    <th className="overflow-ellipsis">
+    <th>
       <ButtonWrapper
+        $isChildren={false}
         className={`common-flex table-button-head`}
         onClick={sortBtnClickHandler}
       >

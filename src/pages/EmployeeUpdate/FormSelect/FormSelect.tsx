@@ -38,7 +38,7 @@ function FormSelect({
         rules={{ required: "This field is required" }}
         render={({ field }) => (
           <>
-            <div className="input-field-error  m-30">
+            <div className="input-field-error">
               <Select
                 {...field}
                 isClearable={true}

@@ -1,14 +1,17 @@
 import SectionWrapper from "./mainHeading.ts";
 import StyledLink from './../../../components/StyledLink.ts';
 import Button from "../../../components/Button/Button.tsx";
+import { useMediaQuery } from "usehooks-ts";
 
 function MainHeading() {
+  const matches = useMediaQuery('(min-width: 768px)')
+
   return (
     <SectionWrapper className="common-section">
-      <h1 className="page-title">Employees</h1>
+      <h1 className={matches?`page-title`:`page-title-mobile`}>Employees</h1>
       {/* navigating to add-employee page */}
       <StyledLink to="add-employee">
-        <Button icon="add_circle">Add New Employee</Button>
+        <Button icon="add_circle">{matches?"Add New Employee":""}</Button>
       </StyledLink>
     </SectionWrapper>
   );

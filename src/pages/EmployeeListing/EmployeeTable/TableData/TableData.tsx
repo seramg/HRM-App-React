@@ -77,7 +77,7 @@ function TableData({
         />
         {hover && skillsOverflow && <Tooltip message={employee.skills} />}
       </td>
-      <td className="employee-data overflow-ellipsis">
+      <td className="employee-data">
         <div className=" actions-list common-flex">
           {/* navigating to edit employee page */}
           <StyledLink to={`/edit-employee?employeeId=${employee.id}`}>

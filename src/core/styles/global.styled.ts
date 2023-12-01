@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
-import ManropeBold from '../fonts/Manrope-Bold.ttf';
-import ManropeMedium from '../fonts/Manrope-Medium.ttf';
-import ManropeLight from '../fonts/Manrope-Light.ttf';
-import colors from '../constants/colors';
+import { createGlobalStyle } from "styled-components";
+import ManropeBold from "../fonts/Manrope-Bold.ttf";
+import ManropeMedium from "../fonts/Manrope-Medium.ttf";
+import ManropeLight from "../fonts/Manrope-Light.ttf";
+import colors from "../constants/colors";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -76,7 +76,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap:20px;
 }
 .logo-wrap {
   text-decoration: none;
@@ -125,19 +124,7 @@ body {
   pointer-events: visible;
 }
 
-tr{
-  border: 1px solid  #D3D3D3;
-}
-thead{
-  font-size: 16px;
-  background-color:  ${colors.WHITE_COLOR};
-}
-th,
-td {
-  padding: 10px;
-  border-spacing: 0;
-  text-align:left;
-}
+
 .m-30 {
   margin-bottom: 30px;
 }
@@ -159,30 +146,42 @@ input{
   font-weight:500;
 }
 
-// th, td {
-//   width: 150px;
-// }
-
-// th:first-child,td:first-child,
-// {
-//   width:90px
-// }
-
-// th:last-child, td:last-child {
-//   width:50px;
-// }
-
-th,td{
-  width:40%;
+.select-list{
+  gap:5px;
+  flex-wrap:wrap;
+   > *{
+    flex:initial !important;
+  }
 }
-th:first-child,td:first-child{
-  width:30%;
+table{
+  width:100%;
+  display:block;
+  overflow-x:auto;
 }
-th:last-child, td:last-child{
-  width:20%;
+tr{
+  border: 1px solid  #D3D3D3;
 }
-
-
+thead{
+  font-size: 16px;
+  background-color:  ${colors.WHITE_COLOR};
+}
+th,
+td {
+  padding: 10px;
+  border-spacing: 0;
+  text-align:left;
+}
+th:nth-child(5), td:nth-child(5) {
+  max-width: 200px; /* Adjust the width as needed */
+}
+thead,tbody{
+  width: 100%;
+  display: table;
+}
+tr{
+  width:200%;
+  max-width:1400px;
+}
 .overflow-ellipsis{
   overflow: hidden;
   text-overflow: ellipsis;

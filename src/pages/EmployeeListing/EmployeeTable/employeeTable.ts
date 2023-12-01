@@ -7,27 +7,23 @@ const TableWrapper = styled.table`
   width: 100%;
   table-layout: fixed;
 
-  .material-symbols-outlined {
-    color: ${colors.SECONDARY_COLOR};
-  }
-
   .actions-list {
     gap: 5px;
   }
-  
+
   .no-data {
     text-align: center;
   }
   .alternate-table-row-color {
-    background-color:  ${colors.WHITE_COLOR};
+    background-color: ${colors.WHITE_COLOR};
   }
   .pagination-bar {
     width: 100%;
     display: flex;
     justify-content: center;
-  }  
-  .no-border-row{
-    border:none;
+  }
+  .no-border-row {
+    border: none;
   }
 `;
 export default TableWrapper;
