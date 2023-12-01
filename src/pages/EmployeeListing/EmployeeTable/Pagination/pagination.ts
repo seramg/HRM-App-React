@@ -4,7 +4,7 @@ import colors from "../../../../core/constants/colors";
 const PaginationWrapper = styled.ul`
 display: flex;
 list-style-type: none;
-
+padding: 0;
 .pagination-item {
     padding: 0 12px;
     height: 32px;

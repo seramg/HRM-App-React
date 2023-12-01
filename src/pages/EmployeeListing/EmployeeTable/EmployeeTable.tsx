@@ -94,14 +94,13 @@ function EmployeeTable({
             </tbody>
           )}
         </TableWrapper>
-        {deleteModal && (
-          <DeleteModal
-            changeDltModalOpenStatus={changeDltModalOpenStatus}
-            employeeId={idToDlt}
-          />
-        )}
       </div>
-
+      {deleteModal && (
+        <DeleteModal
+          changeDltModalOpenStatus={changeDltModalOpenStatus}
+          employeeId={idToDlt}
+        />
+      )}
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}

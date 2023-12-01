@@ -39,7 +39,7 @@ function EmployeeListing() {
         deleteModal={deleteModal}
         changeDltModalOpenStatus={changeDltModalOpenStatus}
       />
-      {deleteModal && <div className="overlay"></div>}
+      {deleteModal && <div className="overlay" onClick={()=>setDeleteModal(false)}></div>}
     </>
   );
 }

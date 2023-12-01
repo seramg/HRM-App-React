@@ -19,6 +19,7 @@ const InputWrapper = styled.div`
     border: 1px solid ${colors.LIGHT_GRAY_COLOR};
     font-size: 14px;
     width: 100%;
+    text-overflow: ellipsis;
 
     &::placeholder {
       color: ${colors.DARK_GRAY_COLOR};
