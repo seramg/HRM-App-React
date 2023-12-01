@@ -46,7 +46,7 @@ function EmployeeView() {
     }
   }, [employeeId, employee, loading]);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader className="center-screen" />;
 
   return (
     employee && (

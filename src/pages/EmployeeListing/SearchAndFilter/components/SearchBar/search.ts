@@ -11,7 +11,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
       ? `1px solid  ${colors.DARK_GRAY_COLOR}`
       : `1px solid ${colors.LIGHT_GRAY_COLOR}`};
 
-  .material-symbols-outlined {
+  .search-icon {
     color: ${(props) =>
       props.$focus ? `${colors.SECONDARY_COLOR}` : colors.DARK_GRAY_COLOR};
   }
@@ -28,6 +28,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
 
   .search-form {
     flex: 1;
+    gap:10px;    
   }
   .search-input {
     width: 100%;
@@ -40,6 +41,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     padding: 0;
 
     &::placeholder {
+      font-size: 14px;
       color: ${colors.DARK_GRAY_COLOR};
     }
   }

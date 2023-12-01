@@ -123,8 +123,6 @@ body {
   opacity: 0.6;
   pointer-events: visible;
 }
-
-
 .m-30 {
   margin-bottom: 30px;
 }
@@ -145,11 +143,14 @@ body {
 input{
   font-weight:500;
 }
-
+.center-screen{
+  top: 50%;
+    left: 50%;
+}
 .select-list{
   display: grid;
   grid-template-columns: repeat(4, minmax(200px, 1fr)); /* see notes below */
-  grid-gap:5px;
+  grid-gap:15px;
   width: 100%;
   flex: 1;
 }
@@ -181,7 +182,9 @@ th:nth-child(6), td:nth-child(6) {
 thead,tbody{
   width: 100%;
 }
-
+.button-grp{
+  flex-wrap: wrap; 
+}
 .overflow-ellipsis{
   overflow: hidden;
   text-overflow: ellipsis;

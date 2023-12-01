@@ -151,7 +151,7 @@ function Form() {
     }
   });
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader className="center-screen"/>;
 
   return (
     (urlType === "add-employee" ||
@@ -221,7 +221,7 @@ function Form() {
             <legend className="subheading">Other Information</legend>
             <FormSelectList />
           </Fieldset>
-          <ButtonGrpWrapper>
+          <ButtonGrpWrapper className="button-grp">
             <Button icon="" onClick={onReset}>
               Clear
             </Button>

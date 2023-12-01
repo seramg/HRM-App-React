@@ -5,7 +5,14 @@ const TableWrapper = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
-
+  
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust the height as needed */
+    width: 150vh;
+  }
   .actions-list {
     gap: 5px;
   }

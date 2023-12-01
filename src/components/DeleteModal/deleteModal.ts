@@ -44,10 +44,6 @@ const DeleteModalWrapper = styled.div`
     margin: 0 0 10px 0;
     color: ${colors.WARNING_TEXT_COLOR};
   }
-  .button-gap {
-    gap: 20px !important;
-    flex-wrap: wrap;
-  }
   button {
     gap: 5px;
     padding: 10px;

@@ -31,7 +31,7 @@ function SearchBar({placeholder}:{placeholder:string}) {
         <input
           type="text"
           value={tableProps.search_term as string}
-          className="search-input"
+          className="search-input overflow-ellipsis"
           id="search-input"
           placeholder={placeholder}
           onFocus={handleFocus}
