@@ -130,6 +130,10 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap; 
 }
+.back-btn{
+  color:${colors.SECONDARY_COLOR};
+  cursor:pointer;
+}
 `;
 
 export default GlobalStyle;

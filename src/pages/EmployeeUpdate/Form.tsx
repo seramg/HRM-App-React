@@ -156,80 +156,88 @@ function Form() {
   return (
     (urlType === "add-employee" ||
       (urlType === "edit-employee" && employee)) && (
-      <FormProvider {...methods}>
-        <form onSubmit={(e) => e.preventDefault()} noValidate>
-          <h2>
-            {urlType === "add-employee" && "Add New Employee"}
-            {urlType === "edit-employee" &&
-              employee &&
-              `Edit Employee ${employee.id}`}
-          </h2>
-          <Fieldset className="form-details ">
-            <legend className="subheading">Personal Information</legend>
+      <>
+        <span
+          className="material-symbols-outlined back-btn"
+          onClick={() => navigate(-1)}
+        >
+          reply
+        </span>
+        <FormProvider {...methods}>
+          <form onSubmit={(e) => e.preventDefault()} noValidate>
+            <h2>
+              {urlType === "add-employee" && "Add New Employee"}
+              {urlType === "edit-employee" &&
+                employee &&
+                `Edit Employee ${employee.id}`}
+            </h2>
+            <Fieldset className="form-details ">
+              <legend className="subheading">Personal Information</legend>
 
-            <Input
-              validation={nameValidation}
-              label="Name"
-              type="text"
-              name="emp_name"
-            />
-            <InputRow className="common-flex">
               <Input
-                validation={emailValidation}
-                label="Email"
-                type="email"
-                name="email"
+                validation={nameValidation}
+                label="Name"
+                type="text"
+                name="emp_name"
               />
+              <InputRow className="common-flex">
+                <Input
+                  validation={emailValidation}
+                  label="Email"
+                  type="email"
+                  name="email"
+                />
+                <Input
+                  validation={phoneValidation}
+                  label="Phone Number"
+                  type="tel"
+                  name="phone"
+                />
+              </InputRow>
               <Input
-                validation={phoneValidation}
-                label="Phone Number"
-                type="tel"
-                name="phone"
+                validation={addressValidation}
+                label="Address"
+                type="textarea"
+                name="address"
               />
-            </InputRow>
-            <Input
-              validation={addressValidation}
-              label="Address"
-              type="textarea"
-              name="address"
-            />
-            <InputRow className="common-flex">
+              <InputRow className="common-flex">
+                <Input
+                  validation={dateValidation}
+                  label="Date of Birth"
+                  type="date"
+                  name="date_of_birth"
+                />
+                <Input
+                  validation={dateValidation}
+                  label="Date of Joining"
+                  type="date"
+                  name="date_of_joining"
+                />
+              </InputRow>
               <Input
-                validation={dateValidation}
-                label="Date of Birth"
-                type="date"
-                name="date_of_birth"
+                label="Gender"
+                type="radio"
+                options={["Male", "Female", "Other"]}
+                name="gender"
               />
-              <Input
-                validation={dateValidation}
-                label="Date of Joining"
-                type="date"
-                name="date_of_joining"
-              />
-            </InputRow>
-            <Input
-              label="Gender"
-              type="radio"
-              options={["Male", "Female", "Other"]}
-              name="gender"
-            />
-          </Fieldset>
-          <Fieldset className="other-details ">
-            <legend className="subheading">Other Information</legend>
-            <FormSelectList />
-          </Fieldset>
-          <ButtonGrpWrapper>
-            {urlType !== "add-employee" && (
-              <Button icon="" onClick={onReset}>
-                Clear
+            </Fieldset>
+            <Fieldset className="other-details ">
+              <legend className="subheading">Other Information</legend>
+              <FormSelectList />
+            </Fieldset>
+            <ButtonGrpWrapper>
+              {urlType !== "add-employee" && (
+                <Button icon="" onClick={onReset}>
+                  Clear
+                </Button>
+              )}
+              <Button icon="" onClick={onSubmit} loading={showLoader}>
+                Submit
               </Button>
-            )}
-            <Button icon="" onClick={onSubmit} loading={showLoader}>
-              Submit
-            </Button>
-          </ButtonGrpWrapper>
-        </form>
-      </FormProvider>
+            </ButtonGrpWrapper>
+          </form>
+        </FormProvider>
+      </>
     )
   );
 }
