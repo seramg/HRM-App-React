@@ -122,7 +122,6 @@ body {
   left: 50%;
 }
 .table-overflow-scroll{
-  overflow-x:auto;
   border: 1px solid  #D3D3D3;
 }
 .overflow-ellipsis{
@@ -133,6 +132,11 @@ body {
 .back-btn{
   color:${colors.SECONDARY_COLOR};
   cursor:pointer;
+}
+@media screen and (max-width: 1200px) {
+  .table-overflow-scroll {
+    overflow-x: auto;
+  }
 }
 `;
 

@@ -52,7 +52,7 @@ function TableData({
       key={employee.id}
       className={index % 2 !== 0 ? "alternate-table-row-color" : ""} // alternate colour for each row
     >
-      <td className="employee-data employee-id">
+      <td className="employee-data">
         {employee.id}
       </td>
       {/* navigating to view employee page */}
