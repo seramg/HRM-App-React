@@ -3,7 +3,6 @@ import colors from "../../core/constants/colors";
 
 const SkillsListWrapper = styled.div`
   padding-left: 10px;
-  margin: 5px;
 `;
 const SkillsChipWrapper = styled.span`
   font-size: 14px;
@@ -12,7 +11,7 @@ const SkillsChipWrapper = styled.span`
   padding: 5px;
   border-radius: 5px;
   color: ${colors.WHITE_COLOR};
-  margin-right: 5px;
+  margin: 5px 5px 5px 0;
   display: inline-block; /* Ensure each skill card is on a single line */
 `;
 

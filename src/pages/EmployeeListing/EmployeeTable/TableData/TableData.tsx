@@ -72,6 +72,7 @@ function TableData({
         onMouseLeave={handleMouseLeave}
       >
         <SkillsChip
+          className="overflow-ellipsis"
           skills={employee.skills}
           handleSkillsOverflow={handleSkillsOverflow}
         />

@@ -20,7 +20,7 @@ const DetailsSection = ({
       {typeof content === "string" ? (
         <p className="content overflow-ellipsis">{content}</p>
       ) : (
-        <SkillsChip skills={content} />
+        <SkillsChip className="content" skills={content} />
       )}
     </DetailsWrapper>
   );

@@ -5,9 +5,11 @@ import { SkillsChipWrapper, SkillsListWrapper } from "./skillsChip";
 function SkillsChip({
   skills,
   handleSkillsOverflow,
+  className
 }: {
   skills: Skill[];
   handleSkillsOverflow?: (isOverflow: boolean) => void;
+  className?:string
 }) {
   const skillsContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -38,7 +40,7 @@ function SkillsChip({
   }, [skills, skillsContainerRef]);
 
   return (
-    <SkillsListWrapper className="overflow-ellipsis" ref={skillsContainerRef}>
+    <SkillsListWrapper className={` ${className}`} ref={skillsContainerRef}>
       {skills.map((skill: Skill) => {
         return (
           <SkillsChipWrapper key={skill.id}>{skill.name}</SkillsChipWrapper>
