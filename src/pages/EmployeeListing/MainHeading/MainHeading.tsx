@@ -7,7 +7,7 @@ function MainHeading() {
   const matches = useMediaQuery('(min-width: 768px)')
 
   return (
-    <SectionWrapper className="common-section">
+    <SectionWrapper>
       <h1 className={matches?`page-title`:`page-title-mobile`}>Employees</h1>
       {/* navigating to add-employee page */}
       <StyledLink to="add-employee">

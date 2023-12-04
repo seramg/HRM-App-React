@@ -28,7 +28,7 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
 
   .search-form {
     flex: 1;
-    gap:10px;    
+    gap: 10px;
   }
   .search-input {
     width: 100%;
@@ -52,6 +52,10 @@ const SearchWrapper = styled.div<{ $focus: boolean }>`
     background: none;
     border-left: 1px solid ${colors.LIGHT_GRAY_COLOR};
     flex-direction: row-reverse;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
   }
 `;
 export default SearchWrapper;

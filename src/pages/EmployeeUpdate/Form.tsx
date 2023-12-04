@@ -221,7 +221,7 @@ function Form() {
             <legend className="subheading">Other Information</legend>
             <FormSelectList />
           </Fieldset>
-          <ButtonGrpWrapper className="button-grp">
+          <ButtonGrpWrapper>
             <Button icon="" onClick={onReset}>
               Clear
             </Button>

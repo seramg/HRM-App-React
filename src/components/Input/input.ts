@@ -13,6 +13,7 @@ const InputWrapper = styled.div`
 
   input {
     padding: 10px;
+    font-weight:500;
     outline: none;
     color: ${colors.SECONDARY_COLOR};
     background-color: white;

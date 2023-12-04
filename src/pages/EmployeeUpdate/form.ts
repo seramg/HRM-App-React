@@ -10,9 +10,6 @@ const Fieldset = styled.fieldset`
   .submit-btn {
     margin: 30px;
   }
-  .select-list {
-    margin-bottom: 30px;
-  }
 `;
 const InputRow = styled.div`
   flex-wrap: wrap;

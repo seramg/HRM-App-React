@@ -66,12 +66,6 @@ body {
   line-height: 1.5;
   color: ${colors.SECONDARY_COLOR};
 }
-
-.common-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
 .common-flex {
   display: flex;
   justify-content: space-between;
@@ -90,12 +84,6 @@ body {
 }
 .rotate {
   transform: rotate(180deg);
-}
-.display {
-  display: block;
-}
-.no-display {
-  display: none;
 }
 .overlay {
   position: fixed;
@@ -129,85 +117,18 @@ body {
 .rotate {
   transform: rotate(180deg);
 }
-.skill-list {
-  margin:5px;
-}
-.skill-card {
-  background-color:${colors.PRIMARY_COLOR};
-  padding: 5px;
-  border-radius: 5px;
-  color: ${colors.WHITE_COLOR};
-  margin-right:5px;
-  display: inline-block; /* Ensure each skill card is on a single line */
-}
-input{
-  font-weight:500;
-}
 .center-screen{
   top: 50%;
-    left: 50%;
-}
-.select-list{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* see notes below */
-  grid-gap:15px;
-  width: 100%;
-  flex: 1;
+  left: 50%;
 }
 .table-overflow-scroll{
   overflow-x:auto;
-}
-table{
-  width:  1370px;
-}
-tr{
   border: 1px solid  #D3D3D3;
-}
-thead{
-  font-size: 16px;
-  background-color:  ${colors.WHITE_COLOR};
-}
-th,
-td {
-  padding: 10px;
-  border-spacing: 0;
-  text-align:left;
-}
-th:nth-child(5), td:nth-child(5){
-  width: 200px; 
-}
-th:nth-child(6), td:nth-child(6) {
-  width: 100px; 
-}
-thead,tbody{
-  width: 100%;
-}
-.button-grp{
-  flex-wrap: wrap; 
 }
 .overflow-ellipsis{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; 
-}
-
-@media only screen and (max-width: 1200px) {
-  .select-list{
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr)); /* see notes below */
-  }
-  .form-flex-align{
-    flex-direction: column;
-  }
- .search-bar{
-  width: 100%;
- }
-}
-
-@media only screen and (max-width: 728px) {
-  .select-list{
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* see notes below */
-  }
 }
 `;
 

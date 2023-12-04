@@ -3,7 +3,6 @@ import colors from "../../../core/constants/colors";
 
 const ActionsWrapper = styled.div`
   padding: 20px;
-  margin-bottom: 30px;
   border-radius: 10px;
   border: 1px solid ${colors.LIGHT_GRAY_COLOR};
   background-color: ${colors.WHITE_COLOR};
@@ -17,14 +16,18 @@ const ActionsWrapper = styled.div`
     align-items: flex-end !important;
     gap: 15px;
   }
+
   @media only screen and (max-width: 1200px) {
     flex-direction: column;
-    >*{
+    > * {
       width: 100%;
     }
-    >button{
+    > button {
       align-self: flex-start;
       width: fit-content;
+    }
+    .form-flex-align {
+      flex-direction: column;
     }
   }
 `;

@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import DataContext from "../../../../../core/store/DataContext";
 import FilterSelect from "./FilterSelect";
+import SelectListWrapper from "../../../../../components/SelectStyle/selectList.ts";
 
 function FilterSelectList() {
   const { departments, designations, employment_modes, skills } =
     useContext(DataContext);
 
   return (
-    <div className="select-list">
+    <SelectListWrapper>
       <FilterSelect
         label="Departments"
         options={departments}
@@ -36,7 +37,7 @@ function FilterSelectList() {
         isMulti={true} //employees can have multiple skills
         fieldName="skills"
       />
-    </div>
+    </SelectListWrapper>
   );
 }
 

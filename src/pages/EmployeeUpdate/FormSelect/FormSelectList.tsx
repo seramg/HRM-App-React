@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import DataContext from "../../../core/store/DataContext.tsx";
 import FormSelect from "./FormSelect.tsx";
+import SelectListWrapper from "../../../components/SelectStyle/selectList.ts";
 
 function FormSelectList() {
   const { departments, designations, employment_modes, skills } =
     useContext(DataContext);
 
   return (
-    <div className="select-list">
+    <SelectListWrapper>
       <FormSelect
         label="Departments"
         options={departments}
@@ -36,7 +37,7 @@ function FormSelectList() {
         isMulti={true}
         fieldName="skills"
       />
-    </div>
+    </SelectListWrapper>
   );
 }
 

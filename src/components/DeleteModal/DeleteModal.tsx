@@ -55,7 +55,7 @@ function DeleteModal({
         </div>
         <p className="warning-text">{WARNING_TEXT}</p>
       </div>
-      <ButtonGrpWrapper className="button-grp">
+      <ButtonGrpWrapper>
         <Button className="cancel-btn" onClick={changeDltModalOpenStatus}>
           No, Cancel
         </Button>

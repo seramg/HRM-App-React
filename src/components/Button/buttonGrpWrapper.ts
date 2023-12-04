@@ -5,5 +5,6 @@ const ButtonGrpWrapper = styled.div`
   justify-content: flex-end;
   gap: 20px;
   padding: 10px;
+  flex-wrap: wrap; 
 `;
 export default ButtonGrpWrapper;

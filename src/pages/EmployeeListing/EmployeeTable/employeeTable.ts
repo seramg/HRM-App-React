@@ -5,7 +5,32 @@ const TableWrapper = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
-  
+  width: 1370px;
+
+  thead {
+    font-size: 16px;
+    background-color: ${colors.WHITE_COLOR};
+  }
+  th,
+  td {
+    padding: 10px;
+    border-spacing: 0;
+    text-align: left;
+    width: 150px;
+  }
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 200px;
+  }
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 100px;
+  }
+  thead,
+  tbody {
+    width: 100%;
+  }
+
   .loader-container {
     display: flex;
     justify-content: center;

@@ -26,12 +26,5 @@ const DetailsWrapper = styled.div`
     font-size: 14px;
     color: ${colors.DARK_GRAY_COLOR};
   }
-  .skill-card {
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .skill-list {
-    padding-left: 10px;
-  }
 `;
 export default DetailsWrapper;

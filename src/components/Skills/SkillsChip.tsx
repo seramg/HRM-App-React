@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Skill } from "../../core/interfaces/interface";
+import { SkillsChipWrapper, SkillsListWrapper } from "./skillsChip";
 
 function SkillsChip({
   skills,
@@ -37,15 +38,13 @@ function SkillsChip({
   }, [skills, skillsContainerRef]);
 
   return (
-    <div className="skill-list overflow-ellipsis" ref={skillsContainerRef}>
+    <SkillsListWrapper className="overflow-ellipsis" ref={skillsContainerRef}>
       {skills.map((skill: Skill) => {
         return (
-          <span className="skill-card" key={skill.id}>
-            {skill.name}
-          </span>
+          <SkillsChipWrapper key={skill.id}>{skill.name}</SkillsChipWrapper>
         );
       })}
-    </div>
+    </SkillsListWrapper>
   );
 }
 export default SkillsChip;
