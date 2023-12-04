@@ -151,16 +151,13 @@ function Form() {
     }
   });
 
-  if (loading) return <Loader className="center-screen"/>;
+  if (loading) return <Loader className="center-screen" />;
 
   return (
     (urlType === "add-employee" ||
       (urlType === "edit-employee" && employee)) && (
       <FormProvider {...methods}>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          noValidate
-        >
+        <form onSubmit={(e) => e.preventDefault()} noValidate>
           <h2>
             {urlType === "add-employee" && "Add New Employee"}
             {urlType === "edit-employee" &&
@@ -222,9 +219,11 @@ function Form() {
             <FormSelectList />
           </Fieldset>
           <ButtonGrpWrapper>
-            <Button icon="" onClick={onReset}>
-              Clear
-            </Button>
+            {urlType !== "add-employee" && (
+              <Button icon="" onClick={onReset}>
+                Clear
+              </Button>
+            )}
             <Button icon="" onClick={onSubmit} loading={showLoader}>
               Submit
             </Button>
