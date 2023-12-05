@@ -290,6 +290,167 @@
       "designation": "CTO",
       "department": "Software Development",
       "employment_mode": "Full-Time"
+    },
+    "EMP014": {
+      "id": "EMP014",
+      "emp_name": "Olivia Anderson",
+      "email": "olivia.anderson@example.com",
+      "phone": "9998887777",
+      "address": "789 Oak Avenue, Anytown, CA, 67890, USA",
+      "skills": [
+        {
+          "id": "PYT789",
+          "name": "Python"
+        },
+        {
+          "id": "JAV456",
+          "name": "Java"
+        }
+      ],
+      "gender": "Female",
+      "date_of_birth": "1993-05-22",
+      "date_of_joining": "2022-02-28",
+      "designation": "Engineer",
+      "department": "Software Development",
+      "employment_mode": "Full-Time"
+    },
+    "EMP015": {
+      "id": "EMP015",
+      "emp_name": "Noah Turner",
+      "email": "noah.turner@example.com",
+      "phone": "7776665555",
+      "address": "101 Pine Road, Anytown, CA, 12345, USA",
+      "skills": [
+        {
+          "id": "JAV456",
+          "name": "Java"
+        },
+        {
+          "id": "JVS123",
+          "name": "JavaScript"
+        }
+      ],
+      "gender": "Male",
+      "date_of_birth": "1989-09-18",
+      "date_of_joining": "2021-09-10",
+      "designation": "Associate Engineer",
+      "department": "Web Development",
+      "employment_mode": "Contract"
+    },
+    "EMP016": {
+      "id": "EMP016",
+      "emp_name": "Mia Baker",
+      "email": "mia.baker@example.com",
+      "phone": "4443332222",
+      "address": "222 Cedar Street, Anytown, CA, 98765, USA",
+      "skills": [
+        {
+          "id": "PYT789",
+          "name": "Python"
+        },
+        {
+          "id": "JAV456",
+          "name": "Java"
+        }
+      ],
+      "gender": "Female",
+      "date_of_birth": "1996-12-05",
+      "date_of_joining": "2020-07-15",
+      "designation": "Engineer",
+      "department": "Software Development",
+      "employment_mode": "Full-Time"
+    },
+    "EMP017": {
+      "id": "EMP017",
+      "emp_name": "Ethan Harris",
+      "email": "ethan.harris@example.com",
+      "phone": "3332221111",
+      "address": "456 Elm Street, Anytown, CA, 54321, USA",
+      "skills": [
+        {
+          "id": "JAV456",
+          "name": "Java"
+        },
+        {
+          "id": "JVS123",
+          "name": "JavaScript"
+        }
+      ],
+      "gender": "Male",
+      "date_of_birth": "1997-04-30",
+      "date_of_joining": "2016-03-20",
+      "designation": "Director",
+      "department": "Project Management",
+      "employment_mode": "Full-Time"
+    },
+    "EMP018": {
+      "id": "EMP018",
+      "emp_name": "Amelia Martin",
+      "email": "amelia.martin@example.com",
+      "phone": "8889990000",
+      "address": "567 Maple Lane, Anytown, CA, 54321, USA",
+      "skills": [
+        {
+          "id": "PYT789",
+          "name": "Python"
+        },
+        {
+          "id": "JVS123",
+          "name": "JavaScript"
+        }
+      ],
+      "gender": "Female",
+      "date_of_birth": "1998-10-14",
+      "date_of_joining": "2018-05-25",
+      "designation": "CTO",
+      "department": "Software Development",
+      "employment_mode": "Part-Time"
+    },
+    "EMP019": {
+      "id": "EMP019",
+      "emp_name": "Jackson King",
+      "email": "jackson.king@example.com",
+      "phone": "6665554444",
+      "address": "101 Pine Road, Anytown, CA, 12345, USA",
+      "skills": [
+        {
+          "id": "PYT789",
+          "name": "Python"
+        },
+        {
+          "id": "JAV456",
+          "name": "Java"
+        }
+      ],
+      "gender": "Male",
+      "date_of_birth": "1999-06-08",
+      "date_of_joining": "2019-12-12",
+      "designation": "Engineer",
+      "department": "Software Development",
+      "employment_mode": "Full-Time"
+    },
+    "EMP020": {
+      "id": "EMP020",
+      "emp_name": "Sophie Turner",
+      "email": "sophie.turner@example.com",
+      "phone": "2221113333",
+      "address": "222 Cedar Street, Anytown, CA, 98765, USA",
+      "skills": [
+        {
+          "id": "PYT789",
+          "name": "Python"
+        },
+        {
+          "id": "JVS123",
+          "name": "JavaScript"
+        }
+      ],
+      "gender": "Female",
+      "date_of_birth": "2001-02-20",
+      "date_of_joining": "2021-01-05",
+      "designation": "Associate Engineer",
+      "department": "Software Development",
+      "employment_mode": "Contract"
     }
   },
   "skills": [
@@ -355,5 +516,5 @@
     "Permanent",
     "Probationary"
   ],
-  "employeesCount": 13
+  "employeesCount": 20
 }

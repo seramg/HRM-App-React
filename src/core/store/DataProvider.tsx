@@ -34,14 +34,8 @@ const DataProvider = ({ children }: { children: any }) => {
     search_term: "",
   });
 
-  const addEmployees = (employees: Employee[]) => {
-    setEmployees(employees);
-  };
   const addTableProps = (tableProps: TableProps) => {
     setTableProps(tableProps);
-  };
-  const addLoader = (loadingState: boolean) => {
-    setLoading(loadingState);
   };
 
   const fetchEmployeeData = async () => {
@@ -58,7 +52,7 @@ const DataProvider = ({ children }: { children: any }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      addLoader(false);
+      setLoading(false);
     }
   };
 
@@ -92,8 +86,6 @@ const DataProvider = ({ children }: { children: any }) => {
         addTableProps,
         loading,
         fetchEmployeeData,
-        addEmployees,
-        addLoader,
         dataEmployees,
       }}
     >

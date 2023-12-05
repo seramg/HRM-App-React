@@ -44,8 +44,6 @@ export interface ContextProps {
   addTableProps: (tableProps: TableProps) => void;
   loading: boolean;
   fetchEmployeeData: () => void;
-  addEmployees: (employees: Employee[]) => void;
-  addLoader: (loadingState: boolean) => void;
   dataEmployees: Employee[];
 }
 
