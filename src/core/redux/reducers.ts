@@ -1,14 +1,5 @@
 import { Employee, SelectOptionProps, SortDirection, TableProps } from "../interfaces/interface";
-import {
-  SET_DATA_EMPLOYEES,
-  SET_EMPLOYEES,
-  SET_DEPARTMENTS,
-  SET_DESIGNATIONS,
-  SET_EMP_MODES,
-  SET_SKILLS,
-  SET_TABLE_PROPS,
-  SET_LOADING,
-} from "./actions";
+import * as actionTypes from "./actionTypes.ts";
 
 const initialState = {
   employees: [],
@@ -30,33 +21,33 @@ const initialState = {
   loading: true,
 };
 
-function rootReducer  (
-  state: any ,
+function reducer(
+  state: any=initialState,
   action: {
     type: string;
-    payload: Employee[] | SelectOptionProps[] | TableProps;
+    payload: Employee[] | SelectOptionProps[] | TableProps|boolean;
   }
 ) {
   switch (action.type) {
-    case SET_DATA_EMPLOYEES:
+    case actionTypes.SET_DATA_EMPLOYEES:
       return { ...state, dataEmployees: action.payload };
-    case SET_EMPLOYEES:
+    case actionTypes.SET_EMPLOYEES:
       return { ...state, employees: action.payload };
-    case SET_DEPARTMENTS:
+    case actionTypes.SET_DEPARTMENTS:
       return { ...state, departments: action.payload };
-    case SET_DESIGNATIONS:
+    case actionTypes.SET_DESIGNATIONS:
       return { ...state, designations: action.payload };
-    case SET_EMP_MODES:
-      return { ...state, employee_modes: action.payload };
-    case SET_SKILLS:
+    case actionTypes.SET_EMP_MODES:
+      return { ...state, empModes: action.payload };
+    case actionTypes.SET_SKILLS:
       return { ...state, skills: action.payload };
-    case SET_LOADING:
+    case actionTypes.SET_LOADING:
       return { ...state, loading: action.payload };
-    case SET_TABLE_PROPS:
+    case actionTypes.SET_TABLE_PROPS:
       return { ...state, tableProps: action.payload };
     default:
       return state;
   }
 };
 
-export default rootReducer;
+export default reducer;
