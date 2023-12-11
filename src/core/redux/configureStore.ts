@@ -3,7 +3,6 @@ import { thunk } from "redux-thunk";
 import reducer from "./reducers";
 import {
   composeWithDevTools,
-  devToolsEnhancer,
 } from "@redux-devtools/extension";
 
 const composeEnhancers = composeWithDevTools({
@@ -13,5 +12,4 @@ const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(thunk))
 );
-// composeWithDevTools(applyMiddleware(thunk)))
 export default store;

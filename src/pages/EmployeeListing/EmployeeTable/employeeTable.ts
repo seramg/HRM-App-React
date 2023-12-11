@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../../../core/constants/colors";
 
-const TableWrapper = styled.table`
+const TableWrapper = styled.table<{ $loading: boolean }>`
   border-collapse: separate;
   border-spacing: 0;
   table-layout: fixed;
@@ -76,8 +76,8 @@ const TableWrapper = styled.table`
     td:first-child {
       position: sticky;
       left: 0;
-      z-index: 10;
-      border-right: 1px solid ${colors.LIGHT_GRAY_COLOR} !important;
+      z-index: 2;
+     border-right:${(props) => !props.$loading ? `1px solid ${colors.LIGHT_GRAY_COLOR} !important` : `none`};
     }
   }
 `;

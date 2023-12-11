@@ -57,7 +57,7 @@ function EmployeeTable({
   return (
     <>
       <div className="table-overflow-scroll">
-        <TableWrapper>
+        <TableWrapper $loading={loading}>
           <TableHead />
           {loading ? (
             <tbody>
