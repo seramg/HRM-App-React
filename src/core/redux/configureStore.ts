@@ -1,17 +1,16 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
-import { thunk } from "redux-thunk";
-import reducer from "./reducers";
-import {
-  composeWithDevTools,
-  devToolsEnhancer,
-} from "@redux-devtools/extension";
+import { configureStore, Tuple } from "@reduxjs/toolkit";
+import employeeReducer from "./employeeReducer.ts";
+import tableReducer from "./tableReducer.ts";
+import filterReducer from "./filterReducer.ts";
+import logger from "redux-logger";
+import error from "./../middleware/error";
 
-const composeEnhancers = composeWithDevTools({
-  trace: true,
+const store = configureStore({
+  reducer: {
+    employee: employeeReducer,
+    table: tableReducer,
+    filter: filterReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger,error),
 });
-const store = createStore(
-  reducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
-// composeWithDevTools(applyMiddleware(thunk)))
 export default store;

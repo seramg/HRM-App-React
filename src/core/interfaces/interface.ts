@@ -1,5 +1,27 @@
 import { Control } from "react-hook-form";
 
+export interface TableReducer {
+  tableProps: TableProps;
+  loading: boolean;
+}
+export interface EmployeeReducer {
+  dataEmployees: Employee[];
+  employees: Employee[];
+  departments: SelectOptionProps[];
+  designations: SelectOptionProps[];
+  empModes: SelectOptionProps[];
+  skills: SelectOptionProps[];
+  tableProps: TableProps;
+  loading: boolean;
+}
+
+export interface FilterReducer {
+  departments: SelectOptionProps[];
+  designations: SelectOptionProps[];
+  empModes: SelectOptionProps[];
+  skills: SelectOptionProps[];
+}
+
 export enum SortDirection {
   ASC = "asc",
   DESC = "desc",
